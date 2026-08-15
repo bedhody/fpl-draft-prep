@@ -107,6 +107,7 @@ def scrape(league_ids, session: requests.Session) -> list[dict]:
 
 
 MIN_LEAGUE_SIZE = 6      # 2- and 3-team "leagues" are tests, not drafts
+MIN_DRAFTS = 10          # below this an ADP is one person's opinion, not a market
 SQUAD = 15
 
 
@@ -149,16 +150,21 @@ def aggregate(picks: pd.DataFrame, players: pd.DataFrame, *, min_size=MIN_LEAGUE
     out = (agg(human, "")
            .join(agg(p, "_incl_auto"), how="outer")
            .join(agg(eight, "_8team_only"), how="outer"))
-    out["drafted_pct"] = (out["times_drafted"] / n_human * 100).round(1)
+    # "Was he drafted at all" must count autodraft picks too, or a player the
+    # algorithm always takes looks unwanted.  ADP itself stays human-only.
+    out["drafted_pct"] = (out["times_drafted_incl_auto"] / n_leagues * 100).round(1)
     out["auto_pick_pct"] = (
         (out["times_drafted_incl_auto"] - out["times_drafted"].fillna(0))
         / out["times_drafted_incl_auto"] * 100).round(1)
+    out["adp_reliable"] = out["times_drafted"].fillna(0) >= MIN_DRAFTS
     out = out.join(players.set_index("code")[["web_name", "position", "team",
                                               "fpl_draft_rank"]].drop_duplicates())
     for c in out.columns:
         if out[c].dtype.kind == "f":
             out[c] = out[c].round(2)
-    return out.sort_values("adp").reset_index(), n_leagues, n_human, p
+    # Thin samples sink: one early pick in one league is not an ADP.
+    out = out.sort_values(["adp_reliable", "adp"], ascending=[False, True])
+    return out.reset_index(), n_leagues, n_human, p
 
 
 def main() -> int:
@@ -188,9 +194,8 @@ def main() -> int:
     print(f"auto picks: {used.was_auto.mean():.1%} of picks (excluded from ADP)")
     print(f"\ndraft_adp.csv  {len(out)} players")
 
-    MIN = 10
-    solid = out[out.times_drafted >= MIN]
-    print(f"\ntop 30 by ADP, drafted in at least {MIN} leagues "
+    solid = out[out.adp_reliable]
+    print(f"\ntop 30 by ADP, drafted in at least {MIN_DRAFTS} leagues "
           f"({len(solid)} of {len(out)} players clear that bar):")
     cols = ["web_name", "team", "position", "adp", "adp_sd", "earliest", "latest",
             "times_drafted", "drafted_pct", "adp_8team_only", "fpl_draft_rank"]

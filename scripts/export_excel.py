@@ -161,7 +161,8 @@ SPEC: list[tuple[str, str, str, str]] = [
     ("ADP earliest", "earliest", "Earliest he was taken in any league", "FPL Draft"),
     ("ADP latest", "latest", "Latest he was taken in any league", "FPL Draft"),
     ("Times drafted", "times_drafted", "Leagues in which a human drafted him. Low numbers make the ADP unreliable", "FPL Draft"),
-    ("Drafted %", "drafted_pct", "Share of leagues in which he was drafted at all", "FPL Draft"),
+    ("ADP reliable", "adp_reliable", "TRUE once he has been drafted by a human in at least 10 leagues", "FPL Draft"),
+    ("Drafted %", "drafted_pct", "Share of leagues in which he was drafted at all, autodraft included", "FPL Draft"),
     ("Auto-pick %", "auto_pick_pct", "Share of his picks made by the autodraft algorithm rather than a human", "FPL Draft"),
     ("FPL draft rank", "fpl_draft_rank", "The default ordering FPL's own autodraft uses", "FPL Draft"),
 ]

@@ -313,6 +313,19 @@ Leagues under 6 teams and unfinished drafts are dropped. Every draft carries a
 date, so picks can later be weighted for recency — draft opinion moves with
 transfers, pre-season form and injury news.
 
+Current sample: **594,465 picks from 4,874 completed drafts** dated 4–15 August,
+2,456 of them 8-team leagues. **35% of all picks are autodraft** and are
+excluded from ADP — but they still count toward `Drafted %`, otherwise a player
+the algorithm always takes looks unwanted. Haaland is drafted in 99.7% of
+leagues while only 65% of his picks are human.
+
+`ADP reliable` flags the 385 players drafted by a human in 10+ leagues. Below
+that an ADP is one person's opinion, not a market, so those rows sort last.
+
+Most drafts still have not happened — the GW1 deadline is 21 August. Re-running
+closer to your own draft gives both a larger and a more current sample, which
+resolves most of the recency-vs-size tension by itself.
+
 **Privacy:** the feed returns real manager names and team names on every pick.
 None of it is stored. Only league id, size, draft date, player code, pick,
 round and the auto flag are kept.
