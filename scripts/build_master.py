@@ -189,6 +189,10 @@ def build() -> None:
     adj = optional("adjusted_xgot.csv", drop=["xG_opta", "fm_xGOT"])
     bps = optional("bps_remodel_2025_26.csv",
                    drop=["element", "name", "team", "minutes", "pos_2526"])
+    solio = optional("solio_projections.csv",
+                     drop=["position", "price", "solio_id"])
+    adp = optional("draft_adp.csv",
+                   drop=["web_name", "position", "team"])
 
     master = (spine_out
               .merge(fpl_out, on="code", how="left")
@@ -197,6 +201,8 @@ def build() -> None:
               .merge(gw, on="code", how="left")
               .merge(adj, on="code", how="left")
               .merge(bps, on="code", how="left")
+              .merge(solio, on="code", how="left")
+              .merge(adp, on="code", how="left")
               .rename(columns={"id": "fpl_id", "pl_name": "player",
                                "team_short": "team_2627"}))
 

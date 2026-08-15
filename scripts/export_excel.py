@@ -147,6 +147,23 @@ SPEC: list[tuple[str, str, str, str]] = [
     ("Dispossessed", "pl_dispossessed", "Times dispossessed", "PL"),
     ("Offsides", "pl_total_offside", "Times caught offside", "PL"),
     ("Selected by %", "selected_by_percent", "FPL ownership at time of pull", "FPL"),
+    # -- other people's projections and the draft market ------------------
+    ("Solio season pts", "solio_season_pts", "Solio's 19-GW projection extended to a full season, with the second half rebuilt at settled minutes", "Solio"),
+    ("Solio H1 pts (GW1-19)", "solio_H1_pts", "Solio's projection as published, first half only", "Solio"),
+    ("Solio naive x2", "solio_naive_double", "What simply doubling GW1-19 would have given", "Solio"),
+    ("Solio correction", "solio_correction", "Season points minus naive doubling. Positive = injury/World Cup return the doubling would have double-counted", "derived"),
+    ("Solio xMins (season)", "solio_season_xmins", "Settled minutes per match x 38 - a ready-made xMins forecast", "Solio"),
+    ("Solio xMins (settled)", "solio_settled_xmins", "Solio's projected minutes per match by GW17-19, once the season has settled", "Solio"),
+    ("Solio xMins pattern", "xmins_pattern", "flat, ramp-up (injury or late World Cup return), or fade (projected to lose his place)", "derived"),
+    ("ADP", "adp", "Average draft position in real FPL Draft leagues, human picks only, normalised to an 8-team board", "FPL Draft"),
+    ("ADP (8-team only)", "adp_8team_only", "Same, using only 8-team leagues", "FPL Draft"),
+    ("ADP spread", "adp_sd", "Standard deviation of draft position - high means the market disagrees about him", "FPL Draft"),
+    ("ADP earliest", "earliest", "Earliest he was taken in any league", "FPL Draft"),
+    ("ADP latest", "latest", "Latest he was taken in any league", "FPL Draft"),
+    ("Times drafted", "times_drafted", "Leagues in which a human drafted him. Low numbers make the ADP unreliable", "FPL Draft"),
+    ("Drafted %", "drafted_pct", "Share of leagues in which he was drafted at all", "FPL Draft"),
+    ("Auto-pick %", "auto_pick_pct", "Share of his picks made by the autodraft algorithm rather than a human", "FPL Draft"),
+    ("FPL draft rank", "fpl_draft_rank", "The default ordering FPL's own autodraft uses", "FPL Draft"),
 ]
 
 # Columns the old workbook expressed as "minutes per X", kept so the existing

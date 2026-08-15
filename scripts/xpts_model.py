@@ -119,6 +119,11 @@ def build_rows() -> pd.DataFrame:
     app_pts = 2 * full60 + (played - full60)
     d["appearance_p90"] = (app_pts / m["nineties"]).where(m["nineties"] > 0).round(3)
 
+    # Solio's own minutes forecast, as an alternative to last season's actual.
+    # It is the better starting point for anyone who was injured or came back
+    # late from the World Cup, since it is forward-looking.
+    d["solio_season_xmins"] = m.get("solio_season_xmins")
+    d["xmins_pattern"] = m.get("xmins_pattern")
     d["xMins_input"] = m["minutes"]
     d["pcs_input"] = m["team_2627"].map(cs)
 
@@ -138,6 +143,8 @@ COLUMNS = [
     ("News", "news", "text"),
     ("Mins 25/26", "mins_2526", "num"),
     ("Pts 25/26", "pts_2526", "num"),
+    ("xMins (Solio)", "solio_season_xmins", "derived"),
+    ("xMins pattern", "xmins_pattern", "text"),
     ("xMins 26/27", "xMins_input", "input"),
     ("P(CS)", "pcs_input", "input"),
     ("xG/90", "xG_p90", "derived"),

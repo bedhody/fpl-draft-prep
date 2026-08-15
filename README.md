@@ -43,6 +43,8 @@ nothing else depends on it.
 | **Understat** | `understat.com/getLeagueData/EPL/2025` | An xG model **independent of Opta**, plus npxG, xGChain and xGBuildup |
 | **FotMob** | `data.fotmob.com/stats/47/season/27110/*.json` | **xGOT** (post-shot xG) and **goals prevented** for keepers — the PSxG family |
 | **vaastav/Fantasy-Premier-League** | GitHub raw CSV | Gameweek-level history, and full end-of-season rosters for past seasons |
+| **FPL Draft API** | `draft.premierleague.com/api` | Real draft results from public leagues — average draft position, with an auto-pick flag and a date on every draft |
+| **Solio Analytics** | CSV export | An odds-driven projection: 19 gameweeks of expected points and expected minutes per player |
 
 ### Why not FBref
 
@@ -234,6 +236,65 @@ Component sources:
 `verify_xpts.py` recalculates the workbook with LibreOffice and checks all
 eight formula columns against the same arithmetic done independently in
 Python. It currently passes 719/719 on every column.
+
+## Average draft position
+
+`draft.premierleague.com` serves completed drafts without authentication.
+`fetch_draft_adp.py` scans league ids, keeps the drafts that finished, and
+aggregates picks into an ADP.
+
+Three things make the raw feed usable rather than merely available:
+
+- **`pick` restarts at 1 every round.** The global pick number has to be
+  rebuilt as `(round − 1) × league_size + pick`. Using `pick` directly makes
+  every draft look 15 rounds shallow.
+- **`was_auto` marks picks the autodraft algorithm made** when a manager timed
+  out — about 17% of them. Those follow FPL's default ordering rather than
+  anyone's opinion, so they are excluded from ADP and reported separately as
+  `auto_pick_pct`.
+- **League sizes vary from 2 to 16.** ADP is normalised onto an 8-team board as
+  `overall_pick / league_size × 8`, so a 16-team round 1 compresses into picks
+  1–8. `adp_8team_only` uses just the 8-team leagues, which is the exact
+  format being drafted for.
+
+Leagues under 6 teams and unfinished drafts are dropped. Every draft carries a
+date, so picks can later be weighted for recency — draft opinion moves with
+transfers, pre-season form and injury news.
+
+**Privacy:** the feed returns real manager names and team names on every pick.
+None of it is stored. Only league id, size, draft date, player code, pick,
+round and the auto flag are kept.
+
+## Solio projections
+
+Solio publishes 19 gameweeks of projected points and minutes. Doubling that for
+a season would be wrong, because the early window is depressed by pre-season
+injuries and late returns from the summer World Cup — Saliba is projected 0
+minutes for GW1–5 and 86 by GW16, and doubling charges him for that absence
+twice.
+
+So the second half is rebuilt at each player's settled minutes, read from
+GW17–19:
+
+```
+rate   = projected points / projected minutes   (over gameweeks he plays)
+H2     = rate × settled_xMins × 19
+season = H1 as published + H2
+```
+
+Using a points-per-minute rate rather than rescaling each gameweek handles the
+zero-minute gameweeks, which cannot be rescaled at all.
+
+Checks on the GW17–19 window: **no player's minutes are still moving by then**
+(zero of 568), and nobody settles at zero having played meaningfully earlier.
+So the window is a clean read of steady state. Of 568 players, 525 are flat,
+11 ramp up (injury or World Cup return) and 32 fade because Solio expects them
+to lose their place. The corrections run both ways — Saliba +22 points against
+naive doubling, Mosquera −21 — and the fade cases are the riskier half, since
+they amplify rather than dampen any error in Solio's view of a player's role.
+
+`Solio xMins (season)` is carried into the xPts sheet next to the `xMins`
+input, as a forward-looking alternative to last season's actual minutes.
 
 ## VORP
 
