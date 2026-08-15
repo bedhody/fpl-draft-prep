@@ -1,0 +1,16 @@
+# Cached API responses (~95MB) and derived CSVs. Both are reproducible:
+# run scripts/run_all.py and they rebuild themselves.
+data/raw/
+data/processed/
+
+# Virtualenv
+.venv/
+__pycache__/
+*.pyc
+
+# Excel lock files, left behind when a workbook is open
+~$*.xlsx
+.~lock.*#
+
+# macOS
+.DS_Store
