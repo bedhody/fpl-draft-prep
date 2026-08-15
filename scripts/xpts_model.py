@@ -56,6 +56,14 @@ NOTES = [
     ("Bonus", "Bonus per 90 from 2025/26 replayed under the 2026/27 BPS weighting. "
               "Modelled as a rate rather than a share of points, so it does not "
               "depend on the rest of the model."),
+    ("VORP", "xPts season minus the replacement level at that position — the "
+             "best player still on the board once every team has filled its "
+             "slots. Set the league size and slots below. Raw xPts asks who "
+             "scores most; VORP asks who scores most above what you would get "
+             "at that slot anyway."),
+    ("VORP per £m", "VORP divided by price. Pure VORP measures scarcity alone; "
+                    "this measures scarcity against the £100m budget that "
+                    "still binds you in a normal FPL season."),
     ("Appearance", "2 points for 60+ minutes, 1 below. Modelled here as the "
                    "player's actual 2025/26 appearance points per 90, which "
                    "captures substitutes properly. Regular starters land near 2."),
@@ -124,6 +132,7 @@ COLUMNS = [
     ("Team 26/27", "team", "text"),
     ("Pos", "pos", "text"),
     ("Pos 25/26", "pos_2526", "text"),
+    ("Draftable", "draftable", "text"),
     ("Price", "price", "num"),
     ("Status", "status", "text"),
     ("News", "news", "text"),
@@ -147,7 +156,20 @@ COLUMNS = [
     ("Bonus pts/90", None, "formula"),
     ("xPts/90", None, "formula"),
     ("xPts season", None, "formula"),
+    ("VORP", None, "formula"),
+    ("VORP per £m", None, "formula"),
+    # Helper columns: xPts season, but blank unless the player is draftable and
+    # plays that position. LARGE() over one of these gives the replacement
+    # level without needing an array formula, which keeps the sheet portable.
+    ("_pool GKP", None, "helper"),
+    ("_pool DEF", None, "helper"),
+    ("_pool MID", None, "helper"),
+    ("_pool FWD", None, "helper"),
 ]
+
+POSITIONS = ["GKP", "DEF", "MID", "FWD"]
+SQUAD_SLOTS = {"GKP": 2, "DEF": 5, "MID": 5, "FWD": 3}   # an FPL 15-man squad
+LEAGUE_TEAMS = 8
 
 
 def main() -> int:
@@ -183,6 +205,31 @@ def main() -> int:
     a["B11"].fill = INPUT_FILL
     a["A12"] = "DefCon points per qualifying match"
     a["B12"] = 2
+
+    # ---- VORP settings, below the notes so nothing above shifts ----------
+    a["A25"] = "VORP settings"
+    a["A25"].font = Font(bold=True)
+    a["A26"] = "Teams in league"
+    a["B26"] = LEAGUE_TEAMS
+    a["B26"].fill = INPUT_FILL
+    a["A28"] = "Position"
+    a["B28"] = "Squad slots per team"
+    a["C28"] = "Replacement xPts"
+    for c in (a["A28"], a["B28"], a["C28"]):
+        c.font = Font(bold=True, color="FFFFFF")
+        c.fill = HEAD_FILL
+    for i, pos in enumerate(POSITIONS):
+        r = 29 + i
+        a.cell(row=r, column=1, value=pos)
+        cell = a.cell(row=r, column=2, value=SQUAD_SLOTS[pos])
+        cell.fill = INPUT_FILL
+        # filled in below, once the xPts sheet's helper columns have letters
+    a["A34"] = ("Replacement level is the best player at that position still "
+                "available once every team has filled its slots: the "
+                "(teams x slots + 1)-th best. Only players registered for "
+                "2026/27 count toward it.")
+    a["A34"].alignment = Alignment(wrap_text=True, vertical="top")
+    a.row_dimensions[34].height = 46
 
     a["A15"] = "Notes"
     a["A15"].font = Font(bold=True)
@@ -237,6 +284,17 @@ def main() -> int:
         ws[f"{col['xPts season']}{i}"] = (
             f"=N({col['xPts/90']}{i})*N({col['xMins 26/27']}{i})/90")
 
+        season = f"{col['xPts season']}{i}"
+        for pos in POSITIONS:
+            ws[f"{col['_pool ' + pos]}{i}"] = (
+                f'=IF(AND(${col["Draftable"]}{i}=TRUE,${col["Pos"]}{i}="{pos}"),'
+                f'{season},"")')
+        ws[f"{col['VORP']}{i}"] = (
+            f'=IFERROR({season}-VLOOKUP(${col["Pos"]}{i},'
+            f'Assumptions!$A$29:$C$32,3,FALSE),"")')
+        ws[f"{col['VORP per £m']}{i}"] = (
+            f'=IFERROR({col["VORP"]}{i}/{col["Price"]}{i},"")')
+
         for h, _, kind in COLUMNS:
             cell = ws[f"{col[h]}{i}"]
             if kind == "input":
@@ -245,6 +303,14 @@ def main() -> int:
                 cell.fill = DERIVED_FILL
             if kind in ("num", "derived", "formula") and h != "Pts 25/26":
                 cell.number_format = "0.000" if kind != "num" else "0"
+
+    last = ws.max_row
+    for i, pos in enumerate(POSITIONS):
+        pool = f"'xPts model'!${col['_pool ' + pos]}$2:${col['_pool ' + pos]}${last}"
+        a.cell(row=29 + i, column=3,
+               value=f"=IFERROR(LARGE({pool},$B$26*B{29 + i}+1),0)").number_format = "0.0"
+    for letter in (col[f"_pool {p}"] for p in POSITIONS):
+        ws.column_dimensions[letter].hidden = True
 
     ws.freeze_panes = "B2"
     ws.auto_filter.ref = f"A1:{get_column_letter(len(COLUMNS))}{ws.max_row}"

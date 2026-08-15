@@ -235,6 +235,52 @@ Component sources:
 eight formula columns against the same arithmetic done independently in
 Python. It currently passes 719/719 on every column.
 
+## VORP
+
+`VORP = xPts season − replacement level at that position`, where replacement is
+the `(teams × slots + 1)`-th best **draftable** player at that position — the
+best one still on the board once every team has filled its slots.
+
+Raw xPts asks who scores most. VORP asks who scores most *above what you would
+get at that slot anyway*, which is the question a draft actually poses. It is
+not a separate lens; it is an operator you can apply to any projection.
+
+Settings live on `Assumptions` (blue = editable): teams, and squad slots per
+position, defaulting to an 8-team league drafting full 15-man FPL squads
+(2/5/5/3). Replacement levels recompute from the sheet via `LARGE()`, so
+changing the league size updates every VORP cell.
+
+At 8 teams with 15-man squads:
+
+| Pos | Slots | Replacement rank | Replacement xPts | Best | VORP of best |
+|---|---|---|---|---|---|
+| GKP | 2 | 17th | 83.2 | 159.4 | 76.2 |
+| DEF | 5 | 41st | 120.8 | 199.4 | 78.6 |
+| MID | 5 | 41st | 120.0 | 239.9 | 119.9 |
+| FWD | 3 | 25th | 48.3 | 224.9 | 176.6 |
+
+It reorders things heavily. The top 40 by raw xPts is 20 DEF / 15 MID / 4 FWD
+/ 1 GKP; by VORP it is 17 FWD / 9 MID / 8 DEF / 6 GKP.
+
+**Two caveats worth understanding before leaning on it.**
+
+FPL registers 70 forwards against 193 defenders and 259 midfielders, so the
+25th forward is a marginal player (48.3 xPts) while the 41st defender is still
+a starter (120.8). Part of the forward scarcity is real and part is FPL's
+positional labelling.
+
+More importantly, **squad-slot replacement counts bench players**. An FPL squad
+carries two keepers but only one plays. At 8 teams the 17th keeper is still
+semi-playing; at 10 teams the 21st keeper is a pure backup worth 20.6 xPts, and
+GK VORP explodes accordingly — six keepers land in the top twelve. If you would
+rather measure against who actually starts, change the slots on `Assumptions`
+to 1/4/4/2 and everything recomputes. Both definitions are defensible; they
+answer different questions.
+
+`VORP per £m` is also there. Pure VORP measures scarcity alone, which is the
+right frame in a pure draft; per-£m measures scarcity against the £100m budget
+that still binds you in a normal FPL season.
+
 ## Adjusted xGOT
 
 `adjusted_xGOT = xG × placement_ratio`, where `placement_ratio =

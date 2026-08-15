@@ -88,6 +88,48 @@ def main() -> int:
                          d.loc[bad, ["Player", "Pos", "xPts season"]].head(8),
                          season[bad].head(8)))
 
+    # ---- VORP: replacement level must come from the draftable pool only ----
+    a = pd.read_excel(calc, sheet_name="Assumptions", header=None)
+    n_teams = a.iloc[25, 1]
+    slots = {a.iloc[28 + i, 0]: a.iloc[28 + i, 1] for i in range(4)}
+    print(f"\nVORP settings read from the sheet: {int(n_teams)} teams, "
+          + ", ".join(f"{p} {int(s)}" for p, s in slots.items()))
+
+    pool = d[d["Draftable"] == True]                                # noqa: E712
+    repl = {}
+    for p, s in slots.items():
+        v = pool[pool["Pos"] == p]["xPts season"].dropna().sort_values(ascending=False)
+        k = int(n_teams * s)
+        repl[p] = v.iloc[k] if len(v) > k else 0.0
+    sheet_repl = {a.iloc[28 + i, 0]: a.iloc[28 + i, 2] for i in range(4)}
+    for p in repl:
+        ok = abs(sheet_repl[p] - repl[p]) < 0.05
+        print(f"  replacement {p:<4} sheet {sheet_repl[p]:>7.1f}  python {repl[p]:>7.1f}"
+              f"   {'match' if ok else 'MISMATCH'}")
+        if not ok:
+            failures.append((f"replacement level {p}",
+                             pd.DataFrame({"sheet": [sheet_repl[p]]}),
+                             pd.Series([repl[p]])))
+
+    want_vorp = d["xPts season"] - d["Pos"].map(repl)
+    got = pd.to_numeric(d["VORP"], errors="coerce")
+    bad = (got - want_vorp).abs() > 0.05
+    bad &= got.notna() & want_vorp.notna()
+    print(f"  {'VORP':<16} {len(d) - int(bad.sum()):>4}/{len(d)} match")
+    if bad.any():
+        failures.append(("VORP", d.loc[bad, ["Player", "Pos", "VORP"]].head(8),
+                         want_vorp[bad].head(8)))
+
+    want_per = want_vorp / d["Price"]
+    gotp = pd.to_numeric(d["VORP per £m"], errors="coerce")
+    bad = (gotp - want_per).abs() > 0.05
+    bad &= gotp.notna() & want_per.notna()
+    print(f"  {'VORP per £m':<16} {len(d) - int(bad.sum()):>4}/{len(d)} match")
+    if bad.any():
+        failures.append(("VORP per £m",
+                         d.loc[bad, ["Player", "Pos", "VORP per £m"]].head(8),
+                         want_per[bad].head(8)))
+
     if failures:
         print("\nFAILURES")
         for col, rows, want in failures:
