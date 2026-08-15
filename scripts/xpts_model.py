@@ -27,11 +27,11 @@ HEAD_FILL = PatternFill("solid", fgColor="404040")
 
 # Scoring, straight from the FPL API's game_config for 2026/27.
 SCORING = [
-    # position, goal, assist, clean sheet, defcon, appearance(60+)
-    ("GKP", 10, 3, 4, 0, 2),
-    ("DEF", 6, 3, 4, 2, 2),
-    ("MID", 5, 3, 1, 2, 2),
-    ("FWD", 4, 3, 0, 2, 2),
+    # position, goal, assist, clean sheet, defcon, appearance(60+), defcon threshold
+    ("GKP", 10, 3, 4, 0, 2, 99),
+    ("DEF", 6, 3, 4, 2, 2, 10),
+    ("MID", 5, 3, 1, 2, 2, 12),
+    ("FWD", 4, 3, 0, 2, 2, 12),
 ]
 
 NOTES = [
@@ -49,10 +49,15 @@ NOTES = [
                       "FPL assists. Set to 1 to switch it off."),
     ("xG source", "Adjusted xGOT where a player has shot-placement history, "
                   "otherwise blended xG. Column 'xG basis' says which was used."),
-    ("DefCon rate", "Share of starts that cleared the threshold in 2025/26, "
-                    "re-scored at the 2026/27 threshold for the player's 2026/27 "
-                    "position (10 for DEF, 12 for MID and FWD). Ten players were "
-                    "reclassified, so this differs from what they actually scored."),
+    ("DefCon", "Not a frozen rate. 'DefCon actions/90' is the player's underlying "
+               "rate of qualifying defensive actions, shrunk toward the position "
+               "mean for thin samples. The sheet turns that into 'DefCon hit %' "
+               "with a Poisson over 'Mins per start' against the threshold on the "
+               "table above -- so if you change minutes per start, the hit rate "
+               "moves with it, steeply. A defender on 10 actions/90 clears a "
+               "threshold of 10 in 14% of 60-minute starts and 54% of 90-minute "
+               "starts. Both minutes inputs matter: xMins sets how many starts "
+               "he gets, mins per start sets how likely each one pays."),
     ("Bonus", "Bonus per 90 from 2025/26 replayed under the 2026/27 BPS weighting. "
               "Modelled as a rate rather than a share of points, so it does not "
               "depend on the rest of the model."),
@@ -107,10 +112,12 @@ def build_rows() -> pd.DataFrame:
 
     d["xA_p90"] = m["xA_blend_p90"].round(4)
 
-    # --- DefCon rate at the threshold the player will face in 2026/27 ------
-    at10, at12 = m.get("defcon_rate_at_10"), m.get("defcon_rate_at_12")
-    d["defcon_rate"] = at12.where(m["position"].isin(["MID", "FWD"]), at10).round(3)
-    d.loc[m["position"] == "GKP", "defcon_rate"] = 0.0
+    # --- DefCon: an action RATE plus minutes per start, not a frozen rate ---
+    # The sheet turns these into P(clearing the threshold) with a live Poisson,
+    # so the answer responds to minutes instead of ignoring them.
+    d["defcon_lambda"] = m.get("defcon_lambda")
+    d.loc[m["position"] == "GKP", "defcon_lambda"] = 0.0
+    d["mins_per_start"] = m.get("mins_per_start")
 
     d["bonus_p90"] = m.get("bonus_new_p90").round(4)
 
@@ -152,7 +159,9 @@ COLUMNS = [
     ("Placement ratio", "placement_ratio", "derived"),
     ("Placement sample xG", "hist_xG", "derived"),
     ("xA/90", "xA_p90", "derived"),
-    ("DefCon rate", "defcon_rate", "derived"),
+    ("DefCon actions/90", "defcon_lambda", "derived"),
+    ("Mins per start", "mins_per_start", "input"),
+    ("DefCon hit %", None, "formula"),
     ("Bonus/90", "bonus_p90", "derived"),
     ("Appearance/90", "appearance_p90", "derived"),
     ("App pts/90", None, "formula"),
@@ -198,7 +207,8 @@ def main() -> int:
     a["A1"] = "Scoring (FPL 2026/27, read from the game's own config)"
     a["A1"].font = Font(bold=True)
     a.append([])
-    a.append(["Pos", "Goal", "Assist", "Clean sheet", "DefCon", "Appearance 60+"])
+    a.append(["Pos", "Goal", "Assist", "Clean sheet", "DefCon", "Appearance 60+",
+              "DefCon threshold"])
     for row in SCORING:
         a.append(list(row))
     for c in a[3]:
@@ -261,7 +271,7 @@ def main() -> int:
 
     col = {h: get_column_letter(i + 1) for i, (h, _, _) in enumerate(COLUMNS)}
     P = col["Pos"]
-    S = "Assumptions!$A$4:$F$7"
+    S = "Assumptions!$A$4:$G$7"
 
     for i, rec in enumerate(d.to_dict("records"), start=2):
         vals = []
@@ -283,8 +293,23 @@ def main() -> int:
         ws[f"{col['xA pts/90']}{i}"] = (
             f"=N({col['xA/90']}{i})*{mult(3)}*Assumptions!$B$11")
         ws[f"{col['CS pts/90']}{i}"] = f"=N({col['P(CS)']}{i})*{mult(4)}"
+        mps = f"{col['Mins per start']}{i}"
+        lam = f"{col['DefCon actions/90']}{i}"
+        # The threshold must fail safe to 99, not 0: an unknown position makes
+        # the VLOOKUP fail, and POISSON(-1, ...) is a #NUM! error that would
+        # propagate all the way to xPts season.
+        thr = (f"IFERROR(VLOOKUP(${P}{i},{S},7,FALSE),99)")
+        ws[f"{col['DefCon hit %']}{i}"] = (
+            f'=IF(OR(N({lam})=0,N({mps})=0),0,'
+            f'1-POISSON({thr}-1,N({lam})*N({mps})/90,TRUE))')
+        # POISSON, not POISSON.DIST: the latter is a post-2007 function and
+        # needs an _xlfn. prefix in the file format, which openpyxl does not
+        # add, so it silently evaluates to an error. The legacy name works
+        # unprefixed in both Excel and LibreOffice.
+        # Season DefCon points = 2 x starts x P(hit), and starts = xMins / mins
+        # per start, so per 90 that is 2 x P(hit) x 90 / mins per start.
         ws[f"{col['DC pts/90']}{i}"] = (
-            f"=N({col['DefCon rate']}{i})*{mult(5)}")
+            f"=IF(N({mps})=0,0,{col['DefCon hit %']}{i}*{mult(5)}*90/N({mps}))")
         ws[f"{col['Bonus pts/90']}{i}"] = f"=N({col['Bonus/90']}{i})"
         ws[f"{col['xPts/90']}{i}"] = (
             f"=SUM({col['App pts/90']}{i}:{col['Bonus pts/90']}{i})")

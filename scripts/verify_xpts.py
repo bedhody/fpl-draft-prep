@@ -15,13 +15,15 @@ import sys
 import tempfile
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
+from scipy.stats import poisson
 
 from common import OUT
 
 SOFFICE = "/Applications/LibreOffice.app/Contents/MacOS/soffice"
-SCORING = {"GKP": (10, 3, 4, 0), "DEF": (6, 3, 4, 2),
-           "MID": (5, 3, 1, 2), "FWD": (4, 3, 0, 2)}
+SCORING = {"GKP": (10, 3, 4, 0, 99), "DEF": (6, 3, 4, 2, 10),
+           "MID": (5, 3, 1, 2, 12), "FWD": (4, 3, 0, 2, 12)}
 UPLIFT = 1.32
 TOL = 1e-6
 
@@ -50,28 +52,45 @@ def main() -> int:
     d = pd.read_excel(calc, sheet_name="xPts model")
     print(f"read {len(d)} rows from the recalculated workbook")
 
-    g = d["Pos"].map(lambda p: SCORING.get(p, (0, 0, 0, 0))[0])
-    a = d["Pos"].map(lambda p: SCORING.get(p, (0, 0, 0, 0))[1])
-    c = d["Pos"].map(lambda p: SCORING.get(p, (0, 0, 0, 0))[2])
-    dc = d["Pos"].map(lambda p: SCORING.get(p, (0, 0, 0, 0))[3])
+    failures = []
+    Z = (0, 0, 0, 0, 99)
+    g = d["Pos"].map(lambda p: SCORING.get(p, Z)[0])
+    a = d["Pos"].map(lambda p: SCORING.get(p, Z)[1])
+    c = d["Pos"].map(lambda p: SCORING.get(p, Z)[2])
+    dc = d["Pos"].map(lambda p: SCORING.get(p, Z)[3])
+    thr = d["Pos"].map(lambda p: SCORING.get(p, Z)[4])
+
+    # DefCon: P(actions >= threshold), actions ~ Poisson(lambda x mins/90)
+    lam = d["DefCon actions/90"].fillna(0)
+    mps = d["Mins per start"].fillna(0)
+    mu = lam * mps / 90
+    hit = pd.Series(np.where((lam <= 0) | (mps <= 0), 0.0,
+                             1 - poisson.cdf(thr - 1, mu)), index=d.index)
+    bad = (d["DefCon hit %"].fillna(0) - hit).abs() > 1e-6
+    print(f"  {'DefCon hit %':<16} {len(d) - int(bad.sum()):>4}/{len(d)} match")
+    if bad.any():
+        failures.append(("DefCon hit %",
+                         d.loc[bad, ["Player", "Pos", "DefCon hit %"]].head(8),
+                         hit[bad].head(8)))
 
     expected = {
         "App pts/90": d["Appearance/90"].fillna(2.0),
         "xG pts/90": d["xG/90"].fillna(0) * g,
         "xA pts/90": d["xA/90"].fillna(0) * a * UPLIFT,
         "CS pts/90": d["P(CS)"].fillna(0) * c,
-        "DC pts/90": d["DefCon rate"].fillna(0) * dc,
+        "DC pts/90": pd.Series(np.where(mps > 0, hit * dc * 90 / mps.replace(0, np.nan), 0),
+                               index=d.index),
         "Bonus pts/90": d["Bonus/90"].fillna(0),
     }
 
-    failures = []
     for col, want in expected.items():
         got = d[col].fillna(0)
         bad = (got - want).abs() > TOL
         print(f"  {col:<16} {len(d) - int(bad.sum()):>4}/{len(d)} match")
         if bad.any():
+            w = pd.Series(np.asarray(want), index=d.index)
             failures.append((col, d.loc[bad, ["Player", "Pos", col]].head(8),
-                             want[bad].head(8)))
+                             w[bad].head(8)))
 
     total = sum(expected.values())
     bad = (d["xPts/90"].fillna(0) - total).abs() > 1e-5

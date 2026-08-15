@@ -237,6 +237,58 @@ Component sources:
 eight formula columns against the same arithmetic done independently in
 Python. It currently passes 719/719 on every column.
 
+## Defensive contribution
+
+Not a frozen rate. The old approach — share of 2025/26 starts that cleared the
+threshold — is inert: raise a player's minutes and DefCon points scale
+linearly, when the real response is steeply convex. Defenders clear the
+threshold in **5.6% of 60-75 minute starts and 31.0% of 90-minute starts**.
+
+So the model estimates an underlying action rate and integrates:
+
+```
+lambda  = qualifying defensive actions per 90, shrunk toward the position
+          mean (gamma-Poisson, prior worth 8 nineties)
+P(hit)  = P(X >= threshold),  X ~ Poisson(lambda x mins_per_start / 90)
+points  = 2 x starts x P(hit)
+```
+
+Written into the sheet as a live `POISSON` formula, so it responds to minutes.
+A defender on 10 actions/90 against a threshold of 10:
+
+| Start length | Chance of clearing it |
+|---|---|
+| 60 min | 13.7% |
+| 70 min | 25.6% |
+| 80 min | 39.8% |
+| 90 min | 54.2% |
+
+The old approach returned the same number at every one of those.
+
+Three choices, each tested rather than assumed:
+
+- **Does the rate scale with minutes?** Within players who have both full and
+  partial appearances, actual partial-match actions come to **0.966** of what
+  rate-scaling predicts. Close enough to linear.
+- **Poisson or negative binomial?** Per-match counts are mildly over-dispersed
+  (variance/mean 1.29) and the negative binomial fits better *in sample*. Out
+  of sample it does not — the shrinkage already absorbs the over-dispersion and
+  the negative binomial then counts it twice. Poisson is also the only one of
+  the two Excel can express without truncating its arguments.
+- **Is it better than what it replaces?** Fit on GW1-19, predict GW20-38:
+
+| | Bias | MAE | Correlation |
+|---|---|---|---|
+| Realised rate x starts (old) | +4.3% | 1.31 | 0.809 |
+| **Poisson(lambda x mins) (new)** | **-2.2%** | **1.21** | **0.832** |
+
+One Excel trap worth recording: `POISSON.DIST` is a post-2007 function and
+needs an `_xlfn.` prefix in the file format, which openpyxl does not add — it
+silently evaluates to an error. The legacy `POISSON` works unprefixed in both
+Excel and LibreOffice. And the threshold lookup must fail safe to 99, not 0:
+an unknown position makes the VLOOKUP fail, and `POISSON(-1, ...)` is a `#NUM!`
+that propagates all the way to `xPts season`.
+
 ## Average draft position
 
 `draft.premierleague.com` serves completed drafts without authentication.

@@ -193,6 +193,8 @@ def build() -> None:
                      drop=["position", "price", "solio_id"])
     adp = optional("draft_adp.csv",
                    drop=["web_name", "position", "team"])
+    defcon = optional("defcon_model.csv",
+                      drop=["pos_2526", "actions", "minutes", "starts", "hits"])
 
     master = (spine_out
               .merge(fpl_out, on="code", how="left")
@@ -203,6 +205,7 @@ def build() -> None:
               .merge(bps, on="code", how="left")
               .merge(solio, on="code", how="left")
               .merge(adp, on="code", how="left")
+              .merge(defcon, on="code", how="left")
               .rename(columns={"id": "fpl_id", "pl_name": "player",
                                "team_short": "team_2627"}))
 
