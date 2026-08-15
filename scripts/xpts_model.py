@@ -39,9 +39,12 @@ NOTES = [
               "This is the single biggest lever in the model and the one number "
               "no dataset can give you."),
     ("P(CS)", "Probability the player's club keeps a clean sheet in a given match. "
-              "Defaults to the club's 2025/26 clean sheet rate. Promoted clubs "
-              "are blank on purpose. Reference values, including the rate implied "
-              "by expected goals against, are on the Teams sheet."),
+              "Defaults to the value implied by season-long betting markets: "
+              "bet365 and Spreadex points totals, converted to goal difference, "
+              "then to goals for and against, then to expected goals in each of "
+              "38 fixtures, then Poisson. Covers all 20 clubs including the "
+              "promoted three. Validated on five seasons: the ordering across "
+              "clubs is sound, the league-wide level carries about +/-13%."),
     ("Assist uplift", "FPL awards assists more loosely than Opta (rebounds, "
                       "deflections, won penalties). Across 2025/26 that was 765 "
                       "FPL assists vs 580 Opta assists, so 1.32. Both xG models "
@@ -78,13 +81,23 @@ NOTES = [
 def build_rows() -> pd.DataFrame:
     m = pd.read_csv(PROC / "master_2025_26.csv")
 
-    # Default P(CS): the CLUB's own 2025/26 clean-sheet rate, counted from match
-    # results.  Keyed on the club, not on any player -- otherwise a defender who
-    # changed clubs over the summer would import his old defence's record.
-    # Promoted clubs have no PL record and are deliberately left blank.
-    teams = pd.read_csv(PROC / "understat_teams.csv")
-    teams = teams[teams.season == "2025/26"]
-    cs = dict(zip(teams["team_short"], teams["cs_rate"].round(3)))
+    # Default P(CS): derived from season-long betting markets where available,
+    # since last season's clean-sheet count was the weakest of the three
+    # predictors tested (R2 0.14, against 0.22 for xGA).  The market prices this
+    # summer's transfers and covers the promoted clubs, which no backward-looking
+    # statistic can.  Falls back to last season's rate if the market file is
+    # missing.  Keyed on the club, never on a player, so a defender who moved
+    # does not import his old defence.
+    odds_path = PROC / "cs_from_odds.csv"
+    if odds_path.exists():
+        o = pd.read_csv(odds_path)
+        cs = dict(zip(o["team_short"], o["p_cs"].round(3)))
+        print(f"  P(CS) default: market-implied for {len(cs)} clubs")
+    else:
+        teams = pd.read_csv(PROC / "understat_teams.csv")
+        teams = teams[teams.season == "2025/26"]
+        cs = dict(zip(teams["team_short"], teams["cs_rate"].round(3)))
+        print("  P(CS) default: last season's clean-sheet rate (no market file)")
 
     d = pd.DataFrame({
         "player": m["player"],

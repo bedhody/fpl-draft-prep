@@ -7,6 +7,7 @@ import sys
 
 import adjusted_xgot
 import bps_remodel
+import cs_from_odds
 import build_master
 import build_panel
 import export_excel
@@ -60,6 +61,9 @@ def main() -> int:
     adjusted_xgot.main()
     print("\n=== re-merge with derived columns ===")
     build_master.build()
+
+    print("\n=== clean sheets from market odds ===")
+    cs_from_odds.main()
 
     print("\n=== workbook ===")
     export_excel.main()

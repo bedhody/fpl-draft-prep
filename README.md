@@ -237,6 +237,57 @@ Component sources:
 eight formula columns against the same arithmetic done independently in
 Python. It currently passes 719/719 on every column.
 
+## Clean sheets from the betting market
+
+`P(CS)` no longer defaults to last season's clean-sheet count, which tested as
+the weakest of the three available predictors (R² 0.14 against 0.22 for xGA).
+It now comes from season-long betting markets, which price this summer's
+transfers and cover the promoted clubs — neither of which any backward-looking
+statistic can do.
+
+Match odds are the wrong instrument here. Bookmakers price about one gameweek
+ahead, and a single fixture's expected goals is a *product* of both teams'
+strength and home advantage, so it cannot be decomposed from one observation —
+20 numbers against 39 free parameters. GW1 also prices a specific injury list
+(Arsenal without Saliba and Timber) that is false for most of the season.
+Season points totals price the whole campaign, absences and returns included.
+
+```
+market points -> goal difference -> goals for / against
+              -> attack and defence strength
+              -> expected goals in each of 38 fixtures
+              -> P(clean sheet) per fixture, summed
+```
+
+Both relationships are fitted on 100 team-seasons, not assumed:
+`pts = 0.624 × GD + 52.5` (R² 0.93) and `GF = 0.546 × GD + 55.6` (R² 0.84).
+
+The two books agree closely — correlation 0.998, mean disagreement 0.90 points,
+with only Newcastle and Fulham differing by more than 2 — so the input is
+averaged across them and shifted so the league total matches a real season.
+
+**Validation, feeding each season's actual points through the whole chain:**
+
+| Season | Predicted CS | Actual | Bias | MAE |
+|---|---|---|---|---|
+| 2021/22 | 205 | 212 | −3.2% | 1.60 |
+| 2022/23 | 202 | 207 | −2.4% | 1.54 |
+| 2023/24 | 208 | 157 | **+32.5%** | 3.15 |
+| 2024/25 | 204 | 178 | +14.8% | 2.05 |
+| 2025/26 | 197 | 194 | +1.6% | 1.38 |
+
+Read that honestly: **the cross-section is reliable and the level is not.**
+Correlation across clubs is 0.805 and typical error is 1.9 clean sheets per
+club, but 2023/24 ran at 3.28 goals a match against 2.75 last season and no
+backward-looking calibration anticipates that. Anchoring the goal rate to the
+previous season only moves mean absolute bias from 12.8% to 10.0%, so the
+stabler five-season average is kept. Treat the ordering as sound and the level
+as ±13%. For ranking players the level largely cancels; for absolute xPts it
+does not.
+
+Market numbers are transcribed by hand — bet365, Spreadex and oddschecker all
+block automated access, by Cloudflare and by browsing policy.
+
 ## Defensive contribution
 
 Not a frozen rate. The old approach — share of 2025/26 starts that cleared the
