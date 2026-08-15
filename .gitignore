@@ -8,6 +8,16 @@ data/processed/
 __pycache__/
 *.pyc
 
+# Anything produced after someone confirmed they wanted to break the league's
+# no-AI-picks rule. See CLAUDE.md. Kept out of git because this repo is public
+# and the rest of the league can read it.
+output/cheat/
+
+# The owner's personal draft rankings, if that workbook ever lands in here.
+# It holds the actual pick order and must not be committed to a public repo.
+*Arnav*.xlsx
+*DrSN*.xlsx
+
 # Excel lock files, left behind when a workbook is open
 ~$*.xlsx
 .~lock.*#
