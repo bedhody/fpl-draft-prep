@@ -108,6 +108,7 @@ def scrape(league_ids, session: requests.Session) -> list[dict]:
 
 MIN_LEAGUE_SIZE = 6      # 2- and 3-team "leagues" are tests, not drafts
 MIN_DRAFTS = 10          # below this an ADP is one person's opinion, not a market
+RECENT_DAYS = 7          # window for the recency-weighted view
 SQUAD = 15
 
 
@@ -133,10 +134,18 @@ def aggregate(picks: pd.DataFrame, players: pd.DataFrame, *, min_size=MIN_LEAGUE
     # 8-team pick number, so a 16-team round 1 compresses into picks 1-8.
     p["adp_8team"] = p["overall_pick"] / p["league_size"] * 8
 
-    human = p[~p["was_auto"]]
+    human = p[~p["was_auto"]].copy()
     n_leagues = p["league"].nunique()
     n_human = human["league"].nunique()
     eight = human[human["league_size"] == 8]
+
+    # Recent window. Draft opinion moves with injury news -- J.Timber fell 17
+    # picks in a week once his GW1 absence firmed up -- so a recency cut is
+    # worth having. It costs little: the last 7 days still hold ~1,700 drafts.
+    human["draft_date"] = pd.to_datetime(human["draft_date"], errors="coerce")
+    cutoff = human["draft_date"].max() - pd.Timedelta(days=RECENT_DAYS - 1)
+    recent = human[human["draft_date"] >= cutoff]
+    print(f"  recent window: {recent['league'].nunique()} drafts since {cutoff.date()}")
 
     def agg(df, suffix):
         return df.groupby("code").agg(**{
@@ -149,7 +158,9 @@ def aggregate(picks: pd.DataFrame, players: pd.DataFrame, *, min_size=MIN_LEAGUE
 
     out = (agg(human, "")
            .join(agg(p, "_incl_auto"), how="outer")
-           .join(agg(eight, "_8team_only"), how="outer"))
+           .join(agg(eight, "_8team_only"), how="outer")
+           .join(agg(recent, "_recent"), how="outer"))
+    out["adp_move"] = (out["adp_recent"] - out["adp"]).round(2)
     # "Was he drafted at all" must count autodraft picks too, or a player the
     # algorithm always takes looks unwanted.  ADP itself stays human-only.
     out["drafted_pct"] = (out["times_drafted_incl_auto"] / n_leagues * 100).round(1)
