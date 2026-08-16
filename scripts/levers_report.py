@@ -494,18 +494,26 @@ td.num,th.num{text-align:right; font-variant-numeric:tabular-nums;
    them, or scrolling right leaves the body showing names under a header that
    has moved on to Mins/start. */
 td.mark,th.mark{position:sticky; left:0; z-index:2; background:var(--surface);
-  padding-left:6px; padding-right:0}
-td.name,th.pname{position:sticky; left:30px; z-index:2; background:var(--surface);
-  font-weight:550; border-right:1px solid var(--line); cursor:grab}
+  width:40px; min-width:40px; padding-left:6px; padding-right:4px}
+/* Capped, because a wide name column pushes every number off the screen.  The
+   full name is on the cell's title. */
+td.name,th.pname{position:sticky; left:40px; z-index:2; background:var(--surface);
+  font-weight:550; border-right:1px solid var(--line); cursor:grab;
+  max-width:158px; overflow:hidden; text-overflow:ellipsis}
 thead th.mark,thead th.pname{z-index:6; background:var(--raised)}
 tbody tr:hover td.name,tbody tr:hover td.mark{background:var(--raised)}
 tbody tr.marked td.name,tbody tr.marked td.mark{background:var(--mark-soft)}
 td.dim{color:var(--faint)}
 
-.markbtn{font:inherit; font-size:13px; line-height:1; cursor:pointer;
-  background:none; border:0; color:var(--line); padding:2px 4px}
-.markbtn:hover{color:var(--mark)}
-tr.marked .markbtn{color:var(--mark)}
+/* The row's rank doubles as the research toggle: outlined by default, filled
+   once you click it.  One control, and the number is useful on its own. */
+.ranknum{font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:10.5px;
+  line-height:1; cursor:pointer; min-width:26px; padding:4px 3px;
+  border:1px solid var(--line); border-radius:6px; background:transparent;
+  color:var(--faint); font-variant-numeric:tabular-nums; text-align:center}
+.ranknum:hover{border-color:var(--mark); color:var(--mark)}
+.ranknum.on{background:var(--mark); border-color:var(--mark); color:#fff;
+  font-weight:700}
 
 .pos{display:inline-block; min-width:34px; text-align:center; padding:1px 6px;
   border-radius:5px; font-size:11px; font-weight:700; letter-spacing:.04em;
@@ -616,12 +624,15 @@ footer{color:var(--faint); font-size:12px}
 @media (max-width:1100px){.layout{flex-direction:column}
   .side{position:static; flex:1 1 auto; width:100%; max-height:none}}
 
-/* Every fourth row banded, so the eye can hold a line across a wide table.
-   Kept below the marked/band rules so a starred row still reads as starred. */
-.striped tbody tr:nth-child(4n) td{background:var(--stripe)}
-.striped tbody tr:nth-child(4n) td.name,
-.striped tbody tr:nth-child(4n) td.mark{background:var(--stripe)}
-.striped tbody tr:nth-child(4n):hover td{background:var(--raised)}
+/* The rows that land on your picks in a snake -- 4, 13, 20, 29 for slot 4 of
+   8.  Not every fourth row: the turn reverses each round, so the gap alternates
+   between 9 and 7.  It follows whatever order the table is currently in, which
+   is the point -- sort it your way and it shows where your picks fall. */
+.striped tbody tr.mypick td{background:var(--stripe)}
+.striped tbody tr.mypick td.name,
+.striped tbody tr.mypick td.mark{background:var(--stripe)}
+.striped tbody tr.mypick td.name{box-shadow:inset 3px 0 0 var(--accent)}
+.striped tbody tr.mypick:hover td{background:var(--raised)}
 tbody tr.marked td,tbody tr.marked td.name,tbody tr.marked td.mark{background:var(--mark-soft)}
 
 /* A player who changed club: his xG and xA belong to a different team. */
@@ -638,7 +649,7 @@ details h3{font-size:13px; margin:18px 0 6px}
 
 # (key, label, numeric, group, editable-kind)
 COLS = [
-    ("mark", "", False, "", None),
+    ("mark", "#", False, "", None),
     ("player", "Player", False, "Player", None),
     ("team", "Team", False, "Player", None),
     ("pos", "Pos", False, "Player", None),
@@ -758,7 +769,11 @@ function recompute(){
     r._matches = s.matches; r._hit = s.hit * 100; r._xpts = s.xpts;
     const xm = Math.max(0, Number(val(r, 'xmins_adj')) || 0);
     r._xg = r.xg_p90 * xm / 90; r._xa = r.xa_p90 * xm / 90;
-    const a = Number(val(r, 'adp'));
+    // Number(null) is 0, not NaN.  Left unguarded that gave every undrafted
+    // player an ADP of 0, which sorted them above the first pick in the league
+    // and labelled them "gone" instead of unknown.
+    const raw = val(r, 'adp');
+    const a = (raw === null || raw === undefined || raw === '') ? NaN : Number(raw);
     r._adp = Number.isFinite(a) ? a : null;
     r._role = val(r, 'role'); r._threat = val(r, 'threat');
   });
@@ -805,12 +820,14 @@ function recompute(){
 
 /* ---------- cells ---------- */
 const CELL = {
-  mark: r => `<td class="mark"><button class="markbtn" data-mark="${r.code}"
-      title="${marked.has(r.code) ? 'Remove from research list' : 'Add to research list'}"
-      aria-label="Research list toggle for ${esc(r.player)}">${marked.has(r.code) ? '★' : '☆'}</button></td>`,
+  mark: (r, i) => `<td class="mark"><button class="ranknum${marked.has(r.code) ? ' on' : ''}"
+      data-mark="${r.code}"
+      title="Row ${i + 1}. ${marked.has(r.code) ? 'On your research list -- click to remove' : 'Click to put on your research list'}"
+      aria-pressed="${marked.has(r.code)}"
+      aria-label="Row ${i + 1}, ${esc(r.player)}, research list toggle">${i + 1}</button></td>`,
   player: r => `<td class="name${r.moved ? ' movedname' : ''}" draggable="true" data-drag="${r.code}"
-      ${r.moved ? 'title="Changed club this summer -- his xG and xA are rates he produced somewhere else"' : ''}>${esc(r.player)}${
-      r.no_pl_rates ? '<span class="flag norates" title="No Premier League record, so every attacking rate is empty.">no rates</span>' : ''}</td>`,
+      title="${esc(r.player)}${r.moved ? ' -- changed club this summer, so his xG and xA are rates he produced somewhere else' : ''}">${
+      esc(r.player)}${r.no_pl_rates ? '<span class="flag norates" title="No Premier League record, so every attacking rate is empty.">no rates</span>' : ''}</td>`,
   team: r => `<td>${r.team}</td>`,
   pos: r => `<td><span class="pos">${r.pos}</span></td>`,
   price: r => `<td class="num">${fmt(r.price, 1)}</td>`,
@@ -952,11 +969,14 @@ function render(){
   $('#editN').textContent = n ? `${n} edit${n === 1 ? '' : 's'}` : 'no edits';
   $('#resetEdits').disabled = !n;
 
-  $('#rows').innerHTML = rows.map(r => {
+  // Which visible rows land on your picks, in the order the table is in now.
+  const pickSet = new Set(myPicks());
+  $('#rows').innerHTML = rows.map((r, i) => {
     const cls = [marked.has(r.code) ? 'marked' : '',
+                 pickSet.has(i + 1) ? 'mypick' : '',
                  draft.on && r._band !== null ? (r._band < 0 ? 'gone' : 'band') : ''];
     return `<tr data-code="${r.code}" class="${cls.join(' ').trim()}">${
-      order.map(k => CELL[k](r)).join('')}</tr>`;
+      order.map(k => CELL[k](r, i)).join('')}</tr>`;
   }).join('');
   $('#count').textContent = `${rows.length} of ${DATA.length} players`;
   wireRows();
@@ -1017,7 +1037,7 @@ function renderSide(){
     ? list.map(r => `<div class="card"><div class="top"><span class="who">${esc(r.player)}</span>
         <span class="meta">${r.pos} ${r.team}</span>
         <button class="x" data-unmark="${r.code}" aria-label="Remove ${esc(r.player)} from the research list">&times;</button></div></div>`).join('')
-    : '<div class="empty">Nothing here yet. Click the star at the left of any row to add a player.</div>';
+    : '<div class="empty">Nothing here yet. Click the number at the left of any row to add that player.</div>';
   $('#markedN').textContent = list.length;
 
   $('#pickList').innerHTML = myPicks()
@@ -1207,7 +1227,7 @@ def html(df: pd.DataFrame) -> str:
       <option value="1">1</option><option value="2">2</option><option value="3">3</option>
     </select> left at my next pick</label>
   <button class="chip" id="bandsOn" aria-pressed="true">Shade by draft band</button>
-  <button class="chip" id="stripes" aria-pressed="false">Stripe every 4th row</button>
+  <button class="chip" id="stripes" aria-pressed="false">Shade my pick rows</button>
   <span class="count"><span id="editN"></span>
     <button class="chip" id="resetEdits" style="margin-left:8px">Reset edits</button>
     <button class="chip" id="resetCols" style="margin-left:6px">Reset columns</button>
@@ -1222,7 +1242,7 @@ def html(df: pd.DataFrame) -> str:
   <span><span class="swatch" style="background:var(--input)"></span><b>Blue cells</b> are yours to type in</span>
   <span><span class="swatch" style="background:var(--editd)"></span>an edit you have made</span>
   <span><b class="movedname">Coloured names</b> changed club this summer</span>
-  <span><b>&#9733;</b> adds a player to the research list</span>
+  <span><b>The number</b> is the row's place in the current sort &mdash; click it to add him to the research list</span>
   <span><b>Drag a column header</b> to move it</span>
 </div>
 
@@ -1297,9 +1317,16 @@ def html(df: pd.DataFrame) -> str:
   using the same arithmetic as <code>xpts_calc.py</code>, not an approximation.
   Edits save in this browser, show in a darker blue, filter with <em>Edited by
   me</em>, and clear with <em>Reset edits</em>.</p>
-  <p>Drag any column header sideways to move it; the order saves too. The star
-  and the player name stay pinned at the left so a wide table still reads.
-  <em>Reset columns</em> puts them back.</p>
+  <p>Drag any column header sideways to move it; the order saves too. The
+  number and the player name stay pinned at the left so a wide table still
+  reads. <em>Reset columns</em> puts them back.</p>
+  <p>The leftmost column is the row's place in the current sort, and clicking
+  it puts that player on your research list &mdash; outlined for no, filled for
+  yes. <em>Shade my pick rows</em> then shades the rows landing on your picks
+  in the snake: 4, 13, 20, 29 for slot 4 of 8, not every fourth row, because
+  the turn reverses each round so the gap alternates between 9 and 7. It
+  follows whatever order the table is in, so sorting it your way shows where
+  your own picks fall.</p>
 
   <h3>Draft slot and bands</h3>
   <p>Set your slot and league size and <strong>My picks</strong> lists your
