@@ -161,6 +161,53 @@ def research_roles(m: pd.DataFrame) -> pd.DataFrame:
 
 
 # --------------------------------------------------------------------------
+# Published draft rankings from named analysts
+# --------------------------------------------------------------------------
+def pro_rankings(m: pd.DataFrame) -> pd.Series:
+    """Mean published rank per player, across whichever analysts were found.
+
+    Deliberately averages the rank rather than scoring it: an analyst who ranks
+    only a top 30 says nothing about number 31, and inventing a number for him
+    would be worse than leaving it blank.  A player ranked by one source out of
+    four gets that one source's rank, and the count is what tells you how much
+    to trust it.
+
+    Returns an all-NaN column if nothing has been researched yet, which is a
+    real answer -- draft-specific rankings are thin this early -- and better
+    than a fabricated one.
+    """
+    path = PROC / "pro_rankings" / "rankings.csv"
+    blank = pd.Series(np.nan, index=m.index, dtype=float)
+    if not path.exists():
+        print("  no pro_rankings/rankings.csv yet -- ADR Pros left empty")
+        return blank
+
+    r = pd.read_csv(path)
+    if r.empty or "player_name" not in r.columns:
+        print("  pro_rankings/rankings.csv is empty -- ADR Pros left empty")
+        return blank
+
+    by_name: dict[str, int] = {}
+    for code, player in m[["code", "player"]].itertuples(index=False):
+        by_name.setdefault(norm(player), code)
+
+    r["code"] = r["player_name"].map(lambda n: by_name.get(norm(n)))
+    missed = r[r["code"].isna()]
+    agg = (r.dropna(subset=["code"])
+             .groupby("code")["rank"].agg(["mean", "count"]))
+
+    n_src = r["source_name"].nunique()
+    print(f"  pro rankings: {n_src} source(s), {len(r)} rows, "
+          f"{len(agg)} players matched, {len(missed)} names unmatched")
+    if len(missed):
+        for n in sorted(missed["player_name"].unique())[:5]:
+            print(f"    no FPL entry: {n}")
+
+    codes = m.set_index("code").index
+    return m["code"].map(agg["mean"]).astype(float).round(1)
+
+
+# --------------------------------------------------------------------------
 # Set pieces
 # --------------------------------------------------------------------------
 def set_pieces(m: pd.DataFrame) -> pd.DataFrame:
@@ -221,8 +268,22 @@ def assemble() -> pd.DataFrame:
         "xa_season": (d["xA_p90"].fillna(0) * n90).round(1),
         "pens": d["pens_season"].round(2),
         "defcon_hit": (s["defcon_hit"] * 100).round(1),
-        "xpts": s["xpts_season"].round(1),
+        # Full precision, not display precision: the browser re-scores every
+        # row and verify_levers compares the two.  Rounding here would
+        # hide a real difference inside the rounding step.
+        "xpts": s["xpts_season"].round(6),
         "adp": m["adp"],
+
+        # Everything the page needs to re-score a player in the browser when
+        # you edit his minutes.  These four are the only parts of xpts_calc
+        # that do not depend on xMins or minutes-per-start, so shipping them
+        # lets the page reproduce the model exactly rather than approximate it.
+        # verify_levers() checks that it does.
+        "rate_p90": s["rate_pts_p90"].round(6),
+        "pen_pts": s["pen_pts_season"].round(6),
+        "defcon_lambda": d["defcon_lambda"].fillna(0).round(6),
+        "xg_p90": d["xG_p90"].fillna(0).round(6),
+        "xa_p90": d["xA_p90"].fillna(0).round(6),
     }).join(set_pieces(m))
 
     # "No rates" means the data cannot supply an attacking rate, not that the
@@ -253,7 +314,14 @@ def assemble() -> pd.DataFrame:
     else:
         out["games_missed"] = np.nan
 
+    out["adr_pros"] = pro_rankings(m)
+
     out = out[out["draftable"] | out["xmins_adj"].fillna(0).gt(0)]
+
+    levels = xpts_calc.replacement_levels(
+        s["xpts_season"], d["pos"], d["draftable"].fillna(False),
+        xpts_model.LEAGUE_TEAMS, xpts_model.SQUAD_SLOTS)
+    out["vorp"] = (out["xpts"] - out["pos"].map(levels)).round(6)
     return out.sort_values("xpts", ascending=False, na_position="last")
 
 
@@ -271,6 +339,7 @@ CSS = """
   --down:#A8542F; --down-soft:#F6E7DD;
   --warn:#8A6A18; --warn-soft:#F5EEDA;
   --mark:#7A4A86; --mark-soft:#F0E6F3;
+  --input:#EFF4F8; --editd:#DCEAF6; --bandc:#1F5F4F;
   --shadow:0 1px 2px rgba(20,24,26,.06),0 8px 24px -12px rgba(20,24,26,.18);
 }
 @media (prefers-color-scheme:dark){
@@ -283,6 +352,7 @@ CSS = """
     --down:#DC9165; --down-soft:#2E1F16;
     --warn:#D2AE55; --warn-soft:#2A2415;
     --mark:#C39BD0; --mark-soft:#2A1F2E;
+    --input:#1C2429; --editd:#243642; --bandc:#63C0A3;
     --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 28px -14px rgba(0,0,0,.7);
   }
 }
@@ -295,6 +365,7 @@ CSS = """
   --down:#DC9165; --down-soft:#2E1F16;
   --warn:#D2AE55; --warn-soft:#2A2415;
   --mark:#C39BD0; --mark-soft:#2A1F2E;
+  --input:#1C2429; --editd:#243642; --bandc:#63C0A3;
   --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 28px -14px rgba(0,0,0,.7);
 }
 
@@ -442,6 +513,40 @@ tr.marked .markbtn{color:var(--mark)}
   cursor:pointer}
 .act button:hover{color:var(--ink); border-color:var(--muted)}
 
+/* Editable cells. Blue, matching the workbook's own convention for a cell
+   you are meant to type in. */
+.edit{background:none; border:0; font:inherit; color:inherit; width:100%;
+  padding:2px 4px; border-radius:4px; text-align:right;
+  font-variant-numeric:tabular-nums;
+  font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:12.5px;
+  background:var(--input); border:1px solid transparent}
+.edit:hover{border-color:var(--line)}
+.edit:focus{border-color:var(--accent); background:var(--surface)}
+/* The column sizes itself to the header, and "Role" is shorter than "nailed",
+   so without a floor the control clips to "ne". */
+select.edit{text-align:left; font-family:inherit; font-size:12px;
+  min-width:104px; width:auto}
+input.edit{min-width:74px}
+td.edited .edit{background:var(--editd); font-weight:650}
+.legend{display:flex; flex-wrap:wrap; gap:14px; align-items:center;
+  color:var(--faint); font-size:11.5px; padding:0 2px}
+.legend b{font-weight:650; color:var(--muted)}
+.swatch{display:inline-block; width:11px; height:11px; border-radius:3px;
+  vertical-align:-1px; margin-right:4px; border:1px solid var(--line)}
+
+/* Draft bands: which of my picks a player is still projected to be there for.
+   One hue, stepped by lightness, so the bands read as a sequence rather than
+   as six unrelated categories. */
+tr.band td.name{box-shadow:inset 3px 0 0 var(--bandc)}
+tr.gone td.name{box-shadow:inset 3px 0 0 var(--faint)}
+.bandtag{font-family:ui-monospace,Menlo,monospace; font-size:11px;
+  padding:1px 6px; border-radius:5px; background:var(--accent-soft);
+  color:var(--accent); font-weight:650}
+.bandtag.gone{background:transparent; color:var(--faint); font-weight:400}
+.picks{font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:11.5px;
+  color:var(--muted)}
+.picks b{color:var(--accent)}
+
 details{background:var(--surface); border:1px solid var(--line);
   border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
 summary{cursor:pointer; font-weight:600}
@@ -458,31 +563,119 @@ footer{color:var(--faint); font-size:12px}
 JS = r"""
 const $ = s => document.querySelector(s);
 const byCode = new Map(DATA.map(r => [r.code, r]));
-const LS_TRAY = 'fpl_tray_v1', LS_MARK = 'fpl_marked_v1';
-let tray = load(LS_TRAY, []), marked = new Set(load(LS_MARK, []));
+const K = {tray:'fpl_tray_v1', mark:'fpl_marked_v1', edit:'fpl_edits_v1', draft:'fpl_draft_v1'};
+
+let tray = load(K.tray, []);
+let marked = new Set(load(K.mark, []));
+let edits = load(K.edit, {});
+let draft = Object.assign({slot: 4, teams: 8, rounds: 15, on: true}, load(K.draft, {}));
 let sortKey = 'xpts', sortDir = 'desc';
 const posFilter = new Set(), flags = new Set();
 
 function load(k, d){ try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } }
 function save(){ try {
-  localStorage.setItem(LS_TRAY, JSON.stringify(tray));
-  localStorage.setItem(LS_MARK, JSON.stringify([...marked]));
+  localStorage.setItem(K.tray, JSON.stringify(tray));
+  localStorage.setItem(K.mark, JSON.stringify([...marked]));
+  localStorage.setItem(K.edit, JSON.stringify(edits));
+  localStorage.setItem(K.draft, JSON.stringify(draft));
 } catch {} }
 
-const fmt = (v, dp) => (v === null || v === undefined || Number.isNaN(v))
-  ? '<span class="dot">--</span>' : Number(v).toFixed(dp);
 const esc = s => String(s ?? '').replace(/[&<>"]/g,
   c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const isNum = v => v !== null && v !== undefined && !Number.isNaN(v);
+const fmt = (v, dp) => isNum(v) ? Number(v).toFixed(dp) : '<span class="dot">--</span>';
 
-function deltaCell(v){
-  if (v === null || v === undefined || Number.isNaN(v)) return '<span class="dot">--</span>';
-  const c = v > 0 ? 'up' : v < 0 ? 'down' : '';
-  return `<span class="delta ${c}">${v > 0 ? '+' : ''}${Math.round(v)}</span>`;
+/* ---------- edits: an override layer over the shipped values ---------- */
+function val(r, field){
+  const e = edits[r.code];
+  if (e && e[field] !== undefined && e[field] !== null) return e[field];
+  return r[field];
 }
-const tag = (v, title) =>
-  `<span class="tag ${v}"${title ? ` title="${esc(title)}"` : ''}>${v}</span>`;
+function setVal(code, field, raw, numeric){
+  const r = byCode.get(code);
+  let v = numeric ? (raw === '' ? null : Number(raw)) : (raw || null);
+  if (numeric && v !== null && !Number.isFinite(v)) return;
+  edits[code] = edits[code] || {};
+  // Typing the shipped value back in is not an edit; drop it so the cell
+  // stops claiming to be overridden.
+  if (v === null || v === r[field]) delete edits[code][field];
+  else edits[code][field] = v;
+  if (!Object.keys(edits[code]).length) delete edits[code];
+  save(); recompute(); render(); renderSide();
+}
+const isEdited = (r, f) => !!(edits[r.code] && edits[r.code][f] !== undefined);
+const editCount = () => Object.values(edits).reduce((n, o) => n + Object.keys(o).length, 0);
 
-/* ---------------- table ---------------- */
+/* ---------- the model, ported so an edit actually moves a number ---------- */
+function poissonAtLeast(k, lam){
+  if (lam <= 0) return k <= 0 ? 1 : 0;
+  let term = Math.exp(-lam), cdf = term;          // P(X = 0)
+  for (let i = 1; i < k; i++){ term *= lam / i; cdf += term; }
+  return Math.min(1, Math.max(0, 1 - cdf));       // 1 - P(X <= k-1)
+}
+
+function scoreOne(r){
+  const sc = SCORING[r.pos];
+  if (!sc) return {matches: 0, app: 0, hit: 0, dc: 0, xpts: 0};
+  const xm = Math.max(0, Number(val(r, 'xmins_adj')) || 0);
+  const mps = Math.max(0, Number(val(r, 'mins_per_start')) || 0);
+  const matches = mps > 0 ? Math.min(MATCHES, xm / mps) : 0;
+  const mpa = matches > 0 ? xm / matches : 0;
+  const app = matches * (mpa >= 60 ? sc.app : 1);
+  const hit = sc.dc_pts > 0 ? poissonAtLeast(sc.dc_thr, r.defcon_lambda * mps / 90) : 0;
+  const dc = matches * hit * sc.dc_pts;
+  return {matches, app, hit, dc, xpts: r.rate_p90 * xm / 90 + app + dc + r.pen_pts};
+}
+
+function recompute(){
+  DATA.forEach(r => {
+    const s = scoreOne(r);
+    r._matches = s.matches; r._hit = s.hit * 100; r._xpts = s.xpts;
+    const xm = Math.max(0, Number(val(r, 'xmins_adj')) || 0);
+    r._xg = r.xg_p90 * xm / 90; r._xa = r.xa_p90 * xm / 90;
+    r._adp = Number(val(r, 'adp'));
+    if (!Number.isFinite(r._adp)) r._adp = null;
+    r._role = val(r, 'role'); r._threat = val(r, 'threat');
+  });
+  // Replacement level: the (teams x slots + 1)-th best at each position among
+  // players registered for 2026/27.  It moves when you edit minutes, so VORP
+  // has to be recomputed here rather than shipped.
+  const repl = {};
+  for (const [pos, slots] of Object.entries(SLOTS)){
+    const pool = DATA.filter(r => r.draftable && r.pos === pos)
+                     .map(r => r._xpts).sort((a, b) => b - a);
+    const idx = draft.teams * slots;
+    repl[pos] = pool.length > idx ? pool[idx] : (pool.length ? pool[pool.length - 1] : 0);
+  }
+  DATA.forEach(r => { r._vorp = (r.pos in repl) ? r._xpts - repl[r.pos] : null; });
+  bands();
+}
+
+/* ---------- snake draft: which pick numbers are mine ---------- */
+function myPicks(){
+  const out = [];
+  for (let r = 1; r <= draft.rounds; r++){
+    const inRound = (r % 2) ? draft.slot : (draft.teams - draft.slot + 1);
+    out.push((r - 1) * draft.teams + inRound);
+  }
+  return out;
+}
+
+/* For each player, the last of my picks he is still projected to be there for,
+   read straight off ADP.  This is arithmetic on other people's draft
+   behaviour, not a view about the player. */
+function bands(){
+  const picks = myPicks();
+  DATA.forEach(r => {
+    r._band = null;
+    if (!r.draftable || !isNum(r._adp)) return;
+    let last = -1;
+    picks.forEach((p, i) => { if (p < r._adp) last = i; });
+    r._band = last;            // -1 = projected gone before my first pick
+  });
+}
+
+/* ---------- table ---------- */
 function visible(){
   const q = $('#q').value.trim().toLowerCase();
   const team = $('#team').value;
@@ -492,54 +685,83 @@ function visible(){
     if (posFilter.size && !posFilter.has(r.pos)) return false;
     if (flags.has('researched') && r.research_delta === null) return false;
     if (flags.has('setpiece') && !r.sp_score) return false;
-    if (flags.has('pens') && !r.pen_order) return false;
-    if (flags.has('threat') && r.threat === 'none') return false;
+    if (flags.has('threat') && r._threat === 'none') return false;
     if (flags.has('marked') && !marked.has(r.code)) return false;
+    if (flags.has('edited') && !edits[r.code]) return false;
     return true;
   });
 }
 
+const SORTED = {matches:'_matches', xpts:'_xpts', vorp:'_vorp', adp:'_adp',
+                xg_season:'_xg', xa_season:'_xa', defcon_hit:'_hit',
+                role_rank:'_role', threat:'_threat', band:'_band'};
+
 function render(){
   const rows = visible();
+  const key = SORTED[sortKey] || sortKey;
   const dir = sortDir === 'asc' ? 1 : -1;
   rows.sort((a, b) => {
-    let x = a[sortKey], y = b[sortKey];
+    let x = a[key], y = b[key];
+    if (key === '_role'){ x = ROLE_RANK[x] ?? 9; y = ROLE_RANK[y] ?? 9; }
     if (typeof x === 'string' || typeof y === 'string')
       return dir * String(x ?? '').localeCompare(String(y ?? ''));
-    if (x === null || x === undefined || Number.isNaN(x)) return 1;
-    if (y === null || y === undefined || Number.isNaN(y)) return -1;
+    if (!isNum(x)) return 1;
+    if (!isNum(y)) return -1;
     return dir * (x - y);
   });
+
+  const nEdit = editCount();
+  $('#editN').textContent = nEdit ? `${nEdit} edit${nEdit === 1 ? '' : 's'}` : 'no edits';
+  $('#resetEdits').disabled = !nEdit;
 
   $('#rows').innerHTML = rows.map(r => {
     const tags =
       (r.moved ? '<span class="flag moved" title="Changed club this summer -- his xG and xA are rates he produced somewhere else">moved</span>' : '') +
       (r.no_pl_rates ? '<span class="flag norates" title="No Premier League record, so every attacking rate is empty. The minutes are researched; the xG and xA are not missing by accident.">no rates</span>' : '');
-    return `<tr data-code="${r.code}" class="${marked.has(r.code) ? 'marked' : ''}">
-      <td class="mark"><button class="markbtn" data-mark="${r.code}" title="Mark for extra research"
-        aria-label="Mark ${esc(r.player)} for extra research">${marked.has(r.code) ? '★' : '☆'}</button></td>
+    const bandCls = !draft.on || r._band === null ? ''
+      : (r._band < 0 ? 'gone' : 'band');
+    const bandTag = r._band === null ? '<span class="dot">--</span>'
+      : r._band < 0 ? '<span class="bandtag gone">gone</span>'
+      : `<span class="bandtag">R${r._band + 1}</span>`;
+    const num = (f, dp, v) =>
+      `<td class="num ${isEdited(r, f) ? 'edited' : ''}"><input class="edit" inputmode="decimal"
+        data-code="${r.code}" data-f="${f}" value="${isNum(v) ? Number(v).toFixed(dp) : ''}"></td>`;
+    const sel = (f, v, opts) =>
+      `<td class="${isEdited(r, f) ? 'edited' : ''}"><select class="edit" data-code="${r.code}" data-f="${f}">
+        ${opts.map(o => `<option value="${o}"${o === v ? ' selected' : ''}>${o}</option>`).join('')}</select></td>`;
+
+    return `<tr data-code="${r.code}" class="${marked.has(r.code) ? 'marked ' : ''}${bandCls}">
+      <td class="mark"><button class="markbtn" data-mark="${r.code}"
+        title="${marked.has(r.code) ? 'Remove from research list' : 'Add to research list'}"
+        aria-label="Research list toggle for ${esc(r.player)}">${marked.has(r.code) ? '★' : '☆'}</button></td>
       <td class="name" draggable="true" data-drag="${r.code}">${esc(r.player)}${tags}</td>
       <td>${r.team}</td>
       <td><span class="pos">${r.pos}</span></td>
       <td class="num">${fmt(r.price, 1)}</td>
-      <td>${tag(r.role, r.role_note || r.role_slot)}</td>
-      <td>${tag(r.threat, r.threat_note || r.threat_slot)}</td>
+      ${sel('role', r._role, ROLE_OPTS)}
+      ${sel('threat', r._threat, THREAT_OPTS)}
       <td class="num">${fmt(r.xmins_solio, 0)}</td>
-      <td class="num">${fmt(r.xmins_adj, 0)}</td>
-      <td class="num">${deltaCell(r.research_delta)}</td>
+      ${num('xmins_adj', 0, val(r, 'xmins_adj'))}
+      <td class="num">${(() => { const d = r.research_delta;
+        if (!isNum(d)) return '<span class="dot">--</span>';
+        return `<span class="delta ${d > 0 ? 'up' : d < 0 ? 'down' : ''}">${d > 0 ? '+' : ''}${Math.round(d)}</span>`; })()}</td>
       <td class="conf">${r.confidence || '<span class="dot">--</span>'}</td>
-      <td class="num">${fmt(r.mins_per_start, 1)}</td>
-      <td class="num">${fmt(r.xg_season, 1)}</td>
-      <td class="num">${fmt(r.xa_season, 1)}</td>
-      <td class="num">${r.corner_share === null ? '<span class="dot">--</span>' : fmt(r.corner_share, 0) + '%'}</td>
+      ${num('mins_per_start', 1, val(r, 'mins_per_start'))}
+      <td class="num">${fmt(r._matches, 1)}</td>
+      <td class="num">${fmt(r._xg, 1)}</td>
+      <td class="num">${fmt(r._xa, 1)}</td>
+      <td class="num">${isNum(r.corner_share) ? Number(r.corner_share).toFixed(0) + '%' : '<span class="dot">--</span>'}</td>
       <td class="dim">${r.corner_role || '<span class="dot">--</span>'}</td>
       <td class="dim">${r.fk_role || '<span class="dot">--</span>'}</td>
       <td class="dim">${r.pen_role || '<span class="dot">--</span>'}</td>
       <td class="num">${fmt(r.pens, 2)}</td>
-      <td class="num">${fmt(r.defcon_hit, 1)}</td>
+      <td class="num">${fmt(r._hit, 1)}</td>
       <td class="num">${fmt(r.games_missed, 1)}</td>
-      <td class="num">${fmt(r.adp, 1)}</td>
-      <td class="num">${fmt(r.xpts, 1)}</td>
+      <td class="num">${r.adr_pros === null || r.adr_pros === undefined ? '<span class="dot">--</span>' : Number(r.adr_pros).toFixed(1)}</td>
+      ${num('adp', 1, r._adp)}
+      <td class="num">${bandTag}</td>
+      <td class="num">${fmt(r._xpts, 1)}</td>
+      <td class="num">${fmt(r._vorp, 1)}</td>
     </tr>`;
   }).join('');
   $('#count').textContent = `${rows.length} of ${DATA.length} players`;
@@ -554,15 +776,22 @@ function wireRows(){
       marked.has(c) ? marked.delete(c) : marked.add(c);
       save(); render(); renderSide();
     }));
-  document.querySelectorAll('[data-drag]').forEach(el => {
+  document.querySelectorAll('input.edit').forEach(el => {
+    el.addEventListener('change', () =>
+      setVal(Number(el.dataset.code), el.dataset.f, el.value, true));
+    el.addEventListener('keydown', e => { if (e.key === 'Enter') el.blur(); });
+  });
+  document.querySelectorAll('select.edit').forEach(el =>
+    el.addEventListener('change', () =>
+      setVal(Number(el.dataset.code), el.dataset.f, el.value, false)));
+  document.querySelectorAll('td.name[data-drag]').forEach(el =>
     el.addEventListener('dragstart', e => {
       e.dataTransfer.setData('text/plain', el.dataset.drag);
       e.dataTransfer.effectAllowed = 'copy';
-    });
-  });
+    }));
 }
 
-/* ---------------- sidebar ---------------- */
+/* ---------- sidebar ---------- */
 function cardHtml(r, inTray){
   const rates = r.no_pl_rates ? '<span class="flag norates">no rates</span>' : '';
   return `<div class="card" draggable="true" data-drag="${r.code}" data-card="${r.code}">
@@ -571,7 +800,7 @@ function cardHtml(r, inTray){
       ${inTray ? `<button class="x" data-remove="${r.code}" aria-label="Remove ${esc(r.player)}">&times;</button>` : ''}
     </div>
     <div class="row2">${r.club_2526 ? esc(r.club_2526) + ' → ' : ''}${r.team}
-      &middot; ${r.xmins_adj === null ? '--' : Math.round(r.xmins_adj)} mins ${rates}</div>
+      &middot; ${isNum(val(r, 'xmins_adj')) ? Math.round(val(r, 'xmins_adj')) : '--'} mins ${rates}</div>
   </div>`;
 }
 
@@ -581,23 +810,26 @@ function renderSide(){
   const movers = DATA
     .filter(r => (r.moved || r.no_pl_rates) && !inTray.has(r.code))
     .filter(r => !q || (r.player + ' ' + r.team + ' ' + r.club_2526).toLowerCase().includes(q))
-    .sort((a, b) => (b.xmins_adj ?? 0) - (a.xmins_adj ?? 0));
+    .sort((a, b) => (Number(val(b, 'xmins_adj')) || 0) - (Number(val(a, 'xmins_adj')) || 0));
   $('#movers').innerHTML = movers.map(r => cardHtml(r, false)).join('')
     || '<div class="empty">Nothing matches.</div>';
   $('#moversN').textContent = movers.length;
 
   $('#trayBody').innerHTML = tray.length
     ? tray.map(c => cardHtml(byCode.get(c), true)).join('')
-    : '<div class="empty">Drag anyone here &mdash; from this list or from the table &mdash; and drop to place them in your own order.</div>';
+    : '<div class="empty">Drag anyone here, from this list or from the table, and drop to place them in your own order.</div>';
   $('#trayN').textContent = tray.length;
 
   const list = DATA.filter(r => marked.has(r.code));
   $('#markedBody').innerHTML = list.length
     ? list.map(r => `<div class="card"><div class="top"><span class="who">${esc(r.player)}</span>
         <span class="meta">${r.pos} ${r.team}</span>
-        <button class="x" data-unmark="${r.code}" aria-label="Unmark ${esc(r.player)}">&times;</button></div></div>`).join('')
-    : '<div class="empty">Nothing marked yet. Use the star in the table.</div>';
+        <button class="x" data-unmark="${r.code}" aria-label="Remove ${esc(r.player)} from the research list">&times;</button></div></div>`).join('')
+    : '<div class="empty">Nothing here yet. Click the star at the left of any row to add a player.</div>';
   $('#markedN').textContent = list.length;
+
+  $('#pickList').innerHTML = myPicks()
+    .map((p, i) => `<b>${p}</b><span class="dot"> R${i + 1}</span>`).join('  ');
   wireSide();
 }
 
@@ -631,40 +863,37 @@ trayEl.addEventListener('drop', e => {
   trayEl.classList.remove('over');
   const code = Number(e.dataTransfer.getData('text/plain'));
   if (!byCode.has(code)) return;
-  // Drop position follows the cursor, so the tray is reorderable by dragging
-  // a card that is already in it.
   const cards = [...$('#trayBody').querySelectorAll('[data-card]')];
-  let at = cards.findIndex(c => e.clientY < c.getBoundingClientRect().top + c.offsetHeight / 2);
+  const at = cards.findIndex(c => e.clientY < c.getBoundingClientRect().top + c.offsetHeight / 2);
   tray = tray.filter(c => c !== code);
   if (at < 0) tray.push(code); else tray.splice(at, 0, code);
   save(); renderSide();
 });
 
-$('#copyTray').addEventListener('click', () => {
-  const txt = tray.map((c, i) => {
+function copy(btn, txt){
+  navigator.clipboard?.writeText(txt);
+  const was = btn.textContent;
+  btn.textContent = 'Copied';
+  setTimeout(() => { btn.textContent = was; }, 1400);
+}
+$('#copyTray').addEventListener('click', e =>
+  copy(e.target, tray.map((c, i) => {
     const r = byCode.get(c);
     return `${i + 1}. ${r.player} (${r.pos}, ${r.team})`;
-  }).join('\n');
-  navigator.clipboard?.writeText(txt);
-  $('#copyTray').textContent = 'Copied';
-  setTimeout(() => { $('#copyTray').textContent = 'Copy list'; }, 1400);
-});
+  }).join('\n')));
 $('#clearTray').addEventListener('click', () => { tray = []; save(); renderSide(); });
-$('#copyMarked').addEventListener('click', () => {
-  const txt = DATA.filter(r => marked.has(r.code))
-    .map(r => `${r.player} (${r.pos}, ${r.team}) -- ${r.role}${r.threat !== 'none' ? ', ' + r.threat + ' risk' : ''}`)
-    .join('\n');
-  navigator.clipboard?.writeText(txt);
-  $('#copyMarked').textContent = 'Copied';
-  setTimeout(() => { $('#copyMarked').textContent = 'Copy list'; }, 1400);
-});
+$('#copyMarked').addEventListener('click', e =>
+  copy(e.target, DATA.filter(r => marked.has(r.code))
+    .map(r => `${r.player} (${r.pos}, ${r.team}) -- ${r._role}${r._threat !== 'none' ? ', ' + r._threat + ' risk' : ''}`)
+    .join('\n')));
 
-/* ---------------- controls ---------------- */
+/* ---------- controls ---------- */
 document.querySelectorAll('.headrow button').forEach(b =>
   b.addEventListener('click', () => {
     const k = b.dataset.k;
     if (sortKey === k) sortDir = sortDir === 'desc' ? 'asc' : 'desc';
-    else { sortKey = k; sortDir = ['player','team','pos','role','threat','corner_role','fk_role','pen_role'].includes(k) ? 'asc' : 'desc'; }
+    else { sortKey = k;
+           sortDir = ['player','team','pos','role_rank','threat','corner_role','fk_role','pen_role','adp','band','games_missed','adr_pros'].includes(k) ? 'asc' : 'desc'; }
     document.querySelectorAll('.headrow button').forEach(o => o.removeAttribute('data-dir'));
     b.setAttribute('data-dir', sortDir);
     render();
@@ -686,17 +915,37 @@ document.querySelectorAll('.chip[data-flag]').forEach(c =>
 $('#q').addEventListener('input', render);
 $('#team').addEventListener('change', render);
 $('#sideq').addEventListener('input', renderSide);
-$('#toggleSide').addEventListener('click', () => {
-  const l = $('#layout'), off = l.classList.toggle('no-side');
-  $('#toggleSide').setAttribute('aria-pressed', String(!off));
+$('#togglePanels').addEventListener('click', () => {
+  const off = $('#layout').classList.toggle('no-side');
+  $('#togglePanels').textContent = off ? 'Show panels' : 'Hide panels';
+  $('#togglePanels').setAttribute('aria-pressed', String(!off));
+});
+['slot', 'teams'].forEach(f => $('#' + f).addEventListener('change', e => {
+  const v = Number(e.target.value);
+  if (Number.isFinite(v) && v > 0) draft[f] = v;
+  if (draft.slot > draft.teams) { draft.slot = draft.teams; $('#slot').value = draft.slot; }
+  $('#slot').max = draft.teams;
+  save(); recompute(); render(); renderSide();
+}));
+$('#bandsOn').addEventListener('click', e => {
+  draft.on = !draft.on;
+  e.target.setAttribute('aria-pressed', String(draft.on));
+  save(); render();
+});
+$('#resetEdits').addEventListener('click', () => {
+  if (!confirm('Discard every edit and go back to the model\'s own numbers?')) return;
+  edits = {}; save(); recompute(); render(); renderSide();
 });
 
-render(); renderSide();
+$('#slot').value = draft.slot; $('#teams').value = draft.teams;
+$('#slot').max = draft.teams;
+$('#bandsOn').setAttribute('aria-pressed', String(draft.on));
+recompute(); render(); renderSide();
 """
 
-GROUPS = [("", 1), ("Player", 4), ("Role", 2), ("Minutes", 5),
+GROUPS = [("", 1), ("Player", 4), ("Role", 2), ("Minutes", 6),
           ("Attacking, season", 2), ("Set pieces", 5), ("Other levers", 3),
-          ("Model", 1)]
+          ("Draft", 2), ("Model", 2)]
 
 HEADERS = [
     ("", "", False),
@@ -705,14 +954,15 @@ HEADERS = [
     ("role_rank", "Role", False), ("threat", "Transfer threat", False),
     ("xmins_solio", "xMins Solio", True), ("xmins_adj", "xMins adjusted", True),
     ("research_delta", "Delta", True), ("confidence", "Conf", False),
-    ("mins_per_start", "Mins/start", True),
+    ("mins_per_start", "Mins/start", True), ("matches", "Matches", True),
     ("xg_season", "xG", True), ("xa_season", "xA", True),
     ("corner_share", "Corners", True), ("corner_order", "Cnr role", False),
     ("fk_order", "Direct FK", False), ("pen_order", "Pens", False),
     ("pens", "Pens exp", True),
     ("defcon_hit", "DefCon %", True), ("games_missed", "Games lost", True),
-    ("adp", "ADP", True),
-    ("xpts", "xPts", True),
+    ("adr_pros", "ADR Pros", True),
+    ("adp", "ADP", True), ("band", "There at", True),
+    ("xpts", "xPts", True), ("vorp", "VORP", True),
 ]
 
 
@@ -722,7 +972,8 @@ def html(df: pd.DataFrame) -> str:
 
     gcells, i = [], 0
     for name, span in GROUPS:
-        gcells.append(f'<th colspan="{span}"{" class=\"g\"" if i and name else ""}>{name}</th>')
+        cls = ' class="g"' if i and name else ""
+        gcells.append(f'<th colspan="{span}"{cls}>{name}</th>')
         i += span
     hcells = []
     for key, label, num in HEADERS:
@@ -742,7 +993,20 @@ def html(df: pd.DataFrame) -> str:
                 r[k] = bool(v)
     data = json.dumps(records, ensure_ascii=True)
 
+    scoring = {pos: {"app": v[4], "dc_thr": v[5], "dc_pts": v[3]}
+               for pos, v in xpts_calc.SCORING.items()}
+    consts = (f"const SCORING={json.dumps(scoring)};"
+              f"const SLOTS={json.dumps(xpts_model.SQUAD_SLOTS)};"
+              f"const MATCHES={xpts_calc.MATCHES};"
+              f"const ROLE_RANK={json.dumps({**ROLE_RANK, 'rotation': 2.5})};"
+              f"const ROLE_OPTS={json.dumps(sorted(set(list(ROLE_RANK) + ['rotation'])))};"
+              f"const THREAT_OPTS={json.dumps(['none', 'reinforcement', 'exit'])};")
+
     n_moved = int((df.moved | df.no_pl_rates).sum())
+    n_adr = int(df.adr_pros.notna().sum())
+    adr_note = (f"{n_adr} players carry one." if n_adr else
+                "No published draft rankings were found for 2026/27, so the "
+                "column is empty rather than filled with a guess.")
     return f"""<meta charset="utf-8">
 <title>Draft Levers</title>
 <style>{CSS}</style>
@@ -750,12 +1014,10 @@ def html(df: pd.DataFrame) -> str:
 <header>
   <p class="stamp">FPL 2026/27 &middot; {len(df)} players &middot; research to 16 Aug 2026</p>
   <h1>Every lever, one table</h1>
-  <p class="sub">The inputs that move a projection, side by side: what Solio
-  forecast, what the club-by-club research changed it to, whether the man is
-  actually nailed, whether his club is still shopping for someone to replace
-  him, and who takes the set pieces. Sort any column. Star anyone you want to
-  look at again. Drag the summer arrivals into the tray and put them in
-  whatever order you think they belong &mdash; that part is yours.</p>
+  <p class="sub">The inputs that move a projection, side by side &mdash; and
+  every one of them editable. Change a player's minutes and his matches, xG,
+  DefCon, xPts and VORP all move with it, through the same model the workbook
+  uses. Nothing you type leaves this page.</p>
 </header>
 
 <div class="controls">
@@ -767,15 +1029,36 @@ def html(df: pd.DataFrame) -> str:
     <button class="chip" data-pos="MID" aria-pressed="false">MID</button>
     <button class="chip" data-pos="FWD" aria-pressed="false">FWD</button>
   </div>
-  <div class="chips" role="group" aria-label="Filter by attribute">
-    <button class="chip" data-flag="researched" aria-pressed="false">Research moved</button>
-    <button class="chip" data-flag="threat" aria-pressed="false">Transfer threat</button>
-    <button class="chip" data-flag="setpiece" aria-pressed="false">Set-piece duty</button>
-    <button class="chip" data-flag="pens" aria-pressed="false">On penalties</button>
-    <button class="chip markchip" data-flag="marked" aria-pressed="false">Marked</button>
+  <div class="chips" role="group" aria-label="Filter rows">
+    <button class="chip" data-flag="researched" aria-pressed="false">Research moved minutes</button>
+    <button class="chip" data-flag="threat" aria-pressed="false">Under transfer threat</button>
+    <button class="chip" data-flag="setpiece" aria-pressed="false">Takes set pieces</button>
+    <button class="chip markchip" data-flag="marked" aria-pressed="false">&#9733; On my research list</button>
+    <button class="chip" data-flag="edited" aria-pressed="false">Edited by me</button>
   </div>
-  <button class="chip" id="toggleSide" aria-pressed="true">Sidebar</button>
   <span class="count" id="count"></span>
+</div>
+
+<div class="controls">
+  <label class="picks">My draft slot
+    <input type="number" id="slot" min="1" max="8" step="1" style="width:60px">
+  </label>
+  <label class="picks">Teams
+    <input type="number" id="teams" min="2" max="20" step="1" style="width:60px">
+  </label>
+  <button class="chip" id="bandsOn" aria-pressed="true">Shade by draft band</button>
+  <span class="picks">My picks: <span id="pickList"></span></span>
+  <span class="count"><span id="editN"></span>
+    <button class="chip" id="resetEdits" style="margin-left:8px">Reset edits</button>
+    <button class="chip" id="togglePanels" aria-pressed="true" style="margin-left:6px">Hide panels</button>
+  </span>
+</div>
+
+<div class="legend">
+  <span><span class="swatch" style="background:var(--input)"></span><b>Blue cells</b> are yours to type in</span>
+  <span><span class="swatch" style="background:var(--editd)"></span>an edit you have made</span>
+  <span><b>&#9733;</b> adds a player to the research list in the right-hand panel</span>
+  <span><span class="swatch" style="background:var(--bandc)"></span><b>There at</b> = the last of your picks he is projected to survive to, from ADP</span>
 </div>
 
 <div class="layout" id="layout">
@@ -800,8 +1083,7 @@ def html(df: pd.DataFrame) -> str:
       <div class="body" id="movers"></div>
       <p class="hint">Everyone who changed club, plus anyone with no Premier
       League record at all. These are the {n_moved} players whose attacking
-      rates the data cannot supply &mdash; the model gives them minutes and
-      nothing else.</p>
+      rates the data cannot supply.</p>
     </section>
 
     <section class="panel tray" id="tray">
@@ -812,78 +1094,89 @@ def html(df: pd.DataFrame) -> str:
         <button id="clearTray">Clear</button>
       </div>
       <p class="hint">Drop anyone here and drag to reorder. Saved in this
-      browser only &mdash; nothing leaves the page.</p>
+      browser only.</p>
     </section>
 
     <section class="panel">
-      <h2>Marked for research <span class="n" id="markedN"></span></h2>
+      <h2>Research list <span class="n" id="markedN"></span></h2>
       <div class="body" id="markedBody"></div>
       <div class="act"><button id="copyMarked">Copy list</button></div>
+      <p class="hint">Players you starred as needing a closer look. Copy the
+      list out and it comes with each man's role and transfer risk.</p>
     </section>
   </aside>
 </div>
 
 <details>
-  <summary>What each column is, and where the data runs out</summary>
+  <summary>What each column is, what you can edit, and where the data runs out</summary>
+  <h3>Editing</h3>
+  <p>Five things are editable: <strong>xMins adjusted</strong>,
+  <strong>Mins/start</strong>, <strong>Role</strong>, <strong>Transfer
+  threat</strong> and <strong>ADP</strong>. The first two re-score the player
+  on the spot &mdash; matches, xG, xA, DefCon %, xPts and VORP all move, using
+  the same arithmetic as <code>xpts_calc.py</code>, not an approximation of it.
+  Editing ADP moves him in the draft bands. Edits are saved in this browser,
+  marked in a darker blue, filterable with <em>Edited by me</em>, and thrown
+  away by <em>Reset edits</em>. Typing a value back to what it was clears the
+  edit rather than recording it.</p>
+  <p>VORP recomputes too, which matters: replacement level is the
+  (teams &times; slots + 1)-th best player at that position, so raising one
+  man's minutes can lower everyone else's VORP at his position.</p>
+
+  <h3>Draft slot and bands</h3>
+  <p>Set your slot and the league size and <strong>My picks</strong> lists your
+  overall pick numbers in an 8-team snake. <strong>There at</strong> is the
+  last of those picks a player is still projected to be available at, read
+  straight off ADP &mdash; <code>R3</code> means the market has him going after
+  your third pick but before your fourth, so your third is the last one where
+  he is likely there. <code>gone</code> means his ADP is earlier than your
+  first pick. Edit an ADP and the bands move.</p>
+  <p>This is arithmetic on other people's draft behaviour, not a view about any
+  player, and it does not choose anyone for you.</p>
+
   <h3>Role and transfer threat</h3>
   <p><strong>Role</strong> comes from the club research, which named a starter
   and his competition for every position at 17 clubs. <code>nailed</code> and
-  <code>likely</code> are the researcher's own words for the starter;
+  <code>likely</code> are the researcher's words for the starter;
   <code>contested</code> means the slot is genuinely in the fight;
   <code>rotation</code> means he was listed as competition for someone else's
-  place. <code>unknown</code> means the research did not reach him &mdash;
-  three clubs were never covered, and no promoted side got the deep pass.
-  Hover any tag for the sourced note behind it.</p>
-  <p><strong>Transfer threat</strong> is whether his club is still actively
-  shopping. <code>reinforcement</code> means the research found real reporting
-  that they want a player for that position, which is the minutes most at
-  risk. <code>exit</code> means the club is willing to sell <em>him</em>, which
-  moves minutes just as much but in the other direction.</p>
-
-  <h3>Minutes</h3>
-  <p><strong>xMins Solio</strong> is the raw forecast; <strong>xMins
-  adjusted</strong> is that figure after the research moved it, and is what the
-  model scores. <strong>Mins/start</strong> is how long a start lasts, shrunk
-  toward the position mean by 10 starts. At a fixed xMins a lower figure means
-  more matches, so an early hook costs you through xMins, not here.</p>
-
-  <h3>Attacking</h3>
-  <p><strong>xG</strong> and <strong>xA</strong> are season totals &mdash; the
-  per-90 rate times the adjusted minutes &mdash; so they move when the minutes
-  do. A <span class="flag norates">no rates</span> tag means no Premier League
-  record at all, so both read zero for a reason that has nothing to do with the
-  player.</p>
+  place; <code>unknown</code> means the research did not reach him. Hover a row
+  for the sourced note. <strong>Transfer threat</strong> is whether the club is
+  still shopping for that position (<code>reinforcement</code>, the minutes most
+  at risk) or willing to sell him (<code>exit</code>).</p>
 
   <h3>Set pieces &mdash; and the gap</h3>
   <p><strong>Corners</strong> is the share of his club's 2025/26 corners he
-  actually took, which is measured rather than assumed, and is the closest
-  thing available to a left/right split: a first-choice taker on
-  <code>{int(BOTH_SIDES_SHARE * 100)}%</code> or more is taking both sides.
-  <strong>Cnr role</strong> is FPL's published order for 2026/27.</p>
-  <p>Free kicks and penalties can only be an order, never a percentage.
-  Nothing in any of the five sources counts free kicks or penalties
-  <em>taken</em> &mdash; only who is designated to take them &mdash; so
-  <strong>Direct FK</strong> and <strong>Pens</strong> read Primary, Secondary
-  or Tertiary and nothing finer. One further limit: FPL publishes a single
-  combined order for <em>corners and indirect free kicks</em>, so the indirect
-  free-kick taker cannot be told apart from the corner taker at all.
-  <strong>Pens exp</strong> is the modelled number: club penalties won, times
-  his share, times his availability.</p>
+  actually took, measured rather than assumed, and the closest thing available
+  to a left/right split: a first-choice taker on
+  <code>{int(BOTH_SIDES_SHARE * 100)}%</code> or more is taking both sides.</p>
+  <p>Free kicks and penalties can only be an order, never a percentage. Nothing
+  in any of the five sources counts free kicks or penalties <em>taken</em>,
+  only who is designated, so those columns read Primary, Secondary or Tertiary
+  and nothing finer. FPL also publishes a single combined order for
+  <em>corners and indirect free kicks</em>, so the indirect free-kick taker
+  cannot be told apart from the corner taker at all.</p>
+
+  <h3>ADP and ADR Pros</h3>
+  <p><strong>ADP</strong> is average draft position in real public draft
+  leagues &mdash; what other managers actually did. <strong>ADR Pros</strong>
+  is the average rank given by published draft rankings from named analysts.
+  {adr_note}</p>
 
   <h3>Other levers</h3>
-  <p><strong>DefCon %</strong> is the chance of clearing the defensive-contribution
-  threshold in a start. <strong>Games lost</strong> is expected games missed to
-  injury from the Transfermarkt history &mdash; 150 players only, and the level
-  runs about 25% high, so it orders better than it sizes. <strong>ADP</strong>
-  is average draft position in real public draft leagues: the only column here
-  that tells you what everyone else thinks.</p>
+  <p><strong>Matches</strong> is xMins divided by minutes per start, capped at
+  38. <strong>DefCon %</strong> is the chance of clearing the
+  defensive-contribution threshold in a start. <strong>Games lost</strong> is
+  expected games missed to injury from the Transfermarkt history &mdash; 150
+  players only, and the level runs about 25% high, so it orders better than it
+  sizes.</p>
 </details>
 
 <footer>Generated by <code>scripts/levers_report.py</code> from the same master
 the workbook is built from. The research is a dated snapshot to 16 August 2026;
 it knows nothing after that, and it cannot see January.</footer>
 </div>
-<script>const DATA={data};{JS}</script>
+<script>const DATA={data};{consts}{JS}</script>
 """
 
 
@@ -896,7 +1189,8 @@ def main() -> int:
     print("  role:  ", df.role.value_counts().to_dict())
     print("  threat:", df.threat.value_counts().to_dict())
     print(f"  set-piece duty:  {int((df.sp_score > 0).sum())} players")
-    print(f"  corner share known for {int(df.corner_share.notna().sum())}")
+    print(f"  ADP for {int(df.adp.notna().sum())}, "
+          f"ADR Pros for {int(df.adr_pros.notna().sum())}")
     print(f"  summer arrivals: {int((df.moved | df.no_pl_rates).sum())}")
     print(f"  wrote {path}")
     return 0
