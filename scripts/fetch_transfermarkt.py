@@ -27,7 +27,6 @@ import html
 import re
 import sys
 import time
-from pathlib import Path
 
 import pandas as pd
 import requests
@@ -166,16 +165,33 @@ def squad(club_id: int, slug: str, season: int,
 # Injuries
 # --------------------------------------------------------------------------
 
+# Every cell class here is matched with a trailing [^"]* rather than exactly.
+# Transfermarkt highlights the spell a player is CURRENTLY serving by appending
+# `bg_rot_20` to all six of its cells, so an exact class match drops precisely
+# the ongoing injuries -- the most severe and most decision-relevant rows on
+# the page, and the ones a forward-looking projection most needs.  It silently
+# cost one row on 49 of the first 730 players scraped.  The games-missed cell
+# of a live spell is also "-" rather than a number, which is why games missed
+# is never read from Transfermarkt: league absence is counted from the dates.
 _INJ_ROW = re.compile(
-    r'<td class="zentriert">(\d\d/\d\d)</td>'          # season
-    r'<td class="hauptlink">(.*?)</td>'                # injury description
-    r'<td class="zentriert">(.*?)</td>'                # from
-    r'<td class="zentriert">(.*?)</td>'                # until
-    r'<td class="rechts">(.*?)</td>'                   # days
-    r'<td class="rechts hauptlink wappen_verletzung">(.*?)</td>', re.S)
+    r'<td class="zentriert[^"]*">(\d\d/\d\d)</td>'     # season
+    r'<td class="hauptlink[^"]*">(.*?)</td>'           # injury description
+    r'<td class="zentriert[^"]*">(.*?)</td>'           # from
+    r'<td class="zentriert[^"]*">(.*?)</td>'           # until
+    r'<td class="rechts[^"]*">(.*?)</td>'              # days
+    r'<td class="rechts hauptlink wappen_verletzung[^"]*">(.*?)</td>', re.S)
 _GAMES_RE = re.compile(r'<span>(\d+)</span>')
+# The games-missed cell also carries the club badge, so every spell says which
+# club's fixture list the absence was measured against. That is what lets a
+# mid-season transfer be counted on the right calendar.
+_SPELL_CLUB_RE = re.compile(r'/verein/(\d+)/')
 _TAG_RE = re.compile(r'<[^>]+>')
 _DATE_RE = re.compile(r'(\d\d)/(\d\d)/(\d{4})')
+_ITEMS_TBL = re.compile(r'<table class="items">.*?</table>', re.S)
+_TR_RE = re.compile(r'<tr class="(?:odd|even)">')
+# What a genuinely injury-free player's page says, as opposed to a page whose
+# layout this parser does not understand.
+_NO_ENTRIES_RE = re.compile(r'No .{0,40}available', re.I)
 
 
 def _clean(s: str) -> str:
@@ -195,20 +211,38 @@ def _date(s: str) -> str | None:
 def injuries(tm_id: int, refresh: bool = False) -> tuple[list[dict], bool]:
     """Every injury spell on record for one player.
 
-    Returns (spells, ok).  ``ok`` is False when the site refused a page, which
-    is what stops a player with a truncated history being treated as a player
-    with a short one.  Pagination is 25 rows a page; the loop follows the
-    ``/page/N`` links the pager exposes rather than guessing a page count.
+    Returns (spells, ok, dropped).  ``ok`` is False when the site refused a
+    page, which is what stops a player with a truncated history being treated
+    as a player with a short one.  ``dropped`` counts injury-table rows that
+    did not parse, which must be zero.  Pagination is 25 rows a page; the loop
+    follows the ``/page/N`` links the pager exposes rather than guessing a
+    page count.
     """
     spells, page, ok = [], 1, True
+    dropped = 0
     while True:
         suffix = "" if page == 1 else f"/page/{page}"
         html = get_html(f"{TM}/x/verletzungen/spieler/{tm_id}{suffix}",
                         f"injuries_{tm_id}_{page}.html", refresh=refresh)
         if html is None:
             return spells, False
+        # Parse completeness: every row of the injury table must come back as a
+        # spell.  This is the check that catches a cell-class variant silently
+        # eating rows, which is how ongoing injuries went missing once already.
+        tbl = _ITEMS_TBL.search(html)
+        if tbl:
+            n_rows = len(_TR_RE.findall(tbl.group(0)))
+            dropped += n_rows - len(_INJ_ROW.findall(tbl.group(0)))
+        elif page == 1 and not _NO_ENTRIES_RE.search(html):
+            # No table AND no "No entries available" is not a clean sheet, it
+            # is a page this parser cannot read -- retired players get a
+            # different layout, which is how Joel Matip came back as a player
+            # with no injuries in his career.  Returning ok=False keeps that
+            # out of the panel instead of scoring it as zero.
+            return spells, False, dropped
         for season, desc, frm, until, days, games in _INJ_ROW.findall(html):
             g = _GAMES_RE.search(games)
+            club = _SPELL_CLUB_RE.search(games)
             spells.append({
                 "tm_id": tm_id,
                 "tm_season": season,
@@ -218,6 +252,7 @@ def injuries(tm_id: int, refresh: bool = False) -> tuple[list[dict], bool]:
                 "days": int(m.group(1)) if (m := re.search(r'(\d+)', _clean(days)))
                         else None,
                 "games_missed": int(g.group(1)) if g else 0,
+                "club_id": int(club.group(1)) if club else None,
             })
         # The pager repeats every page link, so "is there a page after this
         # one" is the only reliable read of it.
@@ -226,7 +261,7 @@ def injuries(tm_id: int, refresh: bool = False) -> tuple[list[dict], bool]:
         page += 1
         if page > 20:                      # nobody has 500 injury spells
             break
-    return spells, ok
+    return spells, ok, dropped
 
 
 # --------------------------------------------------------------------------
@@ -254,22 +289,40 @@ def main() -> int:
     # the window. Players seen in only one squad-season are still kept: they
     # are exposure rows for the panel even if they never reach the target set.
     ids = sorted(sq.tm_id.unique())
-    spells, failed = [], []
+    spells, failed, unparsed = [], [], []
     for i, tid in enumerate(ids, 1):
-        s, ok = injuries(int(tid), refresh)
+        s, ok, dropped = injuries(int(tid), refresh)
         spells.extend(s)
         if not ok:
             failed.append(int(tid))
+        if dropped:
+            unparsed.append((int(tid), dropped))
         if i % 100 == 0:
             print(f"  injuries {i}/{len(ids)}  spells {len(spells)}  "
-                  f"failed {len(failed)}")
+                  f"refused {len(failed)}  unparsed rows "
+                  f"{sum(d for _, d in unparsed)}")
     inj = pd.DataFrame(spells)
     inj.to_csv(PROC / "tm_injuries.csv", index=False)
     print(f"tm_injuries.csv  {len(inj)} spells for "
           f"{inj.tm_id.nunique()}/{len(ids)} players")
+    # Players whose history could not be read at all. Written out rather than
+    # merely printed, because a consumer that treats them as injury-free would
+    # be silently wrong in the one direction that matters.
+    pd.DataFrame({"tm_id": failed}).to_csv(PROC / "tm_unreadable.csv",
+                                           index=False)
     if failed:
-        print(f"  ! {len(failed)} players had at least one page refused and are "
-              f"NOT complete: {failed[:20]}")
+        print(f"  ! {len(failed)} players could not be read (page refused, or "
+              f"a layout with no injury table and no 'no entries' marker -- "
+              f"retired players do this). Written to tm_unreadable.csv so they "
+              f"are excluded rather than counted as injury-free: {failed[:20]}")
+    else:
+        print(f"  every requested page was served and readable: 0 refusals")
+    if unparsed:
+        print(f"  ! {sum(d for _, d in unparsed)} injury-table rows across "
+              f"{len(unparsed)} players did not parse: {unparsed[:10]}")
+    else:
+        print(f"  parse completeness: every row of every injury table came "
+              f"back as a spell")
     return 0
 
 
