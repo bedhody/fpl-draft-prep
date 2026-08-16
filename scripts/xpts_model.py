@@ -210,6 +210,13 @@ def build_rows() -> pd.DataFrame:
     # default.  Leaving it blank makes his match count zero, and with it his
     # appearance and DefCon points, however many minutes he is forecast.
     mps = m.get("mins_per_start")
+    if mps is None:
+        # optional() drops a whole file's columns when it is missing, so the
+        # symptom is a None where a Series is expected.  Name the step that
+        # produces it rather than letting pandas raise on `.fillna`.
+        raise SystemExit(
+            "master has no `mins_per_start` -- run defcon_model.py before "
+            "build_master.py (run_all.py does this in order).")
     d["mins_per_start"] = mps.fillna(xpts_calc.DEFAULT_MINS_PER_START)
     d["mins_per_start_measured"] = mps.notna()
 

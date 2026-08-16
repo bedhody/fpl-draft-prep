@@ -178,10 +178,13 @@ def build() -> None:
                              "fotmob_team_id")]
     fm_out = fm_ok[["code"] + fm_stats]        # already fm_-prefixed
 
+    absent: list[str] = []
+
     def optional(name, drop=()):
         path = PROC / name
         if not path.exists():
             print(f"  (missing {name} -- some columns will be blank)")
+            absent.append(name)
             return pd.DataFrame({"code": pd.Series(dtype="int64")})
         return pd.read_csv(path).drop(columns=list(drop), errors="ignore")
 
@@ -255,6 +258,12 @@ def build() -> None:
     review.to_csv(PROC / "match_review.csv", index=False)
     master.to_csv(PROC / "master_2025_26.csv", index=False)
     print(f"master_2025_26.csv     {len(master)} rows x {master.shape[1]} columns")
+    # Repeated at the end because the per-file notice above scrolls away in a
+    # full pipeline run.  A missing optional input does not raise -- it just
+    # leaves columns blank -- so the only protection is that it stays visible.
+    if absent:
+        print(f"  !! built WITHOUT {len(absent)} optional input(s): "
+              f"{', '.join(absent)}")
     return master
 
 

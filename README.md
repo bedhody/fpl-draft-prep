@@ -15,6 +15,12 @@ a player's rank.
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 ```
 
+One input cannot be fetched: **Solio has no API**. Export its projection CSV by
+hand and save it as `~/Downloads/projection.csv` before the first run (or pass
+a path to `scripts/fetch_solio.py`). Without it there are no `xMins` baselines
+and no penalty shares; `run_all.py` completes anyway and says loudly at the end
+that it skipped the step.
+
 Then build everything:
 
 ```bash
@@ -25,6 +31,12 @@ A fresh clone has no cached data, so the first run downloads from all five
 sources — roughly 15 minutes, most of it the Premier League feed. After that
 every response is cached under `data/raw/` and re-runs take seconds. Pass
 `--refresh` to force a re-download.
+
+Two steps sit outside `run_all.py` on purpose, because neither rebuilds itself
+tonight: `fetch_transfermarkt.py` → `injury_model.py` is hours of scraping
+behind a rate limit, and `club_research_report.py` reads a dated snapshot of
+what beat writers were saying in August 2026. Their outputs are committed
+instead. See CLAUDE.md.
 
 `data/raw/` and `data/processed/` are deliberately not in git: they are 95MB of
 cache that the pipeline rebuilds on demand. The finished workbooks in
@@ -668,6 +680,11 @@ scripts/
   fetch_pulselive.py   Premier League feed, 55 Opta stats x 5 seasons
   fetch_vaastav.py     End-of-season FPL rosters, 2022/23-2025/26
   fetch_gameweeks.py   Gameweek detail -> DefCon matches, minutes risk
+  fetch_solio.py       Solio's projection CSV (hand-exported, no API)
+  fetch_draft_adp.py   Average draft position from public draft leagues
+  fetch_transfermarkt.py  Squads and injury spells (outside run_all: slow)
+  injury_model.py      Injury history -> expected games missed
+  club_research_report.py  Club-by-club minutes research -> HTML
   bps_remodel.py       Replay 2025/26 under the 2026/27 BPS weighting
   adjusted_xgot.py     Shot-placement-adjusted xG, with its own validation
   cs_from_odds.py      Clean-sheet probability from season-long betting markets
