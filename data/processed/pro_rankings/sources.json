@@ -1,0 +1,114 @@
+{
+  "researched_at": "2026-08-17",
+  "sources": [
+    {
+      "name": "Premier League (The Scout) - FPL Draft Top 20 Forwards",
+      "type": "official",
+      "url": "https://www.premierleague.com/en/news/4684632/best-20-forwards-to-pick-in-fpl-draft",
+      "draft_specific": true,
+      "why_trusted": "Published by the Premier League's own editorial team ('The Scout') directly under the site's Fantasy > FPL Draft section; explicitly framed as a draft-pick aid ('Use our position rankings to help inform your selections as you plan for your draft'), with no prices shown anywhere.",
+      "ranking_url": "https://www.premierleague.com/en/news/4684632/best-20-forwards-to-pick-in-fpl-draft",
+      "ranking_date": "2026-08-10",
+      "players_ranked": 20,
+      "verified_by_fetch": true,
+      "notes": "First published 5 Aug 2026, page states 'Last updated: 10 Aug, 09:00 BST'. premierleague.com serves an empty JS shell to a normal User-Agent; content was only retrievable using a Googlebot user agent, which returned the fully server-rendered article text."
+    },
+    {
+      "name": "Premier League (The Scout) - FPL Draft Top 25 Defenders",
+      "type": "official",
+      "url": "https://www.premierleague.com/en/news/4684589/fpl-draft-top-25-defender-rankings",
+      "draft_specific": true,
+      "why_trusted": "Same official Premier League 'The Scout' position-ranking series as the forwards list above, in the site's dedicated FPL Draft section.",
+      "ranking_url": "https://www.premierleague.com/en/news/4684589/fpl-draft-top-25-defender-rankings",
+      "ranking_date": "2026-08-10",
+      "players_ranked": 25,
+      "verified_by_fetch": true,
+      "notes": "Published and last updated 10 Aug 2026, 09:00 BST. Fetched with a Googlebot user agent (see note above)."
+    },
+    {
+      "name": "Premier League (The Scout) - FPL Draft Top 25 Midfielders",
+      "type": "official",
+      "url": "https://www.premierleague.com/en/news/4684623/fpl-draft-top-25-midfielder-rankings",
+      "draft_specific": true,
+      "why_trusted": "Same official Premier League 'The Scout' position-ranking series, in the site's dedicated FPL Draft section.",
+      "ranking_url": "https://www.premierleague.com/en/news/4684623/fpl-draft-top-25-midfielder-rankings",
+      "ranking_date": "2026-08-10",
+      "players_ranked": 25,
+      "verified_by_fetch": true,
+      "notes": "First published 5 Aug 2026, page states 'Last updated: 10 Aug, 09:00 BST'. Fetched with a Googlebot user agent (see note above)."
+    },
+    {
+      "name": "Premier League (The Scout) - FPL Draft Top 20 Goalkeepers",
+      "type": "official",
+      "url": "https://www.premierleague.com/en/news/4684577/fpl-draft-top-20-goalkeepers-rankings",
+      "draft_specific": true,
+      "why_trusted": "Same official Premier League 'The Scout' position-ranking series, in the site's dedicated FPL Draft section.",
+      "ranking_url": "https://www.premierleague.com/en/news/4684577/fpl-draft-top-20-goalkeepers-rankings",
+      "ranking_date": "2026-08-10",
+      "players_ranked": 20,
+      "verified_by_fetch": true,
+      "notes": "First published 5 Aug 2026, page states 'Last updated: 10 Aug, 09:00 BST'. Fetched with a Googlebot user agent (see note above). Premierleague.com also links to a combined 'FPL Draft: Top 100 player rankings' article (news/4687711, URL slug starts 'copy-fpl-draft-...'), but that page throws a server-side template error (FreeMarker stack trace) on every fetch attempt and never renders any article content — it is broken/unpublished, so it was excluded rather than guessed at."
+    },
+    {
+      "name": "OneFPL - FPL Draft Rankings 2026/27 Top 100",
+      "type": "site",
+      "url": "https://onefpl.com/blog/fpl-draft-rankings-top-100-2026-27",
+      "draft_specific": true,
+      "why_trusted": "OneFPL is a dedicated FPL companion site; the article is explicit about being draft-specific ('These are OneFPL's early rankings for the official Fantasy Premier League Draft game... Do FPL prices matter in Draft? No.'), gives full-text draft strategy reasoning per tier, and is fully server-rendered (verified by directly fetching the raw HTML and finding the complete 100-row table plus surrounding article text, not just a JS shell).",
+      "ranking_url": "https://onefpl.com/blog/fpl-draft-rankings-top-100-2026-27",
+      "ranking_date": "2026-07-31",
+      "players_ranked": 100,
+      "verified_by_fetch": true,
+      "notes": "Byline 'OneFPL Editorial'; page states 'Ranking date: 31 July 2026' inside the article though the blog metadata shows publish date 2 Aug 2026."
+    },
+    {
+      "name": "Draft Fantasy - Draft Cheat Sheet 2026/27 (240-player tiered board)",
+      "type": "site",
+      "url": "https://www.draftfantasy.com/fpl/draft-cheat-sheet",
+      "draft_specific": true,
+      "why_trusted": "Draft Fantasy is a site dedicated to draft and auction fantasy football ('Draft and auction fantasy football, since 2014. Trusted by over 250,000 managers.'); this page is explicitly a VORP-style ('Edge' = points above best undrafted alternative) draft board, not a price-based ranking, and was fully server-rendered when fetched directly (240-row table with tier, projected points, and 'Edge' columns).",
+      "ranking_url": "https://www.draftfantasy.com/fpl/draft-cheat-sheet",
+      "ranking_date": "2026-08-17",
+      "players_ranked": 240,
+      "verified_by_fetch": true,
+      "notes": "This is a live board explicitly labelled 'Updated every 15 minutes' with no fixed publish date; ranking_date above is the date it was fetched (17 Aug 2026), not a publication date. Player names are exactly as shortened on the board (e.g. 'Bruno G.' for Bruno Guimaraes, 'B.Fernandes' for Bruno Fernandes) — left as published rather than expanded, per instructions not to reconcile against FPL codes."
+    },
+    {
+      "name": "Draft FC - My Top 20 FPL Draft Rankings",
+      "type": "youtube",
+      "url": "https://www.youtube.com/watch?v=0Igypp5nEuI",
+      "draft_specific": true,
+      "why_trusted": "Draft FC (draftfc.co.uk) is a site/YouTube channel/Discord dedicated specifically to official FPL Draft, run by 'Mitch'; this video is explicitly the channel's annual pre-season top-20 draft-pick ranking, counted down from 20 to 1 with named players and reasoning for each.",
+      "ranking_url": "https://www.youtube.com/watch?v=0Igypp5nEuI",
+      "ranking_date": "2026-08-14",
+      "players_ranked": 20,
+      "verified_by_fetch": true,
+      "notes": "Video title 'My top 20 FPL draft rankings', channel 'Draft FC', upload date confirmed via yt-dlp metadata (20260814). Ranking extracted from the full transcript (fetched via scripts/fetch_transcript_api.py), which explicitly counts down from pick 20 to pick 1 with player name, club and reasoning stated for each. Transcript is machine-generated closed captions, so some names are phonetically mangled in the raw text (e.g. Gyokeres rendered as 'Yo Korash'); the CSV uses the correct spelling once the intended player was unambiguous from context (club, stats quoted, surrounding discussion)."
+    },
+    {
+      "name": "The FPL Draft Zone - Top 20 Rankings for FPL Draft 2026/27",
+      "type": "podcast",
+      "url": "https://open.spotify.com/episode/64XCrIFagEYGr4bhhZMyRj",
+      "draft_specific": true,
+      "why_trusted": "The FPL Draft Zone is a podcast/YouTube show ('a show all about draft FPL', host Dom Croft) whose Spotify episode description states: 'I reveal my Top 20 overall rankings ahead of the 2026/27 Fantasy Premier League Draft season.' The same content is cross-posted to YouTube, which is what was actually transcribed.",
+      "ranking_url": "https://www.youtube.com/watch?v=W2sUovur47A",
+      "ranking_date": "2026-08-06",
+      "players_ranked": 20,
+      "verified_by_fetch": true,
+      "notes": "Spotify episode page confirmed real via its embedded JSON-LD (datePublished 2026-08-06, title 'Top 20 FPL Draft Rankings for 2026/27 Premier League Season') but Spotify does not expose a text transcript, so the ranking itself was pulled from the identically-dated YouTube upload 'My Top 20 Rankings for FPL Draft 2026/27' (channel 'The FPL Draft Zone', upload date confirmed via yt-dlp as 20260806) using scripts/fetch_transcript_api.py. The host explicitly restates the full 1-20 order near the end of the episode, which is what the rank order in rankings.csv is built from. Two players' clubs were not clearly stated in the transcript (Alexander Isak, Declan Rice) and are left blank in rankings.csv rather than guessed; for Bruno Guimaraes the transcript itself says his club is unresolved at recording time ('could be Arsenal... it's not been announced... we've put Newcastle... to cover our tracks'), so that is also left blank. One club as literally stated in the transcript conflicts with other sources: Dominik Solanke is called 'of Liverpool' here, vs. 'Spurs' in the Premier League and OneFPL lists; recorded exactly as said rather than corrected."
+    },
+    {
+      "name": "Fantasy Football Scout - FPL Draft: Ranking the 100 best picks for 2026/27",
+      "type": "site",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/08/10/fpl-draft-ranking-the-100-best-picks-for-2026-27",
+      "draft_specific": true,
+      "why_trusted": "Fantasy Football Scout is a well-known, long-running FPL analysis site; this article is explicitly about the Draft format and is byline-credited to a named freelance journalist. Confirmed real by directly fetching the page.",
+      "ranking_url": "https://www.fantasyfootballscout.co.uk/2026/08/10/fpl-draft-ranking-the-100-best-picks-for-2026-27",
+      "ranking_date": "2026-08-10",
+      "players_ranked": 0,
+      "verified_by_fetch": true,
+      "notes": "EXCLUDED FROM rankings.csv. The article explains FPL Draft rules and states it ranks the top 100, but the actual ranked table is gated: 'The rest of this article below is completely free to read but requires a Fantasy Football Scout user account for access.' No account was created (account creation is outside what this task should do), so the 100-player list itself could not be read. A reader comment below the article names three data points (Iwobi 16th, Semenyo 43rd, Gvardiol 100th) but that is a commenter's own note, not the source's table, so it was not added to rankings.csv. Byline: 'FPL Scoop', described as a London-based freelance journalist writing for The i Paper, The Standard, Fantasy Football Scout and BBC Sport."
+    }
+  ],
+  "not_found": "Excluded as explicitly non-draft (classic/price-based) after fetching and confirming: DraftKings Network 'FPL Rankings 2026/27: Top 100 Fantasy Premier League Players' (dknetwork.draftkings.com) shows £-prices throughout and is a standard classic-FPL value ranking, not a draft board, despite 'Draft' in the site's own brand name. Attempted but could not verify: (1) Reddit r/FPLDraft — reddit.com is unreachable from this environment (both direct HTTP and the fetch tool were blocked by network policy), so no community-consensus ranking could be checked, confirmed to exist, or ruled out. (2) RotoWire's 'Fantasy Premier League (FPL) Rankings Top 400' and its separate 'Fantrax & Sleeper EPL Rankings Top 400' (draft-relevant platforms) — rotowire.com refused/timed out on every connection attempt from this environment, so neither could be fetched or verified; not included. (3) smartdraftboard.com/fpl-draft-rankings — this URL was surfaced by web search and an initial automated fetch returned what looked like a real, detailed VORP-tiered ranking; a direct HTTP check subsequently showed the page returns a plain 404 (site root is live, this specific path is not) — i.e. the page does not exist and the earlier fetch had fabricated plausible-looking content for a dead URL. Nothing from that source appears anywhere in these output files. (4) fplsoup.com 'FPL Draft Guide and Top 250 Rankings for the 2026/2027 Season' and premierleague.com's combined 'FPL Draft: Top 100 player rankings' (news/4687711) both returned 200 but rendered no usable article content (an empty client-side JS shell for FPL Soup; a server-side template crash for the Premier League page) even after retrying with a Googlebot user agent, so neither could be verified and neither is included. Other names floated by web-search summaries (e.g. 'Auto Draft', 'Snake Draft', 'Win Your Draft', fantasygaffer.substack.com) were mentioned in passing by the two verified podcast/YouTube sources or in search snippets but no specific, fetchable 2026/27 ranking page for them was located."
+  }

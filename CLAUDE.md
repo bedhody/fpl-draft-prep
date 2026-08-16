@@ -136,6 +136,13 @@ it takes a deliberate act rather than a careless one. Treat it that way.
   - `data/processed/injury_model.csv` — reproducible only from a 244MB
     Transfermarkt scrape that is itself ignored and takes hours behind a rate
     limit.
+  - `data/processed/pro_rankings/` — published draft rankings from named
+    analysts. Dated pages that get overwritten or taken down, so the research
+    cannot be re-run to the same answer. `rankings.csv` is what the research
+    reported; `rankings_verified.csv` is what survived re-fetching every
+    source, and only the verified file feeds the model. Keep that split: the
+    fetch tooling once returned a complete, plausible, entirely invented
+    ranking for a URL that returns 404.
 
   The test for adding a third: could `run_all.py` reproduce it from scratch
   tonight? If yes it stays ignored, however long it took the first time.

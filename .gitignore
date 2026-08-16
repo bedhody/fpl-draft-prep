@@ -20,8 +20,13 @@ data/processed/*
 #                   Transfermarkt scrape that is itself ignored and takes
 #                   hours to rebuild behind a rate limit. 24KB is cheap
 #                   insurance against that.
+#   pro_rankings/   Published draft rankings from named analysts, gathered by
+#                   web research and then re-fetched and checked row by row.
+#                   The lists are dated and get taken down or overwritten; the
+#                   research cannot be re-run to the same answer.
 !data/processed/club_research/
 !data/processed/injury_model.csv
+!data/processed/pro_rankings/
 
 # Virtualenv
 .venv/

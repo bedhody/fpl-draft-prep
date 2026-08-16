@@ -65,9 +65,28 @@ _MANUAL_ALIASES = {
 }
 
 
+# Letters that are not an ASCII letter plus a combining accent, so NFKD leaves
+# them intact and the punctuation strip then eats them -- turning Gross into
+# "gro" and Odegaard into "degaard", which matches nothing.  Every one of these
+# appears in a real Premier League squad list.
+_TRANSLITERATE = str.maketrans({
+    "ß": "ss", "Ø": "O", "ø": "o", "Đ": "D", "đ": "d", "Ð": "D", "ð": "d",
+    "Ł": "L", "ł": "l", "Æ": "AE", "æ": "ae", "Œ": "OE", "œ": "oe",
+    "Þ": "Th", "þ": "th", "ı": "i", "İ": "I", "Ħ": "H", "ħ": "h",
+    "Ŋ": "N", "ŋ": "n", "Ə": "E", "ə": "e", "'": "'", "'": "'",
+})
+
+
 def strip_accents(s: str) -> str:
+    """Fold to ASCII.  Transliterate first, then drop combining marks.
+
+    NFKD alone is not enough: it decomposes e-acute into "e" + a combining
+    mark, but a slashed O or an eszett is a letter in its own right and comes
+    through untouched.
+    """
     return "".join(
-        c for c in unicodedata.normalize("NFKD", s) if not unicodedata.combining(c)
+        c for c in unicodedata.normalize("NFKD", str(s).translate(_TRANSLITERATE))
+        if not unicodedata.combining(c)
     )
 
 
