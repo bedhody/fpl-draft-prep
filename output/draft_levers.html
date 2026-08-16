@@ -178,6 +178,17 @@ td.dim{color:var(--faint)}
   font-family:ui-monospace,"SF Mono",Menlo,monospace}
 .card .row2{font-size:11px; color:var(--muted);
   font-family:ui-monospace,"SF Mono",Menlo,monospace}
+.card .row3{display:flex; flex-wrap:wrap; gap:4px; align-items:center; margin-top:1px}
+.card .rate{font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:10.5px;
+  color:var(--muted); background:var(--ground); border:1px solid var(--line-soft);
+  padding:0 5px; border-radius:4px}
+.card .tag{font-size:10px; padding:0 5px}
+.clubgrp{display:flex; flex-direction:column; gap:5px; margin-bottom:11px}
+.clubgrp h3{margin:0; font-size:10.5px; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--accent); font-family:ui-monospace,"SF Mono",Menlo,monospace;
+  display:flex; align-items:center; gap:6px;
+  border-bottom:1px solid var(--line-soft); padding-bottom:3px}
+.clubgrp h3 span{margin-left:auto; color:var(--faint)}
 .card .x{margin-left:6px; cursor:pointer; color:var(--faint); border:0;
   background:none; font:inherit; padding:0 2px}
 .card .x:hover{color:var(--down)}
@@ -344,9 +355,12 @@ details h3{font-size:13px; margin:18px 0 6px}
         <input type="search" id="sideq" placeholder="Filter arrivals" aria-label="Filter arrivals" style="width:100%">
       </div>
       <div class="body" id="movers"></div>
-      <p class="hint">Everyone who changed club, plus anyone with no Premier
-      League record at all &mdash; the 119 players whose attacking rates
-      the data cannot supply.</p>
+      <p class="hint">Everyone who changed club, plus anyone new to the league
+      &mdash; 119 players, grouped by their new club. The rates shown are
+      the ones he produced at his <em>old</em> club, which are exactly what the
+      model will use for him, so a defender whose DefCon rate is already on the
+      card needs no further review. <strong>no rates</strong> means he has no
+      Premier League record at all and the model has nothing to go on.</p>
     </section>
 
     <section class="panel tray" id="tray">
@@ -671,11 +685,11 @@ function recompute(){
 
 /* ---------- cells ---------- */
 const CELL = {
-  mark: (r, i) => `<td class="mark"><button class="ranknum${marked.has(r.code) ? ' on' : ''}"
+  mark: r => `<td class="mark"><button class="ranknum${marked.has(r.code) ? ' on' : ''}"
       data-mark="${r.code}"
-      title="Row ${i + 1}. ${marked.has(r.code) ? 'On your research list -- click to remove' : 'Click to put on your research list'}"
+      title="Number ${r._rank} of ${DATA.length} in the current sort. ${marked.has(r.code) ? 'On your research list -- click to remove' : 'Click to put on your research list'}"
       aria-pressed="${marked.has(r.code)}"
-      aria-label="Row ${i + 1}, ${esc(r.player)}, research list toggle">${i + 1}</button></td>`,
+      aria-label="Rank ${r._rank}, ${esc(r.player)}, research list toggle">${r._rank}</button></td>`,
   player: r => `<td class="name${r.moved ? ' movedname' : ''}" draggable="true" data-drag="${r.code}"
       title="${esc(r.player)}${r.moved ? ' -- changed club this summer, so his xG and xA are rates he produced somewhere else' : ''}">${
       esc(r.player)}${r.no_pl_rates ? '<span class="flag norates" title="No Premier League record, so every attacking rate is empty.">no rates</span>' : ''}</td>`,
@@ -830,10 +844,9 @@ const SORTED = {matches:'_matches', xpts:'_xpts', vorp:'_vorp',
                 role:'_role', threat:'_threat', band:'_band'};
 
 function render(){
-  const rows = visible();
   const key = SORTED[sortKey] || sortKey;
   const dir = sortDir === 'asc' ? 1 : -1;
-  rows.sort((a, b) => {
+  const cmp = (a, b) => {
     let x = a[key], y = b[key];
     if (key === '_role'){ x = ROLE_RANK[x] ?? 9; y = ROLE_RANK[y] ?? 9; }
     if (typeof x === 'string' || typeof y === 'string')
@@ -841,20 +854,24 @@ function render(){
     if (!isNum(x) && x !== 0) return 1;
     if (!isNum(y) && y !== 0) return -1;
     return dir * (x - y);
-  });
+  };
+  // Rank the whole field first, then filter.  Ranking after filtering meant a
+  // search for one player numbered him 1, whatever his actual place.
+  DATA.slice().sort(cmp).forEach((r, i) => { r._rank = i + 1; });
+  const rows = visible().sort(cmp);
 
   const n = editCount();
   $('#editN').textContent = n ? `${n} edit${n === 1 ? '' : 's'}` : 'no edits';
   $('#resetEdits').disabled = !n;
 
-  // Which visible rows land on your picks, in the order the table is in now.
+  // Which rows land on your picks, by their place in the full order.
   const pickSet = new Set(myPicks());
-  $('#rows').innerHTML = rows.map((r, i) => {
+  $('#rows').innerHTML = rows.map(r => {
     const cls = [marked.has(r.code) ? 'marked' : '',
-                 pickSet.has(i + 1) ? 'mypick' : '',
+                 pickSet.has(r._rank) ? 'mypick' : '',
                  draft.on && r._band !== null ? (r._band < 0 ? 'gone' : 'band') : ''];
     return `<tr data-code="${r.code}" class="${cls.join(' ').trim()}">${
-      order.map(k => CELL[k](r, i)).join('')}</tr>`;
+      order.map(k => CELL[k](r)).join('')}</tr>`;
   }).join('');
   $('#count').textContent = `${rows.length} of ${DATA.length} players`;
   wireRows();
@@ -888,15 +905,29 @@ function wireRows(){
 }
 
 /* ---------- sidebar ---------- */
+/* An arrival's card carries what it takes to decide whether he is worth
+   looking at: where he came from, the minutes the research gave him, his role,
+   whether his club is still shopping, and -- the point -- the rates he
+   produced at his old club, since those are exactly what the model will use
+   for him.  A defender with a DefCon rate already on the card does not need
+   opening at all. */
 function cardHtml(r, inTray){
+  const mins = isNum(val(r, 'xmins_adj')) ? Math.round(val(r, 'xmins_adj')) : '--';
+  const rates = r.no_pl_rates
+    ? '<span class="flag norates">no rates -- nothing to go on</span>'
+    : `<span class="rate">xG ${Number(val(r, 'xg_p90_adj')).toFixed(2)}</span>
+       <span class="rate">xA ${Number(val(r, 'xa_p90_adj')).toFixed(2)}</span>
+       ${r.pos !== 'GKP' ? `<span class="rate">DefCon ${Number(r.defcon_lambda).toFixed(1)}/90</span>` : ''}`;
   return `<div class="card" draggable="true" data-drag="${r.code}" data-card="${r.code}">
     <div class="top"><span class="who">${esc(r.player)}</span>
-      <span class="meta">${r.pos} ${r.team}</span>
+      <span class="meta">${r.pos}</span>
       ${inTray ? `<button class="x" data-remove="${r.code}" aria-label="Remove ${esc(r.player)}">&times;</button>` : ''}
     </div>
-    <div class="row2">${r.club_2526 ? esc(r.club_2526) + ' → ' : ''}${r.team}
-      &middot; ${isNum(val(r, 'xmins_adj')) ? Math.round(val(r, 'xmins_adj')) : '--'} mins
-      ${r.no_pl_rates ? '<span class="flag norates">no rates</span>' : ''}</div>
+    <div class="row2">${r.club_2526 ? esc(r.club_2526) + ' &rarr; ' : 'new to the PL &rarr; '}${r.team}
+      &middot; ${mins} mins</div>
+    <div class="row3"><span class="tag ${r._role}">${r._role}</span>
+      ${r._threat !== 'none' ? `<span class="tag ${r._threat}">${r._threat}</span>` : ''}</div>
+    <div class="row3">${rates}</div>
   </div>`;
 }
 
@@ -907,8 +938,19 @@ function renderSide(){
     .filter(r => (r.moved || r.no_pl_rates) && !inTray.has(r.code))
     .filter(r => !q || (r.player + ' ' + r.team + ' ' + r.club_2526).toLowerCase().includes(q))
     .sort((a, b) => (Number(val(b, 'xmins_adj')) || 0) - (Number(val(a, 'xmins_adj')) || 0));
-  $('#movers').innerHTML = movers.map(r => cardHtml(r, false)).join('')
-    || '<div class="empty">Nothing matches.</div>';
+  // Grouped by their NEW club, because that is how you actually review them:
+  // one squad at a time, deciding whose minutes are real.
+  const clubs = {};
+  movers.forEach(r => (clubs[r.team] ||= []).push(r));
+  $('#movers').innerHTML = Object.keys(clubs).sort().map(club => {
+    const list = clubs[club].sort((a, b) =>
+      (Number(val(b, 'xmins_adj')) || 0) - (Number(val(a, 'xmins_adj')) || 0));
+    // "--" is a player with no 2026/27 club on file; say so rather than
+    // printing a dash as if it were a club name.
+    const label = club === '--' ? 'No club listed' : club;
+    return `<div class="clubgrp"><h3>${label} <span>${list.length}</span></h3>
+      ${list.map(r => cardHtml(r, false)).join('')}</div>`;
+  }).join('') || '<div class="empty">Nothing matches.</div>';
   $('#moversN').textContent = movers.length;
 
   $('#trayBody').innerHTML = tray.length
