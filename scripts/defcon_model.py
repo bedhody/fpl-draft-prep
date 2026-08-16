@@ -57,10 +57,16 @@ def load() -> pd.DataFrame:
 
 
 def fit(gw: pd.DataFrame) -> pd.DataFrame:
+    # Minutes played *in matches he started*, kept separate from total minutes.
+    # Dividing all his minutes by his starts counts substitute cameos in the
+    # numerator but not the denominator, which produced impossible figures --
+    # 112 minutes per start for a player with two starts and a bench run.
+    gw = gw.assign(start_minutes=gw["minutes"].where(gw["starts"] > 0, 0))
     a = gw.groupby("element").agg(
         pos_2526=("pos", "last"),
         actions=("defensive_contribution", "sum"),
         minutes=("minutes", "sum"),
+        start_minutes=("start_minutes", "sum"),
         starts=("starts", "sum"),
         apps=("hit", "size"),
         hits=("hit", "sum"),
@@ -73,7 +79,8 @@ def fit(gw: pd.DataFrame) -> pd.DataFrame:
     a["defcon_lambda"] = ((a["actions"] + a["prior_rate"] * PRIOR_N)
                           / (a["n90"] + PRIOR_N)).round(3)
     a["raw_rate_per90"] = (a["actions"] / a["n90"]).round(3)
-    a["mins_per_start"] = (a["minutes"] / a["starts"].replace(0, np.nan)).round(1)
+    a["mins_per_start"] = (a["start_minutes"]
+                           / a["starts"].replace(0, np.nan)).round(1)
     a["defcon_shrinkage"] = (PRIOR_N / (a["n90"] + PRIOR_N)).round(3)
     return a
 
@@ -83,9 +90,11 @@ def validate(gw: pd.DataFrame) -> None:
     H1, H2 = gw[gw.GW <= 19], gw[gw.GW > 19]
     f1 = fit(H1).set_index("element")
     f1["naive_rate"] = f1["hits"] / f1["starts"].replace(0, np.nan)
+    H2 = H2.assign(start_minutes=H2["minutes"].where(H2["starts"] > 0, 0))
     h2 = H2.groupby("element").agg(starts=("starts", "sum"), minutes=("minutes", "sum"),
+                                   start_minutes=("start_minutes", "sum"),
                                    hits=("hit", "sum"), thr=("thr", "last"))
-    h2["mps"] = h2["minutes"] / h2["starts"].replace(0, np.nan)
+    h2["mps"] = h2["start_minutes"] / h2["starts"].replace(0, np.nan)
     j = f1.join(h2, how="inner", rsuffix="_h2")
     j = j[(j["starts_h2"] >= 8) & (j["starts"] >= 8)]
 

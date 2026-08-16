@@ -142,6 +142,7 @@ TEAM_ALIASES = {
     "luton": "LUT", "luton town": "LUT",
     "manchester city": "MCI", "man city": "MCI",
     "manchester united": "MUN", "man united": "MUN", "manchester utd": "MUN",
+    "man utd": "MUN",
     "newcastle": "NEW", "newcastle united": "NEW",
     "nottingham forest": "NFO", "nott m forest": "NFO", "nottm forest": "NFO",
     "sheffield united": "SHU", "sheffield utd": "SHU",

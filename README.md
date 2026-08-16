@@ -4,8 +4,8 @@ Everything needed to analyse 2025/26 Premier League player performance in one
 workbook, pulled from five sources and joined on the Opta player id.
 
 **Output:** `output/FPL_2026_27_draft_data.xlsx` — a `Players` sheet of 719
-players × 126 columns, plus an `xPts model` sheet built from live Excel
-formulas you can edit.
+players × 146 columns, plus an `xPts model` sheet built from live Excel
+formulas you can edit, covering all nine of FPL's scoring elements.
 
 ## Setup
 
@@ -209,33 +209,60 @@ workbook next to the originals.
 
 ## The xPts model
 
-`xPts per 90 = appearance + xG + xA + clean sheet + defensive contribution +
-bonus`, then `xPts season = xPts per 90 × xMins / 90`.
+```
+xPts per 90 = appearance + xG + xA + clean sheet + defensive contribution
+              + bonus + saves + goals conceded + cards
+xPts season = xPts per 90 × xMins / 90 + penalties
+```
+
+All nine of FPL's scoring elements are in. Penalties sit outside the per-90
+term deliberately: a penalty goes to whoever holds the duty and is on the
+pitch, so the expected count already prices availability and must not be
+scaled by minutes twice.
 
 It is written as **live Excel formulas**, not baked-in numbers, so every
 assumption is visible and changeable in the sheet. Blue cells are inputs:
 
 | Input | Default | Note |
 |---|---|---|
-| `xMins 26/27` | 2025/26 minutes | The biggest lever, and the one no dataset provides |
-| `P(CS)` | The club's own 2025/26 clean-sheet rate | Counted from match results, keyed on the club — a defender who moved does not import his old defence. Promoted clubs are blank |
-| Assist uplift | 1.32 | On the `Assumptions` sheet |
+| `xMins 26/27` | Solio's forecast, else 2025/26 minutes | The biggest lever, and the one no dataset settles. `xMins source` records which was used |
+| `P(CS)` | Market-implied, all 20 clubs | See below |
+| `Mins per start` | Minutes played in matches he started ÷ starts | Drives appearances *and* DefCon exposure |
+| `Saves/match` | The club's expected saves | Goalkeepers |
+| `Goals against/match` | The club's expected goals against | Goalkeepers and defenders |
+| `Pens/season` | Club penalties × this player's share | Season total, not a rate |
+| Assist uplift, penalty conversion | 1.32, 0.829 | On the `Assumptions` sheet |
 
 Scoring multipliers sit on `Assumptions` and are pulled in by `VLOOKUP` on
 position, so a rule change is one edit rather than 700.
 
 Component sources:
 
-- **xG** — adjusted xGOT where a player has placement history, else blended xG. The `xG basis` column says which
+- **xG** — adjusted xGOT where a player has placement history, else blended xG, in both cases scaled to his non-penalty share so penalties are not counted twice. The `xG basis` column says which
 - **xA** — blended xA × 3 × the assist uplift. The uplift is there because both xG models measure the *Opta* assist definition while FPL pays on its own looser one
 - **Clean sheet** — `P(CS)` × 4/4/1/0 by position
-- **DefCon** — share of 2025/26 starts that cleared the threshold, **re-scored at the 2026/27 threshold for the player's 2026/27 position**, × 2
+- **DefCon** — the player's action rate, shrunk toward his position, run through a Poisson against the threshold over `Mins per start`
 - **Bonus** — bonus per 90 from the BPS re-model, as a rate rather than a share of points, so it does not depend on the rest of the model
-- **Appearance** — the player's measured 2025/26 appearance points per 90, which handles substitutes properly rather than assuming 2
+- **Appearance** — 1 point an appearance, 2 at 60 minutes. Appearances are `xMins ÷ Mins per start`, so a substitute banks more appearances for the same minutes but only one point each
+- **Saves, goals conceded, cards, penalties** — see the four sections below
+
+### The per-match floor, and why it matters
+
+Two FPL rules pay per *match*, not per season: 1 point per 3 saves, and −1 per
+2 goals conceded. Two saves in a match are worth nothing, and so is one goal
+conceded. Dividing a season total by 3 or by 2 therefore gets both badly wrong
+— measured over 2025/26, saves came out **56% too generous** (0.213 points per
+save, not 0.333) and goals conceded **57% too harsh** (−0.32 per goal, not
+−0.50).
+
+The sheet models both as `E[floor(X/m)]` for a Poisson `X`, which equals the
+sum over `k ≥ 1` of `P(X ≥ m·k)` — a sum of Poisson tails, so it stays a live
+formula. Eight terms is exact to 1e-4 at any rate a real club produces.
 
 `verify_xpts.py` recalculates the workbook with LibreOffice and checks all
-eight formula columns against the same arithmetic done independently in
-Python. It currently passes 719/719 on every column.
+thirteen formula columns against the same arithmetic done independently in
+Python. It currently passes 719/719 on every column, plus the four replacement
+levels and both VORP columns.
 
 ## Clean sheets from the betting market
 
@@ -331,7 +358,17 @@ Three choices, each tested rather than assumed:
 | | Bias | MAE | Correlation |
 |---|---|---|---|
 | Realised rate x starts (old) | +4.3% | 1.31 | 0.809 |
-| **Poisson(lambda x mins) (new)** | **-2.2%** | **1.21** | **0.832** |
+| **Poisson(lambda x mins) (new)** | **-12.4%** | **1.22** | **0.832** |
+
+**Known calibration gap.** `mins_per_start` used to be total minutes ÷ starts,
+which counts substitute cameos in the numerator but not the denominator and so
+returned impossible figures — 112 minutes per start for a player with two
+starts and a long bench run. It is now minutes played *in matches he started* ÷
+starts. That is the right number, but it removed an error that had been masking
+another: with honest exposure the Poisson under-predicts threshold hits by
+12%, because per-match counts are over-dispersed and a Poisson tail is thinner
+than reality. The ordering is unaffected (correlation 0.832) and the level is
+not, so treat DefCon points as about 12% conservative until this is revisited.
 
 One Excel trap worth recording: `POISSON.DIST` is a post-2007 function and
 needs an `_xlfn.` prefix in the file format, which openpyxl does not add — it
@@ -339,6 +376,107 @@ silently evaluates to an error. The legacy `POISSON` works unprefixed in both
 Excel and LibreOffice. And the threshold lookup must fail safe to 99, not 0:
 an unknown position makes the VLOOKUP fail, and `POISSON(-1, ...)` is a `#NUM!`
 that propagates all the way to `xPts season`.
+
+## Saves, and the shots behind them
+
+A save is a shot on target that did not go in, so the chain runs from the same
+market numbers the clean-sheet model uses:
+
+```
+market points -> goals against -> shots on target faced -> saves
+```
+
+The middle step needs expected goals per shot on target faced — how good the
+chances a club concedes are. Clubs really do differ: a side that funnels
+attackers into long-range efforts faces more shots for the same expected goals.
+But the difference **barely repeats**. Across 51 club-season pairs the
+year-on-year correlation of shot quality conceded is **+0.08**, against **+0.49**
+for shot volume. So the club's own quality is shrunk hard toward the league
+mean, at a weight of 0.4 chosen by back-test:
+
+| Weight on the club's own quality | Mean error, shots on target faced |
+|---|---|
+| 0.0 (league mean only) | 13.6 |
+| **0.4** | **12.4** |
+| 1.0 (club's own, raw) | 14.1 |
+
+Predicting 2025/26 save points for the 22 keepers on 1350+ minutes, fitted only
+on 2022/23–2024/25:
+
+| | MAE | Correlation | Bias |
+|---|---|---|---|
+| Model | 3.63 | **+0.854** | +14.2% |
+| Every keeper on the league average | **3.61** | +0.596 | — |
+
+Read that the way you read the clean-sheet model: **the ordering is the
+reliable part, the league level is not.** The correlation is far better; the
+MAE is a wash because of a +14% level error, and a level error mostly cancels
+when comparing keepers. The level drifts because shots per goal drifts — 3.08
+saves a match in 2024/25 against 2.78 in 2025/26 — and anchoring to the previous
+season makes it worse, not better (tested: bias +16.0%).
+
+**Goalkeeper shot-stopping skill is deliberately not modelled.** Goals prevented
+per 90 has a year-on-year correlation of **−0.03** over 33 repeat keeper-seasons.
+That is noise, and it would be worth about a point a season anyway, since a
+prevented goal is one extra save.
+
+Goals conceded comes off the same expected goals against, with no intermediate
+estimate. Against 96 keepers and defenders on 1800+ minutes: MAE 1.56,
+correlation +0.904, bias +4.0%, against 2.74 for a flat league average.
+
+## Cards
+
+The one negative in FPL scoring that is a genuine player trait. Year-on-year
+correlation of card points per 90 is **+0.47** over 766 repeat player-seasons,
+rising to **+0.59** for players over 1800 minutes in both — well short of
+expected goals at +0.86, but nowhere near noise.
+
+Two things came out of the back-test rather than judgement:
+
+- **Yellows** are the player's own three-season rate (weights 0.5/0.3/0.2),
+  shrunk toward his position mean with a prior worth 8 nineties.
+- **Reds are not player-specific.** At about one per 200 nineties an individual
+  red rate is noise, and letting one sending-off drive a projection made the
+  back-test worse. Everyone gets their position's red rate.
+
+Fitted on 2022/23–2024/25, predicting 2025/26 for 339 players over 900 minutes:
+MAE 0.0917 against 0.1026 for a flat position mean, and correlation +0.47
+against +0.24.
+
+## Penalties
+
+The most concentrated points in the game, and the most dangerous thing to leave
+sitting inside a season xG total. Cole Palmer's 2025/26 expected goals were
+**44% penalties**, Bruno Fernandes' 38%, Igor Thiago's 28%. Carrying that
+forward assumes the duty carries forward, and duty moves far more than form
+does. So penalties come out of expected goals entirely — by each player's own
+measured non-penalty share, from Understat's npxG — and are credited back from
+two explicit pieces: how many penalties a club gets, and who takes them.
+
+**How many a club gets, tested rather than assumed:**
+
+| Predictor | Result |
+|---|---|
+| Last season's own penalty count | r = **+0.05** across 51 club-season pairs. Worthless |
+| Touches in the opposition box | r = +0.39 in one test season, +0.03 in the other. Out of sample it does **not** beat giving every club the league average (2.25 against 2.20) |
+| Goals scored | Same-season r = +0.50; cuts the error from 2.18 to **1.80** penalties per club across three test seasons |
+
+So goals is the driver, not box touches — and it is also the only one available
+for the promoted three, since the market forecasts goals for all 20 clubs. The
+honest summary is that a club's penalty count is **mostly noise**: variance
+across clubs is 1.6× the mean where pure chance would give 1.0×. This is a
+small tilt on a flat prior, not a real forecast.
+
+**Who takes them** is availability-weighted down the listed order: the first
+choice takes them in the matches he plays, the second choice takes what is left
+when he does not. The shares deliberately do not sum to 1 — a club whose only
+listed taker plays 85% of minutes really does give 15% of its penalties to
+somebody unlisted, and handing him the lot would credit spot-kicks he will not
+be on the pitch for.
+
+Each expected penalty is then worth `0.829 × goal points − 0.171 × 2`, from 381
+penalties taken and 316 scored over four seasons. Goalkeepers get the other
+side: 13.1% of penalties faced are saved, at +5 each.
 
 ## Average draft position
 
@@ -487,6 +625,11 @@ scripts/
   fetch_gameweeks.py   Gameweek detail -> DefCon matches, minutes risk
   bps_remodel.py       Replay 2025/26 under the 2026/27 BPS weighting
   adjusted_xgot.py     Shot-placement-adjusted xG, with its own validation
+  cs_from_odds.py      Clean-sheet probability from season-long betting markets
+  team_defence.py      Club shots faced -> saves and goals-conceded points
+  cards_model.py       Booking rate per player, shrunk toward position
+  penalties_model.py   Club penalty counts and who takes them
+  defcon_model.py      Defensive-action rate -> Poisson threshold model
   build_master.py      Join everything into one row per player
   verify_master.py     Cross-source agreement checks (exits non-zero on failure)
   build_panel.py       Same join, run per season, for the model test

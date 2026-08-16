@@ -10,6 +10,7 @@ import bps_remodel
 import cs_from_odds
 import build_master
 import build_panel
+import cards_model
 import export_excel
 import fetch_fotmob
 import fetch_fpl
@@ -17,6 +18,8 @@ import fetch_gameweeks
 import fetch_pulselive
 import fetch_understat
 import fetch_vaastav
+import penalties_model
+import team_defence
 import verify_master
 import verify_xpts
 import xg_bakeoff
@@ -62,8 +65,19 @@ def main() -> int:
     print("\n=== re-merge with derived columns ===")
     build_master.build()
 
+    # The club-level models need the market-implied goals from cs_from_odds;
+    # the player-level ones need the master.  Both then go back into the master,
+    # so the merge runs a third time to pick them up.
     print("\n=== clean sheets from market odds ===")
     cs_from_odds.main()
+    print("\n=== club shots faced, saves and goals conceded ===")
+    team_defence.main()
+    print("\n=== cards ===")
+    cards_model.main()
+    print("\n=== penalties ===")
+    penalties_model.main()
+    print("\n=== re-merge with the scoring models ===")
+    build_master.build()
 
     print("\n=== workbook ===")
     export_excel.main()

@@ -195,6 +195,9 @@ def build() -> None:
                    drop=["web_name", "position", "team"])
     defcon = optional("defcon_model.csv",
                       drop=["pos_2526", "actions", "minutes", "starts", "hits"])
+    cards = optional("cards_model.csv")
+    pens = optional("penalties_model.csv",
+                    drop=["player", "club", "position", "order"])
 
     master = (spine_out
               .merge(fpl_out, on="code", how="left")
@@ -206,8 +209,23 @@ def build() -> None:
               .merge(solio, on="code", how="left")
               .merge(adp, on="code", how="left")
               .merge(defcon, on="code", how="left")
+              .merge(cards, on="code", how="left")
+              .merge(pens, on="code", how="left")
               .rename(columns={"id": "fpl_id", "pl_name": "player",
                                "team_short": "team_2627"}))
+
+    # Club-level defensive volume: what a keeper's saves and a defender's
+    # goals-conceded penalty are made of.  Keyed on the club, never on the
+    # player, so a defender who moved does not import his old defence.
+    td = PROC / "team_defence.csv"
+    if td.exists():
+        master = master.merge(
+            pd.read_csv(td).rename(columns={"team_short": "team_2627"})[
+                ["team_2627", "saves_per_match", "ga_per_match",
+                 "sot_per_match"]],
+            on="team_2627", how="left")
+    else:
+        print("  (missing team_defence.csv -- saves and goals conceded will be blank)")
 
     master = add_derived(master)
 
