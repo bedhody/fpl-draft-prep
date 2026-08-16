@@ -20,7 +20,7 @@ import sys
 import numpy as np
 import pandas as pd
 
-from common import PROC, name_keys, norm_name, similarity
+from common import PROC, RAW, name_keys, norm_name, similarity
 
 SEASON = "2025/26"
 NAME_FLOOR = 70.0      # a candidate below this is never considered
@@ -213,6 +213,28 @@ def build() -> None:
               .merge(pens, on="code", how="left")
               .rename(columns={"id": "fpl_id", "pl_name": "player",
                                "team_short": "team_2627"}))
+
+    # Which club he played for in 2025/26, so a summer move is visible.  It
+    # matters because the club-level terms (clean sheets, saves, goals against)
+    # correctly follow him to the new club, while his own xG and xA are still
+    # the rates he produced at the old one.
+    raw = RAW / "vaastav" / "players_raw_2025-26.csv"
+    tms = RAW / "vaastav" / "teams_2025-26.csv"
+    if raw.exists() and tms.exists():
+        clubs = pd.read_csv(raw)[["code", "team"]].merge(
+            pd.read_csv(tms)[["id", "short_name"]],
+            left_on="team", right_on="id", how="left")
+        master = master.merge(
+            clubs[["code", "short_name"]].rename(columns={"short_name": "club_2526"}),
+            on="code", how="left")
+        moved = (master["team_2627"].notna() & master["club_2526"].notna()
+                 & (master["team_2627"] != master["club_2526"]))
+        master["moved_club"] = moved
+        print(f"  {int(moved.sum())} players are at a different club for 2026/27")
+    else:
+        master["club_2526"] = pd.NA
+        master["moved_club"] = False
+        print("  (no 2025/26 roster snapshot -- club moves will not be flagged)")
 
     # Club-level defensive volume: what a keeper's saves and a defender's
     # goals-conceded penalty are made of.  Keyed on the club, never on the

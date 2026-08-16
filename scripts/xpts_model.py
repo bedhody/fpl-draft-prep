@@ -35,6 +35,12 @@ from common import OUT, PROC
 INPUT_FILL = PatternFill("solid", fgColor="DDEBF7")     # editable
 DERIVED_FILL = PatternFill("solid", fgColor="F2F2F2")   # from the data
 HEAD_FILL = PatternFill("solid", fgColor="404040")
+# Amber: a player whose club changed over the summer.  His clean sheets, saves
+# and goals against follow him to the new club, but his xG and xA are still the
+# rates he produced at the old one, and nothing in the data fixes that.
+MOVED_FILL = PatternFill("solid", fgColor="FCE4D6")
+MOVED_COLS = ("Player", "Club 25/26", "xG/90", "xA/90",
+              "xG pts/90", "xA pts/90")
 
 # Scoring, straight from the FPL API's game_config for 2026/27.  Defined once,
 # in xpts_calc; reproduced on the Assumptions sheet so the workbook says what it
@@ -118,6 +124,14 @@ NOTES = [
                    "appearances instead, which clears the 60-minute line. 'App "
                    "pts 25/26' is what he actually earned last season, for "
                    "comparison only -- it does not feed the model."),
+    ("Moved club", "Amber cells mark a player who changed club over the "
+                   "summer, and mark exactly the numbers the move breaks. His "
+                   "clean sheets, saves and goals against all follow him to the "
+                   "new club correctly -- those are keyed on the club, never on "
+                   "the player. His xG and xA do not: they are the rates he "
+                   "produced at the old club, in the old side's shape, and "
+                   "nothing in any dataset repairs that. Treat the amber "
+                   "figures as needing your own judgement."),
     ("Live cells", "Almost everything on this sheet is a value, computed in "
                    "Python. Six columns are still real formulas -- Matches, App "
                    "pts season, DC pts season, xPts season, VORP and VORP per "
@@ -152,6 +166,8 @@ def build_rows() -> pd.DataFrame:
     d = pd.DataFrame({
         "player": m["player"],
         "team": m["team_2627"],
+        "club_2526": m.get("club_2526"),
+        "moved_club": m.get("moved_club", pd.Series(False, index=m.index)).fillna(False),
         "pos": m["position"],
         "pos_2526": m.get("pos_2526"),
         "price": m["price_2627"],
@@ -243,6 +259,8 @@ COLUMNS = [
     # (header, source column or None, kind)
     ("Player", "player", "text"),
     ("Team 26/27", "team", "text"),
+    ("Club 25/26", "club_2526", "text"),
+    ("Moved club", "moved_club", "text"),
     ("Pos", "pos", "text"),
     ("Pos 25/26", "pos_2526", "text"),
     ("Draftable", "draftable", "text"),
@@ -491,9 +509,12 @@ def main() -> int:
         ws[f"{col['VORP per £m']}{i}"] = (
             f'=IFERROR({col["VORP"]}{i}/{col["Price"]}{i},"")')
 
+        moved = bool(rec.get("moved_club"))
         for h, _, kind in COLUMNS:
             cell = ws[f"{col[h]}{i}"]
-            if kind == "input":
+            if moved and h in MOVED_COLS:
+                cell.fill = MOVED_FILL
+            elif kind == "input":
                 cell.fill = INPUT_FILL
             elif kind in ("derived", "formula"):
                 cell.fill = DERIVED_FILL
