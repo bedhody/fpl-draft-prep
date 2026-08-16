@@ -124,4 +124,15 @@ it takes a deliberate act rather than a careless one. Treat it that way.
   substitute minutes. Read that section before writing anything that consumes
   those columns.
 - `data/raw/` and `data/processed/` are caches and rebuild themselves. Never
-  commit them.
+  commit them — with two deliberate exceptions, both committed because they do
+  **not** rebuild themselves:
+  - `data/processed/club_research/` — what beat writers, local press and
+    podcasts said about each club's line-up in the fortnight to 16 Aug 2026.
+    Re-running that research gives different answers next week and useless ones
+    once the season starts. It can be replaced, never regenerated.
+  - `data/processed/injury_model.csv` — reproducible only from a 244MB
+    Transfermarkt scrape that is itself ignored and takes hours behind a rate
+    limit.
+
+  The test for adding a third: could `run_all.py` reproduce it from scratch
+  tonight? If yes it stays ignored, however long it took the first time.

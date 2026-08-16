@@ -1,0 +1,416 @@
+{
+ "club": "EVE",
+ "researched_at": "2026-08-16",
+ "sources": [
+  {
+   "name": "Read Everton (Gary Gowers) - 'Everton injury & fitness tracker: Pre-season 2026/27'",
+   "type": "beat",
+   "url": "https://readeverton.com/2026/07/28/everton-injury-fitness-tracker-2026-27",
+   "date": "2026-08-14",
+   "why_trusted": "A dedicated Everton site running a dated, continuously-updated fitness tracker rather than one-off injury stories. The version read was stamped 'Last updated: 14 August 2026, following Saturday's 3-1 win over Newcastle at Murrayfield' and carries a per-player status line for Branthwaite, Garner, Iroegbunam, Pickford, Hackney, Dibling, Mykolenko, Johnson and Grealish. It is the single most load-bearing source in this file."
+  },
+  {
+   "name": "Read Everton (Gary Gowers) - 'Everton 2026 summer transfer tracker: Every deal, live'",
+   "type": "beat",
+   "url": "https://readeverton.com/everton-2026-summer-transfer-tracker-every-deal-live/",
+   "date": "2026-08-15",
+   "why_trusted": "The dated transfer ledger the brief asks for. Stamped 'Updated at 10:40am BST on 15 August 2026', it separates confirmed signings, confirmed departures, live incoming targets and live squad situations, and is explicit about which reports are soft (it says outright that Wan-Bissaka 'should not currently be presented as Moyes' leading option')."
+  },
+  {
+   "name": "Read Everton (Gary Gowers) - 'The Everton right-back odyssey: A summer of almosts'",
+   "type": "beat",
+   "url": "https://readeverton.com/2026/08/15/everton-right-back-search-summer-2026",
+   "date": "2026-08-15",
+   "why_trusted": "Published the same morning; runs through every right-back Everton have chased and failed to sign this summer and concludes 'Jake O'Brien, a centre-back by trade, still holds the fort in the meantime'. Used for the reinforcement risk at right-back."
+  },
+  {
+   "name": "Read Everton (Gary Gowers) - 'Branthwaite likely to start vs Lille in final fitness step before Palace opener'",
+   "type": "beat",
+   "url": "https://readeverton.com/2026/08/15/branthwaite-likely-to-start-vs-lille-in-final-fitness-step-before-palace-opener",
+   "date": "2026-08-15",
+   "why_trusted": "Gives Branthwaite's whole pre-season minute-by-minute (started Bolton, Hamburg, Stuttgart at 80 minutes as captain, rested against Newcastle) rather than a single status word. That match-by-match detail is what the Branthwaite delta rests on."
+  },
+  {
+   "name": "Read Everton (Gary Gowers) - 'Everton vs Lille: preview, team news and how to watch'",
+   "type": "beat",
+   "url": "https://readeverton.com/everton-lille-preview-team-news-how-to-watch/",
+   "date": "2026-08-14",
+   "why_trusted": "Contains the explicit statement that the right-back position was still being auditioned in the final friendly, naming Patterson, O'Brien and Röhl, plus the Garner and Nørgaard fitness lines."
+  },
+  {
+   "name": "Read Everton (Gary Gowers) - 'Everton's striker search is coming down to two names'",
+   "type": "beat",
+   "url": "https://readeverton.com/everton-striker-search-delap-parrott-two-names/",
+   "date": "2026-08-07",
+   "why_trusted": "Names Liam Delap and Troy Parrott as the two live centre-forward targets and reports RB Leipzig interest in Thierno Barry. Used only for the reinforcement risk at striker; no delta was taken from it."
+  },
+  {
+   "name": "Khel Now - 'Newcastle United vs Everton: Full lineups confirmed for pre-season friendly'",
+   "type": "beat",
+   "url": "https://khelnow.com/football/newcastle-united-vs-everton-full-lineups-pre-season-202608",
+   "date": "2026-08-12",
+   "why_trusted": "Reproduces the confirmed team sheet and full bench as posted by Everton's own account, rather than a predicted XI. This is the primary evidence for Patterson at right-back, Keane at centre-back and Hackney in central midfield."
+  },
+  {
+   "name": "YS Scores - Everton v Lille match lineup, 15 August 2026",
+   "type": "beat",
+   "url": "https://www.ysscores.com/en/lineup/5853431/Everton-FC-vs-LOSC-Lille",
+   "date": "2026-08-15",
+   "why_trusted": "Team sheet for the final pre-season fixture, the day before the research date: Pickford; Röhl, Tarkowski, Branthwaite, Mykolenko; Armstrong, Hackney, Dewsbury-Hall; Dibling, Barry, Ndiaye, with Johnson, George, Beto, Keane, O'Brien, Patterson and Aznou among the substitutes. Nørgaard appears in neither list, which is the single most important fact behind his delta."
+  },
+  {
+   "name": "Fantasy Premier League official bootstrap API",
+   "type": "official",
+   "url": "https://fantasy.premierleague.com/api/bootstrap-static/",
+   "date": "2026-08-16",
+   "why_trusted": "Pulled live on the research date and cached to data/raw/club_research/EVE/bootstrap.json. It is fresher than the brief's snapshot on two players: Nørgaard is now status 'd' with 'Lack of match fitness - 75% chance of playing' where the brief has him clear, and Iroegbunam is now status 'i' with a groin injury and no return date where the brief has him available. It also confirmed that the 24-man FPL squad matches Solio's list exactly, so there are no ghost players of the Chelsea kind at Everton."
+  },
+  {
+   "name": "ESPN - 'Brennan Johnson, Dwight McNeil complete Everton, Crystal Palace moves in rare swap'",
+   "type": "beat",
+   "url": "https://www.espn.com/soccer/story/_/id/49580612/brennan-johnson-dwight-mcneil-complete-everton-crystal-palace-moves-rare-swap",
+   "date": "2026-08-11",
+   "why_trusted": "Confirms the swap completed, with McNeil leaving after 114 Everton appearances and Johnson arriving after 26 goalless Palace appearances. Used for the fact of the transfer and its date, not for the role read."
+  },
+  {
+   "name": "Sports Mole - 'Everton summer transfers: Every confirmed signing and sale in the 2026 window'",
+   "type": "beat",
+   "url": "https://www.sportsmole.co.uk/football/everton/transfer-talk/feature/everton-summer-transfers-all-confirmed-ins-and-outs-for-2026_599217.html",
+   "date": "2026-08-11",
+   "why_trusted": "Independent second ledger, last updated 11 August, used to cross-check Read Everton's list of ins and outs. The two agree on every senior movement, which is why the transfer picture is treated as settled rather than uncertain."
+  },
+  {
+   "name": "Fantasy Football Scout - 'GBP 5.0m FPL midfielder Norgaard a potential DefCon magnet at Everton'",
+   "type": "beat",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/08/08/5-0m-fpl-midfielder-norgaard-a-potential-defcon-magnet-at-everton",
+   "date": "2026-08-08",
+   "why_trusted": "The only FPL-specific piece found on Nørgaard that could be read in full. Its own conclusion is that 'his starting status remains uncertain heading into Gameweek 1', and it lists Hackney, Iroegbunam, Garner, Dewsbury-Hall and Röhl as the competition. It argues the bull case for him, which makes its uncertainty about his starting place more useful, not less."
+  },
+  {
+   "name": "VAVEL - 'Everton 1-1 Lille' friendly report",
+   "type": "beat",
+   "url": "https://www.vavel.com/en-us/soccer/2026/08/15/1268045-everton-vs-lille-live-score-friendly.html",
+   "date": "2026-08-15",
+   "why_trusted": "Used for one narrow fact: Iliman Ndiaye took and scored Everton's penalty in the 41st minute of the final friendly, which corroborates his listing as first-choice penalty taker. No minutes delta was taken from it."
+  }
+ ],
+ "formation": "4-2-3-1, with a 4-3-3 variant. Moyes used a 4-2-3-1 against Newcastle on 12 August (Hackney and Dewsbury-Hall as the double pivot) and a 4-3-3 against Lille on 15 August (Armstrong, Hackney and Dewsbury-Hall as a three). Both shapes give four defenders, five FPL-classified midfielders and one striker, which is the shape Solio's positional totals already assume.",
+ "positions": [
+  {
+   "position": "GK",
+   "starter": "Jordan Pickford",
+   "confidence": "nailed",
+   "competition": [
+    "Mark Travers",
+    "Tom King"
+   ],
+   "note": "No challenge. The only caveat is load: Read Everton's tracker notes he is 'back in the group after England's World Cup run' and that Moyes 'may ease him back in gradually given the tournament minutes already in his legs', though it explicitly records 'no fitness concern as things stand'. Travers started against Newcastle and Pickford started against Lille. Solio's 3,385 was left alone - the eased-in risk is real but unquantified, and any cut would have to be guessed."
+  },
+  {
+   "position": "RB",
+   "starter": "Jake O'Brien",
+   "confidence": "contested",
+   "competition": [
+    "Nathan Patterson",
+    "Merlin Röhl",
+    "a signing yet to be made"
+   ],
+   "note": "The one genuinely unresolved position in the team, and it has been unresolved all summer. Seamus Coleman was released and no replacement has arrived; Everton have been linked with and missed out on Kyle Walker, Wan-Bissaka, Norton-Cuffy, Djed Spence, Alistair Johnston, Daniel Munoz, Hector Fort and Nahuel Molina. Read Everton on 15 August: O'Brien, 'a centre-back by trade, still holds the fort'. Across the last two friendlies the position was filled by Patterson (Newcastle) and then Röhl (Lille), which is what an audition looks like."
+  },
+  {
+   "position": "CB",
+   "starter": "James Tarkowski",
+   "confidence": "nailed",
+   "competition": [
+    "Michael Keane"
+   ],
+   "note": "Captained both of the last two friendlies and played 3,330 minutes in 2025/26. Nothing found suggests any threat to his place."
+  },
+  {
+   "position": "CB",
+   "starter": "Jarrad Branthwaite",
+   "confidence": "likely",
+   "competition": [
+    "Michael Keane",
+    "Jake O'Brien"
+   ],
+   "note": "Fit and starting: Bolton, Hamburg, Stuttgart (80 minutes as captain), rested as a precaution for Newcastle, then started against Lille in what Read Everton called his final audition before the opener. No FPL flag. But he has had two hamstring operations inside twelve months and managed 678 league minutes last season, and Moyes has visibly managed his load all summer, which is why the projection was trimmed rather than left at 94% of the season."
+  },
+  {
+   "position": "LB",
+   "starter": "Vitalii Mykolenko",
+   "confidence": "likely",
+   "competition": [
+    "Adam Aznou"
+   ],
+   "note": "Started both of the last two friendlies and is first choice when available. Aznou turned down a loan move specifically to compete here and has been rotated through pre-season; one independent read is that 'if Mykolenko is available, he's going to play over Aznou', so this is a starter with a real deputy rather than a coin-flip."
+  },
+  {
+   "position": "DM",
+   "starter": "James Garner",
+   "confidence": "likely",
+   "competition": [
+    "Christian Nørgaard",
+    "Hayden Hackney",
+    "Merlin Röhl",
+    "Harrison Armstrong"
+   ],
+   "note": "Undisputed on merit - Read Everton and Squawka both treat him as close to undroppable - but he has had groin surgery, has missed every pre-season friendly, and the official FPL game has him at 0% for the opening round with a 22 August return date, which is the date of the opener. His place is safe; his August is not."
+  },
+  {
+   "position": "CM",
+   "starter": "Hayden Hackney or Christian Nørgaard",
+   "confidence": "contested",
+   "competition": [
+    "Merlin Röhl",
+    "Harrison Armstrong",
+    "Charly Alcaraz",
+    "Tim Iroegbunam"
+   ],
+   "note": "The real selection question at Everton this summer, and it is not settled. Nørgaard is the nominal Gueye replacement at GBP 7m and is the better defensive-contribution profile; Hackney is the GBP 16.5m-to-GBP 25m investment. The evidence of the last week points to Hackney: he started both remaining friendlies while Nørgaard was an unused substitute against Stuttgart and absent from the Lille squad entirely. With Garner missing the start, both will play; the question is who is squeezed when he returns."
+  },
+  {
+   "position": "AM",
+   "starter": "Kiernan Dewsbury-Hall",
+   "confidence": "likely",
+   "competition": [
+    "Iliman Ndiaye",
+    "Harrison Armstrong",
+    "Charly Alcaraz"
+   ],
+   "note": "Started both of the last two friendlies and played 2,629 minutes last season. Solio's 3,152 was left alone; nothing found contradicts it. He can also drop into the deeper pair, which is part of why the central-midfield picture behind Garner is so crowded."
+  },
+  {
+   "position": "RW",
+   "starter": "Brennan Johnson",
+   "confidence": "likely",
+   "competition": [
+    "Tyler Dibling",
+    "Tyrique George",
+    "Merlin Röhl",
+    "Jacob Murphy or Jack Grealish if signed"
+   ],
+   "note": "Signed 10-11 August in a direct swap for Dwight McNeil, who held this area of the pitch, on a four-year deal, with Moyes reported to have pushed for him personally. Not yet seen in an Everton shirt beyond an unused substitute appearance against Lille, and he scored nothing in 26 Palace appearances, so 'likely' rather than 'nailed'. Dibling started here against Lille and Armstrong against Newcastle, both before Johnson was available."
+  },
+  {
+   "position": "LW",
+   "starter": "Iliman Ndiaye",
+   "confidence": "nailed",
+   "competition": [
+    "Tyrique George"
+   ],
+   "note": "Everton's best attacker and, per the brief, the listed first-choice penalty taker - corroborated by his converted penalty in the 41st minute against Lille on 15 August. Al-Hilal opened talks and Manchester United are reported admirers, but Read Everton's tracker records his status as 'Staying at Everton' with the club insisting he is not for sale, and he has started throughout pre-season. Solio's 3,186 was left alone."
+  },
+  {
+   "position": "ST",
+   "starter": "Thierno Barry",
+   "confidence": "contested",
+   "competition": [
+    "Beto",
+    "a signing yet to be made"
+   ],
+   "note": "Barry started both of the last two friendlies and Solio's split (Barry 2,514, Beto 858) matches that order. But Moyes is actively shopping for a number nine - Read Everton on 7 August named Liam Delap and Troy Parrott as the two leading targets, describing both as upgrades on the incumbents - and the same piece reports RB Leipzig interest in Barry. Neither delta was taken, because a signing has not happened and Barry has not left; both possibilities are logged as risks."
+  }
+ ],
+ "player_deltas": [
+  {
+   "player": "Brennan Johnson",
+   "code": 242898,
+   "solio_xmins": 1082,
+   "proposed_xmins": 2100,
+   "delta": 1018,
+   "reason": "Solio has him at bench level. He arrived on 10-11 August 2026 in a straight swap with Dwight McNeil, who had made 114 appearances as Everton's first-choice wide man, and signed a four-year deal to 2030. Read Everton's transfer tracker calls him a source of 'pace, direct running and goals' who can also play centrally; the official FPL game prices him at GBP 6.0m, joint second-highest in the squad and level with Tarkowski and Ndiaye, which is not how the game prices a rotation winger. He was an unused substitute against Lille on 15 August, his first Everton matchday squad. Sized below a nailed-on 3,000-plus because he scored nothing in 26 Palace appearances, has had no pre-season with Everton, and Tyrique George (GBP 20m+ permanent), Tyler Dibling and Merlin Röhl all play wide.",
+   "source_url": "https://www.espn.com/soccer/story/_/id/49580612/brennan-johnson-dwight-mcneil-complete-everton-crystal-palace-moves-rare-swap",
+   "source_date": "2026-08-11",
+   "confidence": "medium"
+  },
+  {
+   "player": "Christian Nørgaard",
+   "code": 128295,
+   "solio_xmins": 2804,
+   "proposed_xmins": 1450,
+   "delta": -1354,
+   "reason": "The largest single error in Solio's Everton allocation. Solio projects 82% of every available minute for a 32-year-old who cost GBP 7m, made seven league starts for Arsenal last season and played 101 minutes. Three pieces of dated evidence point down: the official FPL game flags him 'Lack of match fitness - 75% chance of playing'; Read Everton's 14 August injury tracker records him as an unused substitute against Stuttgart still building sharpness; and he was not in the matchday squad at all for the final friendly against Lille on 15 August. He is a real contender - Read Everton describes him as Moyes' direct replacement for Idrissa Gueye in defensive midfield - but he is competing with Hayden Hackney for one berth alongside Garner, and Hackney started the last two friendlies. 1,450 keeps him as a heavily-used squad midfielder rather than an ever-present.",
+   "source_url": "https://www.fantasyfootballscout.co.uk/2026/08/08/5-0m-fpl-midfielder-norgaard-a-potential-defcon-magnet-at-everton",
+   "source_date": "2026-08-08",
+   "confidence": "medium"
+  },
+  {
+   "player": "Hayden Hackney",
+   "code": 244860,
+   "solio_xmins": 1053,
+   "proposed_xmins": 1900,
+   "delta": 847,
+   "reason": "The mirror image of the Nørgaard cut. Everton's biggest cash outlay of the summer at GBP 16.5m rising to about GBP 25m, and Read Everton's injury tracker on 14 August says he is 'being worked into regular rotation'. He started central midfield in both of the last two friendlies - alongside Dewsbury-Hall against Newcastle on 12 August and in the three against Lille on 15 August - while Garner was out and Nørgaard was not in the squad. Solio's 1,053 is a fringe number for a player who has started the run-in to the season.",
+   "source_url": "https://readeverton.com/2026/07/28/everton-injury-fitness-tracker-2026-27",
+   "source_date": "2026-08-14",
+   "confidence": "medium"
+  },
+  {
+   "player": "Adam Aznou",
+   "code": 499300,
+   "solio_xmins": 0,
+   "proposed_xmins": 700,
+   "delta": 700,
+   "reason": "Solio has him at zero. Read Everton's transfer tracker on 15 August states he has ruled out a summer loan - despite reported PSV interest - and is 'preparing to compete with Vitaliy Mykolenko for the left-back position' after impressing in pre-season. He was among the substitutes for both the Newcastle (12 Aug) and Lille (15 Aug) friendlies. Zero minutes for a fit, retained, matchday-squad left-back who is the only cover at the position is wrong regardless of whether he wins the shirt.",
+   "source_url": "https://readeverton.com/everton-2026-summer-transfer-tracker-every-deal-live/",
+   "source_date": "2026-08-15",
+   "confidence": "medium"
+  },
+  {
+   "player": "Vitalii Mykolenko",
+   "code": 224967,
+   "solio_xmins": 3004,
+   "proposed_xmins": 2450,
+   "delta": -554,
+   "reason": "The other side of the Aznou correction. Solio's 3,004 assumes essentially no competition; Read Everton's 15 August tracker has Aznou staying specifically to challenge for the shirt, and the injury tracker notes Mykolenko is 'back to full training and match fitness, though now facing competition for the left-back spot from Adam Aznou'. He remains the clear first choice - he started both of the last two friendlies - so this is a rotation haircut, not a demotion.",
+   "source_url": "https://readeverton.com/everton-2026-summer-transfer-tracker-every-deal-live/",
+   "source_date": "2026-08-15",
+   "confidence": "medium"
+  },
+  {
+   "player": "James Garner",
+   "code": 232928,
+   "solio_xmins": 3310,
+   "proposed_xmins": 2850,
+   "delta": -460,
+   "reason": "Solio's second-highest Everton projection for a player who has had groin surgery and has not played a minute of pre-season. Read Everton's injury tracker on 14 August: 'Still recovering from groin surgery and has missed every pre-season friendly so far. Now genuinely up against it to be involved for the start of the league season.' The official FPL game lists him status 'i' with a 0% chance of playing and an expected return of 22 August - the day of the Crystal Palace opener itself. He is still the closest thing Everton have to a nailed central midfielder, so the cut is a month of games plus a re-integration allowance, not a re-rating.",
+   "source_url": "https://readeverton.com/2026/07/28/everton-injury-fitness-tracker-2026-27",
+   "source_date": "2026-08-14",
+   "confidence": "medium"
+  },
+  {
+   "player": "Jarrad Branthwaite",
+   "code": 480455,
+   "solio_xmins": 3203,
+   "proposed_xmins": 2850,
+   "delta": -353,
+   "reason": "Directionally right but too aggressive. Solio projects 94% of the season for a centre-back who managed 678 minutes in 2025/26 across two hamstring operations - a complication requiring surgery confirmed in October 2025, then a further procedure after he was stretchered off in April's Merseyside derby. He is genuinely fit now: Read Everton records him starting against Bolton, Hamburg and Stuttgart (80 minutes, captain), being 'rested as a precaution' for Newcastle, and starting against Lille on 15 August, and he carries no FPL flag. The trim reflects the phased load management Moyes has openly applied all summer, not any current doubt about the opener.",
+   "source_url": "https://readeverton.com/2026/08/15/branthwaite-likely-to-start-vs-lille-in-final-fitness-step-before-palace-opener",
+   "source_date": "2026-08-15",
+   "confidence": "medium"
+  },
+  {
+   "player": "Nathan Patterson",
+   "code": 243571,
+   "solio_xmins": 140,
+   "proposed_xmins": 420,
+   "delta": 280,
+   "reason": "Beneficiary of the unresolved right-back situation. Read Everton's 15 August preview says to 'expect another audition at the position - Nathan Patterson and Jake O'Brien have both featured there across pre-season, with Merlin Röhl also an option'. Patterson started at right-back against Newcastle on 12 August and was a substitute against Lille. Everton have failed to sign a specialist right-back all summer, so 140 minutes for the only recognised right-back on the books is too low - even if one of Fort, Munoz, Molina or Johnston arrives before 1 September.",
+   "source_url": "https://readeverton.com/everton-lille-preview-team-news-how-to-watch/",
+   "source_date": "2026-08-14",
+   "confidence": "low"
+  },
+  {
+   "player": "Michael Keane",
+   "code": 106611,
+   "solio_xmins": 623,
+   "proposed_xmins": 850,
+   "delta": 227,
+   "reason": "Third-choice centre-back rather than a spare part. He started at centre-back alongside captain Tarkowski against Newcastle on 12 August and was a substitute against Lille. With Branthwaite's workload being managed after two hamstring operations and Jake O'Brien frequently pulled out to right-back, Keane is the first-call cover for two positions. 623 minutes assumes almost nothing goes wrong in a back line where something has gone wrong every season.",
+   "source_url": "https://khelnow.com/football/newcastle-united-vs-everton-full-lineups-pre-season-202608",
+   "source_date": "2026-08-12",
+   "confidence": "low"
+  },
+  {
+   "player": "Tim Iroegbunam",
+   "code": 490094,
+   "solio_xmins": 328,
+   "proposed_xmins": 150,
+   "delta": -178,
+   "reason": "Already low, but still too high. The official FPL game lists him status 'i' with a groin injury and no return date. Read Everton's injury tracker on 14 August flags him as newly sidelined after coming off early against Stuttgart, and separately reports Hull City opened formal talks with an offer worth more than GBP 15m, with the move now in doubt only because of the injury. Either outcome - a long lay-off or a Championship move before 1 September - leaves him with fewer Everton minutes than 328.",
+   "source_url": "https://readeverton.com/2026/07/28/everton-injury-fitness-tracker-2026-27",
+   "source_date": "2026-08-14",
+   "confidence": "medium"
+  }
+ ],
+ "budget_check": {
+  "solio_total": 37541,
+  "proposed_total": 37714,
+  "difference": 173
+ },
+ "reinforcement_risk": [
+  {
+   "position": "RB",
+   "incumbent": "Jake O'Brien",
+   "note": "The highest-impact open question at the club. No senior right-back has been signed since Coleman's release and Read Everton's 15 August tracker still lists Hector Fort (Barcelona, 'leading right-back option'), Daniel Munoz (Palace, GBP 20-25m, complicated by Moyes' doubts about the tactical fit), Alistair Johnston (Celtic, talks stalled over a fee and an injury), Aaron Wan-Bissaka (Aston Villa reportedly ahead) and Nahuel Molina (wider shortlist) as live. If one arrives before the 1 September deadline, roughly 2,000-2,500 minutes leave the listed squad entirely - mostly O'Brien's, who would revert to centre-back, and Patterson's. Because the incoming player is not in Solio's list, that scenario cannot be represented inside a balanced budget, so O'Brien's 3,164 was deliberately left alone and the risk logged here instead.",
+   "source_url": "https://readeverton.com/2026/08/15/everton-right-back-search-summer-2026"
+  },
+  {
+   "position": "ST",
+   "incumbent": "Thierno Barry and Beto",
+   "note": "Read Everton on 7 August: 'A striker remains the clearest gap in the squad heading into the new campaign.' Liam Delap (Chelsea valuation reportedly down from about GBP 40m toward GBP 30m) is the leading contender, with Troy Parrott of AZ Alkmaar the other, and both are described as upgrades on the current pair. The same piece reports Barry 'facing questions over his long-term future amid interest from RB Leipzig'. A signing would cut into Solio's 2,514 for Barry and 858 for Beto; a Barry sale would push Beto up sharply. The two risks point in opposite directions, which is why neither was applied.",
+   "source_url": "https://readeverton.com/everton-striker-search-delap-parrott-two-names/"
+  },
+  {
+   "position": "RW / LW",
+   "incumbent": "Brennan Johnson and Tyrique George",
+   "note": "Everton would like Jack Grealish back after his 2025/26 loan (two goals, six assists before a stress fracture ended it in February), but did not trigger the reported GBP 50m option and Read Everton describes the situation as 'increasingly uncertain' with City possibly keeping him. Newcastle's Jacob Murphy is separately reported as an attacking target and was pictured in conversation with Moyes after the Newcastle friendly. Either arrival would eat into the Johnson number proposed here as well as George's 885.",
+   "source_url": "https://readeverton.com/everton-2026-summer-transfer-tracker-every-deal-live/"
+  },
+  {
+   "position": "CM",
+   "incumbent": "Tim Iroegbunam",
+   "note": "Outgoing rather than incoming: Hull City opened formal talks with an offer reported above GBP 15m, and the move is in doubt only because of his injury, with Hull said to be considering alternatives. Handled as a delta rather than left here, but the size of the cut is uncertain in both directions.",
+   "source_url": "https://readeverton.com/everton-2026-summer-transfer-tracker-every-deal-live/"
+  }
+ ],
+ "injuries": [
+  {
+   "player": "James Garner",
+   "issue": "Groin surgery sustained in pre-season; official FPL status 'i', 0% chance of playing, note 'Groin injury - Expected back 22 Aug'",
+   "expected_return": "Around the 22 August Crystal Palace opener at the earliest. Read Everton on 14 August: 'Now genuinely up against it to be involved for the start of the league season.'",
+   "beneficiary": "Hayden Hackney first, then Christian Nørgaard, Harrison Armstrong and Merlin Röhl; Dewsbury-Hall can also drop into the pivot",
+   "source_url": "https://readeverton.com/2026/07/28/everton-injury-fitness-tracker-2026-27"
+  },
+  {
+   "player": "Tim Iroegbunam",
+   "issue": "Groin injury after coming off early against Stuttgart; official FPL status 'i' with no return date",
+   "expected_return": "Unknown. No date given by either the club or the FPL feed.",
+   "beneficiary": "Harrison Armstrong and Merlin Röhl in the reserve central-midfield roles",
+   "source_url": "https://readeverton.com/2026/07/28/everton-injury-fitness-tracker-2026-27"
+  },
+  {
+   "player": "Christian Nørgaard",
+   "issue": "Not a stated injury - the official FPL game flags 'Lack of match fitness - 75% chance of playing'. He was an unused substitute against Stuttgart and was not in the matchday squad at all for the Lille friendly on 15 August.",
+   "expected_return": "Available in principle for the 22 August opener, but short of match sharpness",
+   "beneficiary": "Hayden Hackney, who has started the last two friendlies in his stead",
+   "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+  },
+  {
+   "player": "Jarrad Branthwaite",
+   "issue": "Recovering from hamstring surgery that ended his 2025/26 season, the second operation on the same problem inside twelve months. Managed through a phased reintegration all summer and 'held out of the Newcastle squad as a precaution'.",
+   "expected_return": "Effectively back. Started against Lille on 15 August in what Read Everton called his final fitness step, and carries no FPL flag.",
+   "beneficiary": "Michael Keane, who deputised at centre-back against Newcastle, with Jake O'Brien the other option if Everton ever sign a right-back",
+   "source_url": "https://readeverton.com/2026/08/15/branthwaite-likely-to-start-vs-lille-in-final-fitness-step-before-palace-opener"
+  },
+  {
+   "player": "Jordan Pickford",
+   "issue": "No injury. Load only - back in the group after England's World Cup run, with Moyes possibly easing him in.",
+   "expected_return": "Available now; started against Lille on 15 August",
+   "beneficiary": "Mark Travers, who started against Newcastle on 12 August",
+   "source_url": "https://readeverton.com/2026/07/28/everton-injury-fitness-tracker-2026-27"
+  },
+  {
+   "player": "Tyler Dibling",
+   "issue": "Knock that kept him out of the Bolton friendly, now resolved",
+   "expected_return": "Available now; started on the right wing against Lille on 15 August",
+   "beneficiary": "n/a - available",
+   "source_url": "https://readeverton.com/2026/07/28/everton-injury-fitness-tracker-2026-27"
+  }
+ ],
+ "unknowns": [
+  "Who starts alongside Garner in central midfield once he is fit. Nørgaard and Hackney are genuinely level on the reporting, and the split proposed here (Hackney 1,900, Nørgaard 1,450) is a probability-weighted guess between them, not a claim about the pecking order. If Nørgaard wins the shirt outright his cut is roughly 800 minutes too deep and Hackney's rise is too generous by about the same.",
+  "Right-back on opening day. Three different players have filled it in the last two friendlies (Patterson, then Röhl, with O'Brien used there earlier in pre-season) and Everton are still shopping. Nothing found states who starts against Crystal Palace.",
+  "Whether Everton sign a right-back or a striker before the 1 September deadline. Both would move several thousand minutes out of the listed squad, and neither can be modelled inside a budget that only contains current players. Logged in reinforcement_risk instead.",
+  "Brennan Johnson's true share. The role evidence is strong - a direct swap for the incumbent, a four-year deal, an FPL price of GBP 6.0m - but he has not played a competitive minute for Everton and scored nothing in 26 Palace appearances. 2,100 is a first-choice-with-rotation number; a confident starter would be nearer 2,700 and a flop nearer 1,200.",
+  "Jack Grealish. Everton want him back, did not trigger the reported GBP 50m option, and Read Everton now calls the return 'increasingly uncertain'. He is not in the FPL squad and no minutes were assigned to him, but if he arrives he takes minutes from Johnson, George and Dibling.",
+  "Iliman Ndiaye's exit interest. Al-Hilal opened talks and Manchester United are reported admirers, with Everton said to want in excess of GBP 100m and to have had extension offers turned down. The club's stated position is that he is staying and he has started throughout pre-season, so his 3,186 was left alone - but the window is open until 1 September.",
+  "Pickford's early-season workload after England's World Cup run. Read Everton flags that Moyes may ease him in but states there is no fitness concern, so no delta was taken. If Travers gets two or three starts, Pickford's 3,385 is roughly 200-270 too high.",
+  "The Barry-Beto split. Solio's 2,514 / 858 matches who has been starting, but Moyes is publicly shopping for a number nine and Barry has reported Leipzig interest. Left untouched because the two risks cancel in direction.",
+  "Three Everton-relevant sources could not be read and are not cited: Squawka's 2026/27 preview and its Everton midfield tactical analysis (both HTTP 403 via Cloudflare), Fantasy Football Hub's Everton 2026/27 FPL preview (paywalled, members only), and everton.news' predicted opening XI (HTTP 403). Search-result summaries of the Squawka midfield piece pointed the same way as the sources actually read - Garner near-undroppable, Nørgaard versus Hackney for the other berth - but that framing is not treated as evidence for any delta here.",
+  "The Everton official site's 12 August Branthwaite update could not be extracted (the page is JavaScript-rendered and the cached HTML contains no readable text). The Branthwaite picture here rests on Read Everton and the absence of an FPL flag instead.",
+  "No podcast or video transcript was pulled. Nothing found looked authoritative enough on Everton specifically to be worth it at this depth, and the two friendlies of 12 and 15 August already gave direct team-sheet evidence.",
+  "No page read during this research contained text addressed to an AI or any attempt to instruct the reader."
+ ]
+}

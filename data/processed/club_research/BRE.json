@@ -1,0 +1,319 @@
+{
+  "club": "BRE",
+  "researched_at": "2026-08-16",
+  "sources": [
+    {
+      "name": "Brentford FC official - confirmed team news, Brentford v Eintracht Frankfurt pre-season friendly",
+      "type": "official",
+      "url": "https://www.brentfordfc.com/en/news/article/first-team-news-confirmed-brentford-v-eintracht-frankfurt-pre-season-friendly",
+      "date": "2026-08-15",
+      "why_trusted": "Club's own confirmed XI and full bench for the final pre-season friendly, six days before the season opener. Cached locally at data/raw/club_research/BRE/bfc_teamnews_frankfurt.html; XI string verified verbatim from the cached HTML rather than from a summary."
+    },
+    {
+      "name": "FPL bootstrap-static API",
+      "type": "official",
+      "url": "https://fantasy.premierleague.com/api/bootstrap-static/",
+      "date": "2026-08-16",
+      "why_trusted": "Authoritative registered-squad list and injury flags. Pulled today; confirms 26 Brentford players (identical set to the brief, so no post-Solio sale is unaccounted for) and carries a van den Berg flag added 2026-08-15T15:30Z that the brief's snapshot does not have."
+    },
+    {
+      "name": "Wikipedia - 2026-27 Brentford F.C. season",
+      "type": "official",
+      "url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Brentford_F.C._season",
+      "date": "2026-08-16",
+      "why_trusted": "Dated, fee-attributed transfer ledger (Schuster 1 Jul, Anthony 7 Jul, Wilson 9 Jul, Sangare 1 Aug) plus the full pre-season friendly results list. Cross-checked against Transfermarkt and Sports Mole, which agree on every name."
+    },
+    {
+      "name": "Transfermarkt - Brentford transfers 26/27 and injuries/suspensions",
+      "type": "official",
+      "url": "https://www.transfermarkt.us/fc-brentford/sperrenundverletzungen/verein/1148",
+      "date": "2026-08-16",
+      "why_trusted": "Dated injury ledger with 'since' and 'expected return' fields; the only source giving the Carvalho ACL start date (20 Nov 2025) and return estimate (1 Sep 2026)."
+    },
+    {
+      "name": "Fantasy Football Scout - FPL pre-season: Sangare debut, Thiago nets",
+      "type": "beat",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/08/10/fpl-pre-season-sangare-debut-thiago-nets-bournemouth-injuries",
+      "date": "2026-08-10",
+      "why_trusted": "Minutes-focused write-up of the 8 Aug Rennes friendly: names the back four, notes Schuster played the full 90, Sangare's 64-minute debut, Wilson's half-time introduction and two assists, and Jensen occupying the No.10 role."
+    },
+    {
+      "name": "BeSoccer - Brentford injury list",
+      "type": "beat",
+      "url": "https://www.besoccer.com/team/injuries-suspensions/brentford",
+      "date": "2026-08-16",
+      "why_trusted": "Independent of FPL and of Transfermarkt; gives the only explicit van den Berg return estimate (mid-October 2026), which corroborates the RotoWire/Richmond & Twickenham Times 'three months' report."
+    },
+    {
+      "name": "Sports Mole - Brentford summer transfers, confirmed ins and outs 2026",
+      "type": "beat",
+      "url": "https://www.sportsmole.co.uk/football/brentford/transfer-talk/feature/brentford-summer-transfers-all-confirmed-ins-and-outs-for-2026_599228.html",
+      "date": "2026-08-12",
+      "why_trusted": "Explicitly last-updated 12 Aug 2026 and states the window runs to 1 September, which sets the reinforcement-risk horizon. Also the source for the Jensen-to-Lazio and Carvalho exit links."
+    }
+  ],
+  "formation": "4-3-3, shading into 4-2-3-1 with Jensen or Damsgaard as the No.10",
+  "positions": [
+    {
+      "position": "GK",
+      "starter": "Caoimhin Kelleher",
+      "confidence": "nailed",
+      "competition": ["Hakon Valdimarsson"],
+      "note": "Started the final friendly. No credible challenge; Valdimarsson has 90 PL minutes in 2025/26. Solio's 3385 left unchanged."
+    },
+    {
+      "position": "RB",
+      "starter": "Michael Kayode",
+      "confidence": "nailed",
+      "competition": ["Aaron Hickey"],
+      "note": "Started the 15 Aug friendly, having been rested against Rennes where Hickey deputised. Move from Fiorentina made permanent; 3258 minutes in 2025/26."
+    },
+    {
+      "position": "CB",
+      "starter": "Nathan Collins",
+      "confidence": "nailed",
+      "competition": [],
+      "note": "Club captain, started both August friendlies. Solio's 3044 left unchanged."
+    },
+    {
+      "position": "CB",
+      "starter": "Kristoffer Ajer",
+      "confidence": "likely",
+      "competition": ["Jannik Schuster", "Ethan Pinnock", "Sepp van den Berg"],
+      "note": "Partners Collins while van den Berg is out. Started the 15 Aug friendly at CB. Solio flagged him 'fade (losing his place)', which is the opposite of the current picture for at least the first two months."
+    },
+    {
+      "position": "LB",
+      "starter": "Keane Lewis-Potter",
+      "confidence": "contested",
+      "competition": ["Rico Henry", "Aaron Hickey"],
+      "note": "Started at left-back in both August friendlies (Rennes 8 Aug, Frankfurt 15 Aug) and scored in the latter. Genuinely contested because it may be a stopgap: van den Berg previously covered both full-back spots, so his October return could push Lewis-Potter forward again."
+    },
+    {
+      "position": "DM",
+      "starter": "Mamadou Sangare",
+      "confidence": "likely",
+      "competition": ["Yehor Yarmoliuk", "Vitaly Janelt"],
+      "note": "Club-record signing from Lens (1 Aug, roughly 41m). Started both friendlies since arriving. Solio's 3050 left unchanged - aggressive for a debut PL season but the fee and the immediate starts support it."
+    },
+    {
+      "position": "CM",
+      "starter": "Vitaly Janelt",
+      "confidence": "contested",
+      "competition": ["Yehor Yarmoliuk", "Mathias Jensen", "Antoni Milambo"],
+      "note": "Started the final friendly alongside Sangare and Jensen while Yarmoliuk and Damsgaard sat on the bench. Genuinely open: one friendly is weak evidence and Yarmoliuk played 2652 minutes last season."
+    },
+    {
+      "position": "AM",
+      "starter": "Mathias Jensen",
+      "confidence": "contested",
+      "competition": ["Mikkel Damsgaard", "Fabio Carvalho"],
+      "note": "Occupied the No.10 role against Rennes and started against Frankfurt; Damsgaard was a substitute in the final friendly. Damsgaard is still widely described as the creative hub and scored in two earlier friendlies, so this is unresolved. Neither player's Solio number was changed."
+    },
+    {
+      "position": "RW",
+      "starter": "Dango Ouattara",
+      "confidence": "likely",
+      "competition": ["Jaidon Anthony", "Keane Lewis-Potter"],
+      "note": "Started both August friendlies and scored against Frankfurt. Solio's 2878 left unchanged."
+    },
+    {
+      "position": "LW",
+      "starter": "Kevin Schade",
+      "confidence": "likely",
+      "competition": ["Jaidon Anthony"],
+      "note": "Started the final friendly and scored twice. Subject to a reported Tottenham interest that is gossip-stage only; no delta taken on it."
+    },
+    {
+      "position": "ST",
+      "starter": "Igor Thiago",
+      "confidence": "nailed",
+      "competition": ["Callum Wilson", "Kaye Furo"],
+      "note": "22 league goals in 2025/26, penalty taker, started both friendlies and scored twice against Frankfurt. Undisputed, but now has a genuine deputy in Wilson rather than nobody."
+    }
+  ],
+  "player_deltas": [
+    {
+      "player": "Sepp van den Berg",
+      "code": 444765,
+      "solio_xmins": 2947,
+      "proposed_xmins": 1800,
+      "delta": -1147,
+      "reason": "The single biggest error in Solio's allocation. FPL flagged him status 'i' with chance_of_playing_next_round = 0 and 'Unspecified injury - Unknown return date', news added 2026-08-15T15:30Z - after the brief's snapshot was taken, which still shows him as status 'a'. He was absent from the entire 22-man matchday squad for the 15 Aug friendly. BeSoccer puts the expected return at mid-October 2026; RotoWire, citing Uzzi Majid of the Richmond and Twickenham Times, reports three months. Against the FPL calendar that means he misses GW1-GW5 at minimum (deadlines 21 Aug to 18 Sep) and plausibly through GW6-GW10 (10 Oct to 7 Nov). He then has to take his place back from Ajer. 1800 assumes roughly 8 gameweeks missed and around 20 full starts thereafter.",
+      "source_url": "https://www.besoccer.com/team/injuries-suspensions/brentford",
+      "source_date": "2026-08-16",
+      "confidence": "high"
+    },
+    {
+      "player": "Yehor Yarmoliuk",
+      "code": 508395,
+      "solio_xmins": 2987,
+      "proposed_xmins": 2200,
+      "delta": -787,
+      "reason": "Solio projects him UP from 2652 to 2987 in the same window that the club spent a club-record fee on a central midfielder in his position. Sangare arrived from Lens on 1 August and started both subsequent friendlies; Yarmoliuk was named among the substitutes for the 15 Aug Frankfurt match while Janelt, Sangare and Jensen started. Transfermarkt also lists an unspecified injury since 23 May 2026. He remains a heavily used squad member, so this is a demotion from near-ever-present to a strong rotation starter, not a benching.",
+      "source_url": "https://www.brentfordfc.com/en/news/article/first-team-news-confirmed-brentford-v-eintracht-frankfurt-pre-season-friendly",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Rico Henry",
+      "code": 194010,
+      "solio_xmins": 1236,
+      "proposed_xmins": 850,
+      "delta": -386,
+      "reason": "Lewis-Potter started at left-back in both August friendlies while Henry came off the bench in the final one. Henry has a documented hamstring history and managed only 1322 minutes in 2025/26. Reduced to a backup left-back's share.",
+      "source_url": "https://www.brentfordfc.com/en/news/article/first-team-news-confirmed-brentford-v-eintracht-frankfurt-pre-season-friendly",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Igor Thiago",
+      "code": 502500,
+      "solio_xmins": 3209,
+      "proposed_xmins": 3050,
+      "delta": -159,
+      "reason": "Small trim only. Brentford signed Callum Wilson on a free on 9 July, and he replaced Thiago at half-time against Rennes and registered two assists. Solio's 3209 assumes essentially no in-game rotation at centre-forward; a dedicated deputy with 95 Premier League goals makes a modest number of early substitutions and rested matches likelier. Thiago remains the undisputed starter.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Brentford_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "low"
+    },
+    {
+      "player": "Jaidon Anthony",
+      "code": 444180,
+      "solio_xmins": 716,
+      "proposed_xmins": 1450,
+      "delta": 734,
+      "reason": "Solio has him at 716 minutes despite a permanent transfer from Burnley on 7 July for a reported 15m plus 2m in add-ons, and an FPL price of 6.0m - joint third-highest at the club, level with Schade. He played 2717 minutes for Burnley in 2025/26, started and scored against AFC Wimbledon, started the full Rennes friendly as the left-sided attacker, and was on the bench for the Frankfurt match. A club does not pay that fee for a 26-year-old to play eight games. He is behind Schade at left wing, so this is a heavy-rotation number rather than a starter's number.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Brentford_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "medium"
+    },
+    {
+      "player": "Kristoffer Ajer",
+      "code": 191866,
+      "solio_xmins": 1619,
+      "proposed_xmins": 2150,
+      "delta": 531,
+      "reason": "Solio labels him 'fade (losing his place)', but with van den Berg out until roughly mid-October Ajer is the man who takes that place. He started the 15 Aug friendly at centre-back next to Collins, which is the pairing multiple previews name as the fallback when van den Berg is unavailable. He should be close to nailed for the opening two months and a rotation option thereafter.",
+      "source_url": "https://www.brentfordfc.com/en/news/article/first-team-news-confirmed-brentford-v-eintracht-frankfurt-pre-season-friendly",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Keane Lewis-Potter",
+      "code": 249231,
+      "solio_xmins": 1659,
+      "proposed_xmins": 2150,
+      "delta": 491,
+      "reason": "Started at left-back in both August friendlies - against Rennes on 8 Aug in a back four of Hickey, Collins, Pinnock, Lewis-Potter, and against Frankfurt on 15 Aug behind Kayode, Ajer, Collins - and scored in both the Wycombe and Frankfurt matches. Solio's 1659 treats him as a rotation forward; the evidence has him as the incumbent left-back. Held below a fully nailed number because van den Berg previously covered both full-back berths, so the role may revert in October.",
+      "source_url": "https://www.brentfordfc.com/en/news/article/first-team-news-confirmed-brentford-v-eintracht-frankfurt-pre-season-friendly",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Jannik Schuster",
+      "code": 513086,
+      "solio_xmins": 80,
+      "proposed_xmins": 600,
+      "delta": 520,
+      "reason": "Solio gives 80 minutes to a centre-back signed on 1 July for a reported 12m plus 4m in add-ons. He played the full 90 minutes against Rennes and was on the Frankfurt bench, and Transfermarkt's hip-flexor note from 16 May 2026 has evidently cleared - FPL lists him status 'a'. With van den Berg unavailable until roughly mid-October he is the third centre-back behind Collins and Ajer. Still only 20 and adapting from the Austrian league, so this is deputy minutes plus cup-style rotation, not a starting share.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Brentford_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "medium"
+    },
+    {
+      "player": "Vitaly Janelt",
+      "code": 204580,
+      "solio_xmins": 780,
+      "proposed_xmins": 1050,
+      "delta": 270,
+      "reason": "Solio flags him 'fade (losing his place)' at 780 minutes, but he started the final pre-season friendly in a midfield three with Sangare and Jensen. Modest upgrade only - a single friendly start is thin evidence and he did drop from 1434 minutes last season - but 780 looks too low for a starter in the last rehearsal before the opener.",
+      "source_url": "https://www.brentfordfc.com/en/news/article/first-team-news-confirmed-brentford-v-eintracht-frankfurt-pre-season-friendly",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Callum Wilson",
+      "code": 75115,
+      "solio_xmins": 258,
+      "proposed_xmins": 450,
+      "delta": 192,
+      "reason": "Signed on a free from West Ham on 9 July as the specialist deputy to Thiago. Replaced Thiago at half-time against Rennes and provided two assists, and scored against Wycombe. 258 minutes is below what a fit backup centre-forward at 5.5m typically returns across 38 matches. Kept modest because Thiago is close to ever-present and Wilson is 34 with a long injury record.",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/08/10/fpl-pre-season-sangare-debut-thiago-nets-bournemouth-injuries",
+      "source_date": "2026-08-10",
+      "confidence": "low"
+    }
+  ],
+  "budget_check": {
+    "solio_total": 37543,
+    "proposed_total": 37802,
+    "difference": 259
+  },
+  "reinforcement_risk": [
+    {
+      "position": "CB",
+      "incumbent": "Kristoffer Ajer / Jannik Schuster",
+      "note": "With van den Berg out until roughly mid-October, centre-back is the thinnest area: behind Collins there is a 20-year-old summer signing, a 32-year-old in Ajer whom Solio had fading, a fringe Pinnock and Kim Ji-soo, who is back from his Kaiserslautern loan but was not in either August friendly squad. The window shuts on 1 September, so a late centre-back arrival would compress Ajer's, Schuster's and Pinnock's minutes.",
+      "source_url": "https://www.sportsmole.co.uk/football/brentford/transfer-talk/feature/brentford-summer-transfers-all-confirmed-ins-and-outs-for-2026_599228.html"
+    },
+    {
+      "position": "LW",
+      "incumbent": "Kevin Schade",
+      "note": "Schade is the subject of reported Tottenham interest, carried as newspaper gossip rather than a confirmed bid. No delta has been taken on this. If he left before 1 September, Jaidon Anthony would be the direct beneficiary and would need a substantially larger number than the 1450 proposed here.",
+      "source_url": "https://feeds.bbci.co.uk/sport/football/articles/cre5gplvdeeo"
+    },
+    {
+      "position": "CM",
+      "incumbent": "Mathias Jensen",
+      "note": "Jensen has been reported as an alternative target for Lazio. He started the final friendly, so nothing has happened yet, and his Solio number of 1573 is unchanged. A departure would push minutes towards Yarmoliuk, Janelt and Damsgaard.",
+      "source_url": "https://www.sportsmole.co.uk/football/brentford/transfer-talk/feature/brentford-summer-transfers-all-confirmed-ins-and-outs-for-2026_599228.html"
+    },
+    {
+      "position": "AM",
+      "incumbent": "Fabio Carvalho",
+      "note": "Reports in March suggested Brentford intended to move Carvalho on this summer. He is still FPL-registered and Solio already has him at 10 minutes, so no delta was taken, but a departure before 1 September would make that 10 a certainty rather than an estimate.",
+      "source_url": "https://www.sportsmole.co.uk/football/brentford/transfer-talk/feature/brentford-summer-transfers-all-confirmed-ins-and-outs-for-2026_599228.html"
+    }
+  ],
+  "injuries": [
+    {
+      "player": "Sepp van den Berg",
+      "issue": "Knee / unspecified injury. FPL status 'i', chance of playing next round 0, 'Unknown return date', flag added 2026-08-15T15:30Z. Omitted from the entire 15 Aug matchday squad.",
+      "expected_return": "Mid-October 2026 per BeSoccer; RotoWire, citing Uzzi Majid of the Richmond and Twickenham Times, reports three months, which would be mid-November. Fantasy Football Scout carried '2-3 months'. Sources disagree; the range spans GW6 to GW11.",
+      "beneficiary": "Kristoffer Ajer at centre-back, with Jannik Schuster and Ethan Pinnock as cover, and Keane Lewis-Potter holding the left-back berth van den Berg used to cover.",
+      "source_url": "https://www.besoccer.com/team/injuries-suspensions/brentford"
+    },
+    {
+      "player": "Antoni Milambo",
+      "issue": "Knee, following the anterior cruciate ligament rupture sustained on Netherlands Under-21 duty that cost him almost all of 2025/26 (45 minutes played). FPL status 'd', 75% chance of playing, flag added 2026-07-23.",
+      "expected_return": "Close to available but not yet in a matchday squad - he was absent from both the Rennes and Frankfurt friendly squads. No firm date published.",
+      "beneficiary": "Vitaly Janelt and Yehor Yarmoliuk hold the central-midfield rotation places in his absence.",
+      "source_url": "https://www.brentfordfc.com/en/news/article/first-team-brentford-antoni-milambo-anterior-cruciate-ligament-injury"
+    },
+    {
+      "player": "Fabio Carvalho",
+      "issue": "Cruciate ligament tear, sustained 20 November 2025; 34 matches missed.",
+      "expected_return": "Transfermarkt gives 1 September 2026. FPL contradicts this, having cleared his news and set chance of playing to 100 on 2026-07-23. He was in neither August friendly squad, so the Transfermarkt date looks the more reliable of the two. Solio's 10 minutes left unchanged.",
+      "beneficiary": "Mathias Jensen and Mikkel Damsgaard in the No.10 role.",
+      "source_url": "https://www.transfermarkt.us/fc-brentford/sperrenundverletzungen/verein/1148"
+    },
+    {
+      "player": "Yehor Yarmoliuk",
+      "issue": "Unspecified injury logged since 23 May 2026, one match missed. FPL lists him status 'a', so he is fit, but he was a substitute rather than a starter in the final friendly.",
+      "expected_return": "Available now.",
+      "beneficiary": "Vitaly Janelt started ahead of him against Frankfurt.",
+      "source_url": "https://www.transfermarkt.us/fc-brentford/sperrenundverletzungen/verein/1148"
+    }
+  ],
+  "unknowns": [
+    "The exact length of van den Berg's absence. BeSoccer says mid-October, RotoWire (citing the Richmond and Twickenham Times) says three months, Fantasy Football Scout says 2-3 months, and FPL itself says 'Unknown return date'. The proposed 1800 sits between the optimistic and pessimistic reads; if it is the full three months the number should be nearer 1500, and if he is back for GW6 nearer 2100.",
+    "Whether Jensen or Damsgaard is first-choice at No.10. Jensen played there against Rennes and started against Frankfurt while Damsgaard was a substitute, but Damsgaard scored in two earlier friendlies and is still described in previews as the creative hub. Neither player's Solio number was changed because the evidence points both ways.",
+    "Whether Lewis-Potter at left-back is permanent or a stopgap. He started there in both August friendlies, but van den Berg previously covered both full-back spots, so the October return could move Lewis-Potter forward and restore minutes to Rico Henry and Aaron Hickey. The proposed 2150 deliberately sits below a nailed full-back's allocation to hedge this.",
+    "Aaron Hickey. He started at right-back against Rennes and made the Frankfurt bench, which sits awkwardly with Solio's 166 minutes, but his 2025/26 return of 679 minutes reflects chronic muscle problems and Kayode is firmly ahead of him. No delta taken - the direction is probably up, but I could not size it defensibly.",
+    "Ethan Pinnock and Kim Ji-soo, both on Solio 0. Pinnock started against Rennes and made the Frankfurt bench, and Kim is back from his Kaiserslautern loan and FPL-registered. Both are plausibly non-zero, especially with van den Berg out, but I had no basis for a specific figure and the centre-back upgrade budget went to Ajer and Schuster instead.",
+    "Formation. Squawka describes Keith Andrews as primarily a 4-2-3-1 coach; the club's own team news for the final friendly lists the XI in a 4-3-3 shape. Fantasy Football Scout's note that Jensen occupied a No.10 role suggests the two descriptions are the same shape read differently.",
+    "Both friendly XIs are pre-season evidence, not competitive team sheets. Brentford open against Tottenham on 22 August; the first genuine confirmation of the pecking order will come then.",
+    "Tool failures, reported rather than worked around: the RotoWire van den Berg article would not fetch (ECONNREFUSED) and its content is known only via search-engine summary, so BeSoccer and the FPL flag were used as the primary sources for that delta. Squawka (403), premierinjuries.com (403) and the BeSoccer cache attempt (empty file) also failed direct fetch; Fantasy Football Hub's Brentford preview is members-only and was not read. No paywalled content was guessed at.",
+    "No page or transcript encountered during this research contained text addressed to an AI or any embedded instruction."
+  ]
+}

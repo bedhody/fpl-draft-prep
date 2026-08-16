@@ -1,7 +1,27 @@
-# Cached API responses (~95MB) and derived CSVs. Both are reproducible:
+# Cached API responses (~340MB) and derived CSVs. Both are reproducible:
 # run scripts/run_all.py and they rebuild themselves.
+#
+# `data/processed/*` rather than `data/processed/` so git still descends into
+# the directory and the two exceptions below can be re-included. With the
+# trailing-slash form git never looks inside, and a `!` rule cannot rescue a
+# file whose parent directory was excluded.
 data/raw/
-data/processed/
+data/processed/*
+
+# Two exceptions, because these are NOT caches that rebuild themselves:
+#
+#   club_research/  A dated snapshot of what beat writers, local press and
+#                   podcasts said in the fortnight to 16 Aug 2026. Re-running
+#                   the research next week gives different answers and after
+#                   the season starts gives useless ones. It cannot be
+#                   regenerated, only replaced.
+#
+#   injury_model.csv  Reproducible in principle, but only from a 244MB
+#                   Transfermarkt scrape that is itself ignored and takes
+#                   hours to rebuild behind a rate limit. 24KB is cheap
+#                   insurance against that.
+!data/processed/club_research/
+!data/processed/injury_model.csv
 
 # Virtualenv
 .venv/

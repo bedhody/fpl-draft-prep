@@ -1,0 +1,422 @@
+{
+  "club": "NFO",
+  "researched_at": "2026-08-16",
+  "sources": [
+    {
+      "name": "Khel Now - Nottingham Forest vs Bayer Leverkusen, full lineups confirmed",
+      "type": "beat",
+      "url": "https://khelnow.com/football/nottingham-forest-vs-bayer-leverkusen-lineups-pre-season-friendly-202608",
+      "date": "2026-08-12",
+      "why_trusted": "Actual (not predicted) starting XI from Glasner's first match at the City Ground, ten days before the season opener. The most direct evidence available of the intended first-choice team."
+    },
+    {
+      "name": "Sports Mole - Preview: Nottingham Forest vs Brest, team news and lineups",
+      "type": "beat",
+      "url": "https://www.sportsmole.co.uk/football/nottingham-forest/preview/nottm-forest-vs-brest-prediction-team-news-lineups_603038.html",
+      "date": "2026-08-14",
+      "why_trusted": "Most recent dated team-news roundup before the opener. States Chris Wood doubtful with a thigh problem and otherwise 'a clean bill of health', and gives a predicted XI identical in personnel to the 12 Aug Leverkusen XI."
+    },
+    {
+      "name": "Wikipedia - 2026-27 Nottingham Forest F.C. season",
+      "type": "official",
+      "url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Nottingham_Forest_F.C._season",
+      "date": "2026-08-16",
+      "why_trusted": "Dated transfer ledger (in and out), full squad list with numbers, managerial change, pre-season results and scorers, and the competitions entered. Cross-checked against the FPL bootstrap and the Sports Mole transfer hub."
+    },
+    {
+      "name": "Sports Mole - Nottingham Forest summer transfers: every confirmed signing and sale",
+      "type": "beat",
+      "url": "https://www.sportsmole.co.uk/football/nottingham-forest/transfer-talk/feature/nottingham-forest-summer-transfers-all-confirmed-ins-and-outs-for-2026_598980.html",
+      "date": "2026-08-15",
+      "why_trusted": "Independent dated transfer ledger used to cross-check Wikipedia. Confirms the Gustavo Sa signing and his immediate loan to Olympiacos."
+    },
+    {
+      "name": "Wikipedia - 2025-26 Premier League (final table)",
+      "type": "official",
+      "url": "https://en.wikipedia.org/wiki/2025%E2%80%9326_Premier_League",
+      "date": "2026-08-16",
+      "why_trusted": "Establishes Forest finished 16th on 44 points and did not qualify for any UEFA competition, which is the single most important input to how much rotation to expect."
+    },
+    {
+      "name": "Football Insider - Nottingham Forest plan to accept Arnaud Kalimuendo loan-to-buy offer",
+      "type": "beat",
+      "url": "https://www.footballinsider247.com/nottingham-forest/transfers/nottingham-forest-plan-to-accept-arnaud-kalimuendo-loan-to-buy-offer",
+      "date": "2026-08-09",
+      "why_trusted": "Dated report on Kalimuendo's exit situation: Sevilla interested, Forest want a loan with a GBP 30m obligation, Sevilla hesitant and waiting. Establishes the deal is live but stalled."
+    },
+    {
+      "name": "AOL/PA - Strikers scoring, but do Nottingham Forest need to dip into the market?",
+      "type": "beat",
+      "url": "https://www.aol.com/articles/strikers-scoring-nottingham-forest-dip-123411000.html",
+      "date": "2026-07-28",
+      "why_trusted": "Pre-season goal counts by striker (Igor Jesus scored in all three, Kalimuendo twice, Awoniyi once, Wood none), plus the note that Wood missed six months of 2025-26 with a knee injury."
+    },
+    {
+      "name": "Soccernet NG - Nottingham Forest star Ola Aina breaks silence after hamstring surgery",
+      "type": "beat",
+      "url": "https://soccernet.ng/2025/09/nottingham-forest-ola-aina-2.html",
+      "date": "2025-09-17",
+      "why_trusted": "Contemporaneous account of the torn hamstring and 13 Sept 2025 surgery that cost Aina most of 2025-26, which is the reason his 2025-26 minutes were only 1,587."
+    },
+    {
+      "name": "FPL bootstrap-static API",
+      "type": "official",
+      "url": "https://fantasy.premierleague.com/api/bootstrap-static/",
+      "date": "2026-08-16",
+      "why_trusted": "Live status flags. Fetched directly. Returns exactly the same 28 Forest players as the brief; only Savona is flagged 'i'. Confirms no listed player has been sold since Solio's snapshot."
+    }
+  ],
+  "formation": "3-4-2-1",
+  "positions": [
+    {
+      "position": "GK",
+      "starter": "Matz Sels",
+      "confidence": "likely",
+      "competition": ["John Victor", "Steven Benda"],
+      "note": "Started both the Notts County opener and the Leverkusen friendly. Downgraded from nailed because Sels played only 2,667 league minutes in 2025-26 and John Victor took 437, so the club has changed keeper mid-season before. Steven Benda arrived from Fulham on a free on 15 Aug 2026 as further cover but is not in the FPL game."
+    },
+    {
+      "position": "CB",
+      "starter": "Nikola Milenkovic",
+      "confidence": "nailed",
+      "competition": ["Morato", "Jair Cunha"],
+      "note": "Central of the back three. Played 3,375 league minutes in 2025-26, essentially every available minute, and started the Leverkusen friendly. The one Forest player whose iron-man projection is fully earned."
+    },
+    {
+      "position": "CB",
+      "starter": "Murillo",
+      "confidence": "nailed",
+      "competition": ["Morato", "Jair Cunha"],
+      "note": "Left of the back three. Started vs Leverkusen and is in the 14 Aug predicted XI. Only 2,130 league minutes in 2025-26, so the projection assumes a materially cleaner season than he actually had."
+    },
+    {
+      "position": "CB",
+      "starter": "Ousmane Diomande",
+      "confidence": "likely",
+      "competition": ["Morato", "Jair Cunha", "Tyler Bindon", "Zach Abbott"],
+      "note": "Club-record GBP 34.3m signing from Sporting CP on 11 Aug 2026; started the Leverkusen friendly the very next day, which is about as clear a signal of intent as exists. First season in the Premier League, so some adaptation and rotation risk."
+    },
+    {
+      "position": "RB",
+      "starter": "Neco Williams",
+      "confidence": "nailed",
+      "competition": ["Nicolò Savona", "Eric da Silva Moreira"],
+      "note": "Right wing-back. 3,203 league minutes in 2025-26 and started vs Leverkusen. His only senior cover, Savona, is currently injured with no return date, and Eric da Silva Moreira is not in the FPL game."
+    },
+    {
+      "position": "LB",
+      "starter": "Ola Aina",
+      "confidence": "likely",
+      "competition": ["Luca Netz", "Omar Richards"],
+      "note": "Left wing-back in the Leverkusen XI despite being a natural right-back. This is the most fragile slot in the team: Aina is 29 and coming off hamstring surgery that cost him most of last season, and Luca Netz is the only natural left-sided defender behind him. Forest have had three bids rejected for a young wing-back this window."
+    },
+    {
+      "position": "DM",
+      "starter": "Ibrahim Sangaré",
+      "confidence": "likely",
+      "competition": ["Ryan Yates", "Nicolás Domínguez"],
+      "note": "Right half of the double pivot vs Leverkusen. His projected uplift is driven by Elliot Anderson's GBP 116m sale to Manchester City on 2 July 2026, which vacated a large block of central midfield minutes."
+    },
+    {
+      "position": "CM",
+      "starter": "Xaver Schlager",
+      "confidence": "contested",
+      "competition": ["Ryan Yates", "Nicolás Domínguez", "James McAtee"],
+      "note": "The genuinely contested slot. Free signing from RB Leipzig on 23 July 2026 with no Premier League record. Started vs Leverkusen and is in the 14 Aug predicted XI, but Ryan Yates captained the side in Glasner's first pre-season match and Dominguez played 1,168 league minutes last season."
+    },
+    {
+      "position": "AM",
+      "starter": "Morgan Gibbs-White",
+      "confidence": "nailed",
+      "competition": ["James McAtee", "Callum Hudson-Odoi"],
+      "note": "Left-sided of the two number tens. Club captain in practice, two years left on his contract, and the club have publicly refused to entertain a sale despite Manchester United interest reported through early August. Started vs Leverkusen and is in the 14 Aug predicted XI."
+    },
+    {
+      "position": "AM",
+      "starter": "Dan Ndoye",
+      "confidence": "likely",
+      "competition": ["Omari Hutchinson", "Callum Hudson-Odoi", "Dilane Bakwa"],
+      "note": "Right-sided of the two tens; scored vs Leverkusen. Only 1,167 league minutes in 2025-26, so the projection is a large step up, and Hutchinson was a GBP 37m signing who played 1,676 league minutes last season."
+    },
+    {
+      "position": "ST",
+      "starter": "Igor Jesus",
+      "confidence": "likely",
+      "competition": ["Arnaud Kalimuendo", "Chris Wood", "Taiwo Awoniyi"],
+      "note": "Lone striker in the 3-4-2-1 and scored in the first three pre-season matches. But all four senior strikers are fit and three of them scored in pre-season, and Glasner has reportedly paired Wood and Jesus at times, so one striker taking four fifths of the minutes is the least safe assumption in Solio's allocation."
+    }
+  ],
+  "player_deltas": [
+    {
+      "player": "Ola Aina",
+      "code": 159506,
+      "solio_xmins": 2953,
+      "proposed_xmins": 2550,
+      "delta": -403,
+      "reason": "Solio projects 86% of all available minutes for a 29-year-old who managed 1,587 league minutes last season after tearing a hamstring on international duty and having surgery on 13 Sept 2025. He is a starter and healthy now, but a full rebound to near-ever-present is the single most optimistic assumption in the allocation, and his only natural deputy at left wing-back is Luca Netz.",
+      "source_url": "https://soccernet.ng/2025/09/nottingham-forest-ola-aina-2.html",
+      "source_date": "2025-09-17",
+      "confidence": "medium"
+    },
+    {
+      "player": "Igor Jesus",
+      "code": 482973,
+      "solio_xmins": 2764,
+      "proposed_xmins": 2430,
+      "delta": -334,
+      "reason": "In a 3-4-2-1 there is exactly one striker slot, worth about 3,420 minutes. Solio gives Igor Jesus 81% of it while Kalimuendo, Awoniyi and Wood are all fit and three of the four scored in pre-season. He is the starter, but that share leaves almost nothing for injury, rotation or the cups.",
+      "source_url": "https://www.aol.com/articles/strikers-scoring-nottingham-forest-dip-123411000.html",
+      "source_date": "2026-07-28",
+      "confidence": "medium"
+    },
+    {
+      "player": "Murillo",
+      "code": 575476,
+      "solio_xmins": 3101,
+      "proposed_xmins": 2900,
+      "delta": -201,
+      "reason": "Confirmed starter in the back three, but Solio adds 971 minutes to a 2025-26 return of 2,130. Forest carry five senior centre-backs for three slots after the Diomande signing, so a modest allowance for the absences that actually occurred last season is warranted.",
+      "source_url": "https://khelnow.com/football/nottingham-forest-vs-bayer-leverkusen-lineups-pre-season-friendly-202608",
+      "source_date": "2026-08-12",
+      "confidence": "medium"
+    },
+    {
+      "player": "Ousmane Diomande",
+      "code": 568420,
+      "solio_xmins": 2861,
+      "proposed_xmins": 2700,
+      "delta": -161,
+      "reason": "Signed from Sporting CP on 11 Aug 2026 and started the next day, so the starting role is right. Trimmed only for first-season-in-England adaptation and the fact that Morato and Jair Cunha are established alternatives in the same back three.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Nottingham_Forest_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "medium"
+    },
+    {
+      "player": "Ibrahim Sangaré",
+      "code": 210462,
+      "solio_xmins": 2998,
+      "proposed_xmins": 2840,
+      "delta": -158,
+      "reason": "The uplift from 2,073 minutes is correctly motivated by Elliot Anderson's sale, but Solio then gives him 88% of a pivot slot that Ryan Yates captained in Glasner's first pre-season match and that Dominguez and McAtee also contest.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Nottingham_Forest_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "medium"
+    },
+    {
+      "player": "Xaver Schlager",
+      "code": 204561,
+      "solio_xmins": 2257,
+      "proposed_xmins": 2100,
+      "delta": -157,
+      "reason": "Free signing from RB Leipzig on 23 July 2026 with no Premier League record, holding the one slot that all sources treat as contested. Started vs Leverkusen, so the role is real, but Yates, Dominguez and McAtee are all realistic alternatives.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Nottingham_Forest_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "medium"
+    },
+    {
+      "player": "Morgan Gibbs-White",
+      "code": 222531,
+      "solio_xmins": 3301,
+      "proposed_xmins": 3150,
+      "delta": -151,
+      "reason": "Staying at Forest and central to Glasner's plans, so the headline number is broadly right. Trimmed because Solio projects 200 minutes above his own 2025-26 total of 3,101, and an attacking midfielder in a two-ten system is the profile most often substituted late.",
+      "source_url": "https://www.sportsmole.co.uk/football/nottingham-forest/preview/nottm-forest-vs-brest-prediction-team-news-lineups_603038.html",
+      "source_date": "2026-08-14",
+      "confidence": "medium"
+    },
+    {
+      "player": "Matz Sels",
+      "code": 85633,
+      "solio_xmins": 3385,
+      "proposed_xmins": 3250,
+      "delta": -135,
+      "reason": "Solio gives Sels 99% of available minutes, but he played only 2,667 league minutes in 2025-26 with John Victor taking 437, so Forest have changed keeper mid-season within the last year. Steven Benda was also added on a free on 15 Aug 2026.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Nottingham_Forest_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "medium"
+    },
+    {
+      "player": "Neco Williams",
+      "code": 215136,
+      "solio_xmins": 3331,
+      "proposed_xmins": 3200,
+      "delta": -131,
+      "reason": "Genuinely nailed at right wing-back, but Solio projects him above his own 2025-26 total of 3,203, which was already a near-ever-present season. A small allowance for suspensions and cup rotation.",
+      "source_url": "https://khelnow.com/football/nottingham-forest-vs-bayer-leverkusen-lineups-pre-season-friendly-202608",
+      "source_date": "2026-08-12",
+      "confidence": "low"
+    },
+    {
+      "player": "Dan Ndoye",
+      "code": 456512,
+      "solio_xmins": 2417,
+      "proposed_xmins": 2300,
+      "delta": -117,
+      "reason": "Confirmed starter as one of the two tens and scored vs Leverkusen, but Solio adds 1,250 minutes to a 2025-26 return of 1,167, with Hutchinson and Hudson-Odoi contesting the same wide-ten roles.",
+      "source_url": "https://khelnow.com/football/nottingham-forest-vs-bayer-leverkusen-lineups-pre-season-friendly-202608",
+      "source_date": "2026-08-12",
+      "confidence": "low"
+    },
+    {
+      "player": "Nikola Milenkovic",
+      "code": 227444,
+      "solio_xmins": 3312,
+      "proposed_xmins": 3230,
+      "delta": -82,
+      "reason": "Token trim only. He played 3,375 league minutes in 2025-26 and is the one Forest player for whom a near-ever-present projection is fully supported by evidence.",
+      "source_url": "https://khelnow.com/football/nottingham-forest-vs-bayer-leverkusen-lineups-pre-season-friendly-202608",
+      "source_date": "2026-08-12",
+      "confidence": "low"
+    },
+    {
+      "player": "Arnaud Kalimuendo",
+      "code": 465680,
+      "solio_xmins": 38,
+      "proposed_xmins": 480,
+      "delta": 442,
+      "reason": "The largest error in the allocation. Solio extrapolates his 89 league minutes from a season he spent largely on loan at Eintracht Frankfurt. He is back, fit, in the FPL game with an 'available' flag, and has scored three times in pre-season including the 90th-minute winner against Bayer Leverkusen on 12 Aug. A Sevilla loan-to-buy is live but stalled, so the number is held well below a true backup-striker share to price that exit risk.",
+      "source_url": "https://www.footballinsider247.com/nottingham-forest/transfers/nottingham-forest-plan-to-accept-arnaud-kalimuendo-loan-to-buy-offer",
+      "source_date": "2026-08-09",
+      "confidence": "medium"
+    },
+    {
+      "player": "Luca Netz",
+      "code": 470315,
+      "solio_xmins": 115,
+      "proposed_xmins": 470,
+      "delta": 355,
+      "reason": "Glasner's 3-4-2-1 requires a left wing-back for all 3,420 minutes, and Forest are filling it with a natural right-back in Ola Aina. Netz is the only natural left-sided defender in the squad, the third-choice wing-back Savona is injured with no return date, and Forest have had three bids rejected for a wing-back this window. 115 minutes is not a coherent number for that role.",
+      "source_url": "https://khelnow.com/football/nottingham-forest-vs-bayer-leverkusen-lineups-pre-season-friendly-202608",
+      "source_date": "2026-08-12",
+      "confidence": "medium"
+    },
+    {
+      "player": "Morato",
+      "code": 485047,
+      "solio_xmins": 386,
+      "proposed_xmins": 740,
+      "delta": 354,
+      "reason": "A back three needs 10,260 centre-back minutes, and Solio gives 93.6% of them to Milenkovic, Murillo and Diomande. Morato played 1,340 league minutes last season and started in the back three in Glasner's first pre-season match, so he is the first-choice replacement, not a spare part.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Nottingham_Forest_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "medium"
+    },
+    {
+      "player": "Jair Cunha",
+      "code": 575458,
+      "solio_xmins": 249,
+      "proposed_xmins": 540,
+      "delta": 291,
+      "reason": "Same structural point as Morato. Cunha started in the back three in Glasner's first pre-season match at Notts County and is one of five senior centre-backs for three slots in a system that plays three all season.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Nottingham_Forest_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "low"
+    },
+    {
+      "player": "Omari Hutchinson",
+      "code": 503301,
+      "solio_xmins": 443,
+      "proposed_xmins": 690,
+      "delta": 247,
+      "reason": "A club-record GBP 37m signing who played 1,676 league minutes in 2025-26 and featured in Glasner's first pre-season XI in the ten role. He is out of the current first-choice XI, but 443 minutes understates the first reserve for two attacking-midfield slots.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Nottingham_Forest_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "low"
+    },
+    {
+      "player": "Taiwo Awoniyi",
+      "code": 210156,
+      "solio_xmins": 72,
+      "proposed_xmins": 250,
+      "delta": 178,
+      "reason": "Fit, flagged 'available' in the FPL bootstrap, and scored in pre-season against Blackburn after his 2025 abdominal injury. Seventy-two minutes for a season implies he is effectively gone, which no source supports; he remains a squad striker under a manager rotating four of them.",
+      "source_url": "https://www.aol.com/articles/strikers-scoring-nottingham-forest-dip-123411000.html",
+      "source_date": "2026-07-28",
+      "confidence": "low"
+    },
+    {
+      "player": "James McAtee",
+      "code": 432714,
+      "solio_xmins": 633,
+      "proposed_xmins": 790,
+      "delta": 157,
+      "reason": "Started Glasner's first pre-season XI. His 288 league minutes in 2025-26 came under previous managers, and a coaching change plus Elliot Anderson's departure both work in his favour for the contested central and ten roles.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Nottingham_Forest_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "low"
+    },
+    {
+      "player": "John Victor",
+      "code": 221389,
+      "solio_xmins": 35,
+      "proposed_xmins": 170,
+      "delta": 135,
+      "reason": "Played 437 league minutes in 2025-26 as Sels's deputy, so the pairing has demonstrably split league minutes within the last year. Thirty-five minutes assumes Sels plays effectively every second of the season.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Nottingham_Forest_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "low"
+    }
+  ],
+  "budget_check": {
+    "solio_total": 37564,
+    "proposed_total": 37693,
+    "difference": 73
+  },
+  "reinforcement_risk": [
+    {
+      "position": "LB",
+      "incumbent": "Ola Aina",
+      "note": "Forest have had three bids rejected for a young wing-back this window and AS Roma has since outbid them. The club is actively trying to add at wing-back, where Aina is a natural right-back filling the left slot and the only cover is Luca Netz plus the injured Savona. A late arrival would cut into Aina and Netz.",
+      "source_url": "https://www.planetfootball.com/premier-league/nottingham-forest-dream-xi-oliver-glasner-new-signings"
+    },
+    {
+      "position": "ST",
+      "incumbent": "Igor Jesus",
+      "note": "Reporting links an additional striker to Forest specifically if Kalimuendo leaves for Sevilla. Forest failed to score in 14 league games last season and Wood is 34 and currently a thigh doubt, so the centre-forward group is the likeliest place for a late signing. Any arrival would come out of the backup striker minutes rather than Igor Jesus's.",
+      "source_url": "https://www.footballinsider247.com/nottingham-forest/transfers/nottingham-forest-plan-to-accept-arnaud-kalimuendo-loan-to-buy-offer"
+    },
+    {
+      "position": "CM",
+      "incumbent": "Xaver Schlager",
+      "note": "Forest have not replaced Elliot Anderson with a comparable player after his GBP 116m sale. Interest in Lucas Bergvall was reported with an opening bid rejected in mid-July and no advance since. If a central midfielder arrives before 1 Sept, the contested pivot slot alongside Sangare is where it lands.",
+      "source_url": "https://www.planetfootball.com/premier-league/nottingham-forest-dream-xi-oliver-glasner-new-signings"
+    }
+  ],
+  "injuries": [
+    {
+      "player": "Nicolò Savona",
+      "issue": "Knee injury, no return date given. Flagged 'i' with 0% chance of playing next round in the live FPL bootstrap.",
+      "expected_return": "unknown",
+      "beneficiary": "Neco Williams, Luca Netz",
+      "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+    },
+    {
+      "player": "Chris Wood",
+      "issue": "Thigh problem; listed as doubtful for the final pre-season friendly on 16 Aug. Separately missed six months of 2025-26 with a knee injury and did not score in pre-season. Not flagged in the FPL bootstrap.",
+      "expected_return": "unclear, possibly available for the opener at Leeds on 22 Aug",
+      "beneficiary": "Arnaud Kalimuendo, Taiwo Awoniyi",
+      "source_url": "https://www.sportsmole.co.uk/football/nottingham-forest/preview/nottm-forest-vs-brest-prediction-team-news-lineups_603038.html"
+    },
+    {
+      "player": "Ola Aina",
+      "issue": "No current injury. Recorded here as history, not a live problem: torn right hamstring on international duty with surgery on 13 Sept 2025 cost him most of 2025-26 (1,587 league minutes). The 14 Aug team news describes the squad as a clean bill of health apart from Wood.",
+      "expected_return": "fit and available",
+      "beneficiary": "Luca Netz if he breaks down again",
+      "source_url": "https://soccernet.ng/2025/09/nottingham-forest-ola-aina-2.html",
+      "note": "An earlier search summary claimed Aina was carrying a current knock and Hudson-Odoi a muscle problem. That was contradicted by the dated 14 Aug Sports Mole team news and by the FPL bootstrap, and has been discarded rather than used."
+    }
+  ],
+  "unknowns": [
+    "The central finding on rotation is that Forest finished 16th in 2025-26 and have no European football in 2026-27, only the Premier League, FA Cup and EFL Cup. This substantially vindicates Solio's settled-squad model: last season's spread of minutes was inflated by a Europa League campaign that no longer exists. The deltas above therefore correct concentration at the margins rather than rejecting the premise. Solio's top eleven took 86.9% of all club minutes, which would be historically extreme even for a settled side; the proposal brings that to 81.1%, still very high and deliberately so.",
+    "Solio's starting eleven is correct and needs no structural change. The 12 Aug Leverkusen XI (Sels; Diomande, Milenkovic, Murillo; Aina, Sangaré, Schlager, Williams; Gibbs-White, Ndoye; Igor Jesus) and the 14 Aug Sports Mole predicted XI name the same eleven players, and they are exactly Solio's eleven highest-minute players. Two independent recent sources agreeing on personnel is unusually strong for mid-August.",
+    "Formation labels conflict across sources (3-4-2-1, 3-5-2 and 4-3-3 all appear) but the personnel is identical in every version, i.e. a back three, two wing-backs, two central midfielders and three forward players. 3-4-2-1 is used here because it matches Glasner's established system and the reported personnel; the ambiguity does not change any minutes allocation.",
+    "No delta was applied for the managerial change itself. Vitor Pereira left on 2 July 2026 and Oliver Glasner arrived from Crystal Palace. Glasner is a strong-minded system coach with a short Forest track record, so squad-wide rotation behaviour is genuinely unmodelled; if he rotates like he did at Palace, every backup number here is still too low.",
+    "Steven Benda (GK, free from Fulham, 15 Aug 2026) and Eric da Silva Moreira (RB/RWB, squad number 17) are in Forest's first-team squad per Wikipedia but are not in the FPL bootstrap and not in the brief's 28-player list, so no minutes could be assigned to them. Any minutes they take in reality come out of John Victor and the wing-backs respectively.",
+    "Gustavo Sa is NOT a source of error despite appearing in some previews as a starter. He signed from Famalicao on 28 July 2026 for around EUR 20m and was loaned to Olympiacos (same ownership) on 29 July for the 2026-27 season. Solio correctly omits him; a Squawka preview naming him in Forest's wide areas is wrong.",
+    "Kalimuendo's proposed 480 minutes is a probability-weighted compromise, not a forecast of either outcome. If the Sevilla loan-to-buy completes before 1 Sept his true figure is near zero; if it collapses he is the clear backup striker and 480 is too low. This is the highest-variance number in the file.",
+    "Chris Wood's 523 minutes were left unchanged deliberately. The evidence pulls both ways: he is 34, a current thigh doubt, missed six months last season and did not score in pre-season, but one report says Glasner has paired Wood and Igor Jesus together in recent friendlies, which would imply more minutes rather than fewer. Not resolvable from available sources.",
+    "The Nottingham Forest official site page reporting Glasner's first XI could not be read directly: the page is JavaScript-rendered and the cached HTML at data/raw/club_research/NFO/nfo_first_xi_18jul.html contains no extractable text. That lineup is corroborated only through search summaries and a secondary report confirming McAtee, Hutchinson, Yates and Morato all featured. It is used only as supporting evidence for backup minutes, never as the sole basis for a delta.",
+    "Squawka's Forest 2026-27 preview and the Fantasy Football Hub Forest preview could not be read: the former returned HTTP 403 and the latter is behind a members-only paywall. Premier Injuries and Football Insider's injury table also returned 403/404. No injury conclusion here rests on those sources.",
+    "No web page or transcript consulted contained text addressed to an AI or any attempt to issue instructions."
+  ]
+}

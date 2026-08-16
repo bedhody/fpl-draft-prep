@@ -1,0 +1,418 @@
+{
+ "club": "LIV",
+ "researched_at": "2026-08-16",
+ "sources": [
+  {
+   "name": "This Is Anfield (Joanna Durkan, Henry Jackson)",
+   "type": "beat",
+   "url": "https://www.thisisanfield.com/2026/08/liverpool-vs-como-double-header-kickoff-tv-team-news/",
+   "date": "2026-08-15",
+   "why_trusted": "Independent Liverpool-only site publishing several bylined pieces a day, with named staff writers who attend training and print full squad lists. Its Como double-header piece names the XI it expects to be a 'dress rehearsal for Newcastle' and marks individual players as minutes-managed. Six of its August articles were used."
+  },
+  {
+   "name": "Liverpool FC official (fitness updates and Iraola press conferences)",
+   "type": "official",
+   "url": "https://www.youtube.com/watch?v=9rc96k7uOrs",
+   "date": "2026-08-09",
+   "why_trusted": "First-party. The 21 July fitness bulletin and the manager's post-Monaco media duties are the only unmediated statements on injury timelines, and Iraola's own words on Jacquet and Jones are quoted directly rather than paraphrased."
+  },
+  {
+   "name": "Opta Analyst — Liverpool 2026-27 squad audit",
+   "type": "beat",
+   "url": "https://theanalyst.com/articles/liverpool-squad-audit-transfers-stats-2026-27",
+   "date": "2026-08-12",
+   "why_trusted": "Data-led positional audit that names expected starters, the remaining holes (No. 6, right winger, striker cover, right-back) and the non-homegrown-slot constraint. Useful as an independent cross-check on the fan-media XIs."
+  },
+  {
+   "name": "ESPN FC — 'Liverpool PREDICTIONS: Iraola's XI for GW1 vs. Newcastle'",
+   "type": "youtube",
+   "url": "https://www.youtube.com/watch?v=DVW82BjfAqM",
+   "date": "2026-07-23",
+   "why_trusted": "Panel includes Beth Lindop, who covers Liverpool daily and was embedded on the US tour. Transcript pulled in full; it carries Iraola's own 'we definitely need to sign a winger' quote and first-hand detail on who did and did not travel."
+  },
+  {
+   "name": "YNWA REDS — 'Liverpool v Como 1907 preview'",
+   "type": "youtube",
+   "url": "https://www.youtube.com/watch?v=-RlBuXMz0dU",
+   "date": "2026-08-13",
+   "why_trusted": "Small (18k subscriber) single-analyst Liverpool channel, but tactically specific and current: it describes the Szoboszlai-Gravenberch double pivot from the Monaco game and frames Ngumoha's right-wing role as lasting only 'until we get a new signing'. Weighted below the beat sources; used only where it corroborates them."
+  },
+  {
+   "name": "Anfield Index — Liverpool XI vs AS Monaco",
+   "type": "beat",
+   "url": "https://anfieldindex.com/97529/liverpool-starting-xi-vs-as-monaco-confirmed-team-news-and-predicted-lineup.html",
+   "date": "2026-08-09",
+   "why_trusted": "Long-running Liverpool site and podcast network. Its match-by-match team news pieces give the availability list for each pre-season game, which is how the Jacquet, Endo and Frimpong knocks were dated."
+  },
+  {
+   "name": "CaughtOffside — Gakpo/Tottenham talks (reporting Plettenberg and Romano)",
+   "type": "beat",
+   "url": "https://www.caughtoffside.com/2026/08/15/tottenham-cody-gakpo-liverpool-talks-underway/",
+   "date": "2026-08-15",
+   "why_trusted": "Aggregator rather than a primary source, so used only for the transfer state and only because it attributes to Florian Plettenberg and Fabrizio Romano, both of whom are named. Corroborated by Sky Sports' own 3 August piece on Spurs' interest."
+  },
+  {
+   "name": "Premier League — FPL signings: Victor Munoz",
+   "type": "official",
+   "url": "https://www.premierleague.com/en/news/4676142/fpl-signings-can-munoz-shine-over-liverpools-kind-start",
+   "date": "2026-06-23",
+   "why_trusted": "Premier League editorial, written for exactly this purpose (projecting a new signing's role). Establishes Munoz as the intended left winger in a 4-2-3-1 and flags the knock-on threat to Gakpo's minutes."
+  }
+ ],
+ "formation": "4-2-3-1",
+ "positions": [
+  {
+   "position": "GK",
+   "starter": "Alisson Becker",
+   "confidence": "nailed",
+   "competition": [
+    "Giorgi Mamardashvili",
+    "Freddie Woodman"
+   ],
+   "note": "Liverpool decided Alisson stays as No. 1 and have offered Mamardashvili out on loan to Serie A clubs; Alisson started every pre-season game he was fit for. Solio's 3385/35 split is left untouched, though 99% of available league minutes is aggressive for a 33-year-old who played 68% of them last season."
+  },
+  {
+   "position": "RB",
+   "starter": "Jeremie Frimpong",
+   "confidence": "likely",
+   "competition": [
+    "Conor Bradley",
+    "Ronald Araujo",
+    "Joe Gomez",
+    "Calvin Ramsay"
+   ],
+   "note": "The weakest position in the squad. Bradley is the club's long-term first choice but is out until roughly October; Frimpong is a converted wing-back with a bad injury record; Araujo and Gomez are centre-backs shifting across; Ramsay is 'not at the level'. This Is Anfield calls it an open gamble and holds out 'the slightest hope' of a late signing."
+  },
+  {
+   "position": "CB",
+   "starter": "Virgil van Dijk",
+   "confidence": "nailed",
+   "competition": [],
+   "note": "Captain, played every league minute last season. Was held back from the US tour purely for load management, which is the only reason to think he might dip below Solio's 3340. Contract expires in 2027."
+  },
+  {
+   "position": "CB",
+   "starter": "Ronald Araujo",
+   "confidence": "likely",
+   "competition": [
+    "Jeremy Jacquet",
+    "Giovanni Leoni",
+    "Joe Gomez"
+   ],
+   "note": "Signed on loan from Barcelona on 11 August with a ~EUR55m option. This Is Anfield: the spot alongside Van Dijk 'appears to be Araujo's to lose'. Expect Jacquet to press him once fit and Leoni to return to the picture from September."
+  },
+  {
+   "position": "LB",
+   "starter": "Milos Kerkez",
+   "confidence": "nailed",
+   "competition": [
+    "Kostas Tsimikas"
+   ],
+   "note": "Played under Iraola at Bournemouth and is central to how the manager uses full-backs. Tsimikas is back from loan as deep cover. No change proposed."
+  },
+  {
+   "position": "DM",
+   "starter": "Ryan Gravenberch",
+   "confidence": "nailed",
+   "competition": [
+    "Trey Nyoni",
+    "Wataru Endo",
+    "Alexis Mac Allister"
+   ],
+   "note": "Named a 'nailed-on starter' by This Is Anfield. Note that he is not a specialist No. 6 — Carragher calls the absence of one a 'huge problem' — but This Is Anfield reports a new midfielder is 'widely reported not to be of urgency' this window."
+  },
+  {
+   "position": "CM",
+   "starter": "Dominik Szoboszlai",
+   "confidence": "nailed",
+   "competition": [
+    "Alexis Mac Allister",
+    "Trey Nyoni",
+    "Curtis Jones"
+   ],
+   "note": "Deployed alongside Gravenberch as a central midfielder rather than as a No. 10 — Carragher: 'it looks like they're going to play him, rather than as a No. 10, almost as a central midfield player alongside Gravenberch'. That is the main reason Mac Allister is not currently in the first-choice pivot."
+  },
+  {
+   "position": "AM",
+   "starter": "Florian Wirtz",
+   "confidence": "nailed",
+   "competition": [
+    "Dominik Szoboszlai"
+   ],
+   "note": "Wirtz says he discussed the role with Iraola in the summer: 'No. 10 is my favourite and my best position.' He has been used there behind Isak throughout pre-season and scored against both Leeds and Monaco."
+  },
+  {
+   "position": "RW",
+   "starter": "Rio Ngumoha",
+   "confidence": "contested",
+   "competition": [
+    "Cody Gakpo",
+    "Federico Chiesa",
+    "Harvey Elliott",
+    "unsigned winger"
+   ],
+   "note": "The hole left by Salah. Ngumoha spent last season on the left and is being converted; Liverpool sources describe him as holding the shirt 'until we get a new signing'. Iraola has said outright that a winger must be signed before 31 August."
+  },
+  {
+   "position": "LW",
+   "starter": "Victor Munoz",
+   "confidence": "contested",
+   "competition": [
+    "Cody Gakpo",
+    "Rio Ngumoha",
+    "Bradley Barcola (target)"
+   ],
+   "note": "Munoz started on the left in the Newcastle dress-rehearsal XI, but Iraola reportedly wants Bradley Barcola as his first-choice left winger, and Gakpo's own future is unresolved. The most volatile position in the squad."
+  },
+  {
+   "position": "ST",
+   "starter": "Alexander Isak",
+   "confidence": "nailed",
+   "competition": [
+    "Cody Gakpo (emergency)",
+    "Hugo Ekitiké (injured)"
+   ],
+   "note": "No senior deputy until Ekitike returns in early 2027. Isak reports himself '100% fit' after a normal summer, in contrast to last season when he missed 28 games."
+  }
+ ],
+ "player_deltas": [
+  {
+   "player": "Victor Munoz",
+   "code": 551499,
+   "solio_xmins": 796,
+   "proposed_xmins": 1600,
+   "delta": 804,
+   "reason": "Solio gives Liverpool's £34.7m first signing of the Iraola regime only 796 minutes. He is named at left wing in This Is Anfield's Anfield 'dress rehearsal for Newcastle' XI (Alisson; Frimpong, Araujo, Van Dijk, Kerkez; Gravenberch, Szoboszlai; Ngumoha, Wirtz, Munoz; Isak), and the Premier League's own preview has him occupying left wing in Iraola's 4-2-3-1. Held below a full starter's allocation because he returned late from winning the World Cup with Spain and because Liverpool are still chasing Bradley Barcola as a first-choice left winger.",
+   "source_url": "https://www.thisisanfield.com/2026/08/liverpool-vs-como-double-header-kickoff-tv-team-news/",
+   "source_date": "2026-08-15",
+   "confidence": "medium"
+  },
+  {
+   "player": "Trey Nyoni",
+   "code": 591386,
+   "solio_xmins": 24,
+   "proposed_xmins": 600,
+   "delta": 576,
+   "reason": "Solio gives Nyoni 24 minutes, which is not consistent with pre-season. He started the double pivot against Monaco, Jay Spearing called him the 'best player in pre-season', and This Is Anfield reports he 'could be next in the pecking order in the No. 6 berth' with 'seeing him start at St James' Park' now 'no great risk'. James McConnell is leaving on loan and Endo/Bajcetic are unreliable, so he is the fourth pivot option at worst.",
+   "source_url": "https://www.thisisanfield.com/2026/08/liverpool-como-pre-season-jacquet-araujo-debut/",
+   "source_date": "2026-08-14",
+   "confidence": "medium"
+  },
+  {
+   "player": "Giovanni Leoni",
+   "code": 647681,
+   "solio_xmins": 28,
+   "proposed_xmins": 550,
+   "delta": 522,
+   "reason": "Solio gives 28 minutes. This Is Anfield's training report states Leoni 'is expected to return to full training later this month, with September intended to be his return to playing' after his ACL tear, and Liverpool's own fitness update named him the closest of the three long-term absentees to returning. He is behind Van Dijk, Araujo and Jacquet, so this is a squad-CB allocation rather than a starter's.",
+   "source_url": "https://www.thisisanfield.com/2026/08/27-man-liverpool-squad-in-training-6-youngsters-cut-no-jacquet-frimpong-ok/",
+   "source_date": "2026-08-05",
+   "confidence": "medium"
+  },
+  {
+   "player": "Ronald Araujo",
+   "code": 445087,
+   "solio_xmins": 1984,
+   "proposed_xmins": 2340,
+   "delta": 356,
+   "reason": "Signed on loan from Barcelona on 11 August. This Is Anfield: 'With Jacquet still building up fitness and Joe Gomez sidelined, the starting spot alongside Van Dijk at St James' Park appears to be Araujo's to lose.' He is also the emergency right-back cover. Solio's 1984 under-rates a player who starts the season as the first-choice partner to Van Dijk.",
+   "source_url": "https://www.thisisanfield.com/2026/08/liverpool-como-pre-season-jacquet-araujo-debut/",
+   "source_date": "2026-08-14",
+   "confidence": "medium"
+  },
+  {
+   "player": "Jeremie Frimpong",
+   "code": 216094,
+   "solio_xmins": 1699,
+   "proposed_xmins": 2030,
+   "delta": 331,
+   "reason": "Liverpool have no fit senior specialist right-back: Bradley is out until roughly October and Ramsay is 'not at the level to assume the role beyond pre-season'. Frimpong trained normally after his US-tour withdrawal and starts in every pre-season first-choice XI. Solio's 1699 prices in his injury record; raised, but not to a nailed-starter level, because that record is real.",
+   "source_url": "https://www.thisisanfield.com/2026/08/liverpool-right-back-transfer-gamble-araujo-bradley/",
+   "source_date": "2026-08-13",
+   "confidence": "medium"
+  },
+  {
+   "player": "Alexander Isak",
+   "code": 219168,
+   "solio_xmins": 2177,
+   "proposed_xmins": 2450,
+   "delta": 273,
+   "reason": "Isak says he is '100% fit' after a full pre-season, and This Is Anfield notes Ekitike is 'not expected to return from his Achilles injury until early 2027', leaving Isak as the only senior centre-forward for most of the season. Iraola: 'he is going to be massive for us.' Solio's 2177 (64% of the striker slot) is low for an undisputed lone striker with no senior deputy.",
+   "source_url": "https://www.thisisanfield.com/2026/08/alexander-isak-fitness-update-liverpool-pre-season/",
+   "source_date": "2026-08-03",
+   "confidence": "medium"
+  },
+  {
+   "player": "Cody Gakpo",
+   "code": 243298,
+   "solio_xmins": 2457,
+   "proposed_xmins": 1450,
+   "delta": -1007,
+   "reason": "Two compounding problems with Solio's 2457. First, Sky's Florian Plettenberg reports Liverpool and Tottenham are 'in very concrete talks' over a move for Gakpo before the 31 August deadline. Second, even if he stays, This Is Anfield's Newcastle dress-rehearsal XI picks Ngumoha and Munoz wide with Gakpo the odd man out, and describes the forward line as 'unsettled'. Set as a probability-weighted figure across both branches.",
+   "source_url": "https://www.caughtoffside.com/2026/08/15/tottenham-cody-gakpo-liverpool-talks-underway/",
+   "source_date": "2026-08-15",
+   "confidence": "medium"
+  },
+  {
+   "player": "Jeremy Jacquet",
+   "code": 606702,
+   "solio_xmins": 1442,
+   "proposed_xmins": 1000,
+   "delta": -442,
+   "reason": "Jacquet has been out since a shoulder injury in February, sat out all three US friendlies, and only rejoined full training on 12 August. Iraola on 9 August: 'He's taking a little bit more time than we expected.' This Is Anfield says Newcastle is 'looking too far ahead' for him and lists him as minutes-managed. He should displace Araujo later in the season, but not from the start, so Solio's 1442 starts him too early.",
+   "source_url": "https://www.youtube.com/watch?v=9rc96k7uOrs",
+   "source_date": "2026-08-09",
+   "confidence": "medium"
+  },
+  {
+   "player": "Rio Ngumoha",
+   "code": 611922,
+   "solio_xmins": 2269,
+   "proposed_xmins": 1880,
+   "delta": -389,
+   "reason": "Ngumoha is the incumbent right winger in the pre-season XIs, but the framing from Liverpool sources is explicitly provisional: 'maybe Rio is the one who's going to be deployed there until we get a new signing.' Iraola: 'we definitely need to sign a winger.' Solio's 2269 (a fourfold rise on his 547 league minutes last season) assumes no reinforcement arrives before 31 August; trimmed to reflect that risk.",
+   "source_url": "https://www.youtube.com/watch?v=-RlBuXMz0dU",
+   "source_date": "2026-08-13",
+   "confidence": "medium"
+  },
+  {
+   "player": "Conor Bradley",
+   "code": 492777,
+   "solio_xmins": 1328,
+   "proposed_xmins": 1000,
+   "delta": -328,
+   "reason": "This Is Anfield, on Bradley's knee (bone and ligament damage, out since January): 'a return to team training is still not on the horizon', with October the earliest realistic return and careful management needed thereafter. Iraola: 'right now he is still, I would say, a little bit far from returning.' Solio's 1328 implies roughly fifteen full matches, which requires both an on-time return and an immediate full workload.",
+   "source_url": "https://www.thisisanfield.com/2026/08/liverpool-right-back-transfer-gamble-araujo-bradley/",
+   "source_date": "2026-08-13",
+   "confidence": "medium"
+  },
+  {
+   "player": "Curtis Jones",
+   "code": 206915,
+   "solio_xmins": 697,
+   "proposed_xmins": 500,
+   "delta": -197,
+   "reason": "Jones is described by This Is Anfield as having a future 'far from certain', Opta's squad audit lists him as a potential departure with Inter linked, and he picked up a hip issue in the Monaco week. He is behind Gravenberch, Szoboszlai, Mac Allister and now Nyoni in the pivot. Small trim on Solio's 697.",
+   "source_url": "https://www.thisisanfield.com/2026/08/liverpool-como-pre-season-jacquet-araujo-debut/",
+   "source_date": "2026-08-14",
+   "confidence": "low"
+  },
+  {
+   "player": "Hugo Ekitiké",
+   "code": 510663,
+   "solio_xmins": 942,
+   "proposed_xmins": 780,
+   "delta": -162,
+   "reason": "This Is Anfield states Ekitike is 'not expected to return from his Achilles injury until early 2027', and Opta's audit says the same. Solio's 942 is about ten-and-a-half full matches, which is generous for a striker rebuilding from a ruptured Achilles with at most fifteen or sixteen league games left after he is available.",
+   "source_url": "https://www.thisisanfield.com/2026/08/alexander-isak-fitness-update-liverpool-pre-season/",
+   "source_date": "2026-08-03",
+   "confidence": "medium"
+  }
+ ],
+ "budget_check": {
+  "solio_total": 37574,
+  "proposed_total": 37911,
+  "difference": 337
+ },
+ "reinforcement_risk": [
+  {
+   "position": "LW",
+   "incumbent": "Victor Munoz",
+   "note": "Liverpool are pursuing PSG's Bradley Barcola, whom Iraola reportedly wants as his first-choice left winger. An agreement with the player has been reported; the clubs are apart on price (Liverpool up to ~£120m, PSG ~£145m) and Arsenal have contacted his agents. If he arrives before the 31 August deadline, Munoz's proposed 1600 minutes are too high.",
+   "source_url": "https://www.caughtoffside.com/2026/08/15/tottenham-cody-gakpo-liverpool-talks-underway/"
+  },
+  {
+   "position": "RW",
+   "incumbent": "Rio Ngumoha",
+   "note": "Iraola, in his first press conference: 'we definitely need to sign a winger.' Fabrizio Romano reports Liverpool will sign two wingers if Gakpo is sold, with Ibrahim Mbaye the second name (interest reportedly cooled). Ngumoha is explicitly described as holding the right wing only until a signing arrives.",
+   "source_url": "https://www.youtube.com/watch?v=DVW82BjfAqM"
+  },
+  {
+   "position": "LW/RW",
+   "incumbent": "Cody Gakpo",
+   "note": "Departure risk rather than displacement risk: Liverpool and Tottenham are in 'very concrete talks' (Plettenberg), with £60m-plus claims and the player said to be open to the move. Liverpool reportedly will not sell without a replacement secured first. If he goes, his proposed 1450 minutes transfer to players not in this squad list.",
+   "source_url": "https://www.caughtoffside.com/2026/08/15/tottenham-cody-gakpo-liverpool-talks-underway/"
+  },
+  {
+   "position": "DM",
+   "incumbent": "Ryan Gravenberch",
+   "note": "Carragher publicly argues Liverpool have a 'huge problem' without a specialist No. 6, but This Is Anfield reports that a new midfielder is 'widely reported not to be of urgency' and that wingers are the remaining priority. Treated as a low-probability risk.",
+   "source_url": "https://www.thisisanfield.com/2026/08/jamie-carragher-liverpool-huge-problem-midfield-transfer/"
+  },
+  {
+   "position": "RB",
+   "incumbent": "Jeremie Frimpong",
+   "note": "This Is Anfield describes the right-back position as a gamble Liverpool have taken deliberately, with 'the slightest hope' of a late move. Any specialist right-back signed before 31 August would cut into Frimpong's proposed 2030 minutes.",
+   "source_url": "https://www.thisisanfield.com/2026/08/liverpool-right-back-transfer-gamble-araujo-bradley/"
+  },
+  {
+   "position": "CM",
+   "incumbent": "Curtis Jones",
+   "note": "Opta's audit lists Jones among likely departures with Inter linked, and This Is Anfield calls his future 'far from certain'. Liverpool have maxed their 17 non-homegrown slots, so further signings require sales, which raises the chance a fringe player leaves.",
+   "source_url": "https://theanalyst.com/articles/liverpool-squad-audit-transfers-stats-2026-27"
+  }
+ ],
+ "injuries": [
+  {
+   "player": "Conor Bradley",
+   "issue": "Knee — bone and ligament damage sustained against Arsenal in January",
+   "expected_return": "October 2026 at the earliest; return to team training was still 'not on the horizon' as of 13 August, and he will need careful management afterwards",
+   "beneficiary": "Jeremie Frimpong",
+   "source_url": "https://www.thisisanfield.com/2026/08/liverpool-right-back-transfer-gamble-araujo-bradley/"
+  },
+  {
+   "player": "Hugo Ekitiké",
+   "issue": "Ruptured Achilles tendon, April 2026",
+   "expected_return": "Early 2027",
+   "beneficiary": "Alexander Isak",
+   "source_url": "https://www.thisisanfield.com/2026/08/alexander-isak-fitness-update-liverpool-pre-season/"
+  },
+  {
+   "player": "Giovanni Leoni",
+   "issue": "ACL tear on his debut, September 2025",
+   "expected_return": "Full training late August 2026; September intended as his return to playing",
+   "beneficiary": "Ronald Araujo",
+   "source_url": "https://www.thisisanfield.com/2026/08/27-man-liverpool-squad-in-training-6-youngsters-cut-no-jacquet-frimpong-ok/"
+  },
+  {
+   "player": "Jeremy Jacquet",
+   "issue": "Shoulder, sustained in February; sat out all three US tour friendlies",
+   "expected_return": "Back in training 12 August, in line to play against Como on 16 August, but Iraola says he is 'taking a little bit more time than we expected' and Newcastle is 'looking too far ahead'",
+   "beneficiary": "Ronald Araujo",
+   "source_url": "https://www.youtube.com/watch?v=9rc96k7uOrs"
+  },
+  {
+   "player": "Joe Gomez",
+   "issue": "Muscular",
+   "expected_return": "Unknown; still absent from the training group on 5 August",
+   "beneficiary": "Ronald Araujo",
+   "source_url": "https://www.thisisanfield.com/2026/08/27-man-liverpool-squad-in-training-6-youngsters-cut-no-jacquet-frimpong-ok/"
+  },
+  {
+   "player": "Curtis Jones",
+   "issue": "Hip — picked up in training before the Monaco friendly; Iraola: 'it doesn't look like anything big'",
+   "expected_return": "Available again for the Como double-header on 16 August",
+   "beneficiary": "Trey Nyoni",
+   "source_url": "https://www.youtube.com/watch?v=9rc96k7uOrs"
+  },
+  {
+   "player": "Stefan Bajčetić Maquieira",
+   "issue": "Hamstring (per FPL's own injury feed)",
+   "expected_return": "23 August 2026; was already doing partial team training on the US tour in July",
+   "beneficiary": "",
+   "source_url": "https://www.liverpoolfc.com/news/lfc-fitness-update-bajcetic-bradley-ekitike-endo-and-leoni"
+  }
+ ],
+ "unknowns": [
+  "Alisson's 3385 minutes (99% of the goalkeeping slot) look aggressive for a 33-year-old who played 2340 of 3420 league minutes last season, but no source found projects rotation or a specific fitness concern, and Mamardashvili is being offered out on loan. Left unchanged rather than guessed at.",
+  "Alexis Mac Allister's true share of the pivot. Opta's 12 August audit names him a starter alongside Gravenberch; This Is Anfield on 14-15 August names Gravenberch and Szoboszlai as the nailed pair and lists Mac Allister as minutes-managed after reaching the World Cup final with Argentina and returning to training only on 10 August. The sources genuinely disagree, so Solio's 1604 is left alone.",
+  "Whether Cody Gakpo actually leaves before the 31 August deadline. The proposed 1450 is a blend of 'stays and rotates' and 'sold'; the true distribution is bimodal, not centred on 1450.",
+  "Whether Bradley Barcola signs. If he does, both Munoz and Ngumoha are over-allocated here, and the incoming player's minutes are not in this squad list at all.",
+  "Harvey Elliott's future. He is back from an unsuccessful Aston Villa loan, his contract expires in June 2027, Leeds are interested, and he intended to decide late in the window. Solio's 103 minutes assumes he leaves; that is plausible but unresolved.",
+  "Conor Bradley's exact return date. 'October' is the optimistic reading of This Is Anfield's piece; team training had not begun as of 13 August, so a November or December return is equally live and would make even the proposed 1000 minutes too high.",
+  "Sources conflict on Ekitike: This Is Anfield and Opta say early 2027, while a separate report said 'at least late November'. The early-2027 reading was used.",
+  "Whether Kostas Tsimikas stays. He is back from loan and was in the Como squad, but a further exit would leave Kerkez without cover. Solio's 256 minutes is unchanged.",
+  "No transcript was obtained from The Anfield Wrap or The Anfield Index podcast. Both had directly relevant August episodes (including one specifically on picking the Newcastle XI), but they are audio-only behind their own players and no YouTube version was found; YouTube channel pages also failed to render video listings in this environment.",
+  "None of the pages or transcripts read contained text addressed to an AI or any attempt at instruction injection."
+ ]
+}

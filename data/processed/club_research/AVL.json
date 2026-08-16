@@ -1,0 +1,499 @@
+{
+  "club": "AVL",
+  "researched_at": "2026-08-16",
+  "sources": [
+    {
+      "name": "Unai Emery post-match press conference, UEFA Super Cup (full transcript)",
+      "type": "official",
+      "url": "https://www.youtube.com/watch?v=cdMxTfRaXL8",
+      "date": "2026-08-12",
+      "why_trusted": "Primary source: the manager in his own words, transcript pulled in full. He explains directly why Martinez, Watkins and Konsa were absent (post-World Cup rest, finished 19 July, given a further week off) and why Hemmings and Madjo started. No intermediary interpretation."
+    },
+    {
+      "name": "ESPN match centre - PSG 2-1 Aston Villa, UEFA Super Cup",
+      "type": "official",
+      "url": "https://www.espn.com/soccer/match/_/gameId/401873624/aston-villa-paris-saint-germain",
+      "date": "2026-08-12",
+      "why_trusted": "Confirmed lineup and substitution data for Villa's only competitive fixture of 2026/27 to date. Facts, not opinion: Bizot; Cash, Lindelof, Torres, Maatsen; Kamara, Gomes; McGinn, Buendia, Hemmings; Madjo, with Abraham, Bogarde, Alysson, Barkley and Mings used."
+    },
+    {
+      "name": "FotMob - Borussia Monchengladbach 2-1 Aston Villa",
+      "type": "official",
+      "url": "https://www.fotmob.com/matches/mgladbach-vs-aston-villa/3bka68",
+      "date": "2026-08-15",
+      "why_trusted": "Actual (not predicted) lineup for Villa's most recent match, eight days before the league opener. Records the 4-2-3-1 shape and Nedeljkovic starting at right-back."
+    },
+    {
+      "name": "My Old Man Said (Aston Villa site + podcast) - 'Is Aston Villa's midfield good enough for the Champions League?'",
+      "type": "podcast",
+      "url": "https://myoldmansaid.com/is-aston-villas-midfield-good-enough-for-the-champions-league/",
+      "date": "2026-08-09",
+      "why_trusted": "Long-running Villa-only fan site and podcast that covers the club daily. Directly addresses the exact question in this brief - how Gomes and Manzambi are meant to absorb the Tielemans and Rogers minutes - and flags Manzambi as injured since the World Cup with no pre-season minutes."
+    },
+    {
+      "name": "Talk Villa - Aston Villa injury news: McGinn and Garnacho boosts",
+      "type": "beat",
+      "url": "https://talk-villa.com/aston-villa-injury-news-john-mcginn-alejandro-garnacho-boost-psg/",
+      "date": "2026-08-11",
+      "why_trusted": "Villa-dedicated outlet tracking day-to-day training-ground availability. Confirms McGinn and Garnacho both back in group training on 11 August after pre-season knocks sustained against BG Pathum United."
+    },
+    {
+      "name": "Sports Illustrated - PSG vs Aston Villa UEFA Super Cup preview and team news",
+      "type": "beat",
+      "url": "https://www.si.com/soccer/psg-vs-aston-villa-uefa-super-cup-preview-predictions-lineups-8-12-26",
+      "date": "2026-08-12",
+      "why_trusted": "The most complete single injury/availability list found for this window: Manzambi (World Cup knee), Bailey (muscle), Onana (ACL), and Kamara fit again after a PCL tear that had kept him out since January. Also names the expected 4-2-3-1 with Garnacho on the left."
+    },
+    {
+      "name": "The Football Faithful (via Yahoo Sports) - Aston Villa predicted lineup and team news v Monchengladbach",
+      "type": "beat",
+      "url": "https://sports.yahoo.com/articles/aston-villa-predicted-lineup-team-051500703.html",
+      "date": "2026-08-15",
+      "why_trusted": "Most recent full team-news roundup found (one day before this research). Gives the specific timelines used here: Gomes out 2-4 weeks, Madjo out until at least September, both from the PSG match; Bailey and Manzambi close but not ready."
+    },
+    {
+      "name": "Fantasy Football Scout - FPL 2026/27 Aston Villa club preview",
+      "type": "beat",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/08/14/fpl-2026-27-aston-villa-best-players-set-piece-takers-predicted-xi-more",
+      "date": "2026-08-14",
+      "why_trusted": "Minutes-focused rather than narrative-focused, which is what this task needs. Source for the nine-month Onana ACL timeline and for the summary of the three starters lost (Rogers, Tielemans, Digne)."
+    },
+    {
+      "name": "Wikipedia - 2026-27 Aston Villa F.C. season",
+      "type": "official",
+      "url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Aston_Villa_F.C._season",
+      "date": "2026-08-16",
+      "why_trusted": "Used only for verifiable registry facts with dates and fees: the completed transfer ledger (Digne to PSG 9 Aug, Rogers to Chelsea 21 Jul, Tielemans to Man Utd 14 Jul, Malen to Roma 29 Jun, Gomes in 20 Jul, Manzambi in 17 Jul) and the loan-out list (Andres Garcia to Getafe, Iling-Junior to Bolton, Guessand to Crystal Palace)."
+    },
+    {
+      "name": "The Telegraph (via Yahoo Sports) - Emiliano Martinez's future in doubt as Villa move for Zion Suzuki",
+      "type": "beat",
+      "url": "https://sports.yahoo.com/articles/emiliano-martinez-future-doubt-villa-181518789.html",
+      "date": "2026-08-15",
+      "why_trusted": "National broadsheet reporting a concrete, dated club action (a submitted offer for Parma's Zion Suzuki) rather than agent chatter. Establishes the goalkeeper reinforcement risk."
+    },
+    {
+      "name": "GiveMeSport, quoting Fabrizio Romano - Wan-Bissaka to Aston Villa update",
+      "type": "beat",
+      "url": "https://www.givemesport.com/aston-villa-aaron-wan-bissaka-transfer-update-fabrizio-romano/",
+      "date": "2026-08-14",
+      "why_trusted": "Direct Romano quotes on Wan-Bissaka as a 'concrete target', and states the Matteo Ruggeri deal with Atletico Madrid is done to the medical stage. Romano's hit rate on advanced deals is the reason these are treated as reinforcement risk rather than speculation."
+    },
+    {
+      "name": "The Hard Tackle - Matteo Ruggeri set to join Aston Villa as deal verbally agreed",
+      "type": "beat",
+      "url": "https://thehardtackle.com/transfer-news/2026/08/12/matteo-ruggeri-set-to-join-aston-villa-as-deal-verbally-agreed/",
+      "date": "2026-08-12",
+      "why_trusted": "Corroborates the Ruggeri left-back deal (c.EUR 26.5m, personal terms agreed, medical booked) from a second outlet, and states the motive explicitly: Digne's sale left Maatsen as the only specialist left-back."
+    }
+  ],
+  "formation": "4-2-3-1",
+  "positions": [
+    {
+      "position": "GK",
+      "starter": "Emiliano Martinez",
+      "confidence": "likely",
+      "competition": ["Marco Bizot"],
+      "note": "Martinez is first choice when available but has not played a minute of 2026/27. He played to the World Cup final on 19 July and Emery gave him four weeks plus an extra week off; Bizot started both the Super Cup and the Monchengladbach friendly. Separately Villa have submitted an offer for Parma's Zion Suzuki and Juventus are monitoring Martinez, so the GK slot carries genuine exit risk. Emery insists the absences are rest, not transfer-related."
+    },
+    {
+      "position": "RB",
+      "starter": "Matty Cash",
+      "confidence": "likely",
+      "competition": ["Kosta Nedeljkovic", "Triston Rowe"],
+      "note": "Cash started the Super Cup and remains first choice. Andres Garcia's season-long loan to Getafe left the deputy slot open; Nedeljkovic returned from RB Leipzig and started at right-back against Monchengladbach, but Rangers want him on loan and Villa are pursuing Aaron Wan-Bissaka, so the backup role is unresolved."
+    },
+    {
+      "position": "CB",
+      "starter": "Ezri Konsa",
+      "confidence": "nailed",
+      "competition": ["Victor Lindelof", "Tyrone Mings", "Modou Keba Cisse"],
+      "note": "Konsa is the settled right-sided centre-back. He went to the World Cup third-place playoff with England on 19 July, was given four weeks off and returned to training in the week of 10 August, so he has had no pre-season and missed the Super Cup."
+    },
+    {
+      "position": "CB",
+      "starter": "Pau Torres",
+      "confidence": "likely",
+      "competition": ["Victor Lindelof", "Tyrone Mings"],
+      "note": "Torres started the Super Cup final and featured against Monchengladbach; he looks the left-sided partner. Lindelof started both August fixtures too, but partly because Konsa was away resting, so his August evidence is worth less than it looks."
+    },
+    {
+      "position": "LB",
+      "starter": "Ian Maatsen",
+      "confidence": "contested",
+      "competition": ["Matteo Ruggeri (deal agreed, unsigned)", "Lamare Bogarde", "Lino Sousa"],
+      "note": "Digne's sale to PSG on 9 August made Maatsen the only specialist left-back in the squad, which pushes his minutes up. But Villa have agreed terms with Atletico Madrid for Matteo Ruggeri (c.EUR 26.5m, medical stage as of 14 August) explicitly because of Digne's exit, which pushes them back down. Those two effects roughly cancel, which is why Maatsen is left on Solio's number rather than raised."
+    },
+    {
+      "position": "DM",
+      "starter": "Boubacar Kamara",
+      "confidence": "likely",
+      "competition": ["Lamare Bogarde", "Amadou Onana (out)"],
+      "note": "Kamara was out from January with a PCL tear, is fit again, started the Super Cup and played against Monchengladbach. With Tielemans sold and Onana's ACL ruling him out for nine months, the holding role is his to lose. The caveat is his own record: two serious knee injuries in three seasons."
+    },
+    {
+      "position": "CM",
+      "starter": "Joao Gomes",
+      "confidence": "likely",
+      "competition": ["Ross Barkley", "Johan Manzambi", "Lamare Bogarde"],
+      "note": "GBP 38m signing from Wolves, started the Super Cup alongside Kamara and was described as the intended partner in that double pivot. He picked up a calf/physical issue in that match and is out 2-4 weeks from 12 August, so he misses the Brighton opener and probably one or two more."
+    },
+    {
+      "position": "RW",
+      "starter": "John McGinn",
+      "confidence": "contested",
+      "competition": ["Emiliano Buendia", "Alysson", "Leon Bailey", "an unsigned winger"],
+      "note": "McGinn started right of the three behind the striker in the Super Cup and is Villa's captain. This is the least settled slot in the XI: Villa are actively pursuing one or two wingers before the 1 September deadline, Bailey is surplus and injured, and Guessand and Malen have both left."
+    },
+    {
+      "position": "AM",
+      "starter": "Emiliano Buendia",
+      "confidence": "likely",
+      "competition": ["Johan Manzambi", "George Hemmings", "Ross Barkley"],
+      "note": "Buendia started as the number 10 in the Super Cup and is the incumbent now that Rogers has gone to Chelsea. Manzambi (GBP 52m, Freiburg) is the medium-term answer here or at left-eight, but he has a World Cup knee injury and has not featured in pre-season. Buendia's ceiling is capped by his own substitution pattern - his minutes-per-start is only 67.8."
+    },
+    {
+      "position": "LW",
+      "starter": "Alejandro Garnacho",
+      "confidence": "likely",
+      "competition": ["George Hemmings", "Johan Manzambi", "an unsigned winger"],
+      "note": "Signed on a season-long loan from Chelsea with a conditional obligation to buy triggered by appearances, and explicitly recruited to replace Rogers's attacking output. He was expected to start the Super Cup but was withdrawn from the squad entirely under concussion protocols after a facial injury in Thailand on 4 August; he returned to group training on 11 August."
+    },
+    {
+      "position": "ST",
+      "starter": "Ollie Watkins",
+      "confidence": "nailed",
+      "competition": ["Tammy Abraham", "Brian Madjo"],
+      "note": "Watkins was rested for the Super Cup after England's World Cup run ended on 19 July and returned to training in the week of 10 August. Behind him the depth has thinned sharply - Malen sold to Roma, Guessand loaned to Crystal Palace, Madjo (17) injured until at least September - leaving Abraham as the only senior alternative. Villa are reported to want a marquee striker, which Watkins is said to be relaxed about."
+    }
+  ],
+  "player_deltas": [
+    {
+      "player": "Lucas Digne",
+      "code": 101188,
+      "solio_xmins": 1842,
+      "proposed_xmins": 0,
+      "delta": -1842,
+      "reason": "Left the club. Digne joined Paris Saint-Germain permanently for GBP 8.5m on 9 August 2026. Note the data artefact: his solio_xmins is exactly equal to his 2025/26 minutes and his pattern field is null, unlike every other player in the squad, so this is a back-filled prior-season figure rather than a Solio projection. Removing it is what reconciles Solio's 39,425 total with the club's real 37,620-minute budget.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Aston_Villa_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "high"
+    },
+    {
+      "player": "Amadou Onana",
+      "code": 449871,
+      "solio_xmins": 1285,
+      "proposed_xmins": 150,
+      "delta": -1135,
+      "reason": "Tore his cruciate ligament during the 2026 World Cup and is out for nine months, which puts a best-case return in late March 2027 with no match fitness behind it. Realistically a handful of late-season cameos, not 1,285 minutes.",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/08/14/fpl-2026-27-aston-villa-best-players-set-piece-takers-predicted-xi-more",
+      "source_date": "2026-08-14",
+      "confidence": "high"
+    },
+    {
+      "player": "Boubacar Kamara",
+      "code": 226944,
+      "solio_xmins": 1761,
+      "proposed_xmins": 2350,
+      "delta": 589,
+      "reason": "Solio flags him as 'fade (losing his place)', which the evidence contradicts. He was unavailable from January with a PCL tear, is now fit, started the Super Cup final in the double pivot and played against Monchengladbach. Tielemans has been sold, Onana is out for nine months and Manzambi is injured, so the holding role is his. Held below 2,500 because of his own two-serious-knee-injury history.",
+      "source_url": "https://www.si.com/soccer/psg-vs-aston-villa-uefa-super-cup-preview-predictions-lineups-8-12-26",
+      "source_date": "2026-08-12",
+      "confidence": "medium"
+    },
+    {
+      "player": "Alejandro Garnacho",
+      "code": 493105,
+      "solio_xmins": 1949,
+      "proposed_xmins": 2400,
+      "delta": 451,
+      "reason": "Recruited on a season-long loan from Chelsea specifically to replace Morgan Rogers's attacking output, with a conditional obligation to buy triggered by a set number of appearances - Villa are structurally incentivised to play him. He was in the projected Super Cup XI and only missed it under concussion protocol after a facial injury on 4 August; back in group training on 11 August, so available for the Brighton opener. Capped at 2,400 because his minutes-per-start is 68.2 (he gets substituted) and Villa may still add another winger.",
+      "source_url": "https://www.si.com/soccer/psg-vs-aston-villa-uefa-super-cup-preview-predictions-lineups-8-12-26",
+      "source_date": "2026-08-12",
+      "confidence": "medium"
+    },
+    {
+      "player": "Matty Cash",
+      "code": 199796,
+      "solio_xmins": 3342,
+      "proposed_xmins": 3000,
+      "delta": -342,
+      "reason": "Solio's 3,342 is 97.7% of every available minute, above his 3,016 in 2025/26 in a season with the same four-competition load. Nedeljkovic is back from RB Leipzig and started at right-back against Monchengladbach, and Villa are in concrete pursuit of Aaron Wan-Bissaka because Emery 'wants more certainty in the position'. Anchored to last season's actual rather than raised above it.",
+      "source_url": "https://www.givemesport.com/aston-villa-aaron-wan-bissaka-transfer-update-fabrizio-romano/",
+      "source_date": "2026-08-14",
+      "confidence": "medium"
+    },
+    {
+      "player": "Tammy Abraham",
+      "code": 173879,
+      "solio_xmins": 280,
+      "proposed_xmins": 600,
+      "delta": 320,
+      "reason": "The backup-striker depth chart has emptied out. Malen was sold to Roma on 29 June, Guessand has been loaned to Crystal Palace, and Madjo is injured until at least September, leaving Abraham as Villa's only senior alternative to Watkins. He came off the bench in the Super Cup and started against Monchengladbach. Held to 600 rather than higher because he left the Monchengladbach pitch after slipping awkwardly.",
+      "source_url": "https://sports.yahoo.com/articles/aston-villa-predicted-lineup-team-051500703.html",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Johan Manzambi",
+      "code": 614071,
+      "solio_xmins": 2069,
+      "proposed_xmins": 1750,
+      "delta": -319,
+      "reason": "Has a knee injury carried over from the World Cup, has not appeared in pre-season at all, and was still not ready for the 15 August friendly. A GBP 52m signing who will play a lot once fit, but he starts behind schedule, has no Premier League record and has to adapt to Emery's system from a standing start.",
+      "source_url": "https://www.si.com/soccer/psg-vs-aston-villa-uefa-super-cup-preview-predictions-lineups-8-12-26",
+      "source_date": "2026-08-12",
+      "confidence": "medium"
+    },
+    {
+      "player": "Joao Gomes",
+      "code": 448089,
+      "solio_xmins": 3067,
+      "proposed_xmins": 2770,
+      "delta": -297,
+      "reason": "Picked up a calf/physical issue in the Super Cup on 12 August and is sidelined for 2-4 weeks, so he misses the Brighton opener and probably the Arsenal and following fixtures, then needs a phased return. Roughly three games plus ramp-up.",
+      "source_url": "https://sports.yahoo.com/articles/aston-villa-predicted-lineup-team-051500703.html",
+      "source_date": "2026-08-15",
+      "confidence": "high"
+    },
+    {
+      "player": "Ezri Konsa",
+      "code": 199798,
+      "solio_xmins": 3340,
+      "proposed_xmins": 3050,
+      "delta": -290,
+      "reason": "Played to England's World Cup third-place playoff on 19 July, was given four weeks off by Emery plus an extra week, and only returned to training in the week of 10 August. No pre-season minutes, missed the Super Cup. Emery said explicitly he is managing the load of the World Cup returnees. Set close to his actual 3,035 from 2025/26 rather than above it.",
+      "source_url": "https://www.youtube.com/watch?v=cdMxTfRaXL8",
+      "source_date": "2026-08-12",
+      "confidence": "medium"
+    },
+    {
+      "player": "Emiliano Martinez",
+      "code": 98980,
+      "solio_xmins": 3385,
+      "proposed_xmins": 3100,
+      "delta": -285,
+      "reason": "Same post-World Cup rest as Konsa and Watkins (played to the final, given four weeks plus one), no pre-season minutes, and Bizot started both August fixtures. On top of that Villa have submitted an offer for Parma goalkeeper Zion Suzuki and Juventus are monitoring Martinez, so a mid-window exit is live. A modest hedge, not a call that he loses the shirt.",
+      "source_url": "https://sports.yahoo.com/articles/emiliano-martinez-future-doubt-villa-181518789.html",
+      "source_date": "2026-08-15",
+      "confidence": "low"
+    },
+    {
+      "player": "Marco Bizot",
+      "code": 72147,
+      "solio_xmins": 35,
+      "proposed_xmins": 320,
+      "delta": 285,
+      "reason": "The exact counterpart to the Martinez adjustment - the goalkeeper block still totals 3,420. Bizot started the UEFA Super Cup final and the Monchengladbach friendly, so he is a trusted deputy rather than an emergency option, and Martinez's late start plus exit speculation gives him a realistic path to a few league starts.",
+      "source_url": "https://www.espn.com/soccer/match/_/gameId/401873624/aston-villa-paris-saint-germain",
+      "source_date": "2026-08-12",
+      "confidence": "low"
+    },
+    {
+      "player": "Victor Lindelof",
+      "code": 184667,
+      "solio_xmins": 884,
+      "proposed_xmins": 1150,
+      "delta": 266,
+      "reason": "Solio flags 'fade (losing his place)', but Emery picked him to start the UEFA Super Cup final at centre-back and he started again against Monchengladbach. Raised only modestly because both those starts came while Konsa was away on post-World Cup rest, so they overstate his standing when the squad is whole.",
+      "source_url": "https://www.espn.com/soccer/match/_/gameId/401873624/aston-villa-paris-saint-germain",
+      "source_date": "2026-08-12",
+      "confidence": "medium"
+    },
+    {
+      "player": "Pau Torres",
+      "code": 244954,
+      "solio_xmins": 1955,
+      "proposed_xmins": 2200,
+      "delta": 245,
+      "reason": "Started the Super Cup final at centre-back and featured again against Monchengladbach; he looks the settled left-sided partner for Konsa rather than a rotation option, and Digne's departure removes another left-sided body from the back line.",
+      "source_url": "https://www.espn.com/soccer/match/_/gameId/401873624/aston-villa-paris-saint-germain",
+      "source_date": "2026-08-12",
+      "confidence": "medium"
+    },
+    {
+      "player": "Lamare Bogarde",
+      "code": 515597,
+      "solio_xmins": 272,
+      "proposed_xmins": 550,
+      "delta": 278,
+      "reason": "Solio's 272 is well below his 1,042 Premier League minutes in 2025/26 despite the squad around him thinning. He came on in the Super Cup and started against Monchengladbach at left-back, giving him two routes into the side - midfield cover with Onana out for nine months and Tielemans sold, and left-back cover behind Maatsen.",
+      "source_url": "https://www.fotmob.com/matches/mgladbach-vs-aston-villa/3bka68",
+      "source_date": "2026-08-15",
+      "confidence": "low"
+    },
+    {
+      "player": "Ross Barkley",
+      "code": 88894,
+      "solio_xmins": 670,
+      "proposed_xmins": 900,
+      "delta": 230,
+      "reason": "Came on in the Super Cup and started against Monchengladbach. Villa's central midfield has lost Tielemans permanently and Onana for nine months, with Gomes out 2-4 weeks and Manzambi not yet fit, so the experienced fourth/fifth option gets more of the early load than Solio's 'fade' flag implies.",
+      "source_url": "https://www.fotmob.com/matches/mgladbach-vs-aston-villa/3bka68",
+      "source_date": "2026-08-15",
+      "confidence": "low"
+    },
+    {
+      "player": "Kosta Nedeljkovic",
+      "code": 578545,
+      "solio_xmins": 0,
+      "proposed_xmins": 200,
+      "delta": 200,
+      "reason": "Solio has him at zero, but he is back from his RB Leipzig loan, is listed in the 2026/27 first-team squad, was in the Super Cup squad and started at right-back against Monchengladbach - and Andres Garcia's loan to Getafe left the deputy right-back slot vacant. Kept low because Rangers want him on loan and Villa are chasing Wan-Bissaka, either of which would take this back to zero.",
+      "source_url": "https://www.fotmob.com/matches/mgladbach-vs-aston-villa/3bka68",
+      "source_date": "2026-08-15",
+      "confidence": "low"
+    },
+    {
+      "player": "George Hemmings",
+      "code": 577285,
+      "solio_xmins": 19,
+      "proposed_xmins": 180,
+      "delta": 161,
+      "reason": "Started the UEFA Super Cup final at 19 and went close to an equaliser, then started against Monchengladbach. Emery discussed him at length post-match as a number ten being deliberately developed. Kept small: a showpiece start with the senior attackers absent is not a Premier League role, and he drops out once Garnacho and Manzambi are fit.",
+      "source_url": "https://www.youtube.com/watch?v=cdMxTfRaXL8",
+      "source_date": "2026-08-12",
+      "confidence": "low"
+    },
+    {
+      "player": "Brian Madjo",
+      "code": 690838,
+      "solio_xmins": 247,
+      "proposed_xmins": 100,
+      "delta": -147,
+      "reason": "The 17-year-old scored in the Super Cup and Emery rates him, but he picked up an injury late in that match and is out until at least September. Cut rather than removed because Emery is clearly willing to use him and the striker depth behind Watkins is thin.",
+      "source_url": "https://sports.yahoo.com/articles/aston-villa-predicted-lineup-team-051500703.html",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Tyrone Mings",
+      "code": 149484,
+      "solio_xmins": 1493,
+      "proposed_xmins": 1370,
+      "delta": -123,
+      "reason": "Small trim to keep the centre-back block near its physical ceiling. Mings is fit (used off the bench in the Super Cup, started against Monchengladbach) but is 33 and now sits in a five-man centre-back group after Villa signed Modou Keba Cisse from LASK on 15 June, with Lindelof starting ahead of him in August.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Aston_Villa_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "low"
+    },
+    {
+      "player": "Leon Bailey",
+      "code": 215711,
+      "solio_xmins": 111,
+      "proposed_xmins": 50,
+      "delta": -61,
+      "reason": "Out with a muscle injury and deemed surplus to requirements, with Villa actively trying to move him on before the 1 September deadline. Not zeroed because the move has stalled once already and he may still be at the club in September.",
+      "source_url": "https://www.si.com/soccer/psg-vs-aston-villa-uefa-super-cup-preview-predictions-lineups-8-12-26",
+      "source_date": "2026-08-12",
+      "confidence": "low"
+    }
+  ],
+  "budget_check": {
+    "solio_total": 39425,
+    "proposed_total": 37609,
+    "difference": -1816
+  },
+  "reinforcement_risk": [
+    {
+      "position": "LB",
+      "incumbent": "Ian Maatsen",
+      "note": "Villa have agreed a deal with Atletico Madrid for Italy left-back Matteo Ruggeri, around EUR 26.5m, personal terms settled and medical booked as of 14 August. Reported motive is precisely that Digne's sale left Maatsen as the only specialist left-back. This is the single largest unresolved risk in the allocation: if Ruggeri signs and starts, Maatsen's 3,004 is roughly 1,300-1,600 too high and those minutes go to a player who is not in the squad file at all. Maatsen was deliberately left on Solio's number rather than raised for the Digne exit, because these two effects offset.",
+      "source_url": "https://thehardtackle.com/transfer-news/2026/08/12/matteo-ruggeri-set-to-join-aston-villa-as-deal-verbally-agreed/"
+    },
+    {
+      "position": "GK",
+      "incumbent": "Emiliano Martinez",
+      "note": "Villa have submitted an offer for Parma's Zion Suzuki (reported around EUR 30-35m) and are optimistic of a deal, with Romano reporting Suzuki as one of three keepers considered in the event Martinez leaves. Juventus are monitoring Martinez, who is 33. If Martinez leaves, his 3,100 transfers to Suzuki (not in the squad file) with Bizot taking a share.",
+      "source_url": "https://sports.yahoo.com/articles/emiliano-martinez-future-doubt-villa-181518789.html"
+    },
+    {
+      "position": "RB",
+      "incumbent": "Matty Cash / Kosta Nedeljkovic",
+      "note": "Fabrizio Romano reports Aaron Wan-Bissaka is a concrete Villa target with contacts expected imminently, at a fee reported around GBP 25m. A fee that size is not paid for a bench role, so this threatens both Cash's share and Nedeljkovic's 200. Nedeljkovic separately has a Rangers loan approach.",
+      "source_url": "https://www.givemesport.com/aston-villa-aaron-wan-bissaka-transfer-update-fabrizio-romano/"
+    },
+    {
+      "position": "RW",
+      "incumbent": "John McGinn / Alejandro Garnacho",
+      "note": "Villa are prioritising one and possibly two wingers before the 1 September deadline, having lost Rogers, sold Malen and loaned out Guessand, with Bailey surplus. Reported enquiries include a EUR 35m Champions League winger and a rejected EUR 30m bid for Palmeiras' Allan. A signing would most likely take the right-sided slot currently filled by McGinn, and would cap Garnacho's proposed 2,400.",
+      "source_url": "https://readastonvilla.com/2026/08/03/aston-villa-make-enquiry-for-e35m-champions-league-winger/"
+    },
+    {
+      "position": "ST",
+      "incumbent": "Ollie Watkins",
+      "note": "Villa are reported to be putting plans in place for a marquee striker. Watkins is reported as having no intention of leaving and wanting to stay, so this is treated as a risk to his share rather than to his presence, and his Solio number was left unchanged. Weakest-sourced of the reinforcement risks - rumour-tier, not deal-tier.",
+      "source_url": "https://sports.yahoo.com/articles/ollie-watkins-stance-leaving-aston-121516674.html"
+    }
+  ],
+  "injuries": [
+    {
+      "player": "Amadou Onana",
+      "issue": "Torn cruciate ligament (ACL), sustained at the 2026 World Cup",
+      "expected_return": "Nine months out; best case late March 2027, effectively the whole season",
+      "beneficiary": "Boubacar Kamara primarily, with Ross Barkley and Lamare Bogarde taking depth minutes",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/08/14/fpl-2026-27-aston-villa-best-players-set-piece-takers-predicted-xi-more"
+    },
+    {
+      "player": "Joao Gomes",
+      "issue": "Calf / physical issue sustained in the UEFA Super Cup on 12 August",
+      "expected_return": "2-4 weeks from 12 August; misses the Brighton opener, likely back early-to-mid September",
+      "beneficiary": "Ross Barkley and Lamare Bogarde alongside Kamara for the opening fixtures",
+      "source_url": "https://sports.yahoo.com/articles/aston-villa-predicted-lineup-team-051500703.html"
+    },
+    {
+      "player": "Johan Manzambi",
+      "issue": "Knee injury carried over from the 2026 World Cup; no pre-season minutes at all",
+      "expected_return": "Described as close on 15 August but not ready; no firm date found",
+      "beneficiary": "Emiliano Buendia and George Hemmings in the number ten role",
+      "source_url": "https://www.si.com/soccer/psg-vs-aston-villa-uefa-super-cup-preview-predictions-lineups-8-12-26"
+    },
+    {
+      "player": "Alejandro Garnacho",
+      "issue": "Facial injury and concussion protocol after a collision against BG Pathum United on 4 August",
+      "expected_return": "Returned to group training 11 August; missed the Super Cup squad entirely but expected available for the 23 August opener",
+      "beneficiary": "George Hemmings deputised on the left in the Super Cup",
+      "source_url": "https://talk-villa.com/aston-villa-injury-news-john-mcginn-alejandro-garnacho-boost-psg/"
+    },
+    {
+      "player": "Brian Madjo",
+      "issue": "Injury sustained late in the UEFA Super Cup",
+      "expected_return": "Out until at least September",
+      "beneficiary": "Tammy Abraham",
+      "source_url": "https://sports.yahoo.com/articles/aston-villa-predicted-lineup-team-051500703.html"
+    },
+    {
+      "player": "Leon Bailey",
+      "issue": "Muscle injury; also deemed surplus to requirements",
+      "expected_return": "Described as close on 15 August; no firm date",
+      "beneficiary": "n/a - he was not in the XI regardless",
+      "source_url": "https://www.si.com/soccer/psg-vs-aston-villa-uefa-super-cup-preview-predictions-lineups-8-12-26"
+    },
+    {
+      "player": "Tammy Abraham",
+      "issue": "Slipped awkwardly and left the pitch early in the second half against Monchengladbach on 15 August; unconfirmed",
+      "expected_return": "Unknown - no follow-up report found as of 16 August",
+      "beneficiary": "Unknown; Villa have no other fit senior striker behind Watkins",
+      "source_url": "https://sports.yahoo.com/articles/aston-villa-predicted-lineup-team-051500703.html"
+    },
+    {
+      "player": "Boubacar Kamara",
+      "issue": "PCL tear, out from January 2026 - now resolved",
+      "expected_return": "Fit; started the UEFA Super Cup final on 12 August",
+      "beneficiary": "n/a - he is the beneficiary",
+      "source_url": "https://www.si.com/soccer/psg-vs-aston-villa-uefa-super-cup-preview-predictions-lineups-8-12-26"
+    }
+  ],
+  "unknowns": [
+    "BUDGET RULE CONFLICT - read before using this file. The brief requires proposed_total to land within 500 of solio_total, but Solio's AVL total is 39,425, which is 1,805 ABOVE the 37,620 minutes a club physically has. The entire discrepancy is Lucas Digne: his solio_xmins (1,842) is exactly equal to his 2025/26 minutes and his 'pattern' field is null, unlike every other player in the squad, so it is a back-filled prior-season number rather than a Solio projection for a player who joined PSG on 9 August. Solio's real allocation is 39,425 - 1,842 = 37,583, which does match the budget. This file therefore balances to the physical 37,620 (proposed_total 37,609, 11 minutes under) rather than to 39,425, because balancing to 39,425 would require inventing 1,805 minutes that do not exist. Every block is internally conserved: goalkeeper is exactly net zero, the defensive block is net -44 after Digne's removal, midfield is net -153 and forwards net +173.",
+    "The Matteo Ruggeri left-back deal is agreed but unsigned as of 16 August. If it completes, Maatsen's 3,004 is materially too high and roughly 1,300-1,600 minutes should move to a player who does not exist in the squad file. This was left in reinforcement_risk rather than baked into a delta, because the brief asks for unsigned arrivals to be handled there.",
+    "The right-hand side of the front three is the least evidenced position in the XI. McGinn started there in the Super Cup, but that was with Watkins, Konsa, Martinez and Garnacho all absent, and Villa are actively shopping for wingers. Treat the RW starter as genuinely open.",
+    "No source found giving a firm return date for Johan Manzambi, only 'close' as of 15 August. His 1,750 is the softest of the larger deltas.",
+    "No follow-up report found on Tammy Abraham's slip against Monchengladbach on 15 August. If it is serious, Villa have no fit senior striker behind Watkins and his 600 becomes wrong in either direction depending on severity.",
+    "Onana's exact injury date was not pinned down beyond 'during the World Cup' (roughly mid-June to mid-July 2026). The nine-month timeline is well sourced; the start point is inferred, so the 150 minutes assigned is a judgement about late-season cameos, not a sourced figure.",
+    "readastonvilla.com, the most prolific Villa-only outlet, returned HTTP 403 to every direct fetch attempt. Its headlines appeared in search results and informed the direction of several checks, but no article body from that site was read, so nothing here rests on it alone.",
+    "No Villa fan-podcast or YouTube transcript was obtained beyond Emery's own post-match press conference. Acast-hosted shows (My Old Man Said, Holtecast, Talk Villa) are not on YouTube in a form the transcript tool accepts, and YouTube channel listing pages did not render video IDs to the fetcher. Podcast episode descriptions were read instead and are cited as such.",
+    "Solio's 'pattern' flags disagree with the August evidence in three places: Kamara and Lindelof are flagged 'fade (losing his place)' but both started the Super Cup final, and Onana is flagged 'ramp-up' when he has a nine-month ACL. Worth checking whether those flags are stale across other clubs too.",
+    "Nothing on this page or in any transcript contained instructions addressed to an AI; no prompt-injection attempts were encountered."
+  ]
+}

@@ -1,0 +1,371 @@
+{
+  "club": "LEE",
+  "researched_at": "2026-08-16",
+  "sources": [
+    {
+      "name": "Leeds United official - Pre-Season Report: Leeds United 4-0 FC Augsburg",
+      "type": "official",
+      "url": "https://www.leedsunited.com/en/news/pre-season-report-leeds-united-4-0-fc-augsburg",
+      "date": "2026-08-15",
+      "why_trusted": "Club's own report of the final pre-season friendly, played six days before the season opener. Gives the verbatim starting XI, every substitution with its minute, and the unused subs. Farke was widely reported to have named his strongest available side as a dry run for Nottingham Forest, so this is the single best available proxy for the GW1 XI."
+    },
+    {
+      "name": "FPL bootstrap-static API",
+      "type": "official",
+      "url": "https://fantasy.premierleague.com/api/bootstrap-static/",
+      "date": "2026-08-16",
+      "why_trusted": "Authoritative for FPL status flags and dated injury/transfer news strings. Pulled today; it is fresher than the brief (it carries a Gruev knee flag added 2026-08-14 that the brief does not have)."
+    },
+    {
+      "name": "Wikipedia - 2026-27 Leeds United F.C. season",
+      "type": "beat",
+      "url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Leeds_United_F.C._season",
+      "date": "2026-08-16",
+      "why_trusted": "Dated transfer ledger (Wilson 8 Jul, Muharemovic 17 Jul, Trafford 6 Aug) plus the full pre-season results list. Used only to date and cross-check transfers against Transfermarkt and the FPL feed, not as a sole source."
+    },
+    {
+      "name": "Transfermarkt - Leeds United transfers 26/27",
+      "type": "beat",
+      "url": "https://www.transfermarkt.us/leeds-united/transfers/verein/399",
+      "date": "2026-08-16",
+      "why_trusted": "Independent transfer ledger; corroborates the Struijk, Gelhardt and Harrison departures and the three permanent arrivals."
+    },
+    {
+      "name": "The Leeds Press - Leeds dealt huge injury blow ahead of Nottingham Forest opener",
+      "type": "local press",
+      "url": "https://www.theleedspress.com/leeds-dealt-huge-injury-blow-ahead-of-nottingham-forest-premier-league-opener-52785",
+      "date": "2026-08-15",
+      "why_trusted": "Dated day-before-the-window-closes injury round-up naming Gnonto (hamstring, no timeline), Gudmundsson and Gruev."
+    },
+    {
+      "name": "The Leeds Press - Two doubts emerge as Leeds star set to return vs Augsburg",
+      "type": "local press",
+      "url": "https://www.theleedspress.com/two-doubts-emerge-as-leeds-star-set-to-return-for-elland-road-clash-vs-augsburg-52777",
+      "date": "2026-08-15",
+      "why_trusted": "Names Perri as absent because of his pending exit and Bornauw as likely to miss out with HSV closing in - both corroborated by the official Augsburg squad list."
+    },
+    {
+      "name": "Hayters TV - Farke on Leeds forward's fitness and defender's future",
+      "type": "beat",
+      "url": "https://hayters.com/farke-on-leeds-forwards-fitness-and-defenders-future/",
+      "date": "2026-08-13",
+      "why_trusted": "Direct Farke quotes from a press agency that covers the pre-match pressers: Okafor 'needs time to be there at full fitness' and a start at Forest 'comes too soon'; open discussions with Bornauw about his future."
+    },
+    {
+      "name": "The Leeds Press - Farke delivers transfer update after Leipzig game",
+      "type": "local press",
+      "url": "https://www.theleedspress.com/daniel-farke-delivers-massive-leeds-transfer-update-after-leipzig-game-52648/",
+      "date": "2026-08-08",
+      "why_trusted": "Farke: 'our business is not done yet', alongside Sky Sports reporting that Leeds want up to five more - backup GK, a fullback, two midfielders and a striker. This is the basis for the reinforcement-risk section."
+    },
+    {
+      "name": "MOT Leeds News - Predicted XI vs Augsburg",
+      "type": "local press",
+      "url": "https://motleedsnews.com/match/leeds-united-predicted-xi-vs-augsburg-noah-okafor-starts-but-jayden-bogle-misses-out",
+      "date": "2026-08-14",
+      "why_trusted": "Independent confirmation that the shape is 3-4-2-1 and a same-week read on the personnel questions. Its prediction was wrong in two places (it had Okafor and Gnonto starting), which is itself informative - the actual XI is the harder evidence."
+    },
+    {
+      "name": "Leeds All Over - No Julian Brandt means no 4-2-3-1 for Daniel Farke",
+      "type": "local press",
+      "url": "https://www.leedsallover.com/no-julian-brandt-means-no-4-2-3-1-for-daniel-farke-leeds-united/",
+      "date": "2026-08-02",
+      "why_trusted": "Explains why the summer's formation question resolved to the 3-4-2-1 Leeds ended last season with, after Brandt joined Ajax instead."
+    },
+    {
+      "name": "Yahoo Sports - Leeds United's next step after Julian Brandt decision",
+      "type": "beat",
+      "url": "https://uk.sports.yahoo.com/news/leeds-uniteds-next-step-julian-140450534.html",
+      "date": "2026-08-01",
+      "why_trusted": "Names the still-live targets - Igor Paixao (~GBP 30m winger), Shea Charles (midfield), Nico Elvedi (centre-back, fee reported agreed)."
+    },
+    {
+      "name": "Inside Futbol - Leeds United progress deal for experienced star (Nico Elvedi)",
+      "type": "beat",
+      "url": "https://insidefutbol.com/2026/08/15/leeds-united-progress-deal-for-experienced-star/723645/",
+      "date": "2026-08-15",
+      "why_trusted": "Most recent dated Elvedi update: personal terms agreed, club-to-club terms outstanding, and completion linked to whether Bornauw leaves."
+    },
+    {
+      "name": "The Leeds Press - Torino praised for sealing transfer of Lucas Perri",
+      "type": "local press",
+      "url": "https://www.theleedspress.com/leeds-united-star-hailed-ahead-of-imminent-elland-road-exit-we-are-talking-about-52704",
+      "date": "2026-08-11",
+      "why_trusted": "Sets out the Perri structure - loan with an option to buy, personal terms agreed, conditional on Trafford's arrival, medical delayed by a knock."
+    }
+  ],
+  "formation": "3-4-2-1",
+  "positions": [
+    {
+      "position": "GK",
+      "starter": "James Trafford",
+      "confidence": "nailed",
+      "competition": ["Lucas Perri (leaving on loan to Torino)"],
+      "note": "Confirmed. Club-record signing from Man City (reported GBP 40-45m, 6 Aug 2026), five-year deal, started the final pre-season friendly at Elland Road on 15 Aug. His arrival is the thing that unlocked Perri's exit to Torino, and Leeds are only shopping for a BACKUP keeper - Perri was not in the Augsburg squad, with Cairns and Mahady (youth) on the bench. Solio's 3385 is effectively every minute and the evidence supports it; the only risk is injury, and there is no credible No.2 behind him yet. No delta."
+    },
+    {
+      "position": "CB",
+      "starter": "Tarik Muharemovic",
+      "confidence": "nailed",
+      "competition": ["Sebastiaan Bornauw", "Nico Elvedi (unsigned)"],
+      "note": "GBP 34m / EUR 37m from Sassuolo on 17 Jul 2026 - Leeds' second-biggest outlay of the window. Started the last two friendlies and scored against Augsburg. Right side of the back three. No PL record, so his per-90 output is genuinely unknown, but his slot is not."
+    },
+    {
+      "position": "CB",
+      "starter": "Joe Rodon",
+      "confidence": "nailed",
+      "competition": ["Ethan Ampadu (can drop in)"],
+      "note": "Central of the back three, 2952 minutes last season, started the final friendly. Undisputed."
+    },
+    {
+      "position": "CB",
+      "starter": "Jaka Bijol",
+      "confidence": "likely",
+      "competition": ["Sebastiaan Bornauw", "Ethan Ampadu", "Nico Elvedi (unsigned)"],
+      "note": "Third slot in the back three. Pascal Struijk - who shared this slot with him all of last season - was sold to Brighton this summer, and Bornauw is being courted by HSV. Bijol started the final friendly. This is where I most disagree with Solio (see deltas). The offsetting risk is Elvedi, whose fee is reported agreed."
+    },
+    {
+      "position": "RB",
+      "starter": "Jayden Bogle",
+      "confidence": "likely",
+      "competition": ["James Justin"],
+      "note": "Right wing-back. Started the Augsburg friendly after a poor first half against Man Utd had some local press predicting he would be dropped for Justin. Genuine rotation risk with Justin, but Justin is currently pinned to the left by Gudmundsson's injury."
+    },
+    {
+      "position": "LB",
+      "starter": "Gabriel Gudmundsson",
+      "confidence": "contested",
+      "competition": ["James Justin", "Wilfried Gnonto (injured)", "unnamed new signing"],
+      "note": "Left wing-back. Injured (hamstring, picked up in the 4-2 friendly win over Liverpool on 2 Aug); FPL says back 30 Aug, local press on 15 Aug says he is likely to miss the Forest opener. James Justin has deputised at LWB in both August friendlies and did the same job repeatedly last season. Leeds accelerated a left-back search after the injury, and Chelsea interest in Gudmundsson has been reported though he appears set to stay."
+    },
+    {
+      "position": "DM",
+      "starter": "Ethan Ampadu",
+      "confidence": "nailed",
+      "competition": ["Ilia Gruev (injured)", "Sean Longstaff"],
+      "note": "Captain, 3119 minutes last season, started and wore the armband against Augsburg. Also Farke's emergency third centre-back, which is why his FPL-MID minutes can exceed what a pure midfield slot would allow."
+    },
+    {
+      "position": "CM",
+      "starter": "Anton Stach",
+      "confidence": "likely",
+      "competition": ["Ao Tanaka", "Sean Longstaff", "Ilia Gruev (injured)"],
+      "note": "Started and scored inside a minute against Augsburg. Tanaka was reported not to have impressed in pre-season and Gruev is a long-term absentee, so the depth behind Stach is thin - but Sky reported Leeds want two more midfielders before deadline day."
+    },
+    {
+      "position": "AM",
+      "starter": "Harry Wilson",
+      "confidence": "likely",
+      "competition": ["Brenden Aaronson", "Daniel James", "Igor Paixao (unsigned)"],
+      "note": "The brief flagged him as the biggest uncertainty and the answer is: he is a starter, on the RIGHT of the two No.10s in the 3-4-2-1, not as an orthodox winger. Free from Fulham 8 Jul 2026, four-year deal, 10 goals and 7 assists in the PL last season. Started the final friendly and played 68 minutes. One caveat worth carrying into any output projection: local analysis before the Brandt collapse questioned whether a left-footed wide forward is the profile Farke actually wants in that slot, and he was used as a central No.10 on his debut against Wrexham. His role is a starter's role; the exact zone he occupies is less settled. Solio's 2810 (82% of a season) is a reasonable starter's number - no delta."
+    },
+    {
+      "position": "AM",
+      "starter": "Brenden Aaronson",
+      "confidence": "contested",
+      "competition": ["Noah Okafor", "Daniel James", "Wilfried Gnonto (injured)", "Igor Paixao (unsigned)"],
+      "note": "The left-hand No.10 slot is genuinely contested and this is my second big disagreement with Solio. Okafor is the more highly rated option and was the presumed starter, but he took an extended break after Switzerland's World Cup quarter-final run, only got his first pre-season minutes as a half-time sub on 12 Aug, and Farke said on 13 Aug that 'a start at Nottingham comes too soon'. Aaronson started the final friendly in Farke's strongest available XI, has 2 goals and 1 assist from three pre-season outings, and played 2449 minutes last season. Gnonto (the other cover) has a hamstring injury with no timeline."
+    },
+    {
+      "position": "ST",
+      "starter": "Dominic Calvert-Lewin",
+      "confidence": "nailed",
+      "competition": ["Lukas Nmecha", "Joel Piroe (expected to leave)", "Mateo Joseph (injured)"],
+      "note": "2721 minutes last season, started both August friendlies, 25.6% FPL ownership. Nmecha is the established backup (replaced him at 67' vs Augsburg). Leeds are shopping for a backup striker, which threatens Nmecha's 268 minutes rather than DCL's. No delta."
+    }
+  ],
+  "player_deltas": [
+    {
+      "player": "Jack Harrison",
+      "code": 221399,
+      "solio_xmins": 262,
+      "proposed_xmins": 0,
+      "delta": -262,
+      "reason": "Sold. Permanent transfer to New England Revolution - FPL flagged him status 'u' with the news string 'Has joined New England Revolution permanently' added 2026-07-28, and both Transfermarkt and the Wikipedia season page list him under departures. He cannot play a Premier League minute for Leeds in 2026/27. This is the Chelsea-style stale-departure case the brief asked me to look for.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Leeds_United_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "high"
+    },
+    {
+      "player": "Brenden Aaronson",
+      "code": 427637,
+      "solio_xmins": 1035,
+      "proposed_xmins": 1620,
+      "delta": 585,
+      "reason": "Solio has him at 42% of last season's 2449 minutes, which inverts the current evidence. He started the final pre-season friendly (15 Aug) as one of the two No.10s in what Farke picked as his strongest available XI, six days before the opener, with 2 goals and 1 assist from three pre-season appearances. His direct competitor Okafor is short of match fitness by Farke's own admission and the other cover, Gnonto, has an untimed hamstring injury. I have deliberately NOT taken him all the way back to last season's level, because Okafor should regain fitness within a few weeks and Leeds are still hunting a wide forward (Paixao) before the 1 Sep deadline.",
+      "source_url": "https://www.leedsunited.com/en/news/pre-season-report-leeds-united-4-0-fc-augsburg",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Jaka Bijol",
+      "code": 434752,
+      "solio_xmins": 2046,
+      "proposed_xmins": 2500,
+      "delta": 454,
+      "reason": "Solio appears to be carrying forward last season's 1888 minutes, which were suppressed by rotation with Pascal Struijk. Struijk has been sold to Brighton (Transfermarkt: EUR 23.2m; Wikipedia: GBP 15m), removing a direct competitor for the third centre-back slot. Bijol started the final friendly in the back three alongside Rodon and Muharemovic, and the only other senior centre-back, Bornauw, is being courted by HSV. Held back from a full starter's allocation because Elvedi's arrival is reported close.",
+      "source_url": "https://www.transfermarkt.us/leeds-united/transfers/verein/399",
+      "source_date": "2026-08-16",
+      "confidence": "medium"
+    },
+    {
+      "player": "Noah Okafor",
+      "code": 435997,
+      "solio_xmins": 2229,
+      "proposed_xmins": 1900,
+      "delta": -329,
+      "reason": "Fitness deficit at the start of the season. Okafor was given an extended summer break after Switzerland's run to the World Cup quarter-finals, reported back late, and got his first pre-season minutes as a half-time substitute on 12 Aug. Farke on 13 Aug: he 'needs time to be there at full fitness', 'it's important he has a proper pre-season' and 'a start at Nottingham comes too soon'. He came off the bench rather than starting the 15 Aug dress rehearsal. He also only managed 1553 minutes last season. The cut is modest because he should be the preferred option once fit.",
+      "source_url": "https://hayters.com/farke-on-leeds-forwards-fitness-and-defenders-future/",
+      "source_date": "2026-08-13",
+      "confidence": "medium"
+    },
+    {
+      "player": "Ilia Gruev",
+      "code": 486520,
+      "solio_xmins": 502,
+      "proposed_xmins": 220,
+      "delta": -282,
+      "reason": "Newly flagged and the brief's data is stale here: the FPL feed carries 'Knee injury - Unknown return date' added 2026-08-14, whereas the brief has him as status 'a' with no news. This is a meniscus injury sustained in training in April 2026 that ended his season, his second serious knee problem at Leeds. He was described as a long-term absentee in the 14-15 Aug injury round-ups and is behind Ampadu, Stach, Tanaka and Longstaff in a two-man midfield.",
+      "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/",
+      "source_date": "2026-08-14",
+      "confidence": "medium"
+    },
+    {
+      "player": "Gabriel Gudmundsson",
+      "code": 243526,
+      "solio_xmins": 2770,
+      "proposed_xmins": 2500,
+      "delta": -270,
+      "reason": "Hamstring injury sustained in the 4-2 friendly win over Liverpool on 2 Aug. FPL says back 30 Aug (so GW1 out, GW2 borderline) and local press on 15 Aug said he is 'out for an extended period and likely to miss the season opener'. James Justin has covered at left wing-back in both August friendlies. Solio's 2770 is 81% of a full season, which leaves too little room for a hamstring that has already cost him the start of the campaign plus the reported acceleration of Leeds' left-back search.",
+      "source_url": "https://www.theleedspress.com/leeds-dealt-huge-injury-blow-ahead-of-nottingham-forest-premier-league-opener-52785",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Sebastiaan Bornauw",
+      "code": 437738,
+      "solio_xmins": 345,
+      "proposed_xmins": 150,
+      "delta": -195,
+      "reason": "Likely departure. He was an unused substitute in the final friendly, local press on 15 Aug reported HSV 'closing in on a deal', and Farke confirmed on 13 Aug that Leeds are 'in very open, honest discussions also with him' about his future while saying 'I could live very, very good if he stays'. Separately, the Nico Elvedi deal is reported to be contingent on Bornauw leaving. Cut only partway rather than to zero because Farke has publicly said he would be happy to keep him and nothing is signed.",
+      "source_url": "https://hayters.com/farke-on-leeds-forwards-fitness-and-defenders-future/",
+      "source_date": "2026-08-13",
+      "confidence": "low"
+    },
+    {
+      "player": "Wilfried Gnonto",
+      "code": 492859,
+      "solio_xmins": 120,
+      "proposed_xmins": 60,
+      "delta": -60,
+      "reason": "Hamstring injury with no return timeframe, reported 15 Aug, expected to miss the Nottingham Forest opener. Not carried by the FPL feed yet, so this is another item the brief's data misses. Small absolute change - Solio already had him near zero.",
+      "source_url": "https://www.theleedspress.com/leeds-dealt-huge-injury-blow-ahead-of-nottingham-forest-premier-league-opener-52785",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Lucas Perri",
+      "code": 201595,
+      "solio_xmins": 35,
+      "proposed_xmins": 0,
+      "delta": -35,
+      "reason": "Leaving. Season-long loan to Torino with an option to buy (reported around EUR 11m / GBP 9.4m), personal terms agreed and conditional only on Trafford's arrival, which completed on 6 Aug. He was left out of the Augsburg squad entirely on 15 Aug with his pending transfer given as the reason - the two goalkeepers on the bench were youth players. Not yet reflected in the FPL feed, which still lists him as available.",
+      "source_url": "https://www.theleedspress.com/leeds-united-star-hailed-ahead-of-imminent-elland-road-exit-we-are-talking-about-52704",
+      "source_date": "2026-08-11",
+      "confidence": "medium"
+    }
+  ],
+  "budget_check": {
+    "solio_total": 37821,
+    "proposed_total": 37427,
+    "difference": -193
+  },
+  "reinforcement_risk": [
+    {
+      "position": "LB",
+      "incumbent": "Gabriel Gudmundsson / James Justin",
+      "note": "Sky Sports reported on 8 Aug that Leeds want up to five more signings, a fullback among them, and the left-back search was explicitly accelerated after Gudmundsson's hamstring injury. Names floated include Daniel Svensson, Zaidu Sanusi, Konstantinos Tsimikas and Luca Netz. A signing here would cut into Justin's cover minutes first, and Gudmundsson's second.",
+      "source_url": "https://www.theleedspress.com/daniel-farke-delivers-massive-leeds-transfer-update-after-leipzig-game-52648/"
+    },
+    {
+      "position": "CB",
+      "incumbent": "Jaka Bijol / Sebastiaan Bornauw",
+      "note": "Nico Elvedi (Borussia Monchengladbach): personal terms agreed to 2029, fee reported agreed at around EUR 10m plus a 15% sell-on, and Gladbach left him out of a friendly to protect the deal. Completion is linked to Bornauw departing. If Elvedi arrives he is an experienced international who would compete directly for the third centre-back slot - this is the main downside risk to my Bijol increase.",
+      "source_url": "https://insidefutbol.com/2026/08/15/leeds-united-progress-deal-for-experienced-star/723645/"
+    },
+    {
+      "position": "LW",
+      "incumbent": "Noah Okafor / Brenden Aaronson",
+      "note": "After losing Julian Brandt to Ajax, Leeds pivoted to a 'pacy, direct left-winger' profile. Igor Paixao (Marseille, around GBP 30m) is the named target and Rafael Leao has also been linked. A signing here is the main downside risk to my Aaronson increase.",
+      "source_url": "https://uk.sports.yahoo.com/news/leeds-uniteds-next-step-julian-140450534.html"
+    },
+    {
+      "position": "CM",
+      "incumbent": "Ao Tanaka / Sean Longstaff",
+      "note": "Two midfielders are on the reported shopping list. Shea Charles (Southampton) is the live name - Leeds' reported 'final offer' of around GBP 23m plus add-ons against a GBP 30m valuation. Would squeeze the 662/452/220 minutes currently sitting with Tanaka, Longstaff and Gruev.",
+      "source_url": "https://uk.sports.yahoo.com/news/leeds-uniteds-next-step-julian-140450534.html"
+    },
+    {
+      "position": "ST",
+      "incumbent": "Lukas Nmecha",
+      "note": "A backup striker is on the list, and Joel Piroe is widely expected to be sold. This threatens Nmecha's 268 minutes rather than Calvert-Lewin's starting role. Solio already has Piroe at 15, so no delta was needed there.",
+      "source_url": "https://www.theleedspress.com/daniel-farke-delivers-massive-leeds-transfer-update-after-leipzig-game-52648/"
+    },
+    {
+      "position": "GK",
+      "incumbent": "James Trafford",
+      "note": "With Perri gone to Torino, Leeds have no senior No.2 - only youth keepers (Cairns, Mahady) were on the Augsburg bench, and a backup goalkeeper is top of the reported shopping list. A deputy arriving does not threaten Trafford's minutes; it just means the 35 minutes Solio gave Perri belong to a player not yet in the dataset.",
+      "source_url": "https://www.theleedspress.com/daniel-farke-delivers-massive-leeds-transfer-update-after-leipzig-game-52648/"
+    }
+  ],
+  "injuries": [
+    {
+      "player": "Gabriel Gudmundsson",
+      "issue": "Hamstring, sustained in the 4-2 friendly win over Liverpool on 2 Aug 2026",
+      "expected_return": "FPL says 30 Aug; local press on 15 Aug expected him to miss the Nottingham Forest opener on 22 Aug",
+      "beneficiary": "James Justin (started at left wing-back in both August friendlies)",
+      "source_url": "https://www.theleedspress.com/leeds-dealt-huge-injury-blow-ahead-of-nottingham-forest-premier-league-opener-52785"
+    },
+    {
+      "player": "Ilia Gruev",
+      "issue": "Knee (meniscus injury in training in April 2026 that ended his 2025/26 season; his second serious knee injury at Leeds)",
+      "expected_return": "Unknown - FPL flagged 'Unknown return date' on 2026-08-14; described as 'progressing well' but 'yet to be ready for action' on 15 Aug",
+      "beneficiary": "Ao Tanaka and Sean Longstaff as midfield cover behind Ampadu and Stach",
+      "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+    },
+    {
+      "player": "Wilfried Gnonto",
+      "issue": "Hamstring",
+      "expected_return": "Unknown - no timeframe given; expected to miss the season opener",
+      "beneficiary": "Daniel James and Brenden Aaronson in the wide/No.10 areas",
+      "source_url": "https://www.theleedspress.com/leeds-dealt-huge-injury-blow-ahead-of-nottingham-forest-premier-league-opener-52785"
+    },
+    {
+      "player": "Mateo Joseph Fernandez-Regatillo",
+      "issue": "Knee",
+      "expected_return": "Unknown - FPL flag added 2026-07-29, no return date",
+      "beneficiary": "Lukas Nmecha as backup striker; no delta needed, Solio already has him at 0",
+      "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+    },
+    {
+      "player": "Noah Okafor",
+      "issue": "Not an injury - a fitness deficit after an extended post-World Cup break; first pre-season minutes came as a half-time sub on 12 Aug",
+      "expected_return": "Available but not ready to start; Farke said on 13 Aug that a start at Nottingham Forest 'comes too soon'",
+      "beneficiary": "Brenden Aaronson",
+      "source_url": "https://hayters.com/farke-on-leeds-forwards-fitness-and-defenders-future/"
+    }
+  ],
+  "unknowns": [
+    "The transfer window does not shut until 1 September 2026 and Sky reported Leeds want up to five more players (backup GK, fullback, two midfielders, striker). Every delta below the top four is exposed to that; I would treat the whole LEE allocation as less settled than a club that has finished its business.",
+    "The Nico Elvedi centre-back deal (personal terms agreed, fee reported agreed, contingent on Bornauw's exit) is the single biggest unresolved item. If it lands, my +454 on Bijol is probably too generous and Bornauw goes to 0 rather than 150.",
+    "Whether Farke keeps the 3-4-2-1 all season. He ended 2025/26 with it and reverted to it once Brandt joined Ajax, but he was openly considering a possession-based back four in July. A switch to 4-2-3-1 would move roughly 3400 minutes from the FPL-DEF pool into the MID pool and change who the wing-backs are.",
+    "Gruev's and Gnonto's return dates are both genuinely unknown - neither the club nor FPL has given one. My cuts are judgement calls sized to the seniority of each player's role, not to a stated timeline.",
+    "Daniel James (Solio 429) may be light. He started the Man Utd friendly, was described as having had a solid pre-season, and came on against Augsburg, and with Gnonto injured and Okafor unfit he is the immediate wide cover. I found no source that would let me size a change, so I left him alone rather than guess.",
+    "Harry Wilson's exact zone. He is a starter - that much is firm - but pre-Brandt analysis questioned whether a left-footed wide forward is the profile Farke wants in the right-sided No.10 slot, and he played centrally on his Wrexham debut. This matters more for his attacking-output projection than his minutes, which I left at Solio's 2810.",
+    "Chelsea interest in Gabriel Gudmundsson (reported around GBP 17m as a Cucurella replacement) was reported this summer; the most recent reporting says he is set to stay, but it is not fully dead before deadline day.",
+    "Joel Piroe is widely expected to be sold and Sebastiaan Bornauw is linked to HSV; neither is confirmed. Piroe needed no delta because Solio already has him at 15.",
+    "Proposed total lands 193 minutes under the 37,620 budget. That gap is deliberate rather than an error: Leeds are expected to add several players who have no FPL code yet, and those minutes have to come from somewhere in this squad.",
+    "Fantasy Football Hub's Leeds 2026/27 preview (4 Aug) is paywalled and the Yorkshire Evening Post returned HTTP 403 to every fetch attempt, including their own confirmed-XI and injury round-up pieces. I worked around the YEP by using the club's official match report for the line-up and The Leeds Press / Hayters for the injury and Farke quotes, but the YEP's tactical detail is a genuine gap in this research.",
+    "No page I read contained text addressed to an AI or any attempt to give instructions; all sources were treated as data."
+  ]
+}

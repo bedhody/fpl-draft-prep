@@ -1,0 +1,385 @@
+{
+ "club": "CHE",
+ "researched_at": "2026-08-16",
+ "sources": [
+  {
+   "name": "Last Word on Football - Alex Richards, 'Chelsea Confirmed Lineup vs Real Sociedad'",
+   "type": "beat",
+   "url": "https://lastwordonsports.com/football/2026/08/15/chelsea-confirmed-lineup-real-sociedad/",
+   "date": "2026-08-15",
+   "why_trusted": "The only outlet found that tracked and published every Chelsea matchday squad through the whole pre-season tour (Juventus, Milan, Johor, Real Sociedad) rather than writing generic predicted XIs. This piece is the confirmed team sheet plus the full bench for the final friendly, the day before the research date, and the writer states it is likely the strongest XI for the league opener."
+  },
+  {
+   "name": "Last Word on Football - Alex Richards, 'Chelsea Unwanted List Following Final Pre-Season Friendly'",
+   "type": "beat",
+   "url": "https://lastwordonsports.com/football/2026/08/15/chelsea-unwanted-list/",
+   "date": "2026-08-15",
+   "why_trusted": "Same writer, published the same day, working backwards from who was and was not in the matchday squad rather than from rumour. Directly answers the 'registered versus actually in the squad' question the brief flags for Chelsea."
+  },
+  {
+   "name": "Last Word on Football - Alex Richards, 'Current Projected Chelsea Squad for 2026/27'",
+   "type": "beat",
+   "url": "https://lastwordonsports.com/football/2026/08/12/projected-chelsea-squad-for-2627-august12/",
+   "date": "2026-08-12",
+   "why_trusted": "Position-by-position read of who survived the tour, including pairings actually used in the pivot and the back line. Same daily-coverage writer; useful as a three-day-earlier cross-check on the 15 August pieces."
+  },
+  {
+   "name": "Fantasy Premier League official bootstrap API",
+   "type": "official",
+   "url": "https://fantasy.premierleague.com/api/bootstrap-static/",
+   "date": "2026-08-16",
+   "why_trusted": "The game's own availability data, pulled live on the research date. Carries timestamped status flags and news strings, which is what confirmed Chalobah (2026-08-10) and Jorgensen (2026-08-12) as gone and Fofana as suspended (2026-07-23)."
+  },
+  {
+   "name": "Wikipedia - 2026-27 Chelsea F.C. season",
+   "type": "official",
+   "url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Chelsea_F.C._season",
+   "date": "2026-08-14",
+   "why_trusted": "Not a source of judgement, but a dated and individually referenced transfer ledger plus a squad-number list updated 14 August 2026. Used only for hard facts: confirmed ins/outs/loans, no European competition this season, and which players currently hold squad numbers."
+  },
+  {
+   "name": "Chelsea FC official site - 'Summer transfers 2026: All the Chelsea ins, outs and new contracts so far'",
+   "type": "official",
+   "url": "https://www.chelseafc.com/en/news/article/summer-transfers-2026-all-the-chelsea-ins-outs-and-new-contracts-so-far",
+   "date": "2026-08-16",
+   "why_trusted": "The club's own running ledger; used to corroborate the Wikipedia transfer table."
+  },
+  {
+   "name": "FootballTransfers - Cameron Smith, 'Enzo, Jackson and 20 players who could leave before Deadline Day'",
+   "type": "beat",
+   "url": "https://www.footballtransfers.com/en/transfer-news/uk-premier-league/2026/08/chelsea-transfer-news-deadline-day-2026-summer-window-sales-loans-enzo-fernandez-nicolas-jackson",
+   "date": "2026-08-06",
+   "why_trusted": "Player-by-player exit list with an explicit likelihood rating for each, which is more falsifiable than the usual rumour aggregation. Its 'Very High' calls (Jorgensen, Chalobah, Badiashile) have all since been confirmed, which is a reasonable calibration check on its 'Low' calls (Enzo, Neto, Jackson)."
+  },
+  {
+   "name": "The Chelsea Chronicle - columnist, 'Reece James' role in Chelsea team has become much clearer after pre-season tour'",
+   "type": "beat",
+   "url": "https://www.thechelseachronicle.com/columnist/reece-james-role-in-chelsea-team-has-become-much-clearer-after-pre-season-tour/",
+   "date": "2026-08-16",
+   "why_trusted": "Chelsea-dedicated site; the only piece found that works through where James actually fits once Palestra is signed and a back three is in use, including the hamstring-load argument for playing him at right centre-back rather than wing-back."
+  },
+  {
+   "name": "OneFootball / Absolute Chelsea - Alonso fitness quotes on Colwill, Lavia and Palmer",
+   "type": "beat",
+   "url": "https://onefootball.com/en/news/colwill-lavia-palmer-latest-chelsea-fitness-news-as-xabi-alonso-reveals-block-43248850",
+   "date": "2026-08-08",
+   "why_trusted": "Carries direct Alonso quotes from the tour rather than paraphrase, including his explanation for leaving Palmer and Colwill out of friendlies (workload management, not injury)."
+  },
+  {
+   "name": "Yahoo Sports - 'Chelsea projected lineup 2026-27'",
+   "type": "beat",
+   "url": "https://sports.yahoo.com/articles/chelsea-projected-lineup-2026-27-062001630.html",
+   "date": "2026-08-13",
+   "why_trusted": "Used only as a second opinion on the shape and on who is nailed. Its predicted XI for the Real Sociedad friendly was wrong (it named Chalobah, who had already been sold), so it is treated as corroboration, never as primary evidence."
+  },
+  {
+   "name": "Planet Football - Samuel Bannister, 'Chelsea's dream 26-27 XI under Alonso'",
+   "type": "beat",
+   "url": "https://www.planetfootball.com/chelsea/predicting-xabi-alonso-chelsea-lineup-2026-27",
+   "date": "2026-08-12",
+   "why_trusted": "Independent predicted XI used as a disagreement check. It picks Chavarria at left wing-back where the confirmed team sheet used Neto, which is the honest reason that position is marked contested rather than resolved."
+  }
+ ],
+ "formation": "3-4-2-1 (back three with wing-backs), with a 4-2-3-1 alternative; Alonso has publicly said the side will be flexible and used both during pre-season",
+ "positions": [
+  {
+   "position": "GK",
+   "starter": "Robert Sánchez",
+   "confidence": "nailed",
+   "competition": [
+    "Mike Penders",
+    "Gabriel Slonina",
+    "Teddy Sharman-Lowe"
+   ],
+   "note": "Started every meaningful pre-season fixture. Jorgensen, the only real challenger, has gone to Strasbourg on loan; the remaining three are a 21-year-old, a 22-year-old and a homegrown-quota third choice."
+  },
+  {
+   "position": "RB",
+   "starter": "Marco Palestra",
+   "confidence": "likely",
+   "competition": [
+    "Malo Gusto",
+    "Reece James",
+    "Geovany Quenda"
+   ],
+   "note": "Right wing-back in the back three. GBP 43m first signing of the Alonso era, started the final friendly there. Caveats: 21, no Premier League experience, and used at left wing-back against Milan, so he is not tied to one flank. Gusto is the direct backup and has been linked away (PSG, Man City), rated 'Low' likelihood."
+  },
+  {
+   "position": "CB",
+   "starter": "Levi Colwill",
+   "confidence": "likely",
+   "competition": [
+    "Jorrel Hato",
+    "Josh Acheampong",
+    "Tosin Adarabioyo",
+    "Mamadou Sarr",
+    "Aarón Anselmino"
+   ],
+   "note": "Left-sided centre-back, started the final friendly. Played only 225 league minutes in 2025/26 following an ACL injury, and Alonso rested him early in the tour as deliberate workload management, so a full 2,576 minutes assumes an uninterrupted return."
+  },
+  {
+   "position": "CB",
+   "starter": "Maxence Lacroix",
+   "confidence": "likely",
+   "competition": [
+    "Jorrel Hato",
+    "Josh Acheampong",
+    "Tosin Adarabioyo"
+   ],
+   "note": "GBP 52m signing from Crystal Palace, 30 July. Made his debut in the final friendly after a late World Cup return. Played 3,085 league minutes last season and has a good availability record, which is part of why Chelsea bought him."
+  },
+  {
+   "position": "CB",
+   "starter": "Wesley Fofana",
+   "confidence": "contested",
+   "competition": [
+    "Reece James",
+    "Josh Acheampong",
+    "Jorrel Hato"
+   ],
+   "note": "Started the final friendly in the middle of the back three, but the official FPL game lists him suspended until 6 September, which covers the Fulham (24 Aug) and Brighton (30 Aug) league games. Career availability is poor: 72 Chelsea appearances in four seasons. Reece James is the most likely stand-in on the right of the three, per The Chelsea Chronicle."
+  },
+  {
+   "position": "LB",
+   "starter": "Pedro Neto",
+   "confidence": "contested",
+   "competition": [
+    "Pep Chavarría",
+    "Jorrel Hato",
+    "Jamie Gittens",
+    "Malo Gusto"
+   ],
+   "note": "Genuinely unresolved. Neto started the final friendly at left wing-back, but Planet Football's predicted XI picks new signing Chavarria (GBP 16.3m from Rayo Vallecano, signed 12 Aug as the Cucurella replacement) and Hato can play there too. Neto also has a reported formal offer from Manchester City hanging over him. Solio's 1,773 sits between a starter's and a rotation player's allocation, which is a defensible place to sit given the evidence."
+  },
+  {
+   "position": "DM",
+   "starter": "Moisés Caicedo",
+   "confidence": "nailed",
+   "competition": [
+    "Roméo Lavia",
+    "Dário Essugo"
+   ],
+   "note": "Started every significant pre-season fixture in the pivot, with three different partners. No credible challenge to his place."
+  },
+  {
+   "position": "CM",
+   "starter": "Reece James",
+   "confidence": "contested",
+   "competition": [
+    "Enzo Fernández",
+    "Roméo Lavia",
+    "Valentín Barco",
+    "Dário Essugo",
+    "Jordan Henderson"
+   ],
+   "note": "James started the pivot in the final friendly with Enzo on the bench, but that partly reflects Enzo's late return from the World Cup final. The Chelsea Chronicle argues James's long-term home under Alonso is right centre-back, precisely to protect his hamstrings from wing-back running loads. Either way he is a starter; the open question is which shirt. Enzo remains the likelier long-run pivot partner and Alonso has publicly said he wants him to stay."
+  },
+  {
+   "position": "AM",
+   "starter": "Cole Palmer",
+   "confidence": "nailed",
+   "competition": [
+    "Estêvão",
+    "Geovany Quenda",
+    "Jamie Gittens"
+   ],
+   "note": "One of the two number tens. Missed the World Cup, so he has had a genuine summer off; Alonso held him out of the Juventus friendly for a minor contact issue picked up against Spurs and described it as discomfort rather than injury. He started the final friendly. No current fitness flag in the official FPL data. Relevant to the penalty model: no source found suggesting anyone else takes Chelsea's penalties."
+  },
+  {
+   "position": "AM",
+   "starter": "Morgan Rogers",
+   "confidence": "nailed",
+   "competition": [
+    "Estêvão",
+    "Geovany Quenda",
+    "João Pedro"
+   ],
+   "note": "GBP 117m British-record signing, 21 July. Debuted as the second ten alongside Palmer in the final friendly. Played 3,280 league minutes for Aston Villa last season; Solio's 2,890 already discounts that for a settling-in period."
+  },
+  {
+   "position": "ST",
+   "starter": "João Pedro",
+   "confidence": "nailed",
+   "competition": [
+    "Danny Welbeck",
+    "Nicolas Jackson",
+    "Liam Delap",
+    "Emmanuel Emegha",
+    "Marc Guiu"
+   ],
+   "note": "Led the line in the final friendly and scored twice against Milan. Like Palmer he missed the World Cup. The competition behind him is nominally deep but Jackson and Delap were both omitted from the final matchday squad, Emegha is a doubt with a hamstring injury, and Welbeck was signed as a veteran who, per Last Word on Football, 'knows he won't feature every week'."
+  }
+ ],
+ "player_deltas": [
+  {
+   "player": "Trevoh Chalobah",
+   "code": 180736,
+   "solio_xmins": 2780,
+   "proposed_xmins": 0,
+   "delta": -2780,
+   "reason": "Left the club. Permanent transfer to Como on 9 August 2026 for GBP 25.7m. The official FPL game flagged him unavailable on 2026-08-10 with the note 'Has joined Como permanently'. He cannot play a single Premier League minute for Chelsea, so Solio's 2,780 is pure error and is on its own 89% of the club's over-allocation.",
+   "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Chelsea_F.C._season",
+   "source_date": "2026-08-09",
+   "confidence": "high"
+  },
+  {
+   "player": "Filip Jörgensen",
+   "code": 508479,
+   "solio_xmins": 378,
+   "proposed_xmins": 0,
+   "delta": -378,
+   "reason": "Left the club. Season-long loan to RC Strasbourg confirmed 11 August 2026; the official FPL game flagged him unavailable on 2026-08-12 with the note 'Has joined RC Strasbourg on loan for the rest of the season'. Chelsea's three remaining keepers in the final pre-season matchday squad were Sanchez, Penders and Slonina.",
+   "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Chelsea_F.C._season",
+   "source_date": "2026-08-11",
+   "confidence": "high"
+  },
+  {
+   "player": "Benoît Badiashile",
+   "code": 242880,
+   "solio_xmins": 14,
+   "proposed_xmins": 0,
+   "delta": -14,
+   "reason": "Loan to Napoli (with an option to buy) reported as agreed; ranked 'Very High' likelihood in FootballTransfers' deadline-day exit list, and he was left out of Chelsea's pre-season tour squad entirely to facilitate the move. Immaterial in size but removes a body from the centre-back queue.",
+   "source_url": "https://www.footballtransfers.com/en/transfer-news/uk-premier-league/2026/08/chelsea-transfer-news-deadline-day-2026-summer-window-sales-loans-enzo-fernandez-nicolas-jackson",
+   "source_date": "2026-08-06",
+   "confidence": "medium"
+  },
+  {
+   "player": "Josh Acheampong",
+   "code": 577016,
+   "solio_xmins": 136,
+   "proposed_xmins": 600,
+   "delta": 464,
+   "reason": "Promoted in the centre-back queue by the exits above. He started in the back three against AC Milan and was one of only two centre-backs named among the substitutes for the final friendly against Real Sociedad; Last Word on Football states Tosin Adarabioyo is behind 'Acheampong and Hato in the pecking order'. With Chalobah sold, Badiashile leaving, Fofana serving a carried-over suspension for the first two league games and Colwill in his first full season back from an ACL injury, 136 minutes for a matchday-squad centre-back in a back-three system is implausibly low. Sized at 600 (about 6-7 matches) so the club total lands on the 37,620 budget.",
+   "source_url": "https://lastwordonsports.com/football/2026/08/15/chelsea-unwanted-list/",
+   "source_date": "2026-08-15",
+   "confidence": "medium"
+  },
+  {
+   "player": "Enzo Fernández",
+   "code": 448047,
+   "solio_xmins": 3146,
+   "proposed_xmins": 2800,
+   "delta": -346,
+   "reason": "Trimmed from 92% of every available minute. He was a substitute, not a starter, in the final pre-season friendly - the XI Last Word on Football calls 'likely the strongest XI for the start of the league campaign' - with captain Reece James starting the pivot alongside Caicedo after Enzo's late return from the World Cup final. He also carries live exit interest (Real Madrid; Chelsea asking around EUR 140m, rated 'Low' likelihood). Still projected as a heavy-minutes starter, just not an ever-present.",
+   "source_url": "https://lastwordonsports.com/football/2026/08/15/chelsea-confirmed-lineup-real-sociedad/",
+   "source_date": "2026-08-15",
+   "confidence": "medium"
+  },
+  {
+   "player": "Nicolas Jackson",
+   "code": 517052,
+   "solio_xmins": 10,
+   "proposed_xmins": 0,
+   "delta": -10,
+   "reason": "Named on Last Word on Football's 'unwanted list' after being left out of the final pre-season matchday squad entirely; the club has stated it expects further sales before the 1 September deadline and Chelsea must cut a 47-man squad down to a 25-man Premier League registration list.",
+   "source_url": "https://lastwordonsports.com/football/2026/08/15/chelsea-unwanted-list/",
+   "source_date": "2026-08-15",
+   "confidence": "medium"
+  },
+  {
+   "player": "Liam Delap",
+   "code": 463034,
+   "solio_xmins": 21,
+   "proposed_xmins": 0,
+   "delta": -21,
+   "reason": "Named on Last Word on Football's 'unwanted list', omitted from the final pre-season matchday squad after failing to impress against weaker tour opposition, with reported interest in a permanent move away.",
+   "source_url": "https://lastwordonsports.com/football/2026/08/15/chelsea-unwanted-list/",
+   "source_date": "2026-08-15",
+   "confidence": "medium"
+  },
+  {
+   "player": "Mykhailo Mudryk",
+   "code": 465920,
+   "solio_xmins": 20,
+   "proposed_xmins": 0,
+   "delta": -20,
+   "reason": "Named on Last Word on Football's 'unwanted list' and omitted from the final pre-season matchday squad; described as a likely loan candidate to regain match fitness after more than a year without professional football.",
+   "source_url": "https://lastwordonsports.com/football/2026/08/15/chelsea-unwanted-list/",
+   "source_date": "2026-08-15",
+   "confidence": "low"
+  }
+ ],
+ "budget_check": {
+  "solio_total": 40733,
+  "proposed_total": 37628,
+  "difference": 8
+ },
+ "reinforcement_risk": [
+  {
+   "position": "none material - the window is running outbound, not inbound",
+   "incumbent": "n/a",
+   "note": "Chelsea's stated priority for the rest of the window (deadline 1 September 2026) is trimming a squad the club has already registered at 38 for FPL and which pundits count at up to 47 bodies, against a 25-man Premier League senior registration limit. Ten senior players have already arrived; no further first-team signing is being reported. So the risk to incumbents' minutes runs the other way: not that a new arrival takes their place, but that they themselves are sold, loaned, or simply left out of the 25.",
+   "source_url": "https://www.footballtransfers.com/en/transfer-news/uk-premier-league/2026/08/chelsea-transfer-news-deadline-day-2026-summer-window-sales-loans-enzo-fernandez-nicolas-jackson"
+  },
+  {
+   "position": "LB / left wing-back",
+   "incumbent": "Pedro Neto",
+   "note": "The one position where a very late arrival could still change things, because Chavarria was only signed on 12 August as the Cucurella replacement and the left wing-back berth was still being auditioned in the final friendly. Neto himself is the subject of reported Manchester City interest (rated 'Low' likelihood to leave).",
+   "source_url": "https://www.footballtransfers.com/en/transfer-news/uk-premier-league/2026/08/chelsea-transfer-news-deadline-day-2026-summer-window-sales-loans-enzo-fernandez-nicolas-jackson"
+  },
+  {
+   "position": "CB",
+   "incumbent": "Tosin Adarabioyo",
+   "note": "Not a signing risk but a place risk: Last Word on Football on 12 August said Chalobah's exit left room for Tosin to stay as a reserve, then on 15 August left him off the matchday squad and named him on the unwanted list. Three days, two different readings. Solio's 261 minutes straddles both and has been left alone.",
+   "source_url": "https://lastwordonsports.com/football/2026/08/15/chelsea-unwanted-list/"
+  }
+ ],
+ "injuries": [
+  {
+   "player": "Wesley Fofana",
+   "issue": "Suspension (red card carried over from 2025/26), not an injury",
+   "expected_return": "6 September 2026 - misses GW1 v Fulham (24 Aug) and GW2 v Brighton (30 Aug); available for GW3 at Arsenal",
+   "beneficiary": "Reece James at right centre-back, with Josh Acheampong and Jorrel Hato the other cover",
+   "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+  },
+  {
+   "player": "Emmanuel Emegha",
+   "issue": "Hamstring injury sustained against Bromley in pre-season; official FPL flag 'doubtful', 75% chance of playing",
+   "expected_return": "Around the 24 August opener, unconfirmed",
+   "beneficiary": "Danny Welbeck as the backup striker behind Joao Pedro",
+   "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+  },
+  {
+   "player": "Jordan Henderson",
+   "issue": "Wrist injury; official FPL flag 'doubtful', 75% chance of playing (added 2026-08-09)",
+   "expected_return": "Unconfirmed. He was signed on 3 August and missed the pre-season tour, so he has no minutes in the system either way",
+   "beneficiary": "Dario Essugo and Valentin Barco, who were both on the bench for the final friendly",
+   "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+  },
+  {
+   "player": "Estêvão",
+   "issue": "Grade-four hamstring tear suffered late in 2025/26, which ended his season and cost him the World Cup",
+   "expected_return": "Already back - named among the substitutes for the Real Sociedad friendly on 15 August and carries no FPL flag",
+   "beneficiary": "n/a - recovered",
+   "source_url": "https://lastwordonsports.com/football/2026/08/15/chelsea-confirmed-lineup-real-sociedad/"
+  },
+  {
+   "player": "Levi Colwill",
+   "issue": "Returning from the ACL injury that limited him to 225 league minutes in 2025/26; no current flag, but Alonso managed his load through the tour",
+   "expected_return": "Available now - started the final friendly",
+   "beneficiary": "n/a - available, but Acheampong and Hato are the cover if he breaks down",
+   "source_url": "https://www.planetfootball.com/chelsea/predicting-xabi-alonso-chelsea-lineup-2026-27"
+  },
+  {
+   "player": "Cole Palmer",
+   "issue": "Minor contact issue picked up in the Tottenham friendly; Alonso described it as discomfort rather than injury and rested him against Juventus",
+   "expected_return": "Available now - started the final friendly on 15 August, no FPL flag",
+   "beneficiary": "n/a - available",
+   "source_url": "https://onefootball.com/en/news/colwill-lavia-palmer-latest-chelsea-fitness-news-as-xabi-alonso-reveals-block-43248850"
+  }
+ ],
+ "unknowns": [
+  "Base formation. Alonso has said publicly he will be flexible and used both 4-2-3-1 and 3-4-2-1 during pre-season. The whole positional read above assumes the 3-4-2-1 that started the final friendly. If he settles on a back four instead, roughly 2,600 minutes move from centre-back to full-back and the Acheampong promotion is too generous.",
+  "Left wing-back is genuinely unresolved: the confirmed team sheet used Pedro Neto, Planet Football's predicted XI uses Pep Chavarria, and Jorrel Hato can play there. No delta was proposed for any of the three because the sources point in different directions.",
+  "Estevao's share looks like the weakest number in Solio's set. 684 minutes is below the 839 he managed in an injury-ruined 2025/26, for a fit 19-year-old who is in the matchday squad. But no source found says he starts, and the two number-ten slots are occupied by Palmer and Rogers, so no delta was made.",
+  "Enzo Fernandez's transfer resolution. Real Madrid interest is reported with Chelsea asking around EUR 140m, rated 'Low' likelihood, and Alonso has said he wants him to stay. The 2,800 proposed here assumes he stays. If he goes, those minutes go to Lavia, Barco, Essugo and Henderson, none of whom Solio projects above 315.",
+  "Pedro Neto's transfer resolution. A formal Manchester City offer of around GBP 70m has been reported; Chelsea are said not to be looking to sell but would listen to a very large bid. Deadline is 1 September.",
+  "Length of Fofana's ban. The official FPL feed says 'Suspended until 6 Sep', which implies two league games. An unverified social-media post claimed a single-match ban for the opener only. The FPL feed was used; the difference is worth about 90 minutes.",
+  "Premier League 25-man registration. Chelsea have far more senior professionals than places, even after the U21 exemptions (Palestra, Hato, Acheampong, Quenda, Estevao, Essugo, Sarr, Anselmino, Guiu, Penders, Mheuka are all exempt). Which senior players are left out of the 25 is not yet public, and anyone omitted plays zero league minutes rather than the small numbers Solio assigns them.",
+  "Outcomes for Tosin Adarabioyo, Mamadou Sarr, Aaron Anselmino, Marc Guiu, Shumaira Mheuka and Axel Disasi. All are reported as loan or sale candidates. Solio already has them at or near zero, so no delta was made, but a permanent Disasi exit is reported as agreed and his squad number has already gone.",
+  "The two most Chelsea-specific sources found were both paywalled and could not be read: Fantasy Football Hub's Chelsea 2026/27 FPL preview (Oli Poole, 6 August) and Si Phillips Talks Chelsea, the largest Chelsea-only Substack. Their headlines suggested directly relevant reporting (PSG interest in Gusto, Alonso training a player in a new position, goalkeeper plans) that could not be verified.",
+  "One podcast transcript was pulled successfully (CBS Morning Footy's Chelsea season preview, 11 August) but it is a generic pundit panel, not Chelsea-specific, and it contained at least two factual errors about the squad, so nothing from it was used as evidence for a delta.",
+  "No page or transcript read during this research contained text addressed to an AI or any attempt to instruct the reader."
+ ]
+}

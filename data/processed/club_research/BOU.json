@@ -1,0 +1,458 @@
+{
+  "club": "BOU",
+  "researched_at": "2026-08-16",
+  "sources": [
+    {
+      "name": "AFC Bournemouth 2026-27 season (Wikipedia) - dated transfer ledger and pre-season fixture list",
+      "type": "official",
+      "url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_AFC_Bournemouth_season",
+      "date": "2026-08-16",
+      "why_trusted": "Dated, itemised in/out/loan tables with fees, sourced to club announcements. Used as the primary transfer ledger to date-stamp arrivals and departures against Solio's data cutoff."
+    },
+    {
+      "name": "Sports Mole - Bournemouth summer transfers: every confirmed signing and sale in the 2026 window",
+      "type": "beat",
+      "url": "https://www.sportsmole.co.uk/football/bournemouth/transfer-talk/feature/bournemouth-summer-transfers-all-confirmed-ins-and-outs-for-2026_599225.html",
+      "date": "2026-08-13",
+      "why_trusted": "Explicitly last-updated 13 Aug 2026, i.e. after the Unal sale. Independent second confirmation of the Wikipedia ledger including fees and loan status."
+    },
+    {
+      "name": "Fantasy Football Scout - FPL pre-season: Bournemouth injuries (Betis friendly report)",
+      "type": "beat",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/08/10/fpl-pre-season-sangare-debut-thiago-nets-bournemouth-injuries",
+      "date": "2026-08-10",
+      "why_trusted": "FPL-focused pre-season minutes tracking: gives the Betis XI by position, names the absentees, and reports Rose's injury remarks. Directly on-topic for a minutes question."
+    },
+    {
+      "name": "ysscores - Mainz 05 vs Bournemouth line-ups, 15 Aug 2026 (final pre-season friendly)",
+      "type": "beat",
+      "url": "https://www.ysscores.com/en/lineup/5899063/1.FSV-Mainz-05-vs-AFC-Bournemouth",
+      "date": "2026-08-15",
+      "why_trusted": "Full XI, bench and formation for the last friendly before the season opener - the closest thing available to a dress rehearsal for the GW1 line-up. Cross-checked against the VAVEL and ESPN match reports for the same fixture."
+    },
+    {
+      "name": "Khel Now - Real Betis vs Bournemouth confirmed line-ups",
+      "type": "beat",
+      "url": "https://khelnow.com/football/real-betis-vs-bournemouth-lineups-pre-season-friendly-202608",
+      "date": "2026-08-08",
+      "why_trusted": "Full XI plus the complete matchday squad for the 8 Aug friendly. Second data point on Rose's shape and pecking order, one week before the Mainz game."
+    },
+    {
+      "name": "The Guardian (via AOL) - Premier League 2026-27 preview No 3: Bournemouth, by Ben Fisher",
+      "type": "beat",
+      "url": "https://www.aol.co.uk/articles/premier-league-2026-27-preview-230107000.html",
+      "date": "2026-08-10",
+      "why_trusted": "National-paper season preview published six days before this research. Source for the Kroupi layoff length and the signings' intended roles."
+    },
+    {
+      "name": "VAVEL - Bournemouth to miss Junior Kroupi for months through injury",
+      "type": "beat",
+      "url": "https://www.vavel.com/en/football/2026/07/29/bournemouth/1266788-bournemouth-to-miss-junior-kroupi-for-months-through-injury.html",
+      "date": "2026-07-29",
+      "why_trusted": "Names the specific injury (fifth metatarsal fracture), the surgery and a 3-4 month layoff. Corroborated independently by the Guardian preview 12 days later."
+    },
+    {
+      "name": "VAVEL - Bournemouth transfer round-up: Cherries to bolster defence",
+      "type": "beat",
+      "url": "https://www.vavel.com/en/football/2026/07/28/bournemouth/1266709-bournemouth-transfer-round-up-cherries-to-bolster-defence.html",
+      "date": "2026-07-28",
+      "why_trusted": "Source for outgoing interest (Chelsea's rejected bid for Scott, Man Utd on Adams, Liverpool on Rayan) and for the CB/RWB targets Bournemouth were chasing before Silva and Juanlu landed. Treated as rumour, not fact - used only for the reinforcement/exit risk section."
+    },
+    {
+      "name": "FPL bootstrap-static API (official status flags, fetched 2026-08-16)",
+      "type": "official",
+      "url": "https://fantasy.premierleague.com/api/bootstrap-static/",
+      "date": "2026-08-16",
+      "why_trusted": "The game's own availability flags and news strings. Authoritative for who is registered, who is flagged 'u' (departed), and current chance-of-playing percentages."
+    },
+    {
+      "name": "OneFootball - Who is AFC Bournemouth's new right-back Juanlu Sanchez?",
+      "type": "beat",
+      "url": "https://onefootball.com/en/news/who-is-afc-bournemouths-new-right-back-juanlu-sanchez-43241048",
+      "date": "2026-08-06",
+      "why_trusted": "Signing-day profile that states the intended role explicitly: first-choice right-back after Alex Jimenez's loan exit, with Adam Smith as cover."
+    }
+  ],
+  "formation": "4-2-3-1",
+  "positions": [
+    {
+      "position": "GK",
+      "starter": "Djordje Petrovic",
+      "confidence": "nailed",
+      "competition": ["Fraser Forster", "Will Dennis"],
+      "note": "Started both the 8 Aug Betis and 15 Aug Mainz friendlies. Forster re-signed to June 2027 and is the likely Europa League cup keeper, which should not cost Petrovic Premier League minutes. Solio's 3385 left untouched."
+    },
+    {
+      "position": "RB",
+      "starter": "Juanlu Sanchez",
+      "confidence": "contested",
+      "competition": ["Adam Smith", "Julian Araujo"],
+      "note": "Signed 6 Aug from Sevilla for c.GBP 11.2m and briefed as first choice after Alex Jimenez's loan to Fiorentina, but he did not appear in either friendly since arriving (8 Aug Betis, 15 Aug Mainz) and 35-year-old Adam Smith started both. Expect Smith to open the season or share early. Araujo is flagged with a thigh injury, unknown return."
+    },
+    {
+      "position": "CB",
+      "starter": "Antonio Silva",
+      "confidence": "likely",
+      "competition": ["Bafode Diakite", "James Hill", "Veljko Milosavljevic"],
+      "note": "Signed 1 Aug from Benfica for c.GBP 25.7m as the direct Senesi replacement. Came on at half-time vs Betis on his second appearance, then started the final friendly vs Mainz alongside Hill."
+    },
+    {
+      "position": "CB",
+      "starter": "James Hill",
+      "confidence": "likely",
+      "competition": ["Bafode Diakite", "Antonio Silva", "Veljko Milosavljevic"],
+      "note": "Started both recent friendlies. But three fit senior centre-backs (Silva, Hill, Diakite) now compete for two slots across a first-ever Europa League league-phase campaign, so an ever-present season is unlikely. Diakite started at CB vs Betis on 8 Aug and was on the Mainz bench. Milosavljevic is injured with no return date."
+    },
+    {
+      "position": "LB",
+      "starter": "Adrien Truffert",
+      "confidence": "nailed",
+      "competition": ["Julio Soler"],
+      "note": "Started both friendlies; 3378 Premier League minutes last season. Cover is thin: Archie Harris sold to Wigan 6 Aug and Alfie Merritt loaned to Newport 7 Aug leave Soler as the only other recognised left-back, and Soler carries a hamstring flag (75%)."
+    },
+    {
+      "position": "DM",
+      "starter": "Alex Scott",
+      "confidence": "likely",
+      "competition": ["Tyler Adams", "Lewis Cook", "Ryan Christie", "Alex Toth"],
+      "note": "Started the double pivot vs Betis. Absent from both the XI and the bench vs Mainz on 15 Aug with no stated reason, and Chelsea had a reported GBP 64m bid rejected in late July, so there is a live exit risk before the 1 Sept deadline."
+    },
+    {
+      "position": "CM",
+      "starter": "Lewis Cook",
+      "confidence": "contested",
+      "competition": ["Tyler Adams", "Alex Toth", "Ryan Christie", "Alex Scott"],
+      "note": "Cook started the pivot in both friendlies, which is the single clearest disagreement between pre-season evidence and Solio. Adams is a 75% doubt and missed both friendlies; Christie is suspended until 29 Aug; Toth started vs Mainz but partly because Scott, Adams and Christie were all unavailable."
+    },
+    {
+      "position": "RW",
+      "starter": "Rayan",
+      "confidence": "likely",
+      "competition": ["Ben Gannon-Doak", "David Brooks"],
+      "note": "Started right of the three in both friendlies. Reported Liverpool interest against a c.EUR 100m release clause; the club is said to have refused to sell. Solio's 2861 left untouched."
+    },
+    {
+      "position": "AM",
+      "starter": "Justin Kluivert",
+      "confidence": "likely",
+      "competition": ["Junior Kroupi", "David Brooks", "Ryan Christie"],
+      "note": "Started as the number 10 in both the Betis and Mainz friendlies, and Fantasy Football Scout describes this as a pattern running through the whole of pre-season. Solio's 'fade (losing his place)' flag is stale - it describes his 2025/26 under Iraola, not his role under Rose."
+    },
+    {
+      "position": "LW",
+      "starter": "Marcus Tavernier",
+      "confidence": "likely",
+      "competition": ["Amine Adli", "Ben Gannon-Doak", "Junior Kroupi"],
+      "note": "Started left of the three in both friendlies and scored in consecutive games. Adli, his nearest competitor, picked up an injury during the Betis match and is now flagged 'i' with no return date."
+    },
+    {
+      "position": "ST",
+      "starter": "Evanilson",
+      "confidence": "likely",
+      "competition": ["Alvaro Rodriguez", "Junior Kroupi"],
+      "note": "Started both friendlies and led the line vs Mainz. Competition has changed materially: Alvaro Rodriguez arrived 14 Jul for c.GBP 25.7m, described as Evanilson's main relief and Unal's successor rather than a Kroupi replacement, while Kroupi himself is out until roughly the turn of the year. Adding a first Europa League campaign on top makes an ever-present Evanilson unlikely."
+    }
+  ],
+  "player_deltas": [
+    {
+      "player": "Enes Unal",
+      "code": 168636,
+      "solio_xmins": 214,
+      "proposed_xmins": 0,
+      "delta": -214,
+      "reason": "Joined Getafe permanently on 13 Aug 2026, after Solio's data cutoff. He is no longer a Bournemouth player and cannot record a Premier League minute for them. The FPL bootstrap independently flags him status 'u' with the news string 'Has joined Getafe permanently'.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_AFC_Bournemouth_season",
+      "source_date": "2026-08-13",
+      "confidence": "high"
+    },
+    {
+      "player": "Junior Kroupi",
+      "code": 560262,
+      "solio_xmins": 2594,
+      "proposed_xmins": 1100,
+      "delta": -1494,
+      "reason": "Fractured a fifth metatarsal in a pre-season training drill in Austria and had surgery; reported as a 3-4 month layoff, with the club hoping he returns before the end of 2026. That is roughly the first 15-18 gameweeks gone from a 23 Aug start, followed by a build-up rather than an immediate full workload, and he returns into a striker group that now also contains a GBP 25.7m signing plus a Europa League schedule. Solio's 2594 already carried a 'ramp-up' flag but is far too generous for a layoff of this length.",
+      "source_url": "https://www.vavel.com/en/football/2026/07/29/bournemouth/1266788-bournemouth-to-miss-junior-kroupi-for-months-through-injury.html",
+      "source_date": "2026-07-29",
+      "confidence": "high"
+    },
+    {
+      "player": "Bafode Diakite",
+      "code": 242882,
+      "solio_xmins": 130,
+      "proposed_xmins": 1150,
+      "delta": 1020,
+      "reason": "Solio's 130 minutes implies Diakite is effectively out of the squad, which the evidence contradicts on every count: he started at centre-back in the 8 Aug Betis friendly, was named on the bench for the 15 Aug Mainz friendly, is fit (FPL status 'a', no news), was a c.EUR 35m signing from Lille in Aug 2025 under contract to 2030, and carries no transfer rumours. With Senesi gone to Tottenham he is one of only three fit senior centre-backs for a season that includes a Europa League league phase. This looks like a straight Solio error rather than a judgement call.",
+      "source_url": "https://khelnow.com/football/real-betis-vs-bournemouth-lineups-pre-season-friendly-202608",
+      "source_date": "2026-08-08",
+      "confidence": "medium"
+    },
+    {
+      "player": "Justin Kluivert",
+      "code": 222683,
+      "solio_xmins": 935,
+      "proposed_xmins": 2100,
+      "delta": 1165,
+      "reason": "Solio's 'fade (losing his place)' pattern is stale - it describes his 2025/26 under Andoni Iraola, who has left. Under Marco Rose, Kluivert started as the number 10 in both the 8 Aug Betis and 15 Aug Mainz friendlies, and Fantasy Football Scout reports him 'operating in the number 10 role, continuing a pattern seen throughout pre-season'. Held below 2400 because Kroupi will contest that area once fit and the Europa League will force rotation.",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/08/10/fpl-pre-season-sangare-debut-thiago-nets-bournemouth-injuries",
+      "source_date": "2026-08-10",
+      "confidence": "medium"
+    },
+    {
+      "player": "Lewis Cook",
+      "code": 155408,
+      "solio_xmins": 451,
+      "proposed_xmins": 1300,
+      "delta": 849,
+      "reason": "Started the central-midfield pivot in both of the last two friendlies (8 Aug vs Betis alongside Scott, 15 Aug vs Mainz alongside Toth). Solio's 451 reflects his 872-minute 2025/26 and predates his pre-season role under the new head coach. Capped at 1300 rather than higher because Scott, Adams and Christie were all absent or doubtful for at least one of those matches, so some of the pre-season workload is availability rather than preference.",
+      "source_url": "https://www.ysscores.com/en/lineup/5899063/1.FSV-Mainz-05-vs-AFC-Bournemouth",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Alvaro Rodriguez",
+      "code": 561245,
+      "solio_xmins": 719,
+      "proposed_xmins": 1350,
+      "delta": 631,
+      "reason": "A c.GBP 25.7m striker signed 14 Jul on a five-year deal, explicitly briefed as competition for Evanilson and as Enes Unal's successor in the relief-striker role. With Kroupi out until roughly the turn of the year and Unal now sold, he is the only backup centre-forward at the club for the first third of the season, on top of a Europa League league phase. 719 minutes is a bench-warmer's allocation for a club-record-bracket signing. Held to 1350 rather than higher because he is currently a 75% doubt with an unspecified injury and missed both the Betis and Mainz friendlies.",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/07/15/bournemouth-sign-25m-striker-rodriguez-from-elche",
+      "source_date": "2026-07-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Tyler Adams",
+      "code": 200785,
+      "solio_xmins": 2633,
+      "proposed_xmins": 1800,
+      "delta": -833,
+      "reason": "Currently flagged as a 75% doubt with an unspecified injury and absent from both the 8 Aug and 15 Aug friendly squads; Rose said on 10 Aug that Adams was 'to be assessed over the coming days'. He also managed only 1769 Premier League minutes last season and is the subject of reported Manchester United interest at around GBP 35m before the 1 Sept deadline. Solio's 2633 assumes a near-nailed, near-fit season that neither his availability record nor his current flag supports.",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/08/10/fpl-pre-season-sangare-debut-thiago-nets-bournemouth-injuries",
+      "source_date": "2026-08-10",
+      "confidence": "medium"
+    },
+    {
+      "player": "Juanlu Sanchez",
+      "code": 494928,
+      "solio_xmins": 3098,
+      "proposed_xmins": 2400,
+      "delta": -698,
+      "reason": "He is genuinely the intended first-choice right-back after Alex Jimenez's loan to Fiorentina, so the direction of Solio's call is right - but 3098 minutes (90% of the position) is too aggressive for a player who signed on 6 Aug, has not featured in either friendly since (8 Aug, 15 Aug) while 35-year-old Adam Smith started both, and who is adapting to a new league in a season with European midweeks.",
+      "source_url": "https://onefootball.com/en/news/who-is-afc-bournemouths-new-right-back-juanlu-sanchez-43241048",
+      "source_date": "2026-08-06",
+      "confidence": "medium"
+    },
+    {
+      "player": "Adam Smith",
+      "code": 54469,
+      "solio_xmins": 379,
+      "proposed_xmins": 900,
+      "delta": 521,
+      "reason": "The mirror of the Juanlu delta. Smith started at right-back in both friendlies including the 15 Aug dress rehearsal, i.e. after Juanlu had already signed, and the Guardian's season preview describes him as 'evergreen' in his 14th season at the club. He is very likely to start the opener and to keep meaningful minutes as Europa League cover, well above Solio's 379.",
+      "source_url": "https://www.ysscores.com/en/lineup/5899063/1.FSV-Mainz-05-vs-AFC-Bournemouth",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "James Hill",
+      "code": 463981,
+      "solio_xmins": 3340,
+      "proposed_xmins": 2700,
+      "delta": -640,
+      "reason": "Hill did start both friendlies and remains a first-choice centre-back, so this is a trim rather than a demotion. Solio's 3340 is 98% of the position and reads as if Hill inherits Senesi's minutes wholesale; in fact Bournemouth spent c.GBP 25.7m on Antonio Silva and still have a fit Diakite, giving three senior centre-backs for two slots across a Premier League and Europa League double programme.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_AFC_Bournemouth_season",
+      "source_date": "2026-08-01",
+      "confidence": "low"
+    },
+    {
+      "player": "Antonio Joao Pereira de Albuquerque Tavares da Silva",
+      "code": 483067,
+      "solio_xmins": 3175,
+      "proposed_xmins": 2900,
+      "delta": -275,
+      "reason": "Confirming the brief's open question: the minutes are broadly real. This is Antonio Silva, signed from Benfica on 1 Aug 2026 for c.GBP 25.7m as the direct replacement for Marcos Senesi, and he started the final pre-season friendly at centre-back. Trimmed only modestly, for the same three-into-two centre-back competition and Europa League rotation as Hill, plus the settling-in risk of a defender arriving three weeks before the opener with no Premier League record.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_AFC_Bournemouth_season",
+      "source_date": "2026-08-01",
+      "confidence": "medium"
+    },
+    {
+      "player": "Alex Scott",
+      "code": 503139,
+      "solio_xmins": 3175,
+      "proposed_xmins": 2800,
+      "delta": -375,
+      "reason": "A trim, not a demotion - Scott is a first-choice midfielder and started vs Betis. But he was missing from both the XI and the bench for the 15 Aug Mainz friendly with no explanation given, Chelsea had a reported GBP 64m bid rejected in late July with two years left on his contract, and 3175 minutes is 93% of a midfield slot for a club playing European football for the first time.",
+      "source_url": "https://www.ysscores.com/en/lineup/5899063/1.FSV-Mainz-05-vs-AFC-Bournemouth",
+      "source_date": "2026-08-15",
+      "confidence": "low"
+    },
+    {
+      "player": "Evanilson",
+      "code": 444102,
+      "solio_xmins": 2662,
+      "proposed_xmins": 2350,
+      "delta": -312,
+      "reason": "Still the clear starting striker - he led the line in both friendlies. Trimmed because his competition has genuinely improved since Solio's data: Alvaro Rodriguez arrived for c.GBP 25.7m specifically as striker competition, and Bournemouth have around eight extra Europa League fixtures to spread across the same squad, which is the classic route to a starting forward losing a few hundred league minutes.",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/07/15/bournemouth-sign-25m-striker-rodriguez-from-elche",
+      "source_date": "2026-07-15",
+      "confidence": "low"
+    },
+    {
+      "player": "Ben Gannon-Doak",
+      "code": 496208,
+      "solio_xmins": 160,
+      "proposed_xmins": 450,
+      "delta": 290,
+      "reason": "Solio's 160 minutes carries forward a 105-minute debut season. He was named on the bench for the final friendly vs Mainz, is the third senior wide option behind Rayan and Tavernier, and Adli - the other competitor - is now injured with no return date. A Europa League campaign gives a fringe winger more routes into the side than last season did. Small, low-stakes correction.",
+      "source_url": "https://www.ysscores.com/en/lineup/5899063/1.FSV-Mainz-05-vs-AFC-Bournemouth",
+      "source_date": "2026-08-15",
+      "confidence": "low"
+    },
+    {
+      "player": "Alex Toth",
+      "code": 614574,
+      "solio_xmins": 126,
+      "proposed_xmins": 450,
+      "delta": 324,
+      "reason": "Started the pivot alongside Cook in the final pre-season friendly on 15 Aug and assisted a goal as a substitute vs Betis on 8 Aug. Deliberately kept low because that Mainz start coincided with Scott, Adams and Christie all being unavailable, so it is weak evidence of a settled role - but 126 minutes understates a player Rose is clearly willing to use.",
+      "source_url": "https://www.ysscores.com/en/lineup/5899063/1.FSV-Mainz-05-vs-AFC-Bournemouth",
+      "source_date": "2026-08-15",
+      "confidence": "low"
+    },
+    {
+      "player": "Amine Adli",
+      "code": 489888,
+      "solio_xmins": 390,
+      "proposed_xmins": 250,
+      "delta": -140,
+      "reason": "The brief's snapshot has Adli as status 'a' with no news, but he picked up an injury after coming on in the 8 Aug Betis friendly and the FPL bootstrap now carries him as status 'i', 'Unspecified injury - Unknown return date', 0% chance of playing. Small downward correction to reflect a state change that post-dates the input data.",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/08/10/fpl-pre-season-sangare-debut-thiago-nets-bournemouth-injuries",
+      "source_date": "2026-08-10",
+      "confidence": "medium"
+    },
+    {
+      "player": "Julio Soler",
+      "code": 575901,
+      "solio_xmins": 0,
+      "proposed_xmins": 150,
+      "delta": 150,
+      "reason": "Solio gives the only backup left-back at the club exactly zero minutes. Archie Harris left for Wigan on 6 Aug and Alfie Merritt was loaned to Newport on 7 Aug, leaving Soler as the sole cover for Truffert; he was in the matchday squad for the Betis friendly. He is a hamstring doubt (75%), so this stays token rather than substantial - but zero is not a realistic figure for a fit-again squad left-back over 38 games plus European football.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_AFC_Bournemouth_season",
+      "source_date": "2026-08-07",
+      "confidence": "low"
+    }
+  ],
+  "budget_check": {
+    "solio_total": 37780,
+    "proposed_total": 37749,
+    "difference": 129
+  },
+  "reinforcement_risk": [
+    {
+      "position": "CB",
+      "incumbent": "Antonio Silva / James Hill / Bafode Diakite",
+      "note": "Largely addressed. Bournemouth were chasing Nathan Zeze of Neom SC as a Senesi replacement in late July against competition from Crystal Palace and Everton, then signed Antonio Silva from Benfica on 1 Aug. With Milosavljevic injured and no return date, a further depth centre-back before the 1 Sept deadline is possible but not actively reported.",
+      "source_url": "https://www.vavel.com/en/football/2026/07/28/bournemouth/1266709-bournemouth-transfer-round-up-cherries-to-bolster-defence.html"
+    },
+    {
+      "position": "RB",
+      "incumbent": "Juanlu Sanchez / Adam Smith",
+      "note": "Addressed. Anan Khalaili of Union Saint-Gilloise was a reported right-wing-back target in late July; Juanlu Sanchez arrived from Sevilla on 6 Aug instead. Cover behind him is a 35-year-old and an injured Julian Araujo, so a late depth signing would compress Smith's minutes.",
+      "source_url": "https://www.vavel.com/en/football/2026/07/28/bournemouth/1266709-bournemouth-transfer-round-up-cherries-to-bolster-defence.html"
+    },
+    {
+      "position": "CM",
+      "incumbent": "Alex Scott / Tyler Adams / Lewis Cook",
+      "note": "Exit risk rather than reinforcement risk, and the larger of the two. Chelsea had a reported GBP 64m bid for Alex Scott rejected in late July with two years left on his deal, and Manchester United are reported to be interested in Tyler Adams at around GBP 35m. If either goes before 1 Sept, Cook, Toth and Christie all gain materially and a replacement signing would land with no Premier League record at all.",
+      "source_url": "https://www.vavel.com/en/football/2026/07/28/bournemouth/1266709-bournemouth-transfer-round-up-cherries-to-bolster-defence.html"
+    },
+    {
+      "position": "RW",
+      "incumbent": "Rayan",
+      "note": "Exit risk. Liverpool were reported to be pursuing Rayan against a release clause of around EUR 100m, with the club insisting he is not for sale. He started both recent friendlies and Solio's 2861 is left unchanged, but this is the single delta-free line most exposed to a deadline-day surprise.",
+      "source_url": "https://www.vavel.com/en/football/2026/07/28/bournemouth/1266709-bournemouth-transfer-round-up-cherries-to-bolster-defence.html"
+    },
+    {
+      "position": "ST",
+      "incumbent": "Evanilson / Alvaro Rodriguez",
+      "note": "Probably closed. The Guardian's preview treats striker competition as a box already ticked by the Rodriguez signing. But with Kroupi out until roughly the new year, an injury to either of the two fit strikers would leave Bournemouth without a senior centre-forward, so a late loan is not impossible.",
+      "source_url": "https://www.aol.co.uk/articles/premier-league-2026-27-preview-230107000.html"
+    }
+  ],
+  "injuries": [
+    {
+      "player": "Junior Kroupi",
+      "issue": "Fifth metatarsal fracture sustained in a training drill on the Austria pre-season camp; operated on after flying home",
+      "expected_return": "3-4 months from late July 2026; club hopes for a return before the end of 2026, i.e. roughly GW16-18",
+      "beneficiary": "Alvaro Rodriguez and Justin Kluivert; Evanilson also less rotated in the opening months",
+      "source_url": "https://www.vavel.com/en/football/2026/07/28/bournemouth/1266709-bournemouth-transfer-round-up-cherries-to-bolster-defence.html"
+    },
+    {
+      "player": "Amine Adli",
+      "issue": "Injury sustained after coming on in the 8 Aug friendly at Real Betis; FPL now lists 'Unspecified injury', 0% chance of playing",
+      "expected_return": "Unknown - no return date given by club or FPL",
+      "beneficiary": "Marcus Tavernier, Ben Gannon-Doak",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/08/10/fpl-pre-season-sangare-debut-thiago-nets-bournemouth-injuries"
+    },
+    {
+      "player": "Tyler Adams",
+      "issue": "Unspecified injury; FPL lists a 75% chance of playing. Rose said on 10 Aug he would be assessed over the coming days; missed both the 8 Aug and 15 Aug friendly squads",
+      "expected_return": "Doubtful for GW1 at Manchester City on 23 Aug; no firm date",
+      "beneficiary": "Lewis Cook, Alex Toth",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/08/10/fpl-pre-season-sangare-debut-thiago-nets-bournemouth-injuries"
+    },
+    {
+      "player": "Veljko Milosavljevic",
+      "issue": "Unspecified injury; FPL lists 0% chance of playing, unknown return date",
+      "expected_return": "Unknown",
+      "beneficiary": "Bafode Diakite",
+      "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+    },
+    {
+      "player": "Julian Araujo",
+      "issue": "Thigh injury; FPL lists 0% chance of playing, unknown return date. Note the conflict: he was named in the matchday squad for the 8 Aug Betis friendly, so the flag may be stale or the injury minor",
+      "expected_return": "Unknown",
+      "beneficiary": "Adam Smith",
+      "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+    },
+    {
+      "player": "Julio Soler",
+      "issue": "Hamstring injury; FPL lists a 75% chance of playing",
+      "expected_return": "Near-term; was in the 8 Aug matchday squad",
+      "beneficiary": "n/a - he is the beneficiary if Truffert misses time",
+      "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+    },
+    {
+      "player": "Alvaro Rodriguez",
+      "issue": "Unspecified injury; FPL lists a 75% chance of playing. Absent from both the 8 Aug and 15 Aug friendly squads",
+      "expected_return": "Unknown; no club statement found",
+      "beneficiary": "Evanilson",
+      "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+    },
+    {
+      "player": "David Brooks",
+      "issue": "Unspecified injury; FPL lists a 75% chance of playing. Rose said on 10 Aug he was 'expected back soon'",
+      "expected_return": "Soon - no date given",
+      "beneficiary": "Ben Gannon-Doak",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/08/10/fpl-pre-season-sangare-debut-thiago-nets-bournemouth-injuries"
+    },
+    {
+      "player": "Ryan Christie",
+      "issue": "Suspended, not injured - unavailable until 29 Aug per the FPL bootstrap. Contract renewed to June 2029",
+      "expected_return": "29 Aug 2026, i.e. available from roughly GW2-3",
+      "beneficiary": "Lewis Cook, Alex Toth",
+      "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+    }
+  ],
+  "unknowns": [
+    "Why Alex Scott was absent from both the XI and the bench for the 15 Aug Mainz friendly. No injury flag in the FPL bootstrap and no report found. Could be rest, a knock, or transfer-related. The -375 trim on him is the weakest delta in this file and would be wrong in either direction if the reason turns out to be significant.",
+    "Alvaro Rodriguez's actual fitness. He is a 75% FPL doubt with an unspecified injury and missed both recent friendlies, but no club statement or beat report explains it. His +631 delta rests on his role and fee rather than on any observed pre-season minutes.",
+    "Whether Juanlu Sanchez was simply not yet registered/match-fit for the 8 Aug and 15 Aug friendlies, or whether Rose currently prefers Adam Smith at right-back. Nine days is short enough that either reading is plausible, and the Juanlu/Smith split (2400/900) would move a long way if a GW1 line-up shows otherwise.",
+    "The exact split of the three-way centre-back competition between Antonio Silva, James Hill and Bafode Diakite. The Mainz XI paired Silva with Hill, the Betis XI paired Hill with Diakite, and Silva only signed on 1 Aug. The 2900/2700/1150 split is a reasoned reading of two friendlies, not a settled pecking order.",
+    "Kroupi's precise return gameweek. Sources give '3-4 months' and 'before the end of 2026'; nothing more specific was found. The 1100-minute figure assumes a return around GW16-18 and a shared role thereafter, and would be too low if he is back by early November and immediately reinstated.",
+    "Deadline-day exit risk on Alex Scott (Chelsea, GBP 64m bid rejected), Tyler Adams (Man Utd, c.GBP 35m interest) and Rayan (Liverpool, c.EUR 100m clause). All three are unresolved as of 16 Aug and the window runs to 1 Sept. Their allocations here assume all three stay.",
+    "How heavily Rose actually rotates for the Europa League league phase. This is Bournemouth's first European campaign, so there is no club precedent to calibrate against; the modest trims applied to Hill, Silva, Scott, Evanilson and Juanlu all embed an assumption of moderate rotation that could be wrong in either direction.",
+    "Max Aarons (returned from a Rangers loan) and Daniel Jebbison both played in the recent friendlies but are absent from the FPL bootstrap's 27-man Bournemouth list, so they are assumed to be outside the Premier League squad and given no minutes. If either is registered late, the allocation would need revisiting.",
+    "No club-official or podcast source was used. Marco Rose gave no detailed public line-up briefing that could be found for GW1 at Manchester City on 23 Aug; the shape read here is inferred from two friendly XIs rather than stated by the club."
+  ]
+}

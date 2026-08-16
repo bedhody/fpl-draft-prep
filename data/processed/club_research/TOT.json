@@ -1,0 +1,428 @@
+{
+  "club": "TOT",
+  "researched_at": "2026-08-16",
+  "sources": [
+    {
+      "name": "Alasdair Gold, football.london - 'Micky van de Ven, Kulusevski, Solanke, Kudus, Maddison - Tottenham injury updates and return dates'",
+      "type": "beat",
+      "url": "https://www.aol.co.uk/articles/micky-van-ven-kulusevski-solanke-162912000.html",
+      "date": "2026-08-14",
+      "why_trusted": "Gold is football.london's dedicated Tottenham correspondent and has covered the club daily for a decade; he is at Hotspur Way for every open training session and press conference. This piece gives a named return window for every injured player two days before the research date - the single most useful document found. Read via AOL syndication because football.london was not directly fetchable."
+    },
+    {
+      "name": "Alasdair Gold, football.london - 'Van de Ven mystery, Kulusevski absent, wonderkid in - 5 things spotted in Tottenham training'",
+      "type": "beat",
+      "url": "https://www.aol.co.uk/articles/van-ven-mystery-kulusevski-absent-114821000.html",
+      "date": "2026-08-14",
+      "why_trusted": "Same correspondent, but eyewitness reporting from the training ground rather than aggregation: who was in the session, who was in normal clothes, and De Zerbi's own words on van de Ven and Kulusevski. This is first-hand observation, not a predicted-XI opinion piece."
+    },
+    {
+      "name": "Sam Truelove, football.london - 'What happened in Tottenham vs Getafe behind-closed-doors friendly'",
+      "type": "beat",
+      "url": "https://www.aol.co.uk/articles/happened-tottenham-vs-getafe-behind-155621000.html",
+      "date": "2026-08-08",
+      "why_trusted": "Behind-closed-doors friendlies are not televised and lineups are not published anywhere official; football.london is one of very few outlets with access. Gives the full XI plus the reason each absentee was missing. Primary evidence rather than prediction."
+    },
+    {
+      "name": "Sam Tabuteau, Evening Standard - 'Tottenham XI vs Hoffenheim: starting lineup, confirmed team news'",
+      "type": "local press",
+      "url": "https://uk.sports.yahoo.com/news/tottenham-xi-vs-hoffenheim-confirmed-131335928.html",
+      "date": "2026-08-15",
+      "why_trusted": "London daily with a Spurs beat; this is the confirmed (not predicted) XI and bench for the last home friendly before the season opener, i.e. the most recent hard evidence of De Zerbi's selection. Read via Yahoo syndication."
+    },
+    {
+      "name": "Spurs Web (Rae Nkwocha) - 'Tottenham's strongest 2026/27 XI vs the most realistic XI to face Brentford'",
+      "type": "local press",
+      "url": "https://www.spurs-web.com/spurs-news/tottenhams-strongest-2026-27-xi-vs-the-most-realistic-xi-to-face-brentford-on-opening-day/",
+      "date": "2026-08-01",
+      "why_trusted": "Long-running independent Spurs-only site. Useful specifically because it separates 'strongest XI' from 'XI available given fitness', which is exactly the distinction a minutes model needs. Treated as informed opinion, not fact, and only used where it agrees with the beat reporting."
+    },
+    {
+      "name": "Spurs Web (Bharad Thirumalai) - 'Tottenham have changed their stance on a player who was untouchable' (Udogie)",
+      "type": "local press",
+      "url": "https://www.spurs-web.com/spurs-news/tottenham-have-changed-their-stance-on-a-player-who-was-untouchable/",
+      "date": "2026-08-12",
+      "why_trusted": "Relays sourced reporting from Alfredo Pedulla on Roma's interest in Udogie and the club's changed position. Corroborates the fitness picture in Gold's reporting from an independent direction."
+    },
+    {
+      "name": "Sky Sports - 'Djed Spence completes GBP 30m Inter Milan move'",
+      "type": "beat",
+      "url": "https://www.skysports.com/football/news/11095/13573504/djed-spence-transfer-news-tottenham-defender-completes-lb30m-inter-milan-move",
+      "date": "2026-08-15",
+      "why_trusted": "Confirmed, completed transfer reported by Sky Sports News' own reporter. This is the single largest correction to Solio and needed a source that reports done deals rather than links."
+    },
+    {
+      "name": "SportsView via OneFootball - 'Tottenham unlikely to sign a new right-back after Djed Spence's departure, with Archie Gray to provide depth'",
+      "type": "beat",
+      "url": "https://onefootball.com/en/news/tottenham-unlikely-to-sign-a-new-right-back-after-djed-spences-departure-with-archie-gray-to-provide-depth-43280906",
+      "date": "2026-08-15",
+      "why_trusted": "Directly answers the reinforcement question at right-back on the day Spence left: no replacement is planned, Gray is the cover. Without this, Gray's minutes would be a guess."
+    },
+    {
+      "name": "Spurs Web (Rae Nkwocha) - 'Three Tottenham starting XIs De Zerbi could use vs Brentford'",
+      "type": "local press",
+      "url": "https://www.spurs-web.com/spurs-news/three-tottenham-starting-xis-de-zerbi-could-use-vs-brentford-on-opening-day/",
+      "date": "2026-08-04",
+      "why_trusted": "Used only for one narrow fact - that De Zerbi has said further forward signings are needed, and which names are live - which sets the reinforcement risk on the front three."
+    },
+    {
+      "name": "To The Lane And Back - 'Liverpool reject Tottenham's opening GBP 60m bid for Cody Gakpo'",
+      "type": "local press",
+      "url": "https://tothelaneandback.com/2026/08/15/liverpool-reject-tottenham-opening-60million-bid-cody-gakpo/",
+      "date": "2026-08-15",
+      "why_trusted": "Spurs-only outlet; used purely to date and bound the outstanding forward pursuit (personal terms agreed, first bid rejected, deal not done). No minutes were allocated to any unsigned player."
+    },
+    {
+      "name": "Al Jazeera - 'ACL injury ends Xavi Simons' World Cup 2026 dream with the Netherlands'",
+      "type": "beat",
+      "url": "https://www.aljazeera.com/sports/2026/4/27/acl-injury-ends-xavi-simons-world-cup-2026-dream-with-netherlands",
+      "date": "2026-04-27",
+      "why_trusted": "Fixes the date of the original ACL rupture (25 April 2026), which is what makes Gold's 'nine month timeline / early 2027' return window checkable rather than a claim taken on trust."
+    },
+    {
+      "name": "Wikipedia - 2026-27 Tottenham Hotspur F.C. season",
+      "type": "official",
+      "url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Tottenham_Hotspur_F.C._season",
+      "date": "2026-08-16",
+      "why_trusted": "Used only as a transfer register (ins, outs, loans, fees, dates) and cross-checked against TeamTalk's completed-transfers list and Sky Sports for the Spence deal. Date shown is the date accessed, not a publication date."
+    },
+    {
+      "name": "Tottenham Hotspur official YouTube - Roberto De Zerbi pre-season interview",
+      "type": "youtube",
+      "url": "https://www.youtube.com/watch?v=TQ2AMXT8e18",
+      "date": "",
+      "why_trusted": "Primary source: De Zerbi in his own words on the squad and on Robertson ('I want he can play like he played in Liverpool'), and on the window - 'In the transfer market, we have not finished yet.' Transcript pulled and cached. Date field left empty because the transcript API returns no upload date and it could not be verified; consequently this source is NOT cited for any individual delta."
+    }
+  ],
+  "formation": "4-3-3 (De Zerbi's in-possession shape is a 3-2-5 with Porro inverting from right-back)",
+  "positions": [
+    {
+      "position": "GK",
+      "starter": "Antonin Kinsky",
+      "confidence": "nailed",
+      "competition": ["Martin Dubravka", "Guglielmo Vicario", "Brandon Austin"],
+      "note": "Kinsky took the gloves late last season and signed a new five-year deal this summer; De Zerbi's clear No.1. Dubravka arrived free from Burnley as the experienced No.2. Vicario is surplus and was left out of the tour squad amid Juventus and Napoli interest, but had not left as of 16 August. Solio's 3,385/35/0 split is consistent with this and is left untouched."
+    },
+    {
+      "position": "RB",
+      "starter": "Pedro Porro",
+      "confidence": "nailed",
+      "competition": ["Archie Gray", "Souza"],
+      "note": "Porro won the World Cup with Spain and only rejoined training on 13 August, so he missed the Getafe and Hoffenheim friendlies with Archie Gray deputising in both. He is expected to start at Brentford. Spurs have confirmed they will NOT sign a right-back after selling Spence, so Gray is the only senior cover for 38 matches."
+    },
+    {
+      "position": "CB",
+      "starter": "Jan Paul van Hecke",
+      "confidence": "nailed",
+      "competition": ["Kevin Danso"],
+      "note": "GBP 52m signing, reunited with De Zerbi from Brighton, started both August friendlies and is explicitly expected to start opening day. Solio's 3,181 is left untouched."
+    },
+    {
+      "position": "CB",
+      "starter": "Micky van de Ven",
+      "confidence": "contested",
+      "competition": ["Marcos Senesi", "Kevin Danso", "Ben Davies"],
+      "note": "Van de Ven has played zero pre-season minutes. Gold reports this is load management after a long season plus the World Cup rather than a diagnosed injury, with De Zerbi saying he was 'not yet ready to play without risk' and Brentford looking unlikely. Senesi partnered van Hecke against Hoffenheim and should start the opening games; van de Ven is expected to reclaim the shirt once fit."
+    },
+    {
+      "position": "LB",
+      "starter": "Andy Robertson",
+      "confidence": "contested",
+      "competition": ["Destiny Udogie", "Ben Davies"],
+      "note": "The most genuinely open slot in the side. Robertson started both August friendlies; Udogie has been held back on fitness grounds (he could not play against Chelsea in Sydney) and is due back within days. De Zerbi has publicly called Udogie a pillar of the club, but Roma have opened talks and Spurs' stance on him has softened. Spence's sale removes the third body entirely, so both Robertson and Udogie must rise sharply on Solio."
+    },
+    {
+      "position": "DM",
+      "starter": "Sandro Tonali",
+      "confidence": "nailed",
+      "competition": ["Mateus Fernandes", "Archie Gray"],
+      "note": "Club-record GBP 100m signing; started both August friendlies. Solio's 2,918 is left untouched."
+    },
+    {
+      "position": "CM",
+      "starter": "Mateus Fernandes",
+      "confidence": "likely",
+      "competition": ["Lucas Bergvall", "Rodrigo Bentancur"],
+      "note": "GBP 85m from West Ham. Missed the Getafe friendly (not in the matchday squad) but is a certain starter when available. Solio's 3,089 is left untouched."
+    },
+    {
+      "position": "CM",
+      "starter": "Conor Gallagher",
+      "confidence": "contested",
+      "competition": ["Lucas Bergvall", "James Maddison", "Pape Matar Sarr", "Rodrigo Bentancur"],
+      "note": "Gallagher started both August friendlies and scored against Getafe, which cuts against Solio's 'fade / losing his place' flag - though at 1,858 minutes Solio's number already implies a rotating starter, so it is left unchanged. Bergvall started both friendlies too and was asked by De Zerbi to commit until January in return for first-half-of-season opportunities. Maddison is back in full training after an ACL and is a bench option from Brentford. Xavi Simons, the natural occupant of the creative role, is out until early 2027."
+    },
+    {
+      "position": "RW",
+      "starter": "Mohammed Kudus",
+      "confidence": "unknown",
+      "competition": ["Mikey Moore", "Wilson Odobert", "Dejan Kulusevski"],
+      "note": "Genuinely unresolved. Kudus has been out with a quad problem since January and only rejoined group training this month; Gold expects 'perhaps some minutes' against Brentford. Mikey Moore started both August friendlies and scored twice against Hoffenheim but is simultaneously reported as likely to go out on loan. Spurs have an agreement in principle with Cody Gakpo and a rejected GBP 60m bid outstanding. Solio's 1,858 for Kudus is left untouched because his return to fitness and the incoming-winger risk push in opposite directions."
+    },
+    {
+      "position": "LW",
+      "starter": "Mathys Tel",
+      "confidence": "contested",
+      "competition": ["Cody Gakpo (unsigned)", "Wilson Odobert", "Mikey Moore"],
+      "note": "Tel started on the left in both August friendlies and contributed a goal and an assist in pre-season, which contradicts Solio's 'fade' flag. Raised, but only modestly, because the outstanding Gakpo pursuit is aimed squarely at this position."
+    },
+    {
+      "position": "ST",
+      "starter": "Dominic Solanke",
+      "confidence": "contested",
+      "competition": ["Richarlison", "Dane Scarlett"],
+      "note": "Solanke played 45 minutes against Chelsea on 1 August and said he felt ready, then felt pain in the ankle in training and was left out of the Getafe game as a precaution; Gold rates him unlikely for Brentford. Richarlison has led the line in both August friendlies. De Zerbi has been hunting a No.9 all summer and says the window is not finished, so both incumbents carry displacement risk."
+    }
+  ],
+  "player_deltas": [
+    {
+      "player": "Djed Spence",
+      "code": 232859,
+      "solio_xmins": 1955,
+      "proposed_xmins": 0,
+      "delta": -1955,
+      "reason": "Sold. Spence completed a GBP 30m move to Inter Milan on 15 August 2026, signing a five-year deal. Solio's file predates the sale. He is no longer a Tottenham player and can record zero Premier League minutes for the club.",
+      "source_url": "https://www.skysports.com/football/news/11095/13573504/djed-spence-transfer-news-tottenham-defender-completes-lb30m-inter-milan-move",
+      "source_date": "2026-08-15",
+      "confidence": "high"
+    },
+    {
+      "player": "Cristian Romero",
+      "code": 221632,
+      "solio_xmins": 5,
+      "proposed_xmins": 0,
+      "delta": -5,
+      "reason": "Sold to Atletico Madrid for GBP 34.2m on 15 August 2026. Solio had effectively already written him off at 5 minutes; corrected to zero for completeness.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Tottenham_Hotspur_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "high"
+    },
+    {
+      "player": "Xavi Simons",
+      "code": 493362,
+      "solio_xmins": 2160,
+      "proposed_xmins": 750,
+      "delta": -1410,
+      "reason": "Solio's 'ramp-up' pattern treats this as a short absence. It is not: Simons ruptured his ACL against Wolves on 25 April 2026, had surgery on 5 May, and Gold puts the return at 'early 2027 with the same nine month timeline'. Nine months from surgery is February 2027, leaving roughly a dozen fixtures, and clubs do not throw ACL returnees straight back into 90-minute games. 750 minutes assumes a February return easing in off the bench and a handful of late-season starts.",
+      "source_url": "https://www.aol.co.uk/articles/micky-van-ven-kulusevski-solanke-162912000.html",
+      "source_date": "2026-08-14",
+      "confidence": "high"
+    },
+    {
+      "player": "Dominic Solanke",
+      "code": 154566,
+      "solio_xmins": 2747,
+      "proposed_xmins": 2000,
+      "delta": -747,
+      "reason": "Solio's 2,747 assumes a fit, near-ever-present No.9. Solanke managed 997 minutes in 2025/26 after ankle surgery, has had only two pre-season appearances, felt pain in the ankle again in the week of 8 August and was withheld as a precaution, and Gold rates him unlikely for the opener. Cut to a figure consistent with an incumbent starter who misses chunks of the season, not a healthy one.",
+      "source_url": "https://www.aol.co.uk/articles/micky-van-ven-kulusevski-solanke-162912000.html",
+      "source_date": "2026-08-14",
+      "confidence": "medium"
+    },
+    {
+      "player": "Micky van de Ven",
+      "code": 491279,
+      "solio_xmins": 3089,
+      "proposed_xmins": 2700,
+      "delta": -389,
+      "reason": "Van de Ven has not played a single pre-season minute and was in normal clothes at the training session Gold attended on 13 August; De Zerbi said he was 'not yet ready to play without risk' and van Hecke is expected to start opening day. Reported as load management rather than a diagnosed injury, so this is a modest haircut for a delayed start plus his hamstring history, not a demotion - he remains a first-choice centre-back.",
+      "source_url": "https://www.aol.co.uk/articles/van-ven-mystery-kulusevski-absent-114821000.html",
+      "source_date": "2026-08-14",
+      "confidence": "medium"
+    },
+    {
+      "player": "Andy Robertson",
+      "code": 122798,
+      "solio_xmins": 718,
+      "proposed_xmins": 1800,
+      "delta": 1082,
+      "reason": "Solio has Robertson as a bit-part third-choice, which was defensible only while Spence was still at the club. Spence has gone, leaving two senior left-backs. Robertson started both August friendlies (Getafe on the 8th, Hoffenheim on the 15th) while Udogie was withheld, and Udogie's own absence against Chelsea in Sydney forced Robertson into extra minutes. He is expected to start the season at left-back.",
+      "source_url": "https://uk.sports.yahoo.com/news/tottenham-xi-vs-hoffenheim-confirmed-131335928.html",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Destiny Udogie",
+      "code": 487053,
+      "solio_xmins": 685,
+      "proposed_xmins": 1550,
+      "delta": 865,
+      "reason": "Same structural reason as Robertson: with Spence sold there is roughly a full left-back slot to share between two players, and Solio's Robertson-plus-Udogie total of 1,403 is far short of it. Udogie is confirmed fully fit with his workload managed and Gold expects him available 'potentially within the next eight days'. Held below Robertson because he has not started a pre-season game, missed 180 days last season, and Roma have opened talks.",
+      "source_url": "https://www.aol.co.uk/articles/micky-van-ven-kulusevski-solanke-162912000.html",
+      "source_date": "2026-08-14",
+      "confidence": "medium"
+    },
+    {
+      "player": "Marcos Senesi",
+      "code": 221466,
+      "solio_xmins": 1573,
+      "proposed_xmins": 1950,
+      "delta": 377,
+      "reason": "Solio's 1,573 reads Senesi as a squad centre-back. He is a rotation option behind the intended van Hecke-van de Ven pairing, but he started alongside van Hecke against Hoffenheim and is in line to start the opening fixtures while van de Ven builds fitness. With Romero sold, Vuskovic and Phillips sold and Dragusin loaned out, Senesi is the third of only four senior centre-backs.",
+      "source_url": "https://uk.sports.yahoo.com/news/tottenham-xi-vs-hoffenheim-confirmed-131335928.html",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Richarlison",
+      "code": 212319,
+      "solio_xmins": 697,
+      "proposed_xmins": 1300,
+      "delta": 603,
+      "reason": "Solio flags Richarlison as fading. He has instead led the line in both August friendlies while Solanke has been managed, and is the only other senior centre-forward in the squad (Dane Scarlett aside). With Solanke doubtful for the opener and no No.9 signed, he starts the season in the XI. Held well short of a starter's allocation because a striker signing is actively being pursued.",
+      "source_url": "https://uk.sports.yahoo.com/news/tottenham-xi-vs-hoffenheim-confirmed-131335928.html",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Archie Gray",
+      "code": 547701,
+      "solio_xmins": 285,
+      "proposed_xmins": 800,
+      "delta": 515,
+      "reason": "Spurs have decided not to replace Spence at right-back and will rely on Gray as Porro's cover for the whole season. He started at right-back in both August friendlies while Porro was still on World Cup leave. 285 minutes is not a plausible figure for the only backup at a position across 38 matches, and Gray is also midfield cover.",
+      "source_url": "https://onefootball.com/en/news/tottenham-unlikely-to-sign-a-new-right-back-after-djed-spences-departure-with-archie-gray-to-provide-depth-43280906",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Lucas Bergvall",
+      "code": 570526,
+      "solio_xmins": 277,
+      "proposed_xmins": 900,
+      "delta": 623,
+      "reason": "Bergvall started both August friendlies in central midfield. De Zerbi asked him to withdraw his transfer request and commit until January, explicitly promising opportunities in the first half of the season, and Spurs have rejected Newcastle and Nottingham Forest approaches. 277 minutes assumes he is frozen out; the pre-season evidence says otherwise. Kept modest because he still wants to leave and both clubs are expected to bid again.",
+      "source_url": "https://uk.sports.yahoo.com/news/tottenham-xi-vs-hoffenheim-confirmed-131335928.html",
+      "source_date": "2026-08-15",
+      "confidence": "low"
+    },
+    {
+      "player": "Mathys Tel",
+      "code": 511499,
+      "solio_xmins": 1097,
+      "proposed_xmins": 1400,
+      "delta": 303,
+      "reason": "Solio flags Tel as losing his place; he has instead started on the left wing in both August friendlies and produced a goal and an assist in pre-season. Raised only modestly because Tottenham have an agreement in principle with Cody Gakpo, who would play in this position.",
+      "source_url": "https://uk.sports.yahoo.com/news/tottenham-xi-vs-hoffenheim-confirmed-131335928.html",
+      "source_date": "2026-08-15",
+      "confidence": "low"
+    },
+    {
+      "player": "Ben Davies",
+      "code": 115556,
+      "solio_xmins": 108,
+      "proposed_xmins": 250,
+      "delta": 142,
+      "reason": "Davies started at centre-back against Getafe on 8 August. With Romero, Vuskovic and Phillips sold, Dragusin loaned out and Spence gone, he is now one of very few senior bodies who can cover both centre-back and left-back. Small raise only - he is a 33-year-old emergency option, not a starter.",
+      "source_url": "https://www.aol.co.uk/articles/happened-tottenham-vs-getafe-behind-155621000.html",
+      "source_date": "2026-08-08",
+      "confidence": "low"
+    }
+  ],
+  "budget_check": {
+    "solio_total": 37509,
+    "proposed_total": 37513,
+    "difference": 4
+  },
+  "reinforcement_risk": [
+    {
+      "position": "ST",
+      "incumbent": "Dominic Solanke",
+      "note": "De Zerbi has said publicly that the window 'is not finished' and has spent the summer hunting a No.9; Spurs Web's alternative opening-day XIs are built around forward signings that have not happened. If a striker arrives before the window shuts, Solanke's 2,000 and Richarlison's 1,300 both fall, probably by several hundred minutes each.",
+      "source_url": "https://www.spurs-web.com/spurs-news/three-tottenham-starting-xis-de-zerbi-could-use-vs-brentford-on-opening-day/"
+    },
+    {
+      "position": "LW",
+      "incumbent": "Mathys Tel",
+      "note": "Tottenham have an agreement in principle with Cody Gakpo and personal terms agreed; an opening bid of around GBP 60m was rejected by Liverpool on 15 August and an improved offer is expected. Gakpo would displace Tel on the left (and in one mooted XI plays as a false nine). The separate Savinho pursuit collapsed when he signed a new Manchester City contract.",
+      "source_url": "https://tothelaneandback.com/2026/08/15/liverpool-reject-tottenham-opening-60million-bid-cody-gakpo/"
+    },
+    {
+      "position": "RW",
+      "incumbent": "Mohammed Kudus",
+      "note": "Same pursuit. Kudus has only just returned from a quad injury that cost him five months and the World Cup, so a new wide forward would eat into his minutes before he is fully up to speed. Solio's 1,858 was left unchanged specifically because his fitness recovery and this signing risk offset each other.",
+      "source_url": "https://tothelaneandback.com/2026/08/15/liverpool-reject-tottenham-opening-60million-bid-cody-gakpo/"
+    },
+    {
+      "position": "RB",
+      "incumbent": "Pedro Porro",
+      "note": "The reverse of a risk, and the reason Archie Gray was raised: Spurs have decided NOT to sign a right-back after selling Spence, preserving the budget for attackers. Porro's place is safe and Gray is the sole senior cover. Barcelona interest in Porro was reported on 14 August but no bid has been made.",
+      "source_url": "https://onefootball.com/en/news/tottenham-unlikely-to-sign-a-new-right-back-after-djed-spences-departure-with-archie-gray-to-provide-depth-43280906"
+    },
+    {
+      "position": "LB",
+      "incumbent": "Destiny Udogie",
+      "note": "Not a signing risk but a departure risk. Roma have contacted Udogie's entourage and are working on a loan with an option to buy; Spurs' position has moved from 'untouchable' to open to offers on the back of his fitness record and Robertson's form. If he leaves, essentially all of his 1,550 minutes transfer to Robertson.",
+      "source_url": "https://www.spurs-web.com/spurs-news/tottenham-have-changed-their-stance-on-a-player-who-was-untouchable/"
+    }
+  ],
+  "injuries": [
+    {
+      "player": "Xavi Simons",
+      "issue": "Ruptured ACL, right knee (sustained v Wolves, 25 April 2026; surgery 5 May 2026)",
+      "expected_return": "Early 2027 (nine-month timeline from surgery)",
+      "beneficiary": "Conor Gallagher, Lucas Bergvall and James Maddison in the advanced central role",
+      "source_url": "https://www.aol.co.uk/articles/micky-van-ven-kulusevski-solanke-162912000.html"
+    },
+    {
+      "player": "Dejan Kulusevski",
+      "issue": "Knee (patella) - has not played in roughly 15 months",
+      "expected_return": "No date given; absent from training, De Zerbi to give an update at the pre-Brentford press conference",
+      "beneficiary": "Mohammed Kudus, Mikey Moore",
+      "source_url": "https://www.aol.co.uk/articles/van-ven-mystery-kulusevski-absent-114821000.html"
+    },
+    {
+      "player": "Wilson Odobert",
+      "issue": "Knee",
+      "expected_return": "The end of this year (i.e. around December 2026)",
+      "beneficiary": "Mathys Tel, Mikey Moore",
+      "source_url": "https://www.aol.co.uk/articles/micky-van-ven-kulusevski-solanke-162912000.html"
+    },
+    {
+      "player": "Mohammed Kudus",
+      "issue": "Quad/thigh, out since January 2026 (also cost him the World Cup)",
+      "expected_return": "Imminent - possible minutes against Brentford on 22 August, though Spurs will be careful",
+      "beneficiary": "Mikey Moore, Mathys Tel",
+      "source_url": "https://www.aol.co.uk/articles/micky-van-ven-kulusevski-solanke-162912000.html"
+    },
+    {
+      "player": "James Maddison",
+      "issue": "ACL (ruptured in pre-season August 2025; only 34 league minutes in 2025/26)",
+      "expected_return": "Available from the bench against Brentford",
+      "beneficiary": "Conor Gallagher, Lucas Bergvall",
+      "source_url": "https://www.aol.co.uk/articles/micky-van-ven-kulusevski-solanke-162912000.html"
+    },
+    {
+      "player": "Dominic Solanke",
+      "issue": "Ankle - recurring pain in the week of 8 August, withheld from the Getafe friendly as a precaution",
+      "expected_return": "Doubtful for Brentford on 22 August",
+      "beneficiary": "Richarlison",
+      "source_url": "https://www.aol.co.uk/articles/micky-van-ven-kulusevski-solanke-162912000.html"
+    },
+    {
+      "player": "Micky van de Ven",
+      "issue": "No diagnosed injury reported; zero pre-season minutes, described as load management after a long season plus the World Cup, with a hamstring history. De Zerbi: 'not yet ready to play without risk'",
+      "expected_return": "Brentford 'seems unlikely at this point'; no firm date",
+      "beneficiary": "Marcos Senesi",
+      "source_url": "https://www.aol.co.uk/articles/van-ven-mystery-kulusevski-absent-114821000.html"
+    },
+    {
+      "player": "Destiny Udogie",
+      "issue": "Fitness management following a 2025/26 season in which he missed around 180 days; could not play against Chelsea in Sydney",
+      "expected_return": "Within roughly eight days of 14 August, i.e. in contention for Brentford",
+      "beneficiary": "Andy Robertson",
+      "source_url": "https://www.aol.co.uk/articles/micky-van-ven-kulusevski-solanke-162912000.html"
+    }
+  ],
+  "unknowns": [
+    "Mikey Moore. He started both August friendlies on the right wing and scored twice against Hoffenheim, and De Zerbi personally stopped a loan move to Cologne - but other reporting says De Zerbi has told him he has no first-team future this season and that he will be loaned out unless a Savinho- or Gakpo-calibre winger fails to arrive. The two accounts cannot both be right. Left at Solio's 0 rather than guessed at; if he stays, 0 is clearly wrong.",
+    "Whether Cody Gakpo (or any forward) signs before the window shuts. Personal terms are agreed and a GBP 60m bid was rejected on 15 August. No minutes have been allocated to any unsigned player, so every forward and wide number here is an 'as things stand' figure.",
+    "Lucas Bergvall's future. He asked to leave, De Zerbi talked him into committing until January, and Newcastle and Nottingham Forest are expected to bid again. His 900 minutes is the widest-error number in this file.",
+    "Whether Robertson or Udogie finishes the season as first choice at left-back. The evidence supports Robertson starting and Udogie being the better long-term player; the 1,800/1,550 split is a judgement call and could reasonably be reversed.",
+    "The length of van de Ven's absence. It is being described as managed load rather than an injury and no return date has been given, so the 389-minute haircut could be too small (if it drags) or too large (if he plays from week two).",
+    "Guglielmo Vicario. Still a Tottenham player as of 16 August, surplus to requirements, with Juventus wanting a loan and Spurs wanting a permanent sale. Solio's 0 assumes he plays no part; if he stays and Kinsky is injured that is wrong, but Kinsky's 3,385 leaves almost nothing to reallocate in any case.",
+    "Pape Matar Sarr. Offered to Brentford and the subject of Saudi interest from Al Ahli. Solio's 174 minutes already assumes he is close to gone, so no delta was proposed either way.",
+    "Podcast and YouTube coverage is thinner than intended. The transcript tool returned HTTP 403 on one Spurs video and a non-English transcript on another; only the official club De Zerbi interview transcript was retrieved successfully, and it carries no verifiable upload date, so it is not cited for any delta.",
+    "Solio's defensive allocation was already about 1,150 minutes above four full defensive slots before any changes, and this file leaves that imbalance roughly where it found it rather than re-cutting positions the research did not examine."
+  ]
+}

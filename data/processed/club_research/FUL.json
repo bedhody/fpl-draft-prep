@@ -1,0 +1,380 @@
+{
+ "club": "FUL",
+ "researched_at": "2026-08-16",
+ "sources": [
+  {
+   "name": "West London Sport - Fulham wrap up pre-season with win against Stuttgart",
+   "type": "local press",
+   "url": "https://www.westlondonsport.com/fulham/fulham-wrap-up-pre-season-with-win-against-stuttgart",
+   "date": "2026-08-15",
+   "why_trusted": "Dedicated west London beat outlet; gives the verbatim XI and substitutes from Fulham's final pre-season match, six days before the opener."
+  },
+  {
+   "name": "Khel Now - Malaga vs Fulham full lineups",
+   "type": "beat",
+   "url": "https://khelnow.com/football/malaga-vs-fulham-full-lineups-pre-season-202608",
+   "date": "2026-08-12",
+   "why_trusted": "Confirmed (not predicted) XI and full bench for the 12 Aug friendly, the strongest-looking side Arbeloa named in pre-season."
+  },
+  {
+   "name": "Sky Sports - Fulham vs Crystal Palace teams, 07/08/2026",
+   "type": "official",
+   "url": "https://www.skysports.com/football/fulham-vs-crystal-palace/teams/576070",
+   "date": "2026-08-07",
+   "why_trusted": "Sky's official team sheet for the 7 Aug friendly. Position labels are unreliable, so used only for who was in the XI vs the bench."
+  },
+  {
+   "name": "Sports Mole - Preview: Fulham vs Stuttgart",
+   "type": "beat",
+   "url": "https://www.sportsmole.co.uk/football/fulham/preview/fulham-vs-stuttgart-prediction-team-news-lineups_602966.html",
+   "date": "2026-08-14",
+   "why_trusted": "Names an expected 4-2-3-1 and states Garcia is expected to start ahead of Muniz; matches the XI actually fielded the next day."
+  },
+  {
+   "name": "ESPN - Fulham sign Shea Charles from Southampton on five-year contract",
+   "type": "beat",
+   "url": "https://www.espn.com/soccer/story/_/id/49580789/fulham-sign-shea-charles-southampton-five-year-contract-premier-league",
+   "date": "2026-08-11",
+   "why_trusted": "Confirms the fee (£27m + £6m add-ons) and date of the signing that post-dates Solio's data."
+  },
+  {
+   "name": "Fantasy Football Scout - Garcia to Fulham: does it kill £5.5m Muniz as a pick?",
+   "type": "beat",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/08/05/garcia-to-fulham-does-it-kill-5-5m-muniz-as-a-pick",
+   "date": "2026-08-05",
+   "why_trusted": "FPL-specific minutes analysis; reports Muniz fit and getting pre-season minutes, and that Palacios was expected to start on the bench."
+  },
+  {
+   "name": "Fulhamish - The FFC Rumour Mill: Shea Charles arrives and Sasa Lukic departs",
+   "type": "beat",
+   "url": "https://www.fulhamish.co.uk/p/the-ffc-rumour-mill-shea-charles",
+   "date": "2026-08-13",
+   "why_trusted": "Long-running Fulham-specific outlet; reports Fulham are targeting five further signings (GK, RB, CB, CM, winger)."
+  },
+  {
+   "name": "Wikipedia - 2026-27 Fulham F.C. season",
+   "type": "official",
+   "url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Fulham_F.C._season",
+   "date": "2026-08-16",
+   "why_trusted": "Dated transfer ledger (in and out) plus every pre-season result; each entry is individually sourced and cross-checked against Sports Mole's transfer feature."
+  },
+  {
+   "name": "Sports Mole - Fulham summer transfers and net spend 2026",
+   "type": "beat",
+   "url": "https://www.sportsmole.co.uk/football/fulham/transfer-talk/feature/fulham-summer-transfers-all-confirmed-ins-and-outs-for-2026_599229.html",
+   "date": "2026-08-15",
+   "why_trusted": "Independent confirmation of the in/out ledger, including Alfie McNally's loan to York City and Aaron Loupalo-Bi's to Fleetwood."
+  },
+  {
+   "name": "FourFourTwo / Yahoo - Fulham 2026-27 season preview",
+   "type": "beat",
+   "url": "https://uk.sports.yahoo.com/news/cottagers-europe-fulham-2026-27-173000020.html",
+   "date": "2026-08-03",
+   "why_trusted": "Explicitly conditions Sessegnon's role on Robinson's fitness at left-back, and quantifies how much attacking output left with Wilson and Jimenez."
+  },
+  {
+   "name": "FPL bootstrap-static API",
+   "type": "official",
+   "url": "https://fantasy.premierleague.com/api/bootstrap-static/",
+   "date": "2026-08-16",
+   "why_trusted": "Primary source for squad membership, status flags and dated injury/suspension news. Fetched today; the 23-man Fulham list matches the brief exactly."
+  }
+ ],
+ "formation": "4-2-3-1",
+ "positions": [
+  {
+   "position": "GK",
+   "starter": "Bernd Leno",
+   "confidence": "nailed",
+   "competition": [
+    "Benjamin Lecomte"
+   ],
+   "note": "Played every minute in 2025/26 and started all three of the last pre-season friendlies. Alfie McNally is on loan at York City but still appears in the FPL squad list. Fulham are reported to want a goalkeeper, which would be back-up cover rather than a challenge to Leno."
+  },
+  {
+   "position": "RB",
+   "starter": "Timothy Castagne",
+   "confidence": "likely",
+   "competition": [
+    "Kenny Tete"
+   ],
+   "note": "Castagne started the last two friendlies and scored the winner v Stuttgart; Tete started the heavily-rotated 7 Aug game. A genuine two-way split rather than a nailed slot, and right-back is one of the five positions Fulham are reported to be shopping for."
+  },
+  {
+   "position": "CB",
+   "starter": "Calvin Bassey",
+   "confidence": "nailed",
+   "competition": [],
+   "note": "Started or captained every recent friendly. With Diop sold on 22 Jul, Fulham carry only three senior centre-backs, so Bassey's floor is high."
+  },
+  {
+   "position": "CB",
+   "starter": "Joachim Andersen",
+   "confidence": "likely",
+   "competition": [
+    "Jorge Cuenca"
+   ],
+   "note": "Suspended for the opener v Chelsea (FPL: 'Suspended until 30 Aug', flag added 2026-07-23). Cuenca deputised in the 15 Aug dress rehearsal and starts GW1. Andersen resumes once available."
+  },
+  {
+   "position": "LB",
+   "starter": "Antonee Robinson",
+   "confidence": "likely",
+   "competition": [
+    "Ryan Sessegnon",
+    "Calvin Bassey"
+   ],
+   "note": "Started all three of the last three friendlies and scored v Crystal Palace. The only doubt is fitness: he managed 1487 minutes in 2025/26, and the season previews treat Sessegnon's role as contingent on Robinson breaking down again."
+  },
+  {
+   "position": "DM",
+   "starter": "Sander Berge",
+   "confidence": "likely",
+   "competition": [
+    "Shea Charles",
+    "Josh King",
+    "Harrison Reed"
+   ],
+   "note": "Started both of the last two friendlies in the pivot. Played 2904 minutes in 2025/26, well above Solio's 2337 - see unknowns."
+  },
+  {
+   "position": "CM",
+   "starter": "Shea Charles",
+   "confidence": "contested",
+   "competition": [
+    "Josh King",
+    "Alex Iwobi",
+    "Tom Cairney"
+   ],
+   "note": "Signed 11 Aug for £27m + £6m as the direct replacement for the sold Lukic, but has not yet started a match for the club (78th-minute sub v Stuttgart). Josh King started this slot on 15 Aug and Iwobi played there on 12 Aug, so the second pivot is the single least settled position in the side."
+  },
+  {
+   "position": "RW",
+   "starter": "Oscar Bobb",
+   "confidence": "likely",
+   "competition": [
+    "Kevin",
+    "Alex Iwobi"
+   ],
+   "note": "The only outfield player besides Bassey, Robinson, Iwobi, Leno and Garcia to start all three recent friendlies. Harry Wilson's free transfer to Leeds vacated this flank."
+  },
+  {
+   "position": "AM",
+   "starter": "Alex Iwobi",
+   "confidence": "nailed",
+   "competition": [
+    "Emile Smith Rowe",
+    "César Palacios"
+   ],
+   "note": "Started all three recent friendlies and scored in two, though in different roles - deeper in the pivot v Malaga, at No.10 v Stuttgart. His minutes are secure; his listed position is not."
+  },
+  {
+   "position": "LW",
+   "starter": "unknown",
+   "confidence": "contested",
+   "competition": [
+    "Kevin",
+    "César Palacios",
+    "Emile Smith Rowe",
+    "Ryan Sessegnon"
+   ],
+   "note": "Three different players filled this slot across the last three friendlies: Palacios (7 Aug and 15 Aug), Kevin (12 Aug), Smith Rowe (12 Aug, central). No injuries explain the rotation. Winger is also on Fulham's reported shopping list, so this slot could change again before 1 Sep."
+  },
+  {
+   "position": "ST",
+   "starter": "Gonzalo García",
+   "confidence": "likely",
+   "competition": [
+    "Rodrigo Muniz",
+    "Jonah Kusi-Asare"
+   ],
+   "note": "£34m joint-record signing, Arbeloa's own player from Real Madrid, started all three recent friendlies and was expected to start ahead of Muniz. But he has never played a Premier League match and scored 6 La Liga goals in 30 games last season, so his ceiling is an assumption, not an observation."
+  }
+ ],
+ "player_deltas": [
+  {
+   "player": "Shea Charles",
+   "code": 463210,
+   "solio_xmins": 1305,
+   "proposed_xmins": 2100,
+   "delta": 795,
+   "reason": "Signed 11 Aug 2026 from Southampton for £27m + £6m add-ons on a five-year deal, explicitly as the replacement for Sasa Lukic (sold to Ipswich 8 Aug). Solio's snapshot pre-dates the transfer and carries him as a no-PL-record squad filler. Held below a full starter's share because he only joined four days before the final friendly and came on at 78' rather than starting.",
+   "source_url": "https://www.espn.com/soccer/story/_/id/49580789/fulham-sign-shea-charles-southampton-five-year-contract-premier-league",
+   "source_date": "2026-08-11",
+   "confidence": "high"
+  },
+  {
+   "player": "Jorge Cuenca",
+   "code": 246301,
+   "solio_xmins": 889,
+   "proposed_xmins": 1300,
+   "delta": 411,
+   "reason": "Issa Diop was sold to Ipswich on 22 Jul 2026, leaving only three senior centre-backs (Andersen, Bassey, Cuenca). Cuenca started two of the last three friendlies (7 Aug v Crystal Palace, 15 Aug v Stuttgart) and is the stand-in for Andersen's opening-day suspension. Solio's 'fade - losing his place' pattern is measured against a 2025/26 squad that still contained Diop.",
+   "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Fulham_F.C._season",
+   "source_date": "2026-08-16",
+   "confidence": "high"
+  },
+  {
+   "player": "Antonee Robinson",
+   "code": 169528,
+   "solio_xmins": 1887,
+   "proposed_xmins": 2200,
+   "delta": 313,
+   "reason": "Started all three of Fulham's last three friendlies at left-back (7 Aug v Crystal Palace, scoring; 12 Aug v Malaga; 15 Aug v Stuttgart), with Sessegnon used off the bench in two of them. Solio's 1887 is anchored to an injury-hit 1487 minutes in 2025/26; fitness remains the caveat, so this is a partial rather than full restoration.",
+   "source_url": "https://www.westlondonsport.com/fulham/fulham-wrap-up-pre-season-with-win-against-stuttgart",
+   "source_date": "2026-08-15",
+   "confidence": "medium"
+  },
+  {
+   "player": "César Palacios",
+   "code": 571779,
+   "solio_xmins": 1072,
+   "proposed_xmins": 1400,
+   "delta": 328,
+   "reason": "Signed from Real Madrid 3 Aug 2026 in the €50m double deal with Gonzalo Garcia; Arbeloa's personal signing from Real Madrid Castilla and handed the No.8 shirt. Started two of the last three friendlies including the final dress rehearsal v Stuttgart on 15 Aug. Solio's 1072 (and a 5 Aug scouting read of 'bench minutes initially') pre-dates those two starts.",
+   "source_url": "https://www.westlondonsport.com/fulham/fulham-wrap-up-pre-season-with-win-against-stuttgart",
+   "source_date": "2026-08-15",
+   "confidence": "medium"
+  },
+  {
+   "player": "Rodrigo Muniz",
+   "code": 244042,
+   "solio_xmins": 540,
+   "proposed_xmins": 800,
+   "delta": 260,
+   "reason": "Raul Jimenez left on a free on 30 Jun 2026, leaving Muniz as the only senior back-up centre-forward behind Gonzalo Garcia (Kusi-Asare is 19 with 49 PL minutes). Muniz scored v Farense on 1 Aug and was reported 'fighting fit and getting pre-season minutes'. Solio's 540 implies Garcia absorbs ~79% of all centre-forward minutes in his first Premier League season, which is a thin allowance for injury and rotation.",
+   "source_url": "https://www.fantasyfootballscout.co.uk/2026/08/05/garcia-to-fulham-does-it-kill-5-5m-muniz-as-a-pick",
+   "source_date": "2026-08-05",
+   "confidence": "medium"
+  },
+  {
+   "player": "Joachim Andersen",
+   "code": 174874,
+   "solio_xmins": 3032,
+   "proposed_xmins": 2850,
+   "delta": -182,
+   "reason": "Carrying a suspension into the new season: FPL lists him status 's', chance_of_playing_next_round 0, news 'Suspended until 30 Aug' (news added 2026-07-23), so he misses the opener v Chelsea on 24 Aug. Solio's 3032 is above his 2882 minutes from 2025/26 and applies no discount for the ban.",
+   "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/",
+   "source_date": "2026-08-16",
+   "confidence": "high"
+  },
+  {
+   "player": "Kevin",
+   "code": 560552,
+   "solio_xmins": 2519,
+   "proposed_xmins": 2100,
+   "delta": -419,
+   "reason": "Left wing is a genuinely contested slot rather than a nailed one. Kevin started only one of the last three friendlies (12 Aug v Malaga), was a substitute on 7 Aug and was not in the matchday squad on 15 Aug, while Bobb started all three and Palacios started two. No injury is listed against him, so this is rotation. Solio's 2519 implies near-nailed status the pre-season evidence does not support.",
+   "source_url": "https://www.westlondonsport.com/fulham/fulham-wrap-up-pre-season-with-win-against-stuttgart",
+   "source_date": "2026-08-15",
+   "confidence": "low"
+  },
+  {
+   "player": "Josh King",
+   "code": 577725,
+   "solio_xmins": 1693,
+   "proposed_xmins": 1250,
+   "delta": -443,
+   "reason": "Started the second pivot alongside Berge v Stuttgart on 15 Aug, but that role is precisely what Fulham spent £27m + £6m on Shea Charles to fill four days earlier. King is 19 and managed 1290 minutes in 2025/26 with a fuller squad; the Charles signing is the direct arithmetic offset to promoting Charles.",
+   "source_url": "https://www.espn.com/soccer/story/_/id/49580789/fulham-sign-shea-charles-southampton-five-year-contract-premier-league",
+   "source_date": "2026-08-11",
+   "confidence": "medium"
+  },
+  {
+   "player": "Ryan Sessegnon",
+   "code": 184349,
+   "solio_xmins": 1525,
+   "proposed_xmins": 1150,
+   "delta": -375,
+   "reason": "Benched behind Robinson at left-back in the 7 Aug and 12 Aug friendlies and left out of the 15 Aug squad entirely. Season preview framing is that Sessegnon plays further forward only 'if Robinson's fitness allows him regular appearances at left-back' - i.e. his defensive minutes are contingent on Robinson breaking down.",
+   "source_url": "https://uk.sports.yahoo.com/news/cottagers-europe-fulham-2026-27-173000020.html",
+   "source_date": "2026-08-03",
+   "confidence": "medium"
+  },
+  {
+   "player": "Emile Smith Rowe",
+   "code": 209289,
+   "solio_xmins": 1744,
+   "proposed_xmins": 1450,
+   "delta": -294,
+   "reason": "Started one of the last three friendlies (12 Aug v Malaga) and was absent from the 15 Aug squad. The attacking-midfield pool is now Iwobi, Bobb, Kevin, King and Palacios for three slots after Palacios' 3 Aug arrival, so Solio's 1744 sits above what a five-into-three contest supports.",
+   "source_url": "https://www.westlondonsport.com/fulham/fulham-wrap-up-pre-season-with-win-against-stuttgart",
+   "source_date": "2026-08-15",
+   "confidence": "low"
+  },
+  {
+   "player": "Tom Cairney",
+   "code": 76357,
+   "solio_xmins": 324,
+   "proposed_xmins": 120,
+   "delta": -204,
+   "reason": "FPL lists a knee injury with an expected return of 10 Oct (news added 2026-08-14), which removes roughly the first seven gameweeks. He is 35, and Fulham signed Shea Charles for £27m + £6m into his position on 11 Aug.",
+   "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/",
+   "source_date": "2026-08-16",
+   "confidence": "medium"
+  }
+ ],
+ "budget_check": {
+  "solio_total": 37583,
+  "proposed_total": 37773,
+  "difference": 153
+ },
+ "reinforcement_risk": [
+  {
+   "position": "CB",
+   "incumbent": "Jorge Cuenca",
+   "note": "Only three senior centre-backs remain after Diop's £8.5m sale to Ipswich on 22 Jul, and centre-back is one of five positions Fulham are reported to still be targeting (13 Aug). A signing before the 1 Sep deadline would land squarely on the Cuenca minutes proposed here.",
+   "source_url": "https://www.fulhamish.co.uk/p/the-ffc-rumour-mill-shea-charles"
+  },
+  {
+   "position": "CM",
+   "incumbent": "Josh King",
+   "note": "Charles has already arrived, but Fulham are reported to want a further central midfielder. Cairney is out until 10 Oct and Reed is a fringe player, so the depth case is real. Any addition compresses King and Palacios rather than Berge or Charles.",
+   "source_url": "https://www.fulhamish.co.uk/p/the-ffc-rumour-mill-shea-charles"
+  },
+  {
+   "position": "LW",
+   "incumbent": "Kevin / César Palacios",
+   "note": "Winger is on the reported target list, and Arbeloa has separately been linked with a loan for Real Madrid's Franco Mastantuono (attacking midfielder). The livescore piece carrying the Mastantuono link is undated, so treat that specific name as soft; the positional need is well-sourced.",
+   "source_url": "https://www.fulhamish.co.uk/p/the-ffc-rumour-mill-shea-charles"
+  },
+  {
+   "position": "RB",
+   "incumbent": "Timothy Castagne",
+   "note": "Right-back is on the reported target list. Castagne is 30 and Tete is 30 with a long injury record, so a signing here would eat into a split that is already close to 50/50.",
+   "source_url": "https://www.fulhamish.co.uk/p/the-ffc-rumour-mill-shea-charles"
+  },
+  {
+   "position": "GK",
+   "incumbent": "Benjamin Lecomte",
+   "note": "Goalkeeper is on the reported target list after Steven Benda left for Nottingham Forest and Alfie McNally went on loan to York City. This is back-up recruitment; it should not touch Leno's minutes.",
+   "source_url": "https://www.livescore.com/en/news/football/premier-league/fulham-transfer-news-whites-boss-arbeloa-targets-reunion-with-real-madrid-trio/"
+  }
+ ],
+ "injuries": [
+  {
+   "player": "Tom Cairney",
+   "issue": "Knee injury",
+   "expected_return": "2026-10-10",
+   "beneficiary": "Shea Charles / Josh King",
+   "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+  },
+  {
+   "player": "Joachim Andersen",
+   "issue": "Suspension carried over from a red card late in 2025/26 (not an injury) - FPL flags 'Suspended until 30 Aug'",
+   "expected_return": "2026-08-30",
+   "beneficiary": "Jorge Cuenca",
+   "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+  }
+ ],
+ "unknowns": [
+  "Gonzalo Garcia (2696) is left at Solio's number. He has no Premier League record whatsoever, and nothing I could find offers a minutes estimate for him. His projection is the single largest unverified number in this club's allocation and the deltas below it (Muniz, Kusi-Asare) inherit that uncertainty.",
+  "Sander Berge is left unchanged at 2337 despite playing 2904 minutes in 2025/26 and starting both of the last two friendlies. Solio may well be low on him, but Charles' arrival is a plausible explanation for a discount and I had no source that settles it, so I did not spend budget on a guess.",
+  "The left-wing and second-pivot deltas (Kevin, Smith Rowe, Palacios, King) rest on who started three pre-season friendlies, not on any beat writer's stated first XI. No confirmed opening-day lineup exists yet - Fulham play Chelsea on 24 Aug. These are the softest numbers in the set.",
+  "Whether Arbeloa keeps the 4-2-3-1 he used in pre-season. Published tactical analysis describes his base shape as a 4-3-3 morphing into 3-4-3 / 3-2-5 in possession. A move to three centre-backs would raise the defensive budget and cut a midfield slot, which would change several of these numbers.",
+  "Fulham are reported (13 Aug) to want five more signings across GK, RB, CB, CM and winger, with the window open until 1 Sep. That is unusually broad late-window exposure and could invalidate the RB, CB, CM and LW allocations.",
+  "Fantasy Football Hub's Fulham FPL preview (10 Aug) and FourFourTwo's own preview page are behind paywalls, and premierinjuries.com/teams/fulham returned HTTP 403. The best available FPL-specific minutes read was the 5 Aug Fantasy Football Scout piece.",
+  "Alfie McNally is reported on loan at York City but still appears in the FPL Fulham squad. Solio already has him at 0 minutes, so no delta was needed, but the squad list is stale in that respect.",
+  "Rodrigo Muniz drew an Atalanta pursuit in the summer of 2025 that resurfaces in search results; I found no 2026-dated report of a live bid, so I treated him as staying. If he is sold before 1 Sep, his 800 minutes revert to Garcia and Kusi-Asare."
+ ]
+}

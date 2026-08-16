@@ -1,0 +1,312 @@
+{
+  "club": "ARS",
+  "researched_at": "2026-08-16",
+  "sources": [
+    {
+      "name": "Arseblog (Andrew Mangan's daily Arsenal blog)",
+      "type": "beat",
+      "url": "https://arseblog.com/2026/08/the-right-and-then-the-left/",
+      "date": "2026-08-11",
+      "why_trusted": "Independent Arsenal-only blog publishing every morning since 2002, with an accompanying podcast (Arsecast). Watches every pre-season match, quotes Arteta's press conferences directly and is explicit about which parts are reporting and which are opinion. This post is the single most useful piece found: it names exactly which defenders are available, and gives an informed estimate of Saliba's return window."
+    },
+    {
+      "name": "Arseblog (Community Shield week round-ups)",
+      "type": "beat",
+      "url": "https://arseblog.com/2026/08/martinelli-tells-arsenal-no-arteta-on-transfers-and-his-contract/",
+      "date": "2026-08-15",
+      "why_trusted": "Same source, most recent post at time of research (day before the Community Shield). Carries the embedded David Ornstein / The Athletic report on Martinelli's response to Galatasaray, plus verbatim Arteta press-conference quotes."
+    },
+    {
+      "name": "Arseblog News",
+      "type": "beat",
+      "url": "https://arseblog.news/2026/08/arteta-timber-still-weeks-away-saliba-in-rest-mode/",
+      "date": "2026-08-10",
+      "why_trusted": "Arseblog's dedicated news arm; publishes near-verbatim transcripts of Arteta press conferences rather than aggregated rewrites. Used here for the primary Arteta quotes on Timber's surgery and Saliba's 'rest mode', and for the transfer-target reporting (Konsa, Quansah, Fresneda)."
+    },
+    {
+      "name": "Arsenal.com official press conference report",
+      "type": "official",
+      "url": "https://www.arsenal.com/news/artetas-update-on-rice-saka-saliba-and-timber-apAqr8i40BvM",
+      "date": "2026-08-14",
+      "why_trusted": "Club's own write-up of Arteta's pre-Community Shield press conference. First-party record of the manager's words on Rice, Saka, Zubimendi, Timber and Saliba, so it cannot be a misquote."
+    },
+    {
+      "name": "Fantasy Football Scout - Arsenal 2026/27 club guide",
+      "type": "beat",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/08/14/fpl-2026-27-arsenal-best-players-set-piece-takers-predicted-xi-more",
+      "date": "2026-08-14",
+      "why_trusted": "Written specifically about minutes, rotation and availability rather than tactics, which is what this task needs. Also carries a pre-season minutes/goals/assists log for every Arsenal player, used here to sanity-check who has actually been playing."
+    },
+    {
+      "name": "The Sporting News / Yahoo Sports projected lineup (Kyle Bonn)",
+      "type": "beat",
+      "url": "https://sports.yahoo.com/articles/arsenal-projected-lineup-2026-27-181437225.html",
+      "date": "2026-08-12",
+      "why_trusted": "National rather than club-specific, so weighted below the Arsenal sources above. Used only as a cross-check on the projected XI and second XI. Note: its claim that Rice faces 'a prolonged absence' was superseded two days later by Arteta declaring him available, and its claim that Saliba had back surgery conflicts with Arsenal-specific reporting that he did not."
+    }
+  ],
+  "formation": "4-3-3",
+  "positions": [
+    {
+      "position": "GK",
+      "starter": "David Raya",
+      "confidence": "nailed",
+      "competition": ["Kepa Arrizabalaga", "Illan Meslier"],
+      "note": "Raya played every league minute bar one match last season. Arsenal signed Illan Meslier on a free on 9 July as back-up; Kepa has been reported as wanting to leave for regular football. Whichever of the two is the No.2, the league minutes involved are negligible."
+    },
+    {
+      "position": "RB",
+      "starter": "Ben White",
+      "confidence": "contested",
+      "competition": ["Jurrien Timber", "Cristhian Mosquera"],
+      "note": "Timber, the first choice, had groin surgery in June and Arteta said on 14 August he was still 'a few weeks' away and only about to rejoin group training. Arseblog on 11 August: Arsenal have 'two right-sided defenders available to us - Ben White and Cristhian Mosquera'. White starts by default until Timber is back, but his last two seasons have been punctuated by injury."
+    },
+    {
+      "position": "CB",
+      "starter": "Cristhian Mosquera",
+      "confidence": "likely",
+      "competition": ["William Saliba", "Ben White", "Piero Hincapie", "possible late signing"],
+      "note": "Right centre-back. Saliba's back injury is long-term (see injuries). Mosquera is the only other natural right-sided centre-back in the squad. Arsenal are actively trying to sign a defender before the window shuts, which is the main threat to this."
+    },
+    {
+      "position": "CB",
+      "starter": "Gabriel Magalhaes",
+      "confidence": "nailed",
+      "competition": ["Piero Hincapie"],
+      "note": "Left centre-back. Fantasy Football Scout's 14 August guide describes Gabriel as the only Arsenal starter you could be totally confident about for Gameweek 1."
+    },
+    {
+      "position": "LB",
+      "starter": "Riccardo Calafiori",
+      "confidence": "likely",
+      "competition": ["Piero Hincapie", "Myles Lewis-Skelly"],
+      "note": "Calafiori and Hincapie split left-back roughly evenly last season (1697 v 1787 league minutes). Fantasy Football Scout notes Calafiori is 'subbed a fair bit'. Hincapie's permanent signing on 1 July for a reported £34.5m and the Saliba absence both point to him playing a meaningful share."
+    },
+    {
+      "position": "DM",
+      "starter": "unknown",
+      "confidence": "contested",
+      "competition": ["Martin Zubimendi", "Bruno Guimaraes", "Declan Rice", "Myles Lewis-Skelly"],
+      "note": "Genuinely unresolved. Zubimendi was the No.6 last season (2991 league minutes) but Bruno Guimaraes' £75m arrival on 8 August is widely reported as pushing him out of the first-choice three. Arteta described Bruno as offering 'versatility to play in two different positions'. Lewis-Skelly played the six through pre-season because of World Cup absences and Arteta praised him for it, but that was a stopgap. No source found states who takes the deepest role in Gameweek 1."
+    },
+    {
+      "position": "CM",
+      "starter": "Declan Rice",
+      "confidence": "nailed",
+      "competition": ["Bruno Guimaraes", "Mikel Merino", "Martin Zubimendi"],
+      "note": "Rice was reported earlier in the window as facing a prolonged absence with hamstring nerve pain. That is now out of date: on 14 August Arteta confirmed he had returned to training and would be available for the Community Shield, and said of Rice and Saka 'we haven't noticed anything'. Bruno Guimaraes starts alongside him rather than instead of him."
+    },
+    {
+      "position": "AM",
+      "starter": "Martin Odegaard",
+      "confidence": "likely",
+      "competition": ["Eberechi Eze", "Bruno Guimaraes"],
+      "note": "Odegaard was eased back post-World Cup (30 minutes v Dortmund, second half v Como) and was described as lively in both. There is an active public debate about whether he becomes a marginal figure now Eze and Bruno are in the squad; Arseblog argues strongly against that reading. Solio's 1864 minutes sits at the pessimistic end of that debate and is left unchanged for want of a decisive source."
+    },
+    {
+      "position": "RW",
+      "starter": "Bukayo Saka",
+      "confidence": "nailed",
+      "competition": ["Noni Madueke", "Max Dowman"],
+      "note": "Saka returned to training the week of 10 August and Arteta declared him available. He did not feature in any pre-season match, so some early load management is plausible. Max Dowman (16) started pre-season games in his absence and Arteta says the 'circumstances' are what is giving him minutes."
+    },
+    {
+      "position": "LW",
+      "starter": "Christos Tzolis",
+      "confidence": "contested",
+      "competition": ["Gabriel Martinelli", "Eberechi Eze", "possible late signing"],
+      "note": "Tzolis was signed on 23 July for a reported £34m as the direct replacement for Leandro Trossard, who joined Besiktas. He has been Arsenal's most productive pre-season attacker (1 goal, 4 assists per Fantasy Football Scout) and Arseblog rates his set-piece delivery highly. Arseblog's stated expectation if no further signing arrives is 'a Christos Tzolis and Gabriel Martinelli left side'. Arsenal missed on Vinicius Junior and Morgan Rogers and Arteta says they are still trying, so a late arrival remains possible."
+    },
+    {
+      "position": "ST",
+      "starter": "unknown",
+      "confidence": "contested",
+      "competition": ["Kai Havertz", "Viktor Gyokeres"],
+      "note": "Arseblog on 10 August: once everyone is fit 'it becomes an either-or situation up top, dependent quite strongly on the opposition (and fitness of course)'. Arteta confirmed on 2 August that Gyokeres is staying. Several projected XIs favour Havertz for the opener, but Havertz managed only 577 league minutes last season through injury while Gyokeres played 2217. Solio's 2394/1459 split in Havertz's favour is a real judgement call in either direction and no source found settles it, so it is left unchanged and flagged."
+    }
+  ],
+  "player_deltas": [
+    {
+      "player": "William Saliba",
+      "code": 462424,
+      "solio_xmins": 3278,
+      "proposed_xmins": 1700,
+      "delta": -1578,
+      "reason": "Long-term back injury aggravated in France's World Cup semi-final. Arteta on 10 August: Saliba is 'in rest mode... for two weeks. He had to do almost nothing... It's going to take some time to heal.' Arsenal.com on 14 August: 'it's more a long-term injury'. Arseblog's own estimate is that a return 'could be November or December all going well', and adds that he historically needs time to find rhythm after a layoff. Sports Mole on 13 August reports the club line of an 'extended period' and suggests he may not play again in 2026. A December return leaves roughly 22 league matches; 1700 assumes he starts most of them but not at full load immediately. Solio's 3278 implies a near ever-present season, which is not compatible with any of the reporting.",
+      "source_url": "https://arseblog.com/2026/08/the-right-and-then-the-left/",
+      "source_date": "2026-08-11",
+      "confidence": "high"
+    },
+    {
+      "player": "Jurrien Timber",
+      "code": 445122,
+      "solio_xmins": 2878,
+      "proposed_xmins": 2200,
+      "delta": -678,
+      "reason": "Groin surgery in June for an issue first seen in mid-March. Arteta on 14 August: 'he is on a good trajectory, but there is still a few weeks to go... He needs to start to train with the group in the next week or so.' He will miss the opener and Arseblog notes he has not played competitive football for close to six months bar a Champions League final cameo that caused a setback, so he must be eased back rather than thrown straight in. 2200 assumes he misses roughly the first five league matches and is then a regular starter with some further management.",
+      "source_url": "https://www.arsenal.com/news/artetas-update-on-rice-saka-saliba-and-timber-apAqr8i40BvM",
+      "source_date": "2026-08-14",
+      "confidence": "high"
+    },
+    {
+      "player": "Cristhian Mosquera",
+      "code": 500040,
+      "solio_xmins": 295,
+      "proposed_xmins": 1350,
+      "delta": 1055,
+      "reason": "With Saliba out long-term and Timber out to start the season, Arseblog states plainly on 11 August that 'we have two right-sided defenders available to us - Ben White and Cristhian Mosquera', and that Arsenal are 'very, very light in this area of the pitch'. Mosquera is in every projected XI seen for the Community Shield and for the Coventry opener. Solio's 295 minutes is inconsistent with him being one of only two available defenders on that side. Held to 1350 rather than higher because Arsenal are actively pursuing a defender (Konsa, Quansah, Fresneda all reported) before the window closes on roughly 1 September, which would cut into this.",
+      "source_url": "https://arseblog.com/2026/08/the-right-and-then-the-left/",
+      "source_date": "2026-08-11",
+      "confidence": "medium"
+    },
+    {
+      "player": "Ben White",
+      "code": 198869,
+      "solio_xmins": 287,
+      "proposed_xmins": 900,
+      "delta": 613,
+      "reason": "Same source and same reason as Mosquera: White is one of only two fit right-sided defenders and is 'fit again and present in pre-season'. He is the incumbent right-back until Timber returns. Held well below a starter's allocation because Arseblog notes his last two seasons have been 'punctuated by injury' (699 league minutes in 2025/26), and because Timber's return reclaims the position.",
+      "source_url": "https://arseblog.com/2026/08/the-right-and-then-the-left/",
+      "source_date": "2026-08-11",
+      "confidence": "medium"
+    },
+    {
+      "player": "Gabriel Martinelli",
+      "code": 444145,
+      "solio_xmins": 507,
+      "proposed_xmins": 1000,
+      "delta": 493,
+      "reason": "Solio's 507 minutes reads as an assumption that he leaves. As of 14-15 August that has not happened and looks less likely: David Ornstein reported that Martinelli's camp told Arsenal he has no interest in joining Galatasaray despite a €45m bid, and Arseblog's read is that the interest was generated by Arsenal's own sporting director rather than by the player. Arsenal missed on Vinicius Junior and have no left-wing replacement lined up, so Arseblog's stated expectation is a 'Tzolis and Martinelli left side'. Arteta has publicly backed him. 1000 minutes reflects a rotation role, not a starting one, and still discounts a deadline-day sale.",
+      "source_url": "https://arseblog.com/2026/08/martinelli-tells-arsenal-no-arteta-on-transfers-and-his-contract/",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Piero Hincapie",
+      "code": 448104,
+      "solio_xmins": 1043,
+      "proposed_xmins": 1440,
+      "delta": 397,
+      "reason": "Hincapie's loan was made permanent on 1 July for a reported £34.5m on a deal to 2031. He played 1787 league minutes last season against Calafiori's 1697, splitting left-back with him and covering left centre-back when Gabriel was unavailable. Solio's 1043 is a sharp cut on a player who has just been bought outright, at a moment when Arseblog describes the defence as 'very, very light' with Saliba and Timber both out. Kept modest because Arseblog's list of available cover for the right side names only White and Mosquera, so Hincapie is not a direct replacement for Saliba's slot.",
+      "source_url": "https://arseblog.com/2026/08/the-right-and-then-the-left/",
+      "source_date": "2026-08-11",
+      "confidence": "medium"
+    },
+    {
+      "player": "Declan Rice",
+      "code": 204480,
+      "solio_xmins": 3106,
+      "proposed_xmins": 2950,
+      "delta": -156,
+      "reason": "Rice is fit and available, so no large cut is warranted - but Solio's 3106 would be his heaviest league season yet on the back of hamstring nerve pain he has been managing since December, a knee problem, and a World Cup that ran to the third-place play-off. Fantasy Football Scout's 14 August guide flags that Rice has 'only just returned to training after the World Cup' and that early minutes may be managed. A 5% trim for load management, no more.",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/08/14/fpl-2026-27-arsenal-best-players-set-piece-takers-predicted-xi-more",
+      "source_date": "2026-08-14",
+      "confidence": "low"
+    },
+    {
+      "player": "Gabriel Jesus",
+      "code": 205651,
+      "solio_xmins": 86,
+      "proposed_xmins": 0,
+      "delta": -86,
+      "reason": "Arseblog News on 13 August: 'Napoli continue to be linked with Gabriel Jesus', and lists him among the players expected to move on before the window shuts. Behind Havertz, Gyokeres and Havertz-Gyokeres rotation he has no route to league minutes if he stays either.",
+      "source_url": "https://arseblog.news/2026/08/arteta-eyes-new-faces-while-galatasaray-circle-martinelli/",
+      "source_date": "2026-08-13",
+      "confidence": "medium"
+    },
+    {
+      "player": "Kepa Arrizabalaga",
+      "code": 109745,
+      "solio_xmins": 35,
+      "proposed_xmins": 15,
+      "delta": -20,
+      "reason": "Arsenal signed Illan Meslier as a free agent on 9 July specifically as back-up goalkeeper, and Kepa has been reported as wanting to leave for regular football. Arseblog's post-Dortmund note says he is now more comfortable with Meslier between the sticks than Kepa. This is a token split of an already tiny back-up allocation, not a claim about who starts cup games - the league minutes at stake are trivial either way.",
+      "source_url": "https://arseblog.com/2026/08/emirates-cup-thoughts-odegaard-tzolis-the-defence-and-more/",
+      "source_date": "2026-08-10",
+      "confidence": "low"
+    },
+    {
+      "player": "Illan Meslier",
+      "code": 437495,
+      "solio_xmins": 0,
+      "proposed_xmins": 20,
+      "delta": 20,
+      "reason": "Solio has Meslier at zero and still attached to Leeds. He joined Arsenal as a free agent on 9 July as the back-up goalkeeper, so he should carry a non-zero share of the small back-up allocation behind Raya. Counterpart to the Kepa entry; net effect on the club total is zero.",
+      "source_url": "https://arseblog.news/2026/08/arteta-we-are-trying-the-maximum-before-transfer-window-closes/",
+      "source_date": "2026-08-14",
+      "confidence": "low"
+    }
+  ],
+  "budget_check": {
+    "solio_total": 37551,
+    "proposed_total": 37611,
+    "difference": 60
+  },
+  "reinforcement_risk": [
+    {
+      "position": "CB",
+      "incumbent": "Cristhian Mosquera",
+      "note": "Arsenal are actively trying to sign a defender before the window closes. Ezri Konsa (Aston Villa) is reported as viewed too expensive, with Jarell Quansah (Bayer Leverkusen) the cheaper alternative; Ivan Fresneda (Sporting) has also been mentioned. Arteta on 14 August: 'we have obviously detected some areas that can be strengthened and that's what we are trying to do.' Fantasy Football Scout expects Arteta 'may acquire a temporary replacement for Saliba'. If one arrives, Mosquera's proposed 1350 minutes is the number most exposed, with Ben White's 900 next.",
+      "source_url": "https://arseblog.news/2026/08/arteta-we-are-trying-the-maximum-before-transfer-window-closes/"
+    },
+    {
+      "position": "LW",
+      "incumbent": "Christos Tzolis / Gabriel Martinelli",
+      "note": "Arsenal pursued Vinicius Junior and Morgan Rogers and got neither; Julian Alvarez is also reported as out of reach. Arteta says they are still trying but that 'there are very few players in the market that are available' to improve the squad. Arseblog's assessment is that no obvious left-wing upgrade exists now Vinicius is staying at Real Madrid, and that doing nothing is a real possibility. A late arrival would compress both Tzolis and Martinelli.",
+      "source_url": "https://arseblog.com/2026/08/the-right-and-then-the-left/"
+    },
+    {
+      "position": "ST",
+      "incumbent": "Kai Havertz / Viktor Gyokeres",
+      "note": "Victor Osimhen's future was reportedly discussed during Arsenal's talks with Galatasaray (BBC, via Arseblog). Arseblog rates significant Arsenal interest as unlikely, but flags that the window is playing out oddly. Arteta separately confirmed on 2 August that Gyokeres is staying.",
+      "source_url": "https://arseblog.com/2026/08/arsenal-reportedly-seeking-some-turkish-delight/"
+    },
+    {
+      "position": "Outgoing - LW / LB / CM",
+      "incumbent": "Gabriel Martinelli, Myles Lewis-Skelly, Ethan Nwaneri, Gabriel Jesus, Reiss Nelson, Fabio Vieira",
+      "note": "Sporting director Andrea Berta has been tasked with being an active seller. Martinelli was offered to Galatasaray and refused; Lewis-Skelly was reportedly offered to Chelsea and Manchester United, which his representatives deny he sanctioned, and Arteta pointedly did not quash it; Nwaneri was reportedly floated to Galatasaray and a Premier League loan is being discussed. Jesus (Napoli), Nelson (West Ham) and Vieira are all expected to move. Any of these leaving before roughly 1 September would move minutes again.",
+      "source_url": "https://arseblog.com/2026/08/martinelli-tells-arsenal-no-arteta-on-transfers-and-his-contract/"
+    }
+  ],
+  "injuries": [
+    {
+      "player": "William Saliba",
+      "issue": "Back injury carried into the World Cup and aggravated in France's semi-final defeat to Spain. No surgery reported by Arsenal-specific sources, contrary to some national reporting. Two weeks of near-complete rest prescribed from 10 August.",
+      "expected_return": "Unknown officially. Arteta calls it 'a long-term injury'. Arseblog's estimate is November or December 'all going well'; Sports Mole reports the club line of an 'extended period' and suggests he may not play again in 2026. Roughly 14-18 league matches missed.",
+      "beneficiary": "Cristhian Mosquera at right centre-back, with Ben White and Piero Hincapie also absorbing minutes. Threatened by a possible late centre-back signing.",
+      "source_url": "https://arseblog.news/2026/08/arteta-timber-still-weeks-away-saliba-in-rest-mode/"
+    },
+    {
+      "player": "Jurrien Timber",
+      "issue": "Groin. Problem first surfaced in mid-March, aggravated by a Champions League final cameo, cost him the World Cup, and required surgery in June.",
+      "expected_return": "Due to rejoin full group training the week of 17 August; Arteta said on 14 August there were 'still a few weeks to go'. Realistically mid-to-late September, then eased in. Roughly 4-6 league matches missed.",
+      "beneficiary": "Ben White at right-back; Cristhian Mosquera as further cover.",
+      "source_url": "https://www.arsenal.com/news/artetas-update-on-rice-saka-saliba-and-timber-apAqr8i40BvM"
+    },
+    {
+      "player": "Declan Rice",
+      "issue": "Hamstring nerve pain managed since December, plus a knee problem. Reported earlier in the window as likely to miss the start of the season.",
+      "expected_return": "Already back. Trained with the squad from 13 August and Arteta named him available for the Community Shield on 16 August, saying 'we haven't noticed anything'. He did individual programmes during the international break and rest period.",
+      "beneficiary": "None - the earlier premise that Bruno Guimaraes' start was contingent on Rice's absence does not hold. Bruno is reported as starting alongside Rice, not in place of him.",
+      "source_url": "https://www.arsenal.com/news/artetas-update-on-rice-saka-saliba-and-timber-apAqr8i40BvM"
+    },
+    {
+      "player": "Bukayo Saka",
+      "issue": "No injury. Extended post-World Cup break; did not play any pre-season match.",
+      "expected_return": "Available from 16 August. Arteta reported no fitness concerns.",
+      "beneficiary": "Max Dowman and Noni Madueke covered the right in pre-season only.",
+      "source_url": "https://www.arsenal.com/news/artetas-update-on-rice-saka-saliba-and-timber-apAqr8i40BvM"
+    }
+  ],
+  "unknowns": [
+    "Who plays the deepest midfield role. Zubimendi held it last season (2991 minutes) but Bruno Guimaraes' arrival is reported to have made his place precarious. Solio's 891 for Zubimendi is a large downgrade that could be right or badly wrong; no source found settles Gameweek 1. Left unchanged.",
+    "The Havertz / Gyokeres split. Solio gives Havertz 2394 and Gyokeres 1459 despite Havertz managing 577 league minutes last season to Gyokeres' 2217. Projected XIs currently favour Havertz, Arteta has confirmed Gyokeres is staying, and Arseblog describes it as an either-or decided by opponent and fitness. No source found that resolves the season-long share. Left unchanged, but this is the largest unverified pair in the squad.",
+    "Max Dowman. Solio gives him 85 minutes. He is 16, started pre-season matches, scored and assisted, appears in several projected XIs, and Arseblog says his emergence 'does give us something extra' while cautioning about his age. Arteta says the 'circumstances' - i.e. the World Cup absences - are what allowed the minutes. 85 looks low but nothing found supports a specific higher figure, so it is left alone.",
+    "Martin Odegaard's share. Solio's 1864 sits at the pessimistic end of an active public argument about whether he becomes marginal now Eze and Bruno are here. Arseblog argues the opposite. Left unchanged for want of evidence either way.",
+    "Whether Christos Tzolis' 2155 is right. Evidence is genuinely split: Arsenal-specific sources treat him as the Trossard replacement and a likely left-wing starter, and he was the most productive Arsenal attacker in pre-season, while The Sporting News calls him 'unlikely to be anything more than a squad player'. Weighing the club-specific evidence higher, 2155 was left unchanged - but he has no Premier League record at all and the error bar on him is the widest of any player here.",
+    "Myles Lewis-Skelly's role. Played the No.6 through pre-season out of necessity, was praised for it, scored against Como - but was also reportedly offered to Chelsea and Manchester United, and Arteta declined to rule out a sale. Solio's 394 is left unchanged because both a sale and a real role are live.",
+    "Whether a centre-back and/or a left-sided attacker arrive before the window shuts (roughly 1 September). Arteta says Arsenal are 'actively' trying on both. Every defensive delta above assumes no signing arrives.",
+    "Podcast and YouTube evidence was not usable. Two YouTube transcripts were pulled successfully with scripts/fetch_transcript_api.py (video IDs cPKD7jzB5xw and lELeE4b6pdE) but both were rival-fan reaction channels containing clear factual errors - both referenced players who left Arsenal seasons ago - so neither was used as a source for any delta. The Arsecast and Arsecast Extra discussions are reflected indirectly through Arseblog's written summaries of them.",
+    "No page or transcript read during this research contained text addressed to an AI or any attempt to give instructions."
+  ]
+}

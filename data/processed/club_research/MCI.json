@@ -1,0 +1,358 @@
+{
+  "club": "MCI",
+  "researched_at": "2026-08-16",
+  "sources": [
+    {
+      "name": "The Analyst (Opta) — Man City 2026-27 Squad Audit",
+      "type": "beat",
+      "url": "https://theanalyst.com/articles/man-city-premier-league-squad-audit-2026-27-transfers-stats",
+      "date": "2026-07-30",
+      "why_trusted": "Opta's own analysts writing position-by-position off tracked event data, not vibes. Names the first-choice full-backs, ranks the centre-back pool, and flags exactly which slots the club still needs to reinforce. Best single evidence source found for who is actually nailed."
+    },
+    {
+      "name": "Esteemed Kompany (Adam Marrett) — dedicated Man City site",
+      "type": "beat",
+      "url": "https://esteemedkompany.com/2026/07/30/one-area-of-the-pitch-looks-to-be-rock-solid-for-manchester-city/",
+      "date": "2026-07-30",
+      "why_trusted": "Man City-only outlet publishing multiple pieces a day through pre-season, dated and bylined. Tracks the squad at the level of individual selection battles (this piece on the centre-back pecking order, a 2026-08-15 piece on whether Elliot Anderson starts). Reads as informed fan-analyst rather than aggregator."
+    },
+    {
+      "name": "Sky Sports — Rodri transfer and fitness reporting",
+      "type": "beat",
+      "url": "https://www.skysports.com/football/news/11679/13570426/rodri-transfer-news-barcelona-target-man-city-and-spain-star-wanted-by-real-madrid",
+      "date": "2026-08-06",
+      "why_trusted": "Sky's transfer desk is first-party sourced on Premier League deals and is the outlet that carried both the Rodri fitness timeline (misses Community Shield and the league opener after post-World Cup back surgery) and the Barcelona/Real Madrid state of play. Used for the single biggest minutes question at the club."
+    },
+    {
+      "name": "ESPN FC — 'Enzo Maresca's Manchester City: Replacing Rodri, fixing Foden, transfer targets & more!' (Rob Dawson)",
+      "type": "youtube",
+      "url": "https://www.youtube.com/watch?v=zjnFZQkKVmg",
+      "date": "",
+      "why_trusted": "Rob Dawson is ESPN's Manchester correspondent and covers City daily; he presents his own predicted XI and relays what the club has said 'behind the scenes' about the transition, the right-back search and the Rodri decision. Transcript pulled in full. NOTE: YouTube did not expose an upload date to the fetcher; internal evidence (City had not yet played their first pre-season friendly, which was 1 Aug) places the recording in late July 2026. Because the date is unconfirmed, this source is not used as the citation for any individual delta — only as corroboration."
+    },
+    {
+      "name": "CBS/ESPN-style panel — 'How Manchester City Moves Forward After Pep | 2026-27 Season Preview'",
+      "type": "youtube",
+      "url": "https://www.youtube.com/watch?v=TV90PyeEDWQ",
+      "date": "2026-08-14",
+      "why_trusted": "Carries verbatim Maresca press-conference audio ('seven, eight, nine players they are not still here with us'), his inverted-full-back plan, the Dias captaincy, and the state of the Enzo Fernandez pursuit. Transcript pulled in full. Value is the primary-source manager quotes rather than the punditry around them."
+    },
+    {
+      "name": "Manchester City official — Maresca Community Shield press conference",
+      "type": "official",
+      "url": "https://www.mancity.com/citytv/mens/enzo-maresca-community-shield-press-conference-63922294",
+      "date": "2026-08-14",
+      "why_trusted": "Club's own feed of the manager's pre-match press conference, where he confirmed more incomings are coming ('For sure there are things that we need to do. How many, I don't know. Could be one could be two'). Direct from the decision-maker. Page itself returns 403 to the fetcher; quote captured via search index of the same club page."
+    },
+    {
+      "name": "Sports Illustrated — Man City predicted XI vs Arsenal, Community Shield",
+      "type": "beat",
+      "url": "https://www.si.com/soccer/man-city-predicted-lineup-vs-arsenal-community-shield-8-16-26",
+      "date": "2026-08-16",
+      "why_trusted": "Most recent dated team-news roundup found (published hours before kick-off). Used only for availability facts it states plainly — Rodri out, Haaland expected to start on the bench having played no pre-season, O'Reilly unlikely to start — not for its lineup guess."
+    },
+    {
+      "name": "FootballFanCast — Romano on Ayyoub Bouaddi",
+      "type": "beat",
+      "url": "https://www.footballfancast.com/fabrizio-romano-man-city-ayyoub-bouaddi-enzo-fernandez-update/",
+      "date": "2026-08-14",
+      "why_trusted": "Relays Fabrizio Romano's reporting with specifics (fee, stage of deal, that City accelerated a plan to leave Bouaddi at Lille another year). Corroborated by Sportingpedia's 2026-08-14 window round-up and by Goal/Yardbarker on the Reijnders sale 'paving the way'. Aggregator-tier, so used only for reinforcement risk, never for a delta."
+    },
+    {
+      "name": "Wikipedia — 2026-27 Manchester City F.C. season",
+      "type": "beat",
+      "url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_City_F.C._season",
+      "date": "2026-08-14",
+      "why_trusted": "Used strictly for verifiable ledger facts, not judgement: completed transfers with dates and fees, the squad list with numbers and contract lengths as of 14 Aug 2026, and the three pre-season results. Cross-checked against Premier League and club announcements where it mattered."
+    }
+  ],
+  "formation": "4-2-3-1, becoming a 3-2-5 in possession with one full-back inverting (Maresca's Leicester/Chelsea system). The 9 Aug friendly v Atletico used a 4-2-3-1 double pivot with Foden at 10; some outlets predicted 4-3-3 for the Community Shield.",
+  "positions": [
+    {
+      "position": "GK",
+      "starter": "Gianluigi Donnarumma",
+      "confidence": "nailed",
+      "competition": ["Geronimo Rulli", "Marcus Bettinelli"],
+      "note": "James Trafford sold to Leeds on 6 Aug for £45m; Rulli signed from Marseille on 12 Aug purely as the No.2. Donnarumma started every pre-season match he was available for. Only caveat on record is a Maresca line that he wants his keeper playing out from the back."
+    },
+    {
+      "position": "RB",
+      "starter": "Matheus Nunes",
+      "confidence": "likely",
+      "competition": ["Rico Lewis", "Ayyoub Bouaddi (unsigned)"],
+      "note": "Opta rates Nunes' first season at right-back highly (league-leading touches, 40 tackles) but he is a converted midfielder and the club has actively shopped for a natural right-back — Pedro Porro was looked at before he re-signed at Spurs. Lewis is behind him and has a £30m price tag on him with Newcastle and Sunderland interested. Rotation risk here is a signing, not an incumbent."
+    },
+    {
+      "position": "CB",
+      "starter": "Marc Guehi",
+      "confidence": "likely",
+      "competition": ["Ruben Dias", "Abdukodir Khusanov", "Josko Gvardiol", "Vitor Reis"],
+      "note": "Guehi and Khusanov were settled as the first-choice pair after January under Guardiola and are described as City's preferred pairing going into this season. Guehi has the strongest claim of the four to be an every-week starter."
+    },
+    {
+      "position": "CB",
+      "starter": "unknown",
+      "confidence": "contested",
+      "competition": ["Abdukodir Khusanov", "Ruben Dias", "Josko Gvardiol", "Vitor Reis"],
+      "note": "The hardest slot at the club. Akanji, Ake and Stones all left this summer, leaving four senior centre-backs plus Gvardiol for two shirts, and the City-specific coverage expects Maresca to pick game-by-game rather than settle a pair. Khusanov has the momentum (finished last season in the side, started v Atletico, in most predicted XIs); Dias is the captain; Gvardiol is the swing man who also covers left-back."
+    },
+    {
+      "position": "LB",
+      "starter": "Nico O'Reilly",
+      "confidence": "likely",
+      "competition": ["Rayan Ait-Nouri", "Josko Gvardiol"],
+      "note": "Opta calls him arguably the best left-back in the league after his first full season. The live question is not whether he plays but where: multiple City outlets expect a permanent shift into midfield, and ESPN's Rob Dawson put him in central midfield in his predicted XI on the assumption Rodri leaves. Either way his total minutes are safe; Ait-Nouri and Gvardiol's are the ones that move."
+    },
+    {
+      "position": "DM",
+      "starter": "unknown",
+      "confidence": "unknown",
+      "competition": ["Rodri", "Elliot Anderson", "Nico Gonzalez", "Mateo Kovacic", "Ayyoub Bouaddi (unsigned)"],
+      "note": "Genuinely unresolved as of 16 Aug. Rodri is out for the Community Shield and the league opener after post-World Cup back surgery, has one year left, and Barcelona and Real Madrid are both bidding. Reijnders is on his way to Al Qadsiah. Bouaddi is close. Maresca has said Anderson 'is a holding midfielder' and can also play as an attacking midfielder, so Anderson is the fallback six. Refusing to name a starter here is the honest answer."
+    },
+    {
+      "position": "CM",
+      "starter": "Elliot Anderson",
+      "confidence": "likely",
+      "competition": ["Nico Gonzalez", "Nico O'Reilly", "Mateo Kovacic", "Phil Foden"],
+      "note": "£116m, a British-record fee for an English player, and reported as central to Maresca's midfield plans from the restart. The one caveat found is specific and narrow: he had only four days' training with the squad before the Community Shield, which is why one preview made Nico Gonzalez the safer bet to start that single match."
+    },
+    {
+      "position": "AM",
+      "starter": "Phil Foden",
+      "confidence": "contested",
+      "competition": ["Rayan Cherki", "Jack Grealish", "Elliot Anderson"],
+      "note": "Maresca has publicly made Foden a project ('My duty is to return Phil to the level we know'), he started at 10 v Atletico and appears in every predicted XI seen. But he is explicitly in competition with Cherki, and Grealish if fit. The 'Foden becomes Maresca's Cole Palmer' framing is pundit speculation, not reporting."
+    },
+    {
+      "position": "RW",
+      "starter": "Antoine Semenyo",
+      "confidence": "likely",
+      "competition": ["Savinho", "Rayan Cherki", "Jeremy Monga", "Phil Foden"],
+      "note": "Signed from Bournemouth for a reported £64m in January and was City's joint second-top scorer in half a season; described as outstanding in pre-season. Plays both flanks. The only thing capping him is the depth around him."
+    },
+    {
+      "position": "LW",
+      "starter": "Jeremy Doku",
+      "confidence": "likely",
+      "competition": ["Antoine Semenyo", "Savinho", "Jack Grealish", "Jeremy Monga"],
+      "note": "Signed a new deal to 2031 this month. Maresca's structure isolates wingers one-v-one, which suits him, and both Savinho and Marmoush are exit-linked. He has never been a 3,000-minute player, though — 19 starts last season."
+    },
+    {
+      "position": "ST",
+      "starter": "Erling Haaland",
+      "confidence": "nailed",
+      "competition": ["Omar Marmoush"],
+      "note": "Contracted to 2034, named one of Maresca's captains, no realistic competition. The only qualifier is a slow start: he played no pre-season after a deep World Cup and was expected to begin the Community Shield on the bench. If Marmoush is sold, City have no recognised backup striker at all."
+    }
+  ],
+  "player_deltas": [
+    {
+      "player": "Abdukodir Khusanov",
+      "code": 578153,
+      "solio_xmins": 690,
+      "proposed_xmins": 1700,
+      "delta": 1010,
+      "reason": "Clearest error found. Khusanov and Guehi are described as City's preferred centre-back pairing after being 'exceptional together during the back end of last season' — Guehi the calm, Khusanov the muscle. He then started the final pre-season match v Atletico and appears in the Community Shield predicted XIs. Meanwhile Akanji, Ake and Stones have all left, leaving four senior centre-backs for two slots. 690 minutes is 7.7 full matches, which is a fourth-choice number for a player the City-specific coverage has as joint-first-choice.",
+      "source_url": "https://esteemedkompany.com/2026/07/30/one-area-of-the-pitch-looks-to-be-rock-solid-for-manchester-city/",
+      "source_date": "2026-07-30",
+      "confidence": "high"
+    },
+    {
+      "player": "Rodri",
+      "code": 220566,
+      "solio_xmins": 2804,
+      "proposed_xmins": 1600,
+      "delta": -1204,
+      "reason": "Two independent hits on the same number. Fitness: he had back surgery after the World Cup and Sky report he misses both the Community Shield and the opening league fixture. Transfer: one year left on his deal, Barcelona have bid three times (rising to around €70m) and Real Madrid have offered more, with City resisting rather than refusing; ESPN's Manchester correspondent and two other panellists all predicted he would not be a City player when the window shuts. 2,804 minutes prices in neither. This is a probability-weighted number across stays-and-ramps-up and leaves-in-August, not a prediction that he plays 1,600.",
+      "source_url": "https://www.skysports.com/football/news/11679/13570426/rodri-transfer-news-barcelona-target-man-city-and-spain-star-wanted-by-real-madrid",
+      "source_date": "2026-08-06",
+      "confidence": "medium"
+    },
+    {
+      "player": "Elliot Anderson",
+      "code": 215379,
+      "solio_xmins": 2096,
+      "proposed_xmins": 2700,
+      "delta": 604,
+      "reason": "Resolves the flagged question. The 'more likely to start on the bench' read is real but it is about one match, not the season: he had only four days' training with the squad before the Community Shield, which is why one preview made Nico Gonzalez the safer bet for that game. Everything longer-range points the other way — British-record £116m fee for an English player, reported as central to Maresca's midfield plans from the restart, Maresca himself mapping him as both a six and an eight, Reijnders sold and Rodri unavailable. Bench for one match, starter for the season.",
+      "source_url": "https://esteemedkompany.com/2026/08/15/is-there-a-real-chance-that-a-key-new-signing-for-manchester-city-will-start-against-arsenal/",
+      "source_date": "2026-08-15",
+      "confidence": "high"
+    },
+    {
+      "player": "Josko Gvardiol",
+      "code": 477424,
+      "solio_xmins": 3038,
+      "proposed_xmins": 2350,
+      "delta": -688,
+      "reason": "Solio makes him City's highest-minute defender, which implies he is nailed somewhere. The reporting does not support that at either position. Opta has O'Reilly as the first-choice left-back — 'arguably the best left-back in the Premier League' — with Gvardiol and Ait-Nouri as the cover; at centre-back he is one of four or five for two shirts that Maresca is expected to pick game-by-game. Versatile and certain to play a lot, but not guaranteed a weekly shirt. He started the two pre-season games at left-back with O'Reilly still away at the World Cup, which is not evidence he is ahead of him.",
+      "source_url": "https://theanalyst.com/articles/man-city-premier-league-squad-audit-2026-27-transfers-stats",
+      "source_date": "2026-07-30",
+      "confidence": "medium"
+    },
+    {
+      "player": "Tijjani Reijnders",
+      "code": 433036,
+      "solio_xmins": 247,
+      "proposed_xmins": 0,
+      "delta": -247,
+      "reason": "Sale to Al Qadsiah is done bar the medical: Romano reported on 13 Aug that Reijnders 'says yes to Al Qadsiah and all parties have now a verbal agreement' at around €61m, with the player awaiting the green light to fly out. Solio's 247 already assumed he goes; this just closes it to zero. Small delta, high certainty — included mainly because it is one of the few free minutes in the budget.",
+      "source_url": "https://www.sportingpedia.com/2026/08/14/manchester-citys-summer-transfer-puzzle-fernandez-deadline-reijnders-cash-rodri-talks-and-savinho-stand-off/",
+      "source_date": "2026-08-14",
+      "confidence": "high"
+    },
+    {
+      "player": "Nico González",
+      "code": 465694,
+      "solio_xmins": 722,
+      "proposed_xmins": 950,
+      "delta": 228,
+      "reason": "Solio flags him 'fade (losing his place)', but he publicly ruled out leaving in early August, Reijnders' sale removes a direct competitor, and with Rodri out he was named the safe bet to start the Community Shield ahead of the barely-trained Anderson. Deliberately a small raise, not a big one: Bouaddi's arrival would land squarely on top of him.",
+      "source_url": "https://esteemedkompany.com/2026/08/15/is-there-a-real-chance-that-a-key-new-signing-for-manchester-city-will-start-against-arsenal/",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Rúben Dias",
+      "code": 171314,
+      "solio_xmins": 1569,
+      "proposed_xmins": 1750,
+      "delta": 181,
+      "reason": "Named as one of Maresca's captains for the new season, started the final pre-season match and starts in the Community Shield predicted XIs. 1,569 minutes is roughly 17 full matches for a club captain in a four-man centre-back rotation that has just lost three bodies. Only a modest raise because the rotation is real and he is 29 with a mixed injury record — the argument is that he is under-weighted, not that he is nailed.",
+      "source_url": "https://www.si.com/soccer/man-city-predicted-lineup-vs-arsenal-community-shield-8-16-26",
+      "source_date": "2026-08-16",
+      "confidence": "medium"
+    },
+    {
+      "player": "Erling Haaland",
+      "code": 223094,
+      "solio_xmins": 3204,
+      "proposed_xmins": 3000,
+      "delta": -204,
+      "reason": "Not a doubt about his place — a doubt about the first month. He played no part in pre-season after a deep World Cup run, only returned to training in the week of the Community Shield, and was expected to start that match on the bench. 3,204 would also be a career high; his best in a City shirt is 2,953 last season. Trimming to roughly last season's level rather than above it.",
+      "source_url": "https://www.si.com/soccer/man-city-predicted-lineup-vs-arsenal-community-shield-8-16-26",
+      "source_date": "2026-08-16",
+      "confidence": "medium"
+    },
+    {
+      "player": "Mateo Kovacic",
+      "code": 91651,
+      "solio_xmins": 206,
+      "proposed_xmins": 400,
+      "delta": 194,
+      "reason": "Started the final pre-season match, is in the Community Shield predicted XI in the double pivot, and Opta still rates his passing volume as elite. With Reijnders sold and Rodri out, the senior pivot cover is thin enough that 206 minutes looks too close to zero. Kept small because he is 32, missed most of last season injured, and his own future has been the subject of a Maresca update.",
+      "source_url": "https://www.si.com/soccer/man-city-predicted-lineup-vs-arsenal-community-shield-8-16-26",
+      "source_date": "2026-08-16",
+      "confidence": "low"
+    },
+    {
+      "player": "Antoine Semenyo",
+      "code": 437730,
+      "solio_xmins": 3106,
+      "proposed_xmins": 2900,
+      "delta": -206,
+      "reason": "Lowest-confidence delta in this file, and included partly to keep the budget honest. 3,106 minutes is 34.5 full matches, which would make him the most-used City winger of the Guardiola-to-Maresca era. His 3,200 minutes last season were largely banked at Bournemouth before January, where he was genuinely nailed; at City he is in a rotation with Doku, Cherki, Savinho, Foden and Monga that Opta lists as one of the club's deepest areas. Small trim only — he was outstanding in pre-season and nothing suggests he loses his place.",
+      "source_url": "https://theanalyst.com/articles/man-city-premier-league-squad-audit-2026-27-transfers-stats",
+      "source_date": "2026-07-30",
+      "confidence": "low"
+    },
+    {
+      "player": "Vitor de Oliveira Nunes dos Reis",
+      "code": 616222,
+      "solio_xmins": 0,
+      "proposed_xmins": 250,
+      "delta": 250,
+      "reason": "Zero is too absolute. He is back from a full season at Girona (30-plus La Liga appearances, first Brazil call-up), holds squad number 22 on a contract to 2029, is named among the centre-back options in the City-specific previews, and Maresca had signalled an intention to re-integrate him. Set low rather than absent because a second loan is still openly on the table and Maresca has stayed coy.",
+      "source_url": "https://onefootball.com/en/news/one-area-of-the-pitch-looks-to-be-rock-solid-for-manchester-city-43204570",
+      "source_date": "2026-07-30",
+      "confidence": "low"
+    },
+    {
+      "player": "Jérémy Doku",
+      "code": 248875,
+      "solio_xmins": 2502,
+      "proposed_xmins": 2650,
+      "delta": 148,
+      "reason": "Signed a new contract running to 2031 this month, and Maresca's structure leans on isolating wingers one-v-one, which is his whole game. Both of the players directly behind him on the left — Savinho and Marmoush — are exit-linked. Kept to a small raise because his ceiling is limited by his own record: 19 starts last season and no 2,500-minute league campaign yet.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_City_F.C._season",
+      "source_date": "2026-08-14",
+      "confidence": "low"
+    }
+  ],
+  "budget_check": {
+    "solio_total": 37543,
+    "proposed_total": 37609,
+    "difference": 66
+  },
+  "reinforcement_risk": [
+    {
+      "position": "DM/CM",
+      "incumbent": "Nico González / Mateo Kovacic / Rodri",
+      "note": "Ayyoub Bouaddi (Lille, 18, Morocco international) is the live one — around €100m/£85m, personal terms agreed, Romano describing the deal as reaching its final stages on 14 Aug. City had originally planned to leave him at Lille another year and accelerated it; the Reijnders sale is reported as funding it. A separate £120m pursuit of Enzo Fernandez lapsed when City did not lodge a bid before Chelsea's Friday deadline. If Bouaddi lands he takes 1,500-2,000 minutes that this file has left with existing players, because the budget rule forces a closed squad.",
+      "source_url": "https://www.footballfancast.com/fabrizio-romano-man-city-ayyoub-bouaddi-enzo-fernandez-update/"
+    },
+    {
+      "position": "RB",
+      "incumbent": "Matheus Nunes",
+      "note": "City are happy with how Nunes played but are conscious he is not a natural right-back and have looked at specialists to compete with him; Pedro Porro was scouted before signing a long Spurs deal. Opta independently lists right-back among the squad's thin spots because Lewis 'was even missing from matchday squads towards the end'. A late right-back signing would cut Nunes' 2,896 rather than Lewis' 50.",
+      "source_url": "https://theanalyst.com/articles/man-city-premier-league-squad-audit-2026-27-transfers-stats"
+    },
+    {
+      "position": "Attack",
+      "incumbent": "Savinho / Omar Marmoush",
+      "note": "Maresca confirmed at the Community Shield press conference that more business is coming: 'For sure there are things that we need to do. How many, I don't know. Could be one could be two,' adding that it depends on who leaves. Opta separately flagged top-level attacking depth as a gap. Any incoming forward lands on the minutes Solio has already stripped from Savinho (419) and Marmoush (349), so the effect on the rest of the squad is probably small.",
+      "source_url": "https://www.mancity.com/citytv/mens/enzo-maresca-community-shield-press-conference-63922294"
+    },
+    {
+      "position": "GK (backup)",
+      "incumbent": "Marcus Bettinelli",
+      "note": "Resolved rather than open. Trafford's £45m sale to Leeds on 6 Aug left Donnarumma and Bettinelli only; Geronimo Rulli arrived from Marseille on 12 Aug for £1.7m as the No.2. No threat to Donnarumma's 3,420.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_City_F.C._season"
+    }
+  ],
+  "injuries": [
+    {
+      "player": "Rodri",
+      "issue": "Back. Minor surgery in Spain after captaining Spain to the World Cup (Golden Ball). Club framed the recovery as short.",
+      "expected_return": "Misses the Community Shield (16 Aug) and the opening Premier League fixture v Bournemouth (23 Aug); reported as expected back around the end of August, no confirmed date.",
+      "beneficiary": "Elliot Anderson, Nico González, Mateo Kovacic",
+      "source_url": "https://www.skysports.com/football/news/11679/13570426/rodri-transfer-news-barcelona-target-man-city-and-spain-star-wanted-by-real-madrid"
+    },
+    {
+      "player": "Jack Grealish",
+      "issue": "Foot. Surgery in February 2026 while on loan at Everton; still not fit in August.",
+      "expected_return": "Unknown. Left out of the Asia tour squad entirely; Maresca said only that he will train with the squad once fit and the group is back in Manchester. FPL lists him 'doubtful, 75% chance of playing'.",
+      "beneficiary": "Phil Foden, Rayan Cherki",
+      "source_url": "https://www.espn.com/soccer/story/_/id/49478141/jack-grealish-manchester-city-premier-league-recovering-injury-left-man-city-preseason-tour-squad"
+    },
+    {
+      "player": "Erling Haaland",
+      "issue": "Not injured — conditioning. Played no pre-season minutes after a deep World Cup run with Norway.",
+      "expected_return": "Back in training the week of 10 Aug; expected to start the Community Shield on the bench. Available for the league opener.",
+      "beneficiary": "Omar Marmoush",
+      "source_url": "https://www.si.com/soccer/man-city-predicted-lineup-vs-arsenal-community-shield-8-16-26"
+    },
+    {
+      "player": "Savinho",
+      "issue": "Illness — missed training in the week of 10 Aug, though the timing coincides with the Tottenham stand-off and may not be purely medical.",
+      "expected_return": "Community Shield involvement described as uncertain; no ongoing injury reported.",
+      "beneficiary": "Jérémy Doku, Antoine Semenyo",
+      "source_url": "https://www.sportingpedia.com/2026/08/14/manchester-citys-summer-transfer-puzzle-fernandez-deadline-reijnders-cash-rodri-talks-and-savinho-stand-off/"
+    }
+  ],
+  "unknowns": [
+    "PREMISE CORRECTION: Pep Guardiola is no longer the manager. He left at the end of 2025/26 and Enzo Maresca was appointed on 29 June 2026 on a three-year deal. The rotation problem is now a Maresca problem — 4-2-3-1 with an inverted full-back — and nobody has yet seen him pick a competitive Manchester City team. The Community Shield on 16 Aug had not kicked off at the time of this research, so there is no confirmed competitive XI to work from. Every 'starter' above is inference from pre-season selections, previews and manager quotes.",
+    "Rodri is a binary the budget rule cannot express. If he leaves, his true number is near zero and roughly 1,600 minutes move to a replacement — most likely Bouaddi, who is not in this dataset. If he stays and the back settles, 2,400-2,600 is realistic and the proposed 1,600 is far too low. The 1,600 is a weighted midpoint, not a forecast of any single outcome; treat it as the single largest source of error in this file.",
+    "Same problem for Bouaddi. If the deal completes (personal terms agreed, final stages as of 14 Aug), he takes 1,500-2,000 minutes that this file has left with Nico González, Kovacic and Anderson, because the ±500 budget rule forces the squad to be treated as closed. The listed total should really fall by that amount when a new midfielder arrives.",
+    "Savinho unresolved. Tottenham have offered a reported €100m and City had not approved it as of 14 Aug; he has previously handed in a transfer request. Solio's 419 minutes is a he-leaves number. If he stays, that is a 1,000-1,500 minute swing which must come out of Doku, Semenyo, Cherki or Foden. One search result suggested he had agreed a new City contract, but on fetching, that article was dated September 2025 — stale, and discarded. Do not treat the stay case as settled either way.",
+    "Marmoush unresolved for the same reason. Maresca has hinted he can leave, with Spurs and Newcastle interested, and Solio's 349 assumes he goes. But he scored twice in the final friendly and was predicted to lead the line in the Community Shield, and if he is sold City have no recognised backup striker at all — which would raise his minutes sharply in any Haaland-absence scenario.",
+    "Nico O'Reilly's position is unresolved (left-back or central midfield), with City-specific outlets expecting an eventual permanent shift into midfield. This does not change his own total, which is why no delta is proposed, but it determines whether Ait-Nouri's 975 and Gvardiol's minutes are right. If O'Reilly moves inside, Ait-Nouri should rise materially.",
+    "Vitor Reis stay-or-loan is genuinely open — Maresca has been coy publicly and Barcelona have shown interest. The proposed 250 is a hedge between the two outcomes, not a projection of a role.",
+    "Rico Lewis (50) and Jack Grealish (27) are both left at Solio's near-zero numbers, which encode departures that have not happened. Lewis has a £30m price tag with Newcastle and Sunderland interested; Grealish has loan interest from Everton plus enquiries from the Premier League, MLS and Saudi Arabia. If either stays and gets fit, those numbers are wrong — but there is no source supporting a raise today.",
+    "The second centre-back slot could not be resolved and is marked contested rather than guessed. The City-specific coverage explicitly expects Maresca to choose game-by-game, so a four-way split of roughly 6,840 minutes across Guehi, Khusanov, Dias and Gvardiol is the honest shape. The proposed numbers flatten Solio's distribution towards that; they do not claim to know the pairing.",
+    "Manchester Evening News (the actual local beat, Simon Bajkowski et al.) blocks the crawler outright, and The Athletic's Sam Lee is paywalled. Read Man City returns 403 to the fetcher. This removed the three strongest daily City beats from the evidence base and is a real weakness in this research.",
+    "A Blue Moon Podcast season-preview episode featuring Sam Lee, with interviews from Gvardiol, Semenyo, Kovacic, Nico Gonzalez and Nunes, was identified but neither its audio nor a transcript could be retrieved — the host forum returns 403 and the episode is not on YouTube. It is likely the single best unread source on this club. Two YouTube transcripts were pulled successfully (ESPN FC's Rob Dawson panel, and a panel carrying Maresca press-conference audio); a third returned Hindi-language content and was discarded.",
+    "No page or transcript encountered contained text addressed to an AI or attempted to give instructions. Everything above was treated as data."
+  ]
+}

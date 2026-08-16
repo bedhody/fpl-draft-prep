@@ -1,0 +1,379 @@
+{
+  "club": "SUN",
+  "researched_at": "2026-08-16",
+  "sources": [
+    {
+      "name": "FPL bootstrap-static API (Sunderland squad, status flags, dated news)",
+      "type": "official",
+      "url": "https://fantasy.premierleague.com/api/bootstrap-static/",
+      "date": "2026-08-16",
+      "why_trusted": "Authoritative registered-squad list and injury/departure flags with news_added timestamps. Returns exactly the 25 players in the brief, so no unregistered new signing is hiding in the brief; Masuaku/Patterson/Hjelde all carry status 'u' dated 2026-08-12, Mukiele/Alderete status 'd' 75% dated 2026-08-09."
+    },
+    {
+      "name": "Wikipedia: 2026-27 Sunderland A.F.C. season (dated transfer ledger)",
+      "type": "beat",
+      "url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Sunderland_A.F.C._season",
+      "date": "2026-08-16",
+      "why_trusted": "Dated in/out ledger with fees, cross-checked line-by-line against the FPL status flags above and against the pre-season results. Ins: Meunier (free, Lille, 15 Jul). Outs: Rusyn (1 Jul), Mayenda (Rennes, GBP22m, 5 Jul), Pembele (16 Jul), Abdullahi (4 Aug), Masuaku (Konyaspor, 10 Aug), Hjelde (Mechelen, 11 Aug), Patterson (Wrexham, 11 Aug); released: Neil, Cirkin, Huggins, Traore."
+    },
+    {
+      "name": "FotMob match page: Sunderland 2-1 Stade Rennais, final pre-season friendly",
+      "type": "beat",
+      "url": "https://www.fotmob.com/matches/sunderland-vs-rennes/2ryd15",
+      "date": "2026-08-15",
+      "why_trusted": "Actual confirmed XI and substitution times seven days before the opener, not a prediction. Roefs; Hume, Ballard, O'Nien, Reinildo; Xhaka, Sadiki; Talbi, Le Fee, Angulo; Brobbey in a 4-2-3-1. Subs: Rigg 61' (for Sadiki), Diarra 64' (Angulo), Mundle 64' (Talbi), Isidor 72' (Brobbey)."
+    },
+    {
+      "name": "YSScores lineup page: Sunderland vs Stade Rennais",
+      "type": "beat",
+      "url": "https://www.ysscores.com/en/lineup/5898847/Sunderland-AFC-vs-Stade-Rennais-FC",
+      "date": "2026-08-15",
+      "why_trusted": "Independent second record of the same 15 Aug XI and formation; agrees with FotMob on all eleven names and on the 4-2-3-1. Used purely as corroboration."
+    },
+    {
+      "name": "OneFootball syndication of Sunderland Echo: '10 players set for Sunderland's Ipswich opener, one starting spot up for grabs'",
+      "type": "local press",
+      "url": "https://onefootball.com/en/news/10-players-set-for-sunderlands-ipswich-opener-one-starting-spot-up-for-grabs-43260814",
+      "date": "2026-08-11",
+      "why_trusted": "Sunderland Echo beat reporting, read via syndication because sunderlandecho.com returns HTTP 403 to automated fetches. TREAT WITH CAUTION: the page carries a disclosure that AI assisted in writing it from the Echo's original, and it garbled at least one name (rendered academy winger Timur Tuterov as 'Tutierov'). Used only where it agrees with the 15 Aug confirmed XI or with an independent source."
+    },
+    {
+      "name": "Sunderland AFC official: 'Le Bris provides Alderete and Mukiele update'",
+      "type": "official",
+      "url": "https://www.safc.com/news/2026/august/09/le-bris-provides-alderete-and-mukiele-update/",
+      "date": "2026-08-09",
+      "why_trusted": "Club's own channel, and the origin of the FPL 75%-chance flags both players received on the same date."
+    },
+    {
+      "name": "Yahoo Sports: 'Mukiele & Alderete injury latest as Le Bris updates on absent Sunderland stars'",
+      "type": "beat",
+      "url": "https://uk.sports.yahoo.com/news/mukiele-alderete-injury-latest-le-170709184.html",
+      "date": "2026-08-08",
+      "why_trusted": "Full Le Bris press-conference detail rather than the headline alone: Mukiele knock from the Wrexham game ('He should be available for the beginning of the season'), Alderete knee stiffness from World Cup duty, Adingra ankle problem that 'might be a bit longer', Mundle minor knock."
+    },
+    {
+      "name": "Goal.com: 'Sunderland reach GBP25.6m agreement with Toulouse for Dayann Methalie'",
+      "type": "beat",
+      "url": "https://www.goal.com/en-gb/lists/sunderland-agree-dayann-methalie-toulouse-transfer/bltb82ddf8ff603ea93",
+      "date": "2026-08-16",
+      "why_trusted": "Full agreement reported (GBP23.9m plus GBP1.7m add-ons) with medical imminent; corroborated by Get French Football News (https://www.getfootballnewsfrance.com/2026/sunderland-reach-full-agreement-with-toulouse-over-dayann-methalie-transfer/). A club-record-scale fee for a left-back directly threatens the incumbent."
+    },
+    {
+      "name": "The Hard Tackle: 'Sunderland rule out summer exit for Wilson Isidor'",
+      "type": "beat",
+      "url": "https://thehardtackle.com/transfer-news/2026/08/04/sunderland-rule-out-summer-exit-for-wilson-isidor/",
+      "date": "2026-08-04",
+      "why_trusted": "Reports Sky Sports' line that Isidor is not for sale; Hull's ~GBP10m bid rejected and West Ham rebuffed. Corroborated by the Sunderland Echo's 'It's done' Le Bris piece (https://www.sunderlandecho.com/sport/football/sunderland-afc/sunderland-transfer-news-wilson-isidor-8846840) and by Isidor starting/scoring in pre-season."
+    },
+    {
+      "name": "OneFootball syndication: 'Le Bris says Chris Rigg has taken a big step as Sunderland youngster shines in pre-season'",
+      "type": "local press",
+      "url": "https://onefootball.com/en/news/regis-le-bris-says-chris-rigg-has-taken-a-big-step-as-sunderland-youngster-shines-in-pre-season-43213035",
+      "date": "2026-07-31",
+      "why_trusted": "Le Bris on Rigg's development ('a big step', more mature than the same stage last season), Rigg set to start against Leeds. Independently supported by his 61' appearance vs Rennes on 15 Aug and by the 11 Aug Echo piece referencing 'Chris Rigg's excellent pre-season'."
+    },
+    {
+      "name": "Premier League / Sky Sports: clubs qualified for Europe in 2026-27",
+      "type": "official",
+      "url": "https://www.premierleague.com/en/news/4668268/race-for-europe-find-out-who-have-qualified-for-uefa-club-competitions",
+      "date": "2026-05-24",
+      "why_trusted": "Sunderland finished 7th and enter the Europa League league phase directly: eight guaranteed extra fixtures (16-17 Sep, 15 and 22 Oct, 5 and 26 Nov, 10 Dec 2026, 21 and 28 Jan 2027) on top of two domestic cups. This is the structural reason to expect a flatter Premier League minutes distribution than Solio has modelled."
+    }
+  ],
+  "formation": "4-2-3-1",
+  "positions": [
+    {
+      "position": "GK",
+      "starter": "Robin Roefs",
+      "confidence": "nailed",
+      "competition": ["Melker Ellborg"],
+      "note": "First choice throughout pre-season and started the 15 Aug friendly. Anthony Patterson was sold to Wrexham on 11 Aug for GBP8m, leaving Ellborg (270 PL minutes in 2025/26) as the only cover. Solio's 3,420 for Roefs is already the full-season number and is left untouched."
+    },
+    {
+      "position": "RB",
+      "starter": "Trai Hume",
+      "confidence": "likely",
+      "competition": ["Thomas Meunier", "Nordi Mukiele"],
+      "note": "Hume started at right-back in the final friendly and scored. The 11 Aug Echo preview instead put Meunier at right-back with Hume pushed to a right-sided attacking role, so the two sources disagree; Hume played 3,032 PL minutes here last season, which is why the confirmed lineup is weighted more heavily. Meunier (34, free from Lille, 15 Jul) is genuine cover at both RB and CB and left unchanged at 804."
+    },
+    {
+      "position": "CB",
+      "starter": "Dan Ballard",
+      "confidence": "likely",
+      "competition": ["Nordi Mukiele", "Omar Alderete", "Luke O'Nien", "Jenson Seelt"],
+      "note": "Ballard started both August friendlies and is described as 'poised to start' the opener. Four fit-or-returning centre-backs plus an incoming left-sided defender for two slots means real rotation, amplified by the Europa League league phase."
+    },
+    {
+      "position": "CB",
+      "starter": "Luke O'Nien",
+      "confidence": "contested",
+      "competition": ["Omar Alderete", "Nordi Mukiele", "Thomas Meunier", "Dayann Methalie (incoming)"],
+      "note": "O'Nien holds the left-sided centre-back slot only because Mukiele and Alderete are both carrying knocks. Le Bris expects both 'more or less available for Ipswich', and the club is explicitly shopping for a left-sided centre-half, so O'Nien's hold on the position is temporary rather than structural."
+    },
+    {
+      "position": "LB",
+      "starter": "Reinildo Mandava",
+      "confidence": "contested",
+      "competition": ["Dayann Methalie (incoming)", "Luke O'Nien"],
+      "note": "Reinildo started both August friendlies at left-back, but Sunderland have a full GBP25.6m agreement with Toulouse for 20-year-old left-back Dayann Methalie with a medical imminent. A fee at that level does not sit on the bench for a season. Arthur Masuaku, the previous backup, joined Konyaspor on 10 Aug."
+    },
+    {
+      "position": "DM",
+      "starter": "Granit Xhaka",
+      "confidence": "nailed",
+      "competition": ["Chris Rigg", "Habib Diarra"],
+      "note": "Started the 15 Aug friendly and is the pivot the whole build-up is designed around. Solio's 3,295 is left untouched."
+    },
+    {
+      "position": "DM",
+      "starter": "Noah Sadiki",
+      "confidence": "likely",
+      "competition": ["Chris Rigg", "Habib Diarra"],
+      "note": "Started the 15 Aug friendly and was withdrawn on 61' for Rigg. 2,891 PL minutes last season; Solio's 2,842 is left untouched."
+    },
+    {
+      "position": "AM",
+      "starter": "Enzo Le Fee",
+      "confidence": "nailed",
+      "competition": ["Chris Rigg"],
+      "note": "Central number ten, started every August friendly, played the full 90 vs Rennes. Solio's 3,324 is left untouched."
+    },
+    {
+      "position": "RW",
+      "starter": "unknown",
+      "confidence": "unknown",
+      "competition": ["Chemsdine Talbi", "Trai Hume", "Nilson Angulo", "unnamed incoming right winger"],
+      "note": "Genuinely unresolved. FotMob's 15 Aug teamsheet reads Talbi-Le Fee-Angulo across the three, implying Talbi right; the 11 Aug Echo preview has Talbi left and Hume right. The Echo also reports a right winger is still a transfer target, with any arrival starting on the bench. Not modelled as a resolved slot."
+    },
+    {
+      "position": "LW",
+      "starter": "unknown",
+      "confidence": "contested",
+      "competition": ["Nilson Angulo", "Chemsdine Talbi", "Simon Adingra", "Romaine Mundle"],
+      "note": "The one spot the Echo explicitly called 'up for grabs'. Angulo started the final friendly; beat coverage expects Angulo and Talbi to share the left flank across four competitions rather than one of them owning it. Adingra is out with an ankle problem and in loan talks with West Ham."
+    },
+    {
+      "position": "ST",
+      "starter": "Brian Brobbey",
+      "confidence": "likely",
+      "competition": ["Wilson Isidor"],
+      "note": "Brobbey started the 15 Aug friendly and was withdrawn on 72' for Isidor. Eliezer Mayenda's GBP22m sale to Rennes on 5 Jul leaves exactly two senior strikers for one slot plus eight Europa League fixtures, so this is a shared position, not a solo one."
+    }
+  ],
+  "player_deltas": [
+    {
+      "player": "Nordi Mukiele",
+      "code": 200834,
+      "solio_xmins": 3312,
+      "proposed_xmins": 2050,
+      "delta": -1262,
+      "reason": "Solio has Mukiele as Sunderland's highest-minute defender at essentially every available minute. Two things contradict that. First, he picked up a knock in the final game of the US tour, missed both the Lens and Rennes friendlies, and is flagged 75% by FPL as of 09 Aug; the 11 Aug preview says he 'might not be ready to start' at Portman Road, so he begins the season behind O'Nien. Second and larger: Solio's whole Sunderland allocation is shaped like a back five (16,463 minutes to FPL-classified defenders against the 13,680 a four-man defence can supply), whereas the confirmed 15 Aug XI and the opener preview both use a back four in a 4-2-3-1. Mukiele carries the biggest share of that structural correction because he is the one whose Solio number is furthest above what a rotating four-man defence with a Europa League schedule can pay out.",
+      "source_url": "https://www.fotmob.com/matches/sunderland-vs-rennes/2ryd15",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Omar Alderete",
+      "code": 201895,
+      "solio_xmins": 3067,
+      "proposed_xmins": 1950,
+      "delta": -1117,
+      "reason": "Same two forces as Mukiele. Alderete is carrying knee stiffness that dates back to the end of last season and Paraguay's World Cup campaign; Le Bris said on 08-09 Aug that he 'should train next week with the group', which puts him at best on the bench for the opener. He missed both August friendlies while O'Nien started them. Layered on top is the back-five-to-back-four correction: with Ballard, O'Nien, Mukiele, Alderete and the incoming Methalie all competing for two centre-back slots across an eight-fixture Europa League league phase plus two domestic cups, no Sunderland centre-back can plausibly hold a 3,067-minute Premier League share.",
+      "source_url": "https://uk.sports.yahoo.com/news/mukiele-alderete-injury-latest-le-170709184.html",
+      "source_date": "2026-08-08",
+      "confidence": "medium"
+    },
+    {
+      "player": "Reinildo Mandava",
+      "code": 434399,
+      "solio_xmins": 3067,
+      "proposed_xmins": 2100,
+      "delta": -967,
+      "reason": "Solio projects Reinildo for 3,067 minutes, well above the 1,966 he actually played in 2025/26, on the assumption that left-back is his uncontested. It is not: Sunderland have a full agreement with Toulouse worth GBP25.6m (GBP23.9m plus GBP1.7m add-ons) for 20-year-old left-back Dayann Methalie, with the medical imminent, and the Echo separately reports the club is pursuing both a left-back and a left-sided centre-half. A fee of that size, at a club whose only other window business was a free transfer, is a starter being bought. Reinildo starts the opener but should not be modelled as owning the position for 38 games. Note that Methalie is not yet in the FPL bootstrap and therefore has no code, so his minutes are not represented anywhere in this allocation.",
+      "source_url": "https://www.goal.com/en-gb/lists/sunderland-agree-dayann-methalie-toulouse-transfer/bltb82ddf8ff603ea93",
+      "source_date": "2026-08-16",
+      "confidence": "medium"
+    },
+    {
+      "player": "Dan Ballard",
+      "code": 223827,
+      "solio_xmins": 2867,
+      "proposed_xmins": 2500,
+      "delta": -367,
+      "reason": "A smaller trim from the same back-four correction. Ballard is the most secure centre-back — he started both August friendlies and is 'poised to start' the opener — but he managed only 2,144 Premier League minutes last season and now faces the same five-into-two competition plus eight guaranteed Europa League fixtures. Reduced least of the centre-backs precisely because his claim is the strongest.",
+      "source_url": "https://onefootball.com/en/news/10-players-set-for-sunderlands-ipswich-opener-one-starting-spot-up-for-grabs-43260814",
+      "source_date": "2026-08-11",
+      "confidence": "medium"
+    },
+    {
+      "player": "Arthur Masuaku",
+      "code": 105717,
+      "solio_xmins": 125,
+      "proposed_xmins": 0,
+      "delta": -125,
+      "reason": "Dead minutes. Masuaku joined Konyaspor permanently on 10 Aug 2026; FPL set his status to 'u' with news 'Has joined Konyaspor permanently' on 12 Aug. He cannot play a Premier League minute. Small in size but it is a certainty rather than a judgement. Note that Solio has already zeroed the other two departures, Anthony Patterson (Wrexham, GBP8m, 11 Aug) and Leo Fuhr Hjelde (KV Mechelen loan, 11 Aug), so Masuaku is the only stale departure left in the file.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Sunderland_A.F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "high"
+    },
+    {
+      "player": "Trai Hume",
+      "code": 487676,
+      "solio_xmins": 2668,
+      "proposed_xmins": 2950,
+      "delta": 282,
+      "reason": "Solio drops Hume to 2,668 from the 3,032 he actually played in 2025/26, which implies he loses ground. The evidence points the other way: he started the final pre-season friendly at right-back and scored, and his only direct competition is 34-year-old free signing Thomas Meunier, who was withdrawn at half-time on his debut against Lens. Modest upward move rather than a large one, because the 11 Aug preview did have Meunier starting at right-back with Hume moved forward, so the position is not fully settled.",
+      "source_url": "https://www.fotmob.com/matches/sunderland-vs-rennes/2ryd15",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Luke O'Nien",
+      "code": 167512,
+      "solio_xmins": 406,
+      "proposed_xmins": 1050,
+      "delta": 644,
+      "reason": "Solio has O'Nien at 406 minutes, a deep-squad number. He started both August friendlies at centre-back, and both the 11 Aug Echo preview and follow-up analysis have him starting the opener, with Le Bris quoted that 'we know he's ready to be competitive in that league'. Deliberately not raised further: the opening is created by Mukiele's and Alderete's knocks, both of which Le Bris expects to clear within weeks, and O'Nien is 31 with 565 Premier League minutes last season. The proposed figure treats him as a genuine rotation defender who starts the season in the XI, not as a new nailed-on starter.",
+      "source_url": "https://roundtable.io/sports/soccer/premier-league/sunderland/news/luke-onien-deserves-sunderland-start-vs-ipswich-town-amid-regis-le-bris-injury-woes",
+      "source_date": "2026-08-11",
+      "confidence": "medium"
+    },
+    {
+      "player": "Chris Rigg",
+      "code": 554197,
+      "solio_xmins": 144,
+      "proposed_xmins": 1350,
+      "delta": 1206,
+      "reason": "The clearest single error in Solio's Sunderland file. 144 minutes is a number you give a player who is about to leave or is buried; Rigg is neither. He is contracted to 2030 with no transfer agreed (Everton interest was met with a GBP40m asking price), he played 758 Premier League minutes last season aged 18, and he was arguably Sunderland's standout pre-season performer — scored against York City, assisted Le Fee against Liverpool, started against Leeds, and came on at 61' against Rennes. Le Bris publicly called his development 'a big step' and said he is positioning himself to play a major part across the campaign. He is behind Xhaka, Sadiki and Le Fee in the first-choice midfield, which is why the proposed figure is a rotation number rather than a starter's, but eight Europa League fixtures plus two domestic cups will pull first-choice midfielders out of Premier League games.",
+      "source_url": "https://onefootball.com/en/news/regis-le-bris-says-chris-rigg-has-taken-a-big-step-as-sunderland-youngster-shines-in-pre-season-43213035",
+      "source_date": "2026-07-31",
+      "confidence": "medium"
+    },
+    {
+      "player": "Nilson Angulo",
+      "code": 536661,
+      "solio_xmins": 648,
+      "proposed_xmins": 1500,
+      "delta": 852,
+      "reason": "Solio's 648 extrapolates from a stop-start 401-minute half-season after his January arrival from Anderlecht for around GBP15m, during which injuries limited him to eight appearances. That is a bad base rate for 2026/27. He started the final pre-season friendly on the left of the front three, the Echo names him as pushing for the one 'up for grabs' starting spot, and beat coverage expects him to share the left flank with Talbi across four competitions. Set below Talbi because Talbi has the Premier League experience the Echo says 'might count' in the opener, and because Sunderland may still sign a wide attacker.",
+      "source_url": "https://www.fotmob.com/matches/sunderland-vs-rennes/2ryd15",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Chemsdine Talbi",
+      "code": 549912,
+      "solio_xmins": 2263,
+      "proposed_xmins": 2500,
+      "delta": 237,
+      "reason": "Small upward move. Talbi started the final friendly in the front three and the Echo's opener preview favours him for the contested wide slot on the basis of his Premier League experience. Kept modest because he shares the flank with Angulo and because Sunderland are still targeting a right winger, which would compress the wide minutes further.",
+      "source_url": "https://onefootball.com/en/news/10-players-set-for-sunderlands-ipswich-opener-one-starting-spot-up-for-grabs-43260814",
+      "source_date": "2026-08-11",
+      "confidence": "medium"
+    },
+    {
+      "player": "Romaine Mundle",
+      "code": 461199,
+      "solio_xmins": 52,
+      "proposed_xmins": 300,
+      "delta": 248,
+      "reason": "Solio's 52 minutes is effectively an exit assumption, but Mundle is still at the club, recovered from the minor knock that kept him out of the Lens friendly, and came off the bench on 64' against Rennes a week before the opener. He played 399 Premier League minutes last season. With Adingra in a walking boot and possibly leaving on loan, Mundle is the fourth wide option in a squad playing at least 46 fixtures. Small delta and low confidence — he could still be moved before 31 Aug.",
+      "source_url": "https://www.fotmob.com/matches/sunderland-vs-rennes/2ryd15",
+      "source_date": "2026-08-15",
+      "confidence": "low"
+    },
+    {
+      "player": "Wilson Isidor",
+      "code": 437505,
+      "solio_xmins": 481,
+      "proposed_xmins": 1000,
+      "delta": 519,
+      "reason": "Solio's 481 minutes is a departure assumption that the club has explicitly contradicted. Sky Sports reported on 4 Aug that Sunderland made clear Isidor is not for sale; a Hull City bid around GBP10m was rejected and West Ham were rebuffed; Le Bris shut the speculation down after the Lens win, in which Isidor scored. He came on for Brobbey on 72' against Rennes. The structural point is that Eliezer Mayenda was sold to Rennes for GBP22m on 5 Jul and Nazariy Rusyn and Ahmed Abdullahi also left, leaving Brobbey and Isidor as the only two senior strikers for one starting slot plus a Europa League league phase. Isidor played 1,148 Premier League minutes last season behind Mayenda; with Mayenda gone he should not be modelled below that by more than half.",
+      "source_url": "https://thehardtackle.com/transfer-news/2026/08/04/sunderland-rule-out-summer-exit-for-wilson-isidor/",
+      "source_date": "2026-08-04",
+      "confidence": "high"
+    },
+    {
+      "player": "Brian Brobbey",
+      "code": 441264,
+      "solio_xmins": 2884,
+      "proposed_xmins": 2600,
+      "delta": -284,
+      "reason": "The counterweight to the Isidor change: Solio's Brobbey and Isidor numbers together imply only one of them is a real Premier League contributor. Brobbey remains the near-certain starter and this is a deliberately small trim, but he was withdrawn on 72' against Rennes, Isidor is confirmed to be staying as the impact option, and eight Europa League fixtures give Le Bris a strong reason to rest the only recognised first-choice striker in some league games.",
+      "source_url": "https://thehardtackle.com/transfer-news/2026/08/04/sunderland-rule-out-summer-exit-for-wilson-isidor/",
+      "source_date": "2026-08-04",
+      "confidence": "medium"
+    }
+  ],
+  "budget_check": {
+    "solio_total": 37721,
+    "proposed_total": 37587,
+    "difference": -33
+  },
+  "reinforcement_risk": [
+    {
+      "position": "LB",
+      "incumbent": "Reinildo Mandava",
+      "note": "Highest-probability reinforcement in the squad. Full agreement with Toulouse for Dayann Methalie at GBP25.6m (GBP23.9m initial plus GBP1.7m add-ons), five-year contract, medical imminent as of 15-16 Aug. Methalie is 20, made 28 Ligue 1 appearances last season, and can play left-back, wing-back or left-sided centre-back — so he threatens both Reinildo and the left centre-back slot. He is NOT yet in the FPL bootstrap and has no player code, so none of the minutes he will take are represented in this allocation. Dennis Cirkin's release and Masuaku's sale left the position with no cover, which is why the club moved.",
+      "source_url": "https://www.goal.com/en-gb/lists/sunderland-agree-dayann-methalie-toulouse-transfer/bltb82ddf8ff603ea93"
+    },
+    {
+      "position": "CB",
+      "incumbent": "Luke O'Nien",
+      "note": "The Echo reports Sunderland are pursuing a left-sided centre-half alongside the left-back, with any arrival 'likely to be eased in'. Methalie may fill this himself. O'Nien holds the slot only while Mukiele and Alderete are unfit.",
+      "source_url": "https://onefootball.com/en/news/10-players-set-for-sunderlands-ipswich-opener-one-starting-spot-up-for-grabs-43260814"
+    },
+    {
+      "position": "RW",
+      "incumbent": "Chemsdine Talbi",
+      "note": "A right winger 'remains a target' per the same Echo preview, though any addition would probably start on the bench. Combined with the possible Adingra loan exit, the wide-attacking minutes are the least stable part of this allocation. No named target was found in reporting up to 16 Aug.",
+      "source_url": "https://onefootball.com/en/news/10-players-set-for-sunderlands-ipswich-opener-one-starting-spot-up-for-grabs-43260814"
+    },
+    {
+      "position": "ST",
+      "incumbent": "Brian Brobbey",
+      "note": "Not an active pursuit in any source found, but flagged as a structural exposure: Mayenda (GBP22m to Rennes), Rusyn and Abdullahi all left, leaving exactly two senior strikers for a season with at least 46 fixtures. If Sunderland add a forward before 31 Aug, both Brobbey's and Isidor's numbers fall.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Sunderland_A.F.C._season"
+    }
+  ],
+  "injuries": [
+    {
+      "player": "Nordi Mukiele",
+      "issue": "Knock picked up in the final game of the US pre-season tour (vs Wrexham, 2 Aug). FPL status 'd', 75% chance of playing, news dated 09 Aug. Missed both the Lens (8 Aug) and Rennes (15 Aug) friendlies.",
+      "expected_return": "Le Bris: 'He should be available for the beginning of the season' and 'we are not too far as well... we expect them to be more or less available for Ipswich' (22 Aug), but indicated it may be too soon to start. Bench for GW1 is the likelier outcome.",
+      "beneficiary": "Luke O'Nien (started both friendlies at centre-back), with Thomas Meunier as secondary cover",
+      "source_url": "https://www.safc.com/news/2026/august/09/le-bris-provides-alderete-and-mukiele-update/"
+    },
+    {
+      "player": "Omar Alderete",
+      "issue": "Knee problem carried over from the end of last season and Paraguay's World Cup campaign; described as stiffness rather than a serious injury. FPL status 'd', 75% chance of playing, news dated 09 Aug. Missed both August friendlies.",
+      "expected_return": "Le Bris: 'Omar is in a good place, he should train next week with the group so that's good news.' Available in some capacity for Ipswich on 22 Aug, most likely from the bench; Le Bris stressed 'it's important to take care of him before a long season'.",
+      "beneficiary": "Luke O'Nien",
+      "source_url": "https://uk.sports.yahoo.com/news/mukiele-alderete-injury-latest-le-170709184.html"
+    },
+    {
+      "player": "Simon Adingra",
+      "issue": "Ankle problem. Photographs emerged in early August showing him in a protective walking boot on his left foot. FPL status is still 'a' with no news, which appears to be stale relative to the beat reporting.",
+      "expected_return": "Le Bris said the winger 'might be a bit longer' than the other injured players. No return date given in any source found. Complicated by West Ham loan talks: West Ham want a season-long loan, Sunderland want a permanent deal around GBP30m.",
+      "beneficiary": "Nilson Angulo, Chemsdine Talbi, Romaine Mundle",
+      "source_url": "https://uk.sports.yahoo.com/news/mukiele-alderete-injury-latest-le-170709184.html"
+    },
+    {
+      "player": "Romaine Mundle",
+      "issue": "Minor knock that caused him to miss the Lens friendly on 8 Aug. Resolved.",
+      "expected_return": "Already back — appeared as a 64th-minute substitute against Rennes on 15 Aug.",
+      "beneficiary": "n/a",
+      "source_url": "https://www.fotmob.com/matches/sunderland-vs-rennes/2ryd15"
+    }
+  ],
+  "unknowns": [
+    "Dayann Methalie has no FPL player code (not in the bootstrap as of 16 Aug 2026), so his minutes are unallocated. The proposed defensive total of 13,551 leaves only about 130 minutes of headroom below the 13,680 a four-man defence supplies, which means the coded defenders collectively still absorb minutes Methalie will take. If he starts regularly, Reinildo, O'Nien and Meunier are the three numbers most likely to be too high. Same caveat applies to any other signing made before the 31 Aug deadline.",
+    "Whether Chemsdine Talbi plays right or left, and relatedly whether Trai Hume plays right-back or is pushed into a right-sided attacking role. FotMob's 15 Aug teamsheet and the 11 Aug Echo preview disagree on this. Because the two readings redistribute the same minutes between Hume, Talbi, Angulo and Meunier, the wide and right-back numbers here are the least stable in the file.",
+    "Whether Simon Adingra leaves for West Ham before 31 Aug (loan vs permanent is unresolved) and how his ankle injury resolves. Solio's 178 minutes is consistent with either an exit or a badly disrupted season, so it was left unchanged — but if he stays and recovers, 178 is far too low and Angulo's and Mundle's numbers are correspondingly too high.",
+    "Whether Sunderland sign the right winger the Echo says they are still targeting. No named target appeared in any source found up to 16 Aug.",
+    "How Le Bris splits the squad between the Premier League and the eight-fixture Europa League league phase (16-17 Sep, 15 and 22 Oct, 5 and 26 Nov, 10 Dec, 21 and 28 Jan) plus two domestic cups. This is the single biggest driver of the flattening applied here, and if Le Bris fields a near-first-choice XI in Europe rather than rotating, the cuts to Mukiele, Alderete and Ballard are too large.",
+    "Thomas Meunier was deliberately left at Solio's 804 minutes because the evidence genuinely conflicts: the 11 Aug preview starts him at right-back for the opener, but he did not start the 15 Aug friendly and was withdrawn at half-time on his Lens debut. He is 34 and the squad's only specialist right-back cover, so 804 could be too low in a 46-plus-fixture season.",
+    "Habib Diarra was left at Solio's 1,602. Le Bris signalled he 'will need patience'; he came on at 64' against Rennes. No source gave a clear enough read to move him.",
+    "Source-access limitation, reported rather than worked around: sunderlandecho.com returns HTTP 403 to all automated fetches, and fantasyfootballhub.co.uk's Sunderland preview (12 Aug, George Kenny) is behind a members-only paywall. The Echo's opener-XI reporting was therefore read through OneFootball's syndication, which discloses that AI assisted in writing it and which garbled academy winger Timur Tuterov's name to 'Tutierov'. Every claim taken from that page is either corroborated by the independently confirmed 15 Aug lineup or flagged above. No page encountered contained text addressed to an AI or attempting to issue instructions."
+  ]
+}

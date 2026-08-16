@@ -1,0 +1,477 @@
+{
+  "club": "CRY",
+  "researched_at": "2026-08-16",
+  "sources": [
+    {
+      "name": "FPL bootstrap-static API (live squad + status flags)",
+      "type": "official",
+      "url": "https://fantasy.premierleague.com/api/bootstrap-static/",
+      "date": "2026-08-16",
+      "why_trusted": "The game's own source of truth for who is registered to CRY. Fetched today: 30 Palace players, only Uche (status u, returned to Getafe) and Cardines (status u, loan to Bristol City) flagged. Confirms Anan Khalaili is NOT yet in the game despite signing on 15 Aug."
+    },
+    {
+      "name": "Wikipedia — 2026-27 Crystal Palace F.C. season",
+      "type": "official",
+      "url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Crystal_Palace_F.C._season",
+      "date": "2026-08-16",
+      "why_trusted": "Dated transfer ledger with exact dates for every in/out/loan, plus the full pre-season friendly results. Used as the primary cross-check on what post-dates Solio's data."
+    },
+    {
+      "name": "VAVEL — Freiburg vs Crystal Palace live coverage (final pre-season friendly)",
+      "type": "local press",
+      "url": "https://www.vavel.com/en-us/soccer/2026/08/15/1268022-freiburg-vs-crystal-palace-live-score-friendly.amp.html",
+      "date": "2026-08-15",
+      "why_trusted": "Full Palace XI and substitutions from the last match before the season opener, six days out. The single most informative lineup signal available."
+    },
+    {
+      "name": "FOX Sports / AP — Crystal Palace signs Anan Khalaili",
+      "type": "beat",
+      "url": "https://www.foxsports.com/articles/soccer/crystal-palace-signs-anan-khalaili-from-union-saintgilloise-after-inter-milan-move-breaks-down",
+      "date": "2026-08-15",
+      "why_trusted": "Wire copy confirming the signing date, EUR 24.5m fee, five-year deal and that it is subject to international clearance."
+    },
+    {
+      "name": "Fantasy Football Scout — FPL pre-season: Palace tactics",
+      "type": "beat",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/07/21/fpl-pre-season-palace-tactics-branthwaite-injury-update",
+      "date": "2026-07-21",
+      "why_trusted": "FPL-specific tactical write-up: confirms Pierre Sage deployed his preferred back three with wing-backs in his first Palace match, with the XI listed."
+    },
+    {
+      "name": "The Guardian (via AOL) — Premier League 2026-27 preview No 8: Crystal Palace",
+      "type": "beat",
+      "url": "https://www.aol.co.uk/articles/premier-league-2026-27-preview-110056000.html",
+      "date": "2026-08-13",
+      "why_trusted": "Season preview three days before research date. Confirms Glasner out / Sage in, Lacroix sale leaving a centre-back hole, and the Johnson-for-McNeil swap."
+    },
+    {
+      "name": "Yahoo Sports — Palace set to sign Tomiyasu",
+      "type": "beat",
+      "url": "https://sports.yahoo.com/articles/palace-set-sign-tomiyasu-consider-155151007.html",
+      "date": "2026-08-05",
+      "why_trusted": "Details the trial-then-free-transfer nature of the deal and states explicitly that Palace wanted to be sure of his fitness; documents his total recent workload (8 Ajax appearances plus 3 World Cup games)."
+    },
+    {
+      "name": "Roundtable — How will Palace address their striking conundrum?",
+      "type": "beat",
+      "url": "https://roundtable.io/sports/soccer/premier-league/crystal-palace/players/how-will-palace-address-their-striking-conundrum",
+      "date": "2026-07-03",
+      "why_trusted": "Palace-focused analysis of the three-into-one striker problem under Sage's single-No.9 system, with the January fee for Strand Larsen and Mateta's contract situation."
+    },
+    {
+      "name": "Sports Mole — Crystal Palace summer transfers: confirmed ins and outs 2026",
+      "type": "beat",
+      "url": "https://www.sportsmole.co.uk/football/crystal-palace/transfer-talk/feature/crystal-palace-summer-transfers-all-confirmed-ins-and-outs-for-2026_599216.html",
+      "date": "2026-08-16",
+      "why_trusted": "Independent confirmation of the same in/out list, including the Guessand loan from Aston Villa and the Johnson/McNeil swap."
+    },
+    {
+      "name": "Premier League — How Palace's Conference League triumph affects European qualification",
+      "type": "official",
+      "url": "https://www.premierleague.com/en/news/4671711/how-crystal-palace-uefa-conference-league-final-affects-european-qualification",
+      "date": "2026-05-01",
+      "why_trusted": "Establishes that Palace won the 2025/26 Conference League and enter the 2026/27 Europa League league phase, i.e. a Thursday-Sunday schedule that forces domestic rotation."
+    },
+    {
+      "name": "CaughtOffside — Chelsea set for face-to-face transfer talks with Crystal Palace",
+      "type": "beat",
+      "url": "https://www.caughtoffside.com/2026/08/12/chelsea-transfer-talks-crystal-palace/",
+      "date": "2026-08-12",
+      "why_trusted": "Used only to establish that the Wharton-to-Chelsea situation is live in mid-August, not to assert an outcome. Tabloid-tier source, treated as a risk flag rather than fact."
+    }
+  ],
+  "formation": "3-4-2-1 / 3-4-3 (back three with wing-backs)",
+  "positions": [
+    {
+      "position": "GK",
+      "starter": "Dean Henderson",
+      "confidence": "nailed",
+      "competition": [
+        "Walter Benitez",
+        "Remi Matthews"
+      ],
+      "note": "Club captain, 3330 minutes last season, started the final pre-season friendly at Freiburg. Benitez is the cup/Europa keeper. Solio's 3385 needs no change."
+    },
+    {
+      "position": "CB",
+      "starter": "Chris Richards",
+      "confidence": "likely",
+      "competition": [
+        "Takehiro Tomiyasu",
+        "Chadi Riad"
+      ],
+      "note": "Started the Freiburg friendly in the back three. Trimmed only for Europa League league-phase rotation, not for any selection doubt."
+    },
+    {
+      "position": "CB",
+      "starter": "Jaydee Canvot",
+      "confidence": "likely",
+      "competition": [
+        "Chadi Riad",
+        "Takehiro Tomiyasu",
+        "Oscar Mingueza"
+      ],
+      "note": "Started the Freiburg friendly. Maxence Lacroix's GBP 52m sale to Chelsea on 30 July vacates a back-three slot, which is why Solio's big promotion from 1331 minutes is directionally right."
+    },
+    {
+      "position": "CB",
+      "starter": "unknown",
+      "confidence": "contested",
+      "competition": [
+        "Chadi Riad",
+        "Takehiro Tomiyasu",
+        "Oscar Mingueza"
+      ],
+      "note": "Genuinely open. Riad started the final friendly and Tomiyasu replaced him, which reads as a straight competition for the third centre-back slot rather than a settled order. Mingueza has played both centre-back and right wing-back in pre-season."
+    },
+    {
+      "position": "RB",
+      "starter": "Daniel Munoz",
+      "confidence": "likely",
+      "competition": [
+        "Oscar Mingueza",
+        "Anan Khalaili"
+      ],
+      "note": "Right wing-back. 29 starts in 2025/26. Reported as the incumbent Khalaili is meant to compete with rather than replace, but he now has two new right-sided bodies behind him plus a Europa League schedule."
+    },
+    {
+      "position": "LB",
+      "starter": "Tyrick Mitchell",
+      "confidence": "likely",
+      "competition": [
+        "Borna Sosa",
+        "Dwight McNeil"
+      ],
+      "note": "Left wing-back, started the Freiburg friendly. Only natural specialist alternative is Sosa (99 minutes last season). Solio's 2554 left unchanged."
+    },
+    {
+      "position": "DM",
+      "starter": "Adam Wharton",
+      "confidence": "likely",
+      "competition": [
+        "Jefferson Lerma",
+        "Will Hughes",
+        "Cheick Doucoure"
+      ],
+      "note": "Started at Freiburg and FPL lists him at 100% fitness since 23 July. Downgraded slightly for a live Chelsea/Man Utd transfer situation and for Europa rotation, not for any fitness or selection doubt."
+    },
+    {
+      "position": "CM",
+      "starter": "Daichi Kamada",
+      "confidence": "likely",
+      "competition": [
+        "Will Hughes",
+        "Jefferson Lerma",
+        "Justin Devenny",
+        "Cheick Doucoure"
+      ],
+      "note": "Started at Freiburg alongside Wharton. Named a key player in the Guardian season preview. Solio's 1932 left unchanged."
+    },
+    {
+      "position": "RW",
+      "starter": "Ismaila Sarr",
+      "confidence": "contested",
+      "competition": [
+        "Anan Khalaili",
+        "Evann Guessand",
+        "Yeremy Pino"
+      ],
+      "note": "Started at Freiburg, but this is the position Palace spent EUR 24.5m on (Khalaili) the day after that friendly, and where the Guessand loan also lands. Solio's 3135 predates both."
+    },
+    {
+      "position": "LW",
+      "starter": "Dwight McNeil",
+      "confidence": "contested",
+      "competition": [
+        "Yeremy Pino",
+        "Evann Guessand",
+        "Romain Esse",
+        "Matheus Franca"
+      ],
+      "note": "Signed 11 August in a straight swap for Brennan Johnson and went straight into the Freiburg XI for his first Palace minutes four days later."
+    },
+    {
+      "position": "ST",
+      "starter": "unknown",
+      "confidence": "contested",
+      "competition": [
+        "Jorgen Strand Larsen",
+        "Jean-Philippe Mateta",
+        "Eddie Nketiah"
+      ],
+      "note": "Three strikers for one slot in Sage's system. Strand Larsen (club-record January signing) started the final friendly; Mateta was back from the World Cup and did not start. Mateta also has an unresolved exit situation. Treated as a genuine split, not a settled order."
+    }
+  ],
+  "player_deltas": [
+    {
+      "player": "Christantus Uche",
+      "code": 660392,
+      "solio_xmins": 159,
+      "proposed_xmins": 0,
+      "delta": -159,
+      "reason": "Loan ended and he has returned to Getafe CF. FPL status is 'u' with chance_of_playing 0, news dated 2026-07-23. He will play no Premier League minutes for Palace.",
+      "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/",
+      "source_date": "2026-08-16",
+      "confidence": "high"
+    },
+    {
+      "player": "Rio Cardines",
+      "code": 590014,
+      "solio_xmins": 90,
+      "proposed_xmins": 0,
+      "delta": -90,
+      "reason": "Joined Bristol City on loan for the rest of the season on 11 August. FPL status 'u', chance_of_playing 0, news dated 2026-08-12. Cannot record Premier League minutes.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Crystal_Palace_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "high"
+    },
+    {
+      "player": "Anan Khalaili",
+      "code": 0,
+      "solio_xmins": 0,
+      "proposed_xmins": 1250,
+      "delta": 1250,
+      "reason": "Signed from Union Saint-Gilloise on 15 August 2026 for EUR 24.5m on a five-year deal, a club-record fee for an Israeli player, after an Inter Milan move collapsed. Right-sided player brought in as competition on the right flank. He post-dates Solio's data entirely and is still absent from the FPL bootstrap as of today, so Solio has him at zero. Held to 1250 rather than a starter's load because the deal is subject to international clearance, he arrived six days before the opener, and he is 21 and new to England. NOTE: code is 0 because he has no FPL element yet.",
+      "source_url": "https://www.foxsports.com/articles/soccer/crystal-palace-signs-anan-khalaili-from-union-saintgilloise-after-inter-milan-move-breaks-down",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Takehiro Tomiyasu",
+      "code": 223723,
+      "solio_xmins": 2822,
+      "proposed_xmins": 1300,
+      "delta": -1522,
+      "reason": "Solio projects roughly 31 full matches for a player signed on a free on 7 August after a trial in the Como Cup. His entire recent workload is eight Ajax appearances plus three World Cup games; he had not played between October 2024 and February 2026 because of a knee injury, and the reporting states Palace wanted to be sure about his fitness before signing. In the final friendly at Freiburg he did not start, coming on to replace Chadi Riad. Both the availability risk and the current pecking order point well below 2822.",
+      "source_url": "https://sports.yahoo.com/articles/palace-set-sign-tomiyasu-consider-155151007.html",
+      "source_date": "2026-08-05",
+      "confidence": "high"
+    },
+    {
+      "player": "Dwight McNeil",
+      "code": 433154,
+      "solio_xmins": 445,
+      "proposed_xmins": 1900,
+      "delta": 1455,
+      "reason": "Solio's 445 is a stale artefact: his club_2526 is still listed as EVE and the number looks like a part-season remnant. He joined Palace on 11 August in a straight swap for Brennan Johnson, both sides valued at around EUR 25.8m, and started the Freiburg friendly on 15 August for his first Palace minutes. A club does not trade away its first-choice right winger for a player who then plays five matches' worth of football.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Crystal_Palace_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "high"
+    },
+    {
+      "player": "Jørgen Strand Larsen",
+      "code": 247412,
+      "solio_xmins": 953,
+      "proposed_xmins": 1950,
+      "delta": 997,
+      "reason": "Solio has the club-record signing at roughly a quarter of a season. He cost a fixed GBP 43m plus GBP 5m in add-ons in January on a four-and-a-half-year deal, and he started the final pre-season friendly at centre-forward while Mateta, back from the World Cup, did not. Palace-focused analysis in July described him as the long-term number nine whose vertical, box-presence profile fits Sage's system. Set at 1950 rather than a full starter's load because the striker slot is genuinely shared three ways.",
+      "source_url": "https://www.vavel.com/en-us/soccer/2026/08/15/1268022-freiburg-vs-crystal-palace-live-score-friendly.amp.html",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Jean-Philippe Mateta",
+      "code": 231747,
+      "solio_xmins": 2422,
+      "proposed_xmins": 1500,
+      "delta": -922,
+      "reason": "The other side of the striker split. Sage's system uses one number nine and Palace hold three Premier League strikers; Mateta did not start the final friendly. His exit situation is unresolved: a January move to AC Milan collapsed on medical grounds, Juventus interest was reported through May and June at a EUR 20-30m valuation, and reporting says his contract is running down with Palace preferring not to sell cheaply. The window is open until 1 September. Not zeroed, because he is registered, fit and available today.",
+      "source_url": "https://roundtable.io/sports/soccer/premier-league/crystal-palace/players/how-will-palace-address-their-striking-conundrum",
+      "source_date": "2026-07-03",
+      "confidence": "medium"
+    },
+    {
+      "player": "Ismaïla Sarr",
+      "code": 232185,
+      "solio_xmins": 3135,
+      "proposed_xmins": 2250,
+      "delta": -885,
+      "reason": "Solio projects a 962-minute jump on his 2173 last season, and that projection predates three August arrivals who all land in the wide and attacking areas: McNeil on 11 August, Guessand on 12 August and Khalaili on 15 August. Palace also play in the Europa League league phase this season, which forces domestic rotation. Proposed figure still sits slightly above his 2025/26 total.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Crystal_Palace_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "medium"
+    },
+    {
+      "player": "Yéremy Pino",
+      "code": 488024,
+      "solio_xmins": 2371,
+      "proposed_xmins": 1600,
+      "delta": -771,
+      "reason": "Same cause as Sarr. Three wide or attacking players arrived after Solio's data cut-off and Pino did not appear in the XI or the substitutions listed for the final friendly at Freiburg. He is the most directly displaced by McNeil arriving on the left.",
+      "source_url": "https://www.vavel.com/en-us/soccer/2026/08/15/1268022-freiburg-vs-crystal-palace-live-score-friendly.amp.html",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Chadi Riad",
+      "code": 515621,
+      "solio_xmins": 356,
+      "proposed_xmins": 1500,
+      "delta": 1144,
+      "reason": "Solio has him at four matches' worth, which reflects his ACL-shortened 550 minutes in 2025/26 rather than his current standing. Lacroix was sold to Chelsea for GBP 52m on 30 July, opening a back-three slot, and Riad started the final pre-season friendly in that back three, with Tomiyasu introduced as his replacement. He also scored in the Como Cup friendly against Al-Ula.",
+      "source_url": "https://www.vavel.com/en-us/soccer/2026/08/15/1268022-freiburg-vs-crystal-palace-live-score-friendly.amp.html",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Oscar Mingueza",
+      "code": 242313,
+      "solio_xmins": 1197,
+      "proposed_xmins": 1600,
+      "delta": 403,
+      "reason": "Signed on a free from Celta Vigo on 9 July and started both bookend pre-season friendlies, at Swindon in July and at Freiburg on 15 August, playing right wing-back and also being used in the back three. That versatility plus Lacroix's departure makes him a heavier-usage squad player than Solio's 1197, though Khalaili's arrival on 15 August caps how far this can go.",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/07/21/fpl-pre-season-palace-tactics-branthwaite-injury-update",
+      "source_date": "2026-07-21",
+      "confidence": "medium"
+    },
+    {
+      "player": "Evann Guessand",
+      "code": 485337,
+      "solio_xmins": 832,
+      "proposed_xmins": 1250,
+      "delta": 418,
+      "reason": "Re-signed from Aston Villa on 12 August on a season-long loan carrying a conditional obligation to buy, having previously been at Palace only from January to May 2026. A full-season deal with a purchase obligation implies a larger role than the half-season Solio's number is scaled from. He came off the bench for Strand Larsen at Freiburg.",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/08/12/guessand-rejoins-palace-from-villa-on-loan",
+      "source_date": "2026-08-12",
+      "confidence": "medium"
+    },
+    {
+      "player": "Daniel Muñoz",
+      "code": 247348,
+      "solio_xmins": 3055,
+      "proposed_xmins": 2600,
+      "delta": -455,
+      "reason": "Still the first-choice right wing-back, but Palace added two players who can fill that slot after Solio's cut-off: Mingueza on 9 July and Khalaili on 15 August, the latter explicitly as competition on the right. Combined with the Europa League league phase, 34 full matches is too high a ceiling.",
+      "source_url": "https://www.foxsports.com/articles/soccer/crystal-palace-signs-anan-khalaili-from-union-saintgilloise-after-inter-milan-move-breaks-down",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Adam Wharton",
+      "code": 496221,
+      "solio_xmins": 3158,
+      "proposed_xmins": 2700,
+      "delta": -458,
+      "reason": "Small haircut on two grounds, not a demotion. He remains a starter and started at Freiburg. First, an unresolved transfer situation with Chelsea holding face-to-face talks with Palace as of 12 August and Man Utd also circling, with the window open until 1 September. Second, he missed the July Swindon friendly with a knock and has never exceeded 2552 Premier League minutes in a season, so Solio's 3158 is above his established ceiling in a year with Europa League football.",
+      "source_url": "https://www.caughtoffside.com/2026/08/12/chelsea-transfer-talks-crystal-palace/",
+      "source_date": "2026-08-12",
+      "confidence": "low"
+    },
+    {
+      "player": "Chris Richards",
+      "code": 427623,
+      "solio_xmins": 3283,
+      "proposed_xmins": 3050,
+      "delta": -233,
+      "reason": "Rotation haircut only; he is a nailed starter and started at Freiburg. Solio projects 458 minutes above his 2825 last season, in a season where Palace enter the Europa League league phase as Conference League holders and so play a Thursday-Sunday schedule. Palace played 60 matches in 2025/26 on the same pattern.",
+      "source_url": "https://www.premierleague.com/en/news/4671711/how-crystal-palace-uefa-conference-league-final-affects-european-qualification",
+      "source_date": "2026-05-01",
+      "confidence": "low"
+    },
+    {
+      "player": "Jaydee Canvot",
+      "code": 651426,
+      "solio_xmins": 3249,
+      "proposed_xmins": 3050,
+      "delta": -199,
+      "reason": "Same rotation haircut. The direction of Solio's promotion from 1331 minutes is right given Lacroix's sale, but 3249 asks a 2025/26 part-starter to play 36 full Premier League matches in a Europa League season with Riad, Tomiyasu and Mingueza all available behind him.",
+      "source_url": "https://www.premierleague.com/en/news/4671711/how-crystal-palace-uefa-conference-league-final-affects-european-qualification",
+      "source_date": "2026-05-01",
+      "confidence": "low"
+    },
+    {
+      "player": "Will Hughes",
+      "code": 108413,
+      "solio_xmins": 1510,
+      "proposed_xmins": 1200,
+      "delta": -310,
+      "reason": "Rotation midfielder who came off the bench for Wharton at Freiburg. Cheick Doucoure is back in training and played in pre-season after roughly 18 months out, which restores a competitor Solio's numbers do not account for, and Lerma and Devenny remain. Trimmed to help fund the attacking arrivals.",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/07/21/fpl-pre-season-palace-tactics-branthwaite-injury-update",
+      "source_date": "2026-07-21",
+      "confidence": "low"
+    },
+    {
+      "player": "Eddie Nketiah",
+      "code": 205533,
+      "solio_xmins": 266,
+      "proposed_xmins": 400,
+      "delta": 134,
+      "reason": "Small uplift. He scored twice against Swindon in July, scored again in the Como Cup against Al-Ula, and came on for Sarr at Freiburg, so he is fit and being used. Kept low because he is third in a three-way striker queue and is a candidate to be moved on before 1 September.",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/07/21/fpl-pre-season-palace-tactics-branthwaite-injury-update",
+      "source_date": "2026-07-21",
+      "confidence": "low"
+    }
+  ],
+  "budget_check": {
+    "solio_total": 37820,
+    "proposed_total": 37617,
+    "difference": -3
+  },
+  "reinforcement_risk": [
+    {
+      "position": "CB",
+      "incumbent": "Chadi Riad / Takehiro Tomiyasu",
+      "note": "Maxence Lacroix left for Chelsea on 30 July for GBP 52m and the Guardian preview says the defence still needs a natural leader to replace him, with budget constraints limiting spending. Tomiyasu was a free-transfer trialist and Riad is a year removed from an ACL injury. If Palace sign a centre-back before 1 September, both proposed figures fall.",
+      "source_url": "https://www.aol.co.uk/articles/premier-league-2026-27-preview-110056000.html"
+    },
+    {
+      "position": "ST",
+      "incumbent": "Jean-Philippe Mateta",
+      "note": "Palace hold three Premier League strikers for one slot in Sage's system and reporting says at least one is expected to be offloaded. Mateta is the most likely to move, with a collapsed Milan deal and repeated Juventus interest behind him. A Mateta sale would push Strand Larsen and Nketiah up sharply; a Strand Larsen sale would do the reverse.",
+      "source_url": "https://roundtable.io/sports/soccer/premier-league/crystal-palace/players/how-will-palace-address-their-striking-conundrum"
+    },
+    {
+      "position": "DM",
+      "incumbent": "Adam Wharton",
+      "note": "Chelsea held face-to-face talks with Palace on 12 August and Man Utd are also reported as interested, with Palace publicly standing firm and asking around EUR 100m. Palace's stated stance is that Sage wants buyers not sellers, and Wharton is contracted to 2029, so a sale is not the base case, but it is unresolved with the window open to 1 September. If he leaves, Lerma, Hughes, Doucoure and Devenny absorb the minutes.",
+      "source_url": "https://www.caughtoffside.com/2026/08/12/chelsea-transfer-talks-crystal-palace/"
+    },
+    {
+      "position": "RW",
+      "incumbent": "Ismaila Sarr / Anan Khalaili",
+      "note": "Palace have already spent EUR 24.5m here on 15 August after adding McNeil and Guessand in the preceding four days. Further additions in this area look unlikely, but the reverse risk is real: this group is now overstocked and one of Pino, Guessand or Esse could leave before deadline day.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Crystal_Palace_F.C._season"
+    }
+  ],
+  "injuries": [
+    {
+      "player": "None currently flagged",
+      "issue": "As of 2026-08-16 the FPL bootstrap flags no Crystal Palace player as injured or doubtful. The only two 'u' statuses are Uche (returned to Getafe) and Cardines (loaned to Bristol City), both squad departures rather than injuries. Adam Wharton carries chance_of_playing 100 dated 2026-07-23, i.e. a knock already resolved.",
+      "expected_return": "n/a",
+      "beneficiary": "n/a",
+      "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+    },
+    {
+      "player": "Cheick Doucoure",
+      "issue": "Long-term knee/Achilles absence. His last competitive appearance for Palace was January 2025 and he was out for roughly 18 months. Not currently flagged in FPL and he played in pre-season, but he is building back rather than match-fit.",
+      "expected_return": "Available now, building fitness",
+      "beneficiary": "Will Hughes and Jefferson Lerma have held the cover minutes in his absence",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/07/21/fpl-pre-season-palace-tactics-branthwaite-injury-update"
+    },
+    {
+      "player": "Takehiro Tomiyasu",
+      "issue": "Chronic knee problems. Did not play between October 2024 and February 2026, then made eight Ajax appearances. Signed by Palace only after a trial period because the club wanted to satisfy itself on his fitness. Not currently flagged in FPL.",
+      "expected_return": "Available now",
+      "beneficiary": "Chadi Riad and Oscar Mingueza are the direct beneficiaries of any recurrence",
+      "source_url": "https://sports.yahoo.com/articles/palace-set-sign-tomiyasu-consider-155151007.html"
+    },
+    {
+      "player": "Evann Guessand",
+      "issue": "Missed roughly a month with a knee injury during his January-to-May 2026 loan spell at Palace. Not currently flagged in FPL.",
+      "expected_return": "Available now",
+      "beneficiary": "Yeremy Pino, Romain Esse",
+      "source_url": "https://www.fantasyfootballscout.co.uk/2026/08/12/guessand-rejoins-palace-from-villa-on-loan"
+    }
+  ],
+  "unknowns": [
+    "Anan Khalaili has no FPL element and therefore no code; his delta is filed with code 0. If the balancing script joins on code it will drop his 1250 minutes and the total will read 36367 rather than 37617. Flagging explicitly rather than hiding the problem by omitting him.",
+    "Khalaili's FPL position is unknown. Transfermarkt lists him as right midfield, the wire copy says he primarily plays on the right, and one outlet described him as a wing-back signed to compete with Munoz. He could be classified DEF or MID when FPL adds him, which changes which pool his minutes come out of.",
+    "The striker split between Strand Larsen, Mateta and Nketiah is the single largest source of error in this allocation. The evidence for Strand Larsen leading is real but circumstantial: a club-record fee, one pre-season start, and a system that fits him. Mateta started the 2025/26 Conference League final and scored the winner. If Mateta stays and wins the slot, my Strand Larsen and Mateta figures should be swapped.",
+    "I could not obtain a beat-reporter or podcast source stating an expected opening-day XI. The two aggregator sites found (Sports Mole predicted XI, starting11.com) were both stale, still listing Brennan Johnson and Rio Cardines, who left on 11 August, and starting11 was based on five fan submissions in a 4-4-2 that contradicts the confirmed back three. Both were discarded rather than used.",
+    "The 15 August Freiburg lineup is distorted by the summer World Cup. Munoz, Sarr, Richards, Kamada, Mateta, Henderson and Tomiyasu all had extended international breaks, so pre-season starts understate the internationals and overstate the squad players. I have weighted it accordingly but the distortion cannot be fully removed.",
+    "The lastwordonsports article describing Khalaili as competition for Munoz rather than his replacement returned HTTP 403 and could not be verified directly. That framing came from a search-result summary only, so I have relied on the FOX/AP wire copy for the underlying facts and treated the role description as unconfirmed.",
+    "Whether Palace still sign a centre-back before 1 September. The Guardian preview identifies it as the outstanding need and Raphael Le Guen of Brest was reported as agreeing personal terms, but I found no confirmation the deal completed and he does not appear in the Wikipedia transfer ledger.",
+    "Chris Richards, Jaydee Canvot, Will Hughes and Adam Wharton were trimmed on a general Europa-League-rotation argument rather than player-specific reporting. These four are the weakest-evidenced deltas in the set and are marked low confidence for that reason.",
+    "No web page or transcript consumed for this research contained text addressed to an AI or any embedded instruction."
+  ]
+}

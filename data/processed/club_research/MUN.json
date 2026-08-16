@@ -1,0 +1,428 @@
+{
+  "club": "MUN",
+  "researched_at": "2026-08-16",
+  "sources": [
+    {
+      "name": "Rob Dawson, ESPN (Manchester United correspondent)",
+      "type": "beat",
+      "url": "https://www.espn.com/soccer/story/_/id/49600204/michael-carrick-calls-more-man-united-signings-need-keep-pushing",
+      "date": "2026-08-13",
+      "why_trusted": "ESPN's dedicated Manchester United beat writer, at the club daily for a decade; reports with named club sources rather than aggregation. This piece carries direct Carrick quotes plus ESPN-sourced detail on the remaining transfer targets (left-back, third midfielder) and confirms Ugarte's season-ending knee ligament injury."
+    },
+    {
+      "name": "Rob Dawson, ESPN — Rashford return analysis",
+      "type": "beat",
+      "url": "https://www.espn.com/soccer/story/_/id/49538943/marcus-rashford-return-manchester-united-brings-lot-questions",
+      "date": "2026-08-07",
+      "why_trusted": "Same beat writer; establishes that Barcelona declined the EUR30m option, no concrete offer exists, and Rashford is set to be part of Carrick's squad, competing on the left and at centre-forward."
+    },
+    {
+      "name": "ESPN match centre — AC Milan 4-2 Manchester United (final pre-season friendly)",
+      "type": "official",
+      "url": "https://www.espn.com/soccer/match/_/gameId/401886562/ac-milan-manchester-united",
+      "date": "2026-08-15",
+      "why_trusted": "Primary record, not opinion: the confirmed XI, formation and substitution minutes from the dress rehearsal seven days before the opener. Reporters described this team as the one likely to closely reflect the Hull City XI. XI (4-2-3-1): Lammens; Mazraoui, Maguire, Heaven, Shaw; Tielemans, Santos; Amad, Fernandes, Dorgu; Cunha. On at 61': Dalot, Lacey, Mainoo, Martinez, Mbeumo, Rashford."
+    },
+    {
+      "name": "Stretty News (Tom Birchall / Danny Prescott)",
+      "type": "local press",
+      "url": "https://strettynews.com/2026/08/14/manchester-united-midfield-runner/",
+      "date": "2026-08-14",
+      "why_trusted": "Long-running United-only outlet publishing daily; this piece is unusually specific (per-90 distance-covered rankings for each midfielder) and identifies Carrick's stated gap in the midfield. Also used for their 2026-08-10 Martinez and 2026-08-11 Sesko injury updates."
+    },
+    {
+      "name": "manutdnews.com (Sanidhya Bhardwaj) — eight starters locked in for Hull",
+      "type": "beat",
+      "url": "https://manutdnews.com/eight-man-united-stars-look-destined-to-start-premier-league-opener-vs-hull-city",
+      "date": "2026-08-14",
+      "why_trusted": "United-only site that here explicitly separates the settled XI from the genuinely open slots (left-sided CB, second pivot, left wing) rather than publishing a single confident lineup. Aggregator rather than original reporting, so weighted below ESPN, but it is the clearest statement of which slots are contested."
+    },
+    {
+      "name": "The Peoples Person (Ayantan Chowdhury), quoting Laurie Whitwell (The Athletic)",
+      "type": "beat",
+      "url": "https://thepeoplesperson.com/2026/08/14/joshua-zirkzee-man-uniteds-final-stance-on-summer-exit-revealed-314040/",
+      "date": "2026-08-14",
+      "why_trusted": "Carries a direct Whitwell line ('I'd be very surprised if United entered into a loan with an option again'). Whitwell is The Athletic's United correspondent and the best-sourced writer on the club; The Athletic itself is paywalled to this tool."
+    },
+    {
+      "name": "GiveMeSport (Lee Wilmot), quoting Manchester Evening News and The Sun pre-season ratings",
+      "type": "beat",
+      "url": "https://www.givemesport.com/man-utd-star-amad-diallo-michael-carrick-starting-lineup-hull/",
+      "date": "2026-08-13",
+      "why_trusted": "Relays MEN and The Sun match ratings verbatim (MEN 7/10, 'quicksilver feet'; The Sun 'better with each of his three starts'), and supplies the hard number for Amad under Carrick last season: 17 appearances, 13 starts, 1,140 minutes. MEN is not directly fetchable by this tool, so this is the route to their copy."
+    },
+    {
+      "name": "Sports Illustrated (James Cormack), citing Andy Mitten",
+      "type": "beat",
+      "url": "https://www.si.com/soccer/lisandro-martinez-injury-progress-potential-return-date-man-utd-star",
+      "date": "2026-07-27",
+      "why_trusted": "Andy Mitten edits the United We Stand fanzine and writes for The Athletic; he is the most reliable single voice on United fitness questions. Cited here as the source that the club is 'relaxed' about Martinez and optimistic for opening weekend. Retained deliberately as the counter-evidence to the later reports that he will not start."
+    },
+    {
+      "name": "Wikipedia — 2026-27 Manchester United F.C. season",
+      "type": "official",
+      "url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season",
+      "date": "2026-08-16",
+      "why_trusted": "Used only for the verifiable transfer ledger, not for opinion. Confirms Carrick permanent on a two-year deal; in: Santos (13 Jul), Darlow (14 Jul), Tielemans (14 Jul), Thompson, Margetson, Orozco; out: Hojlund (Napoli, obligation), Casemiro, Sancho, Malacia released, Fredricson to Lausanne-Sport, Vitek to Middlesbrough; loans out: Onana (Trabzonspor), Bayindir (Celta Vigo, 7 Aug)."
+    },
+    {
+      "name": "YouTube — 'Manchester United 2026-2027 season PREVIEW' panel discussion",
+      "type": "youtube",
+      "url": "https://www.youtube.com/watch?v=fcGH3poVJxI",
+      "date": "2026-08-01",
+      "why_trusted": "Weakest source here and used only for structural confirmation, not for any delta: transcript (17,655 chars, pulled successfully via scripts/fetch_transcript_api.py) confirms Carrick simplified to a back four and moved Bruno Fernandes from the deep role Amorim used him in up to attacking midfield. It is punditry, not reporting, and no minutes change rests on it."
+    }
+  ],
+  "formation": "4-2-3-1",
+  "positions": [
+    {
+      "position": "GK",
+      "starter": "Senne Lammens",
+      "confidence": "nailed",
+      "competition": ["Karl Darlow", "Tom Heaton"],
+      "note": "No credible challenger left. Onana loaned to Trabzonspor, Bayindir loaned to Celta Vigo on 7 Aug, Vitek sold to Middlesbrough. Darlow arrived on a free from Leeds carrying a pre-existing issue and Heaton has a hamstring problem, so both backups are strictly emergency cover."
+    },
+    {
+      "position": "RB",
+      "starter": "unresolved",
+      "confidence": "contested",
+      "competition": ["Diogo Dalot", "Noussair Mazraoui", "Leny Yoro"],
+      "note": "Mazraoui started the 15 Aug dress rehearsal and Dalot replaced him on 61'. Carrick's record last season was markedly better with Dalot in the XI and he told the club Dalot must stay, but Mazraoui returned from the World Cup in form. Yoro also filled in at right-back during pre-season. Solio's 76/24 Dalot-Mazraoui split looks too one-sided for a slot this open."
+    },
+    {
+      "position": "CB",
+      "starter": "Harry Maguire",
+      "confidence": "likely",
+      "competition": ["Matthijs de Ligt", "Lisandro Martinez", "Leny Yoro"],
+      "note": "Named among the eight virtually locked in for the opener and started both of the last two friendlies, scoring against Milan. With de Ligt not back until autumn and Martinez short of fitness, Maguire carries the back line early. Solio's 1,972 minutes (52% of a season) is low for a nailed starter in a defence this depleted."
+    },
+    {
+      "position": "CB",
+      "starter": "unresolved",
+      "confidence": "contested",
+      "competition": ["Leny Yoro", "Ayden Heaven", "Lisandro Martinez", "Matthijs de Ligt"],
+      "note": "Reported as one of the three or four genuinely open slots. Heaven started at centre-back in both the Leeds and AC Milan friendlies; Yoro was dropped for the Milan game after starting earlier in pre-season. Martinez played only 29 minutes as a substitute on 15 Aug and is not expected to start at Hull. de Ligt is out until at least September."
+    },
+    {
+      "position": "LB",
+      "starter": "Luke Shaw",
+      "confidence": "likely",
+      "competition": ["Harry Amass", "Noussair Mazraoui", "unsigned left-back target"],
+      "note": "Shaw started the last two friendlies and is the incumbent, but this is the position United are most actively trying to replace before 1 September. ESPN reports work done on the feasibility of Lewis Hall (Newcastle said not for sale) and interest in Antonee Robinson at Fulham. Shaw's 3,220 minutes in 2025/26 came in a season with one game a week; United now have Champions League football."
+    },
+    {
+      "position": "DM",
+      "starter": "Andrey Santos",
+      "confidence": "likely",
+      "competition": ["Youri Tielemans", "Kobbie Mainoo", "Manuel Ugarte"],
+      "note": "Signed from Chelsea for GBP48m on 13 Jul, described as excellent in pre-season and a shoo-in, and started the PSG, Leeds and Milan friendlies. Early reporting that he would play the deepest of a midfield three behind Tielemans and Fernandes is only half right: Carrick is using a 4-2-3-1 double pivot, not a midfield three, so Santos and one partner start with Fernandes ahead of them."
+    },
+    {
+      "position": "CM",
+      "starter": "unresolved",
+      "confidence": "contested",
+      "competition": ["Youri Tielemans", "Kobbie Mainoo", "Mason Mount", "Tyler Fletcher"],
+      "note": "Three-way fight for one shirt, with a fourth candidate possibly still to be signed. Tielemans started alongside Santos on 15 Aug. Mainoo was late back from the World Cup, made no pre-season appearance until a 61st-minute introduction against Milan, and one report states United have decided he is their central midfield figure and undroppable when fit. Mount picked up a foot injury against PSG on 8 Aug and is doubtful for the opener despite being described as a heavy favourite before it."
+    },
+    {
+      "position": "AM",
+      "starter": "Bruno Fernandes",
+      "confidence": "nailed",
+      "competition": ["Mason Mount", "Matheus Cunha"],
+      "note": "Checked hard, as instructed, and found nothing that argues for a cut. Captain, started every friendly he was available for, took the penalty and the corners against Milan. Carrick's single biggest change on arrival was moving him out of the deep-lying role Amorim used him in and back to No. 10, and the team is built around him there. He turned down Al Hilal and has publicly recommitted; contract runs to 2027 with a club option for a further year. No injury, no rotation plan, no role change reported. Solio's 3,342 minutes stands unaltered."
+    },
+    {
+      "position": "RW",
+      "starter": "Amad Diallo",
+      "confidence": "likely",
+      "competition": ["Bryan Mbeumo"],
+      "note": "Started all three of the friendlies he was available for and is named among the eight virtually locked in. Became a regular right-wing starter under Carrick late last season (13 starts, 1,140 minutes across 17 appearances) and United have told the hierarchy he is not for sale, rejecting approaches; contracted to 2030. Solio's 'fade (losing his place)' flag reads as a leftover from his second-half slump under Amorim rather than his standing under Carrick."
+    },
+    {
+      "position": "LW",
+      "starter": "unresolved",
+      "confidence": "contested",
+      "competition": ["Patrick Dorgu", "Matheus Cunha", "Marcus Rashford", "Bryan Mbeumo", "Tynan Thompson"],
+      "note": "The most crowded slot in the squad. Dorgu started there against Milan and scored; Rashford replaced him on 61' in his first United appearance in 20 months. Cunha covered the position when Dorgu was out for four months with a hamstring injury but is reported to prefer a more central role. Thompson, 18, signed from Spurs for up to GBP8m, is squad depth rather than a contender. Expect real rotation here rather than a settled starter."
+    },
+    {
+      "position": "ST",
+      "starter": "Benjamin Sesko",
+      "confidence": "contested",
+      "competition": ["Matheus Cunha", "Bryan Mbeumo", "Joshua Zirkzee"],
+      "note": "Sesko has not played a single pre-season minute — the shin problem that ended his 2025/26 in early May proved more persistent than expected — though United are confident he is fit for 22 Aug. Cunha started at centre-forward against Milan with Mbeumo replacing him there on 61', so both are live alternatives. Hojlund left permanently for Napoli and Zirkzee is expected to follow, which thins the position but does not make Sesko undroppable."
+    }
+  ],
+  "player_deltas": [
+    {
+      "player": "Altay Bayindir",
+      "code": 451302,
+      "solio_xmins": 540,
+      "proposed_xmins": 0,
+      "delta": -540,
+      "reason": "Joined Celta Vigo on loan for the whole season on 7 August. He cannot record a Premier League minute for United. This is also the single cleanest arithmetic error in Solio's allocation: Lammens 3,385 + Bayindir 540 + Darlow 35 = 3,960 against a hard goalkeeping cap of 3,420. Removing Bayindir lands the goalkeeping pool on exactly 3,420.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Manchester_United_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "high"
+    },
+    {
+      "player": "Manuel Ugarte",
+      "code": 232112,
+      "solio_xmins": 89,
+      "proposed_xmins": 0,
+      "delta": -89,
+      "reason": "ESPN reports a season-ending knee ligament injury, and the injury trackers put his return in 2027. He plays no part in 2026/27. Small in absolute terms but it is a certainty rather than a projection.",
+      "source_url": "https://www.espn.com/soccer/story/_/id/49600204/michael-carrick-calls-more-man-united-signings-need-keep-pushing",
+      "source_date": "2026-08-13",
+      "confidence": "high"
+    },
+    {
+      "player": "Lisandro Martínez",
+      "code": 221820,
+      "solio_xmins": 3089,
+      "proposed_xmins": 1900,
+      "delta": -1189,
+      "reason": "Solio projects him as an 81%-of-the-season nailed starter, which he has not been at United in four years. He tore a thigh muscle in the World Cup final on 19 July, missed the entire pre-season programme, and managed only a 29-minute substitute cameo against Milan on 15 Aug. He is not expected to start at Hull, with Yoro or Heaven set to partner Maguire. Stretty News counts 92 matches missed across four seasons, and this is his fourth absence of eight weeks or more since 2022. Evidence is genuinely mixed — Andy Mitten reported on 27 July that United were relaxed and optimistic for opening weekend — so this is a cut to roughly half a season rather than a write-off, and still comfortably above his 1,229 minutes in 2025/26.",
+      "source_url": "https://manutdnews.com/eight-man-united-stars-look-destined-to-start-premier-league-opener-vs-hull-city",
+      "source_date": "2026-08-14",
+      "confidence": "medium"
+    },
+    {
+      "player": "Harry Maguire",
+      "code": 95658,
+      "solio_xmins": 1972,
+      "proposed_xmins": 2300,
+      "delta": 328,
+      "reason": "Named among the eight players virtually locked in for the opener, started both the Leeds and AC Milan friendlies and scored inside two minutes against Milan. With de Ligt out until autumn and Martinez short of fitness, Maguire is the only senior centre-back who is fit and settled. Solio's 1,972 minutes implies barely half a season for the man leading the back line.",
+      "source_url": "https://manutdnews.com/eight-man-united-stars-look-destined-to-start-premier-league-opener-vs-hull-city",
+      "source_date": "2026-08-14",
+      "confidence": "medium"
+    },
+    {
+      "player": "Leny Yoro",
+      "code": 550864,
+      "solio_xmins": 807,
+      "proposed_xmins": 1450,
+      "delta": 643,
+      "reason": "Solio flags him 'fade (losing his place)' on 807 minutes, but he is named as one of the two candidates to start at left-sided centre-back in the opener, and he impressed filling in at right-back during pre-season, which gives him a second route into the XI. He played 1,730 minutes in 2025/26. He was dropped for the Milan game in favour of Heaven, which is why this is a partial rather than a full promotion.",
+      "source_url": "https://manutdnews.com/eight-man-united-stars-look-destined-to-start-premier-league-opener-vs-hull-city",
+      "source_date": "2026-08-14",
+      "confidence": "medium"
+    },
+    {
+      "player": "Ayden Heaven",
+      "code": 606745,
+      "solio_xmins": 176,
+      "proposed_xmins": 550,
+      "delta": 374,
+      "reason": "Solio has him at 176 minutes with a 'fade' flag, yet he started at centre-back in the 15 August dress rehearsal and is explicitly one of the two named contenders for the left-sided centre-back slot at Hull. He played 920 minutes as a teenager last season. 550 reflects a squad defender who currently has a real chance of starting, not a first-choice promotion.",
+      "source_url": "https://www.espn.com/soccer/match/_/gameId/401886562/ac-milan-manchester-united",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Luke Shaw",
+      "code": 106760,
+      "solio_xmins": 2992,
+      "proposed_xmins": 2600,
+      "delta": -392,
+      "reason": "Left-back is the position United are most actively trying to reinforce before the window shuts on 1 September: ESPN reports work done on the feasibility of a deal for Lewis Hall and interest in Antonee Robinson. Shaw remains the incumbent and started the last two friendlies, so this is a modest haircut for signing risk, not a demotion. His 3,220 minutes last season also came in a one-game-a-week campaign; United are back in the Champions League.",
+      "source_url": "https://www.espn.com/soccer/story/_/id/49600204/michael-carrick-calls-more-man-united-signings-need-keep-pushing",
+      "source_date": "2026-08-13",
+      "confidence": "medium"
+    },
+    {
+      "player": "Diogo Dalot",
+      "code": 216051,
+      "solio_xmins": 2594,
+      "proposed_xmins": 2100,
+      "delta": -494,
+      "reason": "Solio splits right-back roughly 76/24 in Dalot's favour. Mazraoui started the dress rehearsal against Milan with Dalot only introduced on 61', and Yoro also covered the position in pre-season. Dalot's case is real — Carrick never lost a match with him starting — but the slot is genuinely contested, so the split moves to roughly 62/38. This is paired with the offsetting Mazraoui delta and is close to minutes-neutral for the club.",
+      "source_url": "https://www.espn.com/soccer/match/_/gameId/401886562/ac-milan-manchester-united",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Noussair Mazraoui",
+      "code": 230001,
+      "solio_xmins": 808,
+      "proposed_xmins": 1300,
+      "delta": 492,
+      "reason": "Started at right-back in the final pre-season friendly, the game reporters described as the closest guide to the Hull XI, and was widely reported to have returned from the World Cup in strong form. The offsetting half of the Dalot adjustment.",
+      "source_url": "https://www.espn.com/soccer/match/_/gameId/401886562/ac-milan-manchester-united",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Youri Tielemans",
+      "code": 166989,
+      "solio_xmins": 2764,
+      "proposed_xmins": 2350,
+      "delta": -414,
+      "reason": "Solio gives Santos 2,861 and Tielemans 2,764, which consumes 5,625 of the 6,840 minutes available in a two-man pivot and leaves almost nothing for Mainoo and Mount. That allocation would be right if Carrick played a midfield three, but the dress rehearsal was a 4-2-3-1 with Fernandes at No. 10 and only two holding players. Tielemans started that game and is not being demoted below Mainoo here — the pivot is simply narrower than Solio assumes, and Carrick has said he wants a third central midfielder as well.",
+      "source_url": "https://www.espn.com/soccer/match/_/gameId/401886562/ac-milan-manchester-united",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Kobbie Mainoo",
+      "code": 516895,
+      "solio_xmins": 691,
+      "proposed_xmins": 1200,
+      "delta": 509,
+      "reason": "Solio's 691 minutes is 18% of a season for a player who managed 1,653 last term and whom Carrick restored to the side on arrival after Amorim had frozen him out. He is named as a live contender for the second pivot slot, and one report states United have decided he is their central midfield figure and undroppable when fit. He is on 1,200 rather than higher because he was late back from the World Cup, made no pre-season start, and Tielemans is ahead of him today.",
+      "source_url": "https://www.football365.com/news/man-utd-reach-shock-decision-kobbie-mainoo-affects-andrey-santos-youri-tielemans-third-midfield-signing",
+      "source_date": "2026-07-23",
+      "confidence": "low"
+    },
+    {
+      "player": "Amad Diallo",
+      "code": 493250,
+      "solio_xmins": 1653,
+      "proposed_xmins": 2100,
+      "delta": 447,
+      "reason": "The 'fade (losing his place)' flag is stale. Amad played 1,140 minutes across 17 appearances with 13 starts under Carrick after January, started all three of the friendlies he was available for, and is named among the eight virtually locked in for the opener. MEN rated him 7/10 and The Sun said he has got better with each of his three starts. United have told the hierarchy he is not for sale and rejected approaches; he is contracted to 2030. He is on 2,100 rather than higher because Mbeumo can also play right wing.",
+      "source_url": "https://www.givemesport.com/man-utd-star-amad-diallo-michael-carrick-starting-lineup-hull/",
+      "source_date": "2026-08-13",
+      "confidence": "medium"
+    },
+    {
+      "player": "Benjamin Sesko",
+      "code": 485711,
+      "solio_xmins": 2274,
+      "proposed_xmins": 1800,
+      "delta": -474,
+      "reason": "Has not played a minute of pre-season. The shin problem that ended his 2025/26 against Liverpool on 3 May was thought minor and has repeatedly slipped: he missed the Wrexham, Rosenborg, Atletico, PSG, Leeds and AC Milan matches. United say they are confident he is fit for 22 August, but a striker starting the season with zero match minutes, in a squad where Cunha started at centre-forward in the dress rehearsal and Mbeumo replaced him there, carries both a slow-start risk and a re-injury risk.",
+      "source_url": "https://strettynews.com/2026/08/11/benjamin-sesko-injury-update/",
+      "source_date": "2026-08-11",
+      "confidence": "medium"
+    },
+    {
+      "player": "Patrick Dorgu",
+      "code": 596777,
+      "solio_xmins": 812,
+      "proposed_xmins": 1050,
+      "delta": 238,
+      "reason": "Started on the left wing in the dress rehearsal against Milan and scored. Carrick has preferred to use him further forward rather than at left-back, he has said he wants left wing as his primary position, and FPL has reclassified him from defender to midfielder. Kept small because the left wing is the most crowded slot at the club — Cunha, Rashford and Mbeumo are all alternatives — so a settled run of starts is far from assured.",
+      "source_url": "https://www.espn.com/soccer/match/_/gameId/401886562/ac-milan-manchester-united",
+      "source_date": "2026-08-15",
+      "confidence": "low"
+    },
+    {
+      "player": "Marcus Rashford",
+      "code": 176297,
+      "solio_xmins": 176,
+      "proposed_xmins": 550,
+      "delta": 374,
+      "reason": "Solio's 176 minutes treats him as gone. He is not: Barcelona declined the EUR30m purchase option, no other club has made a concrete offer, his GBP325,000-a-week wage blocks a move, and ESPN reports he is set to be part of Carrick's squad. He came off the bench against Milan on 15 August for his first United appearance in 20 months. He is on 550 rather than higher because Cunha, Mbeumo, Amad, Dorgu and Sesko are all ahead of or level with him, and ESPN notes United now consider a forward signing unlikely precisely because Rashford covers that need as depth.",
+      "source_url": "https://www.espn.com/soccer/story/_/id/49538943/marcus-rashford-return-manchester-united-brings-lot-questions",
+      "source_date": "2026-08-07",
+      "confidence": "medium"
+    },
+    {
+      "player": "Joshua Zirkzee",
+      "code": 458249,
+      "solio_xmins": 59,
+      "proposed_xmins": 0,
+      "delta": -59,
+      "reason": "United expect him to leave before the window shuts. Juventus have opened talks and submitted multiple proposals, and United are insisting on a loan with an obligation to buy rather than an option, with Laurie Whitwell quoted saying he would be very surprised if United accepted an option again. Zirkzee has told the club he wants a Serie A return. Solio's 59 minutes is already near zero, so this is a rounding-level change.",
+      "source_url": "https://thepeoplesperson.com/2026/08/14/joshua-zirkzee-man-uniteds-final-stance-on-summer-exit-revealed-314040/",
+      "source_date": "2026-08-14",
+      "confidence": "medium"
+    }
+  ],
+  "budget_check": {
+    "solio_total": 38140,
+    "proposed_total": 37894,
+    "difference": -246
+  },
+  "reinforcement_risk": [
+    {
+      "position": "LB",
+      "incumbent": "Luke Shaw",
+      "note": "ESPN reports United are in the market for an attacking left-back before the 1 September deadline. Work has been done on the feasibility of Lewis Hall, though Newcastle said he was not for sale when United enquired earlier in the summer, and Fulham's Antonee Robinson has also been looked at. Shaw is the only senior specialist left-back in the squad — Harry Amass is the sole backup and Andy Mitten reported on 11 August that Carrick does not rate him as ready despite two Player of the Month awards. If a first-choice left-back arrives, Shaw's minutes fall materially further than the 392 already deducted.",
+      "source_url": "https://www.espn.com/soccer/story/_/id/49600204/michael-carrick-calls-more-man-united-signings-need-keep-pushing"
+    },
+    {
+      "position": "CM",
+      "incumbent": "Kobbie Mainoo / Youri Tielemans / Mason Mount",
+      "note": "Carrick has publicly said United need more signings and ESPN names a third midfielder as a target, following Casemiro's departure and Ugarte's season-ending injury. Stretty News reports Carrick specifically wants a midfielder with more running capacity, noting Mainoo ranked 26th, Santos 52nd, Fernandes 68th and Tielemans 77th among Premier League midfielders for distance covered per 90. Manu Kone of Roma has been linked. Because Carrick plays a two-man pivot, a signing here compresses an already crowded group and would hit Mainoo and Mount hardest.",
+      "source_url": "https://www.espn.com/soccer/story/_/id/49600204/michael-carrick-calls-more-man-united-signings-need-keep-pushing"
+    },
+    {
+      "position": "ST",
+      "incumbent": "Joshua Zirkzee",
+      "note": "This is a subtraction risk rather than an addition risk. Hojlund left permanently for Napoli and Zirkzee is expected to follow, most likely to Juventus. ESPN reports United now consider a forward signing unlikely because Rashford's return covers the gap. If Zirkzee goes and nobody arrives, Sesko is the only recognised centre-forward, with Cunha and Mbeumo as the makeshift alternatives — which raises Sesko's ceiling but also concentrates the club's injury exposure in one player who has not played since early May.",
+      "source_url": "https://thepeoplesperson.com/2026/08/14/joshua-zirkzee-man-uniteds-final-stance-on-summer-exit-revealed-314040/"
+    },
+    {
+      "position": "CB",
+      "incumbent": "Leny Yoro / Ayden Heaven",
+      "note": "Not a stated target and no centre-back has been publicly linked, but with de Ligt out until autumn, Martinez unreliable and only Maguire settled, the position is thin enough that a late arrival cannot be ruled out. Flagged as a watch item rather than an expected signing, and no delta rests on it.",
+      "source_url": "https://www.espn.com/soccer/story/_/id/49600204/michael-carrick-calls-more-man-united-signings-need-keep-pushing"
+    }
+  ],
+  "injuries": [
+    {
+      "player": "Manuel Ugarte",
+      "issue": "Knee ligament injury, described by ESPN as season-ending",
+      "expected_return": "2027",
+      "beneficiary": "Kobbie Mainoo, Youri Tielemans",
+      "source_url": "https://www.espn.com/soccer/story/_/id/49600204/michael-carrick-calls-more-man-united-signings-need-keep-pushing"
+    },
+    {
+      "player": "Matthijs de Ligt",
+      "issue": "Back injury requiring surgery; out since November 2025",
+      "expected_return": "Not for the start of the season; Andy Mitten says soon after, other reporting says perhaps autumn",
+      "beneficiary": "Leny Yoro, Ayden Heaven, Harry Maguire",
+      "source_url": "https://www.goal.com/en/lists/matthijs-de-ligt-targeting-man-utd-return-before-season-ends-complicated-back-injury-improving/blt2d6d37a48af7d607"
+    },
+    {
+      "player": "Lisandro Martínez",
+      "issue": "Thigh injury sustained in the World Cup final on 19 July; missed the whole pre-season programme",
+      "expected_return": "Available around 22 August but not expected to start; played 29 minutes as a substitute on 15 August",
+      "beneficiary": "Leny Yoro, Ayden Heaven",
+      "source_url": "https://manutdnews.com/eight-man-united-stars-look-destined-to-start-premier-league-opener-vs-hull-city"
+    },
+    {
+      "player": "Benjamin Sesko",
+      "issue": "Shin injury aggravated against Liverpool on 3 May; missed all six pre-season fixtures",
+      "expected_return": "United confident for the opener at Hull on 22 August, though the timeline has slipped repeatedly",
+      "beneficiary": "Matheus Cunha, Bryan Mbeumo",
+      "source_url": "https://strettynews.com/2026/08/11/benjamin-sesko-injury-update/"
+    },
+    {
+      "player": "Mason Mount",
+      "issue": "Foot injury picked up 19 minutes into the PSG friendly on 8 August; not believed serious",
+      "expected_return": "Doubtful for 22 August, being monitored; some reporting had him as a favourite to start before the injury",
+      "beneficiary": "Kobbie Mainoo, Youri Tielemans",
+      "source_url": "https://khelnow.com/football/why-benjamin-sesko-mason-mount-miss-manchester-united-vs-ac-milan-202608"
+    },
+    {
+      "player": "Tom Heaton",
+      "issue": "Hamstring problem",
+      "expected_return": "Unknown",
+      "beneficiary": "Karl Darlow",
+      "source_url": "https://www.sportsmole.co.uk/football/man-utd/feature/dress-rehearsal-man-utd-team-vs-milan-could-reflect-xi-for-prem-opener_603010.html"
+    },
+    {
+      "player": "Karl Darlow",
+      "issue": "Unspecified pre-existing issue carried into the club on his free transfer from Leeds; not thought serious",
+      "expected_return": "Around the Hull City opener on 22 August",
+      "beneficiary": "None — third-choice cover behind Lammens",
+      "source_url": "https://britbrief.co.uk/sports/injuries/man-united-injury-news-sesko-mount-de-ligt-updates.html"
+    }
+  ],
+  "unknowns": [
+    "Whether Lisandro Martinez reclaims the starting centre-back place once fully fit. The evidence is genuinely split: Andy Mitten reported on 27 July that United were relaxed and optimistic, while reporting from 14 August lists him as unavailable with Yoro or Heaven set to start. The 1,900-minute figure is a deliberate midpoint and is the single largest source of error in this file.",
+    "Whether Bryan Mbeumo's primary position is right wing or centre-forward. He started at right wing for much of last season but Amad started there in every recent friendly, and Mbeumo came on at centre-forward against Milan. His 2,822 minutes are left unchanged because his total looks right regardless of which shirt he wears, but the positional split is unresolved.",
+    "Mason Mount's availability for the opener and whether he or Mainoo takes the second pivot slot. Reports from 7-8 August had him a heavy favourite to start; he was then injured on 8 August and missed the last two friendlies. His 412 minutes are left unchanged because the two errors — chronic injury history versus a possible starting role — point in opposite directions.",
+    "Matthijs de Ligt's precise return month. His 1,026 minutes are left unchanged: 'not the start of the season but soon after' is consistent with roughly that total, but an October return with a settled run could double it, and a further setback would zero it.",
+    "Whether a left-back and/or a third central midfielder arrives before 1 September. Both are live targets and both would cut incumbents' minutes further than modelled here. The Shaw and Tielemans deltas price in only part of that risk.",
+    "How Carrick rotates across three competitions. His entire managerial record at United is a half-season Premier League run-in with mostly one game a week. Champions League qualification adds at least eight fixtures, and there is no evidence base for how he will spread minutes. This affects every high-minutes player in the squad, Bruno Fernandes included, and is not reflected in any delta.",
+    "Manchester Evening News and The Athletic could not be fetched directly (403 and paywall respectively), and the Fantasy Football Hub club preview is members-only. Their reporting is represented here only second-hand through outlets that quote them, which is weaker evidence than reading the originals.",
+    "No Manchester United-specific podcast or fan-channel transcript was obtained. The transcript tool worked correctly and returned a full 17,655-character transcript for a general season-preview panel, but no United-only podcast episode from the last 14 days could be located with a retrievable video ID. That source class is therefore missing from this research.",
+    "Andrey Santos's 2,861 minutes are left unchanged, but the premise behind them has shifted: early reporting had him as the deepest of a midfield three behind Tielemans and Fernandes, whereas Carrick is playing a 4-2-3-1 with a two-man pivot. The total still looks right for a first-choice pivot player; the role description in the source data does not.",
+    "No text addressed to an AI agent, and no attempt to inject instructions, was encountered on any page or in any transcript read for this research."
+  ]
+}

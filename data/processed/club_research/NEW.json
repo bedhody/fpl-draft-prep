@@ -1,0 +1,405 @@
+{
+  "club": "NEW",
+  "researched_at": "2026-08-16",
+  "sources": [
+    {
+      "name": "Newcastle United official site - confirmed line-up v Everton (Murrayfield)",
+      "type": "official",
+      "url": "https://www.newcastleunited.com/en/news/everton-friendly-team-news-26-27",
+      "date": "2026-08-12",
+      "why_trusted": "Club's own confirmed XI and full 14-man bench. Primary evidence of who Jaissle actually picks, not a prediction."
+    },
+    {
+      "name": "Newcastle United official site - confirmed line-up v Bayer Leverkusen (VisitMalta Weekender)",
+      "type": "official",
+      "url": "https://www.newcastleunited.com/en/news/bayer-leverkusen-h-friendly-team-news-26-27",
+      "date": "2026-08-15",
+      "why_trusted": "Confirmed XI and bench for the final pre-season match, three days before this research. Most recent hard team-selection data available."
+    },
+    {
+      "name": "The Athletic - Chris Waugh, Newcastle's 2026-27 striker plans (read via Yahoo syndication)",
+      "type": "beat",
+      "url": "https://sports.yahoo.com/articles/newcastle-plans-2026-27-striker-160000277.html",
+      "date": "2026-07-14",
+      "why_trusted": "Chris Waugh is The Athletic's dedicated Newcastle correspondent and covers the club daily; this piece reports the club's internal ranking of Osula/Wissa/Woltemade rather than a pundit's guess."
+    },
+    {
+      "name": "The Northern Echo - Scott Wilson on Jaissle's attacking experiment and injury trio",
+      "type": "local press",
+      "url": "https://uk.sports.yahoo.com/news/matthias-jaissles-newcastle-attack-verdict-090432569.html",
+      "date": "2026-08-13",
+      "why_trusted": "North East daily paper; Wilson attends Newcastle press conferences. Contains direct Jaissle quotes on the Osula/Wissa shape and on Schar's return to training."
+    },
+    {
+      "name": "Daily Mail (Craig Hope / Simon Jones) and The Athletic (Chris Waugh) - Newcastle full-back injury update, aggregated by Coming Home Newcastle / SB Nation",
+      "type": "beat",
+      "url": "https://sports.yahoo.com/articles/newcastle-full-backs-mixed-injury-200000948.html",
+      "date": "2026-08-13",
+      "why_trusted": "Aggregates two independent, well-sourced beat reporters (Hope has broken Newcastle stories for years; Waugh is the club's Athletic correspondent) on Livramento's and Hall's availability for MD1."
+    },
+    {
+      "name": "The Mag (John Martin) - predicted Newcastle XI v Liverpool",
+      "type": "local press",
+      "url": "https://sports.yahoo.com/articles/looking-newcastle-united-team-v-061058967.html",
+      "date": "2026-08-11",
+      "why_trusted": "Long-running Newcastle-only fan publication that follows the club daily. Used only as a cross-check on which names are in and out of the opening-day picture, not as a primary source."
+    },
+    {
+      "name": "NUFC Blog (Olly Hawkins) - match report, Newcastle 1-2 Bayer Leverkusen",
+      "type": "local press",
+      "url": "https://nufcblog.co.uk/work-to-do-for-jaissles-mags-newcastle-1-2-bayer-leverkusen-38956",
+      "date": "2026-08-15",
+      "why_trusted": "Newcastle-only site with a reporter at the game; gives substitution detail and the fanbase's read on which positions the club still needs to fill."
+    },
+    {
+      "name": "Goal / GiveMeSport - Newcastle agree GBP 30m deal for Amar Dedic, medical arranged",
+      "type": "beat",
+      "url": "https://ca.sports.yahoo.com/news/newcastle-push-complete-30m-amar-093206311.html",
+      "date": "2026-08-15",
+      "why_trusted": "Multiple independent outlets (Goal, GiveMeSport, TribalFootball) carried the same agreed-fee and medical detail on the same day."
+    },
+    {
+      "name": "Goal (Donny Afroni) - Jaissle on Nick Pope's future, Newcastle set low asking price",
+      "type": "beat",
+      "url": "https://uk.sports.yahoo.com/news/matthias-jaissle-opens-nick-pope-100806676.html",
+      "date": "2026-08-10",
+      "why_trusted": "Contains a direct, on-record Jaissle quote about Pope's situation plus the club's asking price and Pope's omission from the pre-season squad in Spain."
+    },
+    {
+      "name": "EPL Index - Newcastle considering moves for two experienced central midfielders",
+      "type": "beat",
+      "url": "https://sports.yahoo.com/articles/report-newcastle-united-considering-moves-135000856.html",
+      "date": "2026-08-10",
+      "why_trusted": "Names the specific targets (Hojbjerg, Palhinha) and fee stage; corroborated by separate Hojbjerg and Palhinha reports from other outlets in the same week."
+    },
+    {
+      "name": "VAVEL - Newcastle United 2026/27 season preview",
+      "type": "beat",
+      "url": "https://www.vavel.com/en/football/2026/08/15/newcastle-united/1268075-newcastle-united-2026-27-season-preview.html",
+      "date": "2026-08-15",
+      "why_trusted": "Published the day before this research; sets out the expected 4-2-3-1 and the full ins/outs ledger, which matched Transfermarkt and Wikipedia independently."
+    },
+    {
+      "name": "Newcastle United official site - Fabian Schar signs one-year contract extension",
+      "type": "official",
+      "url": "https://www.newcastleunited.com/en/news/fabian-schaer-extends-newcastle-united-stay",
+      "date": "2026-06-02",
+      "why_trusted": "Club announcement confirming Schar is contracted for 2026/27 rather than departing, which is the premise of his minutes floor."
+    },
+    {
+      "name": "Transfermarkt - Newcastle United transfers 26/27",
+      "type": "official",
+      "url": "https://www.transfermarkt.co.uk/newcastle-united/transfers/verein/762/saison_id/2026",
+      "date": "2026-08-16",
+      "why_trusted": "Complete ins/outs ledger with fees; used to confirm no centre-back was signed and that Schar and Burn were not sold."
+    },
+    {
+      "name": "Wikipedia - 2026-27 Newcastle United F.C. season",
+      "type": "beat",
+      "url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Newcastle_United_F.C._season",
+      "date": "2026-08-16",
+      "why_trusted": "Used only for dated, citation-backed transfer and fixture facts that were independently confirmed by Transfermarkt and the club site."
+    },
+    {
+      "name": "Tribal Football (Feargal Brennan) - Newcastle open to more midfield sales as Besiktas eye Willock",
+      "type": "beat",
+      "url": "https://www.tribalfootball.com/article/soccer-premier-league-newcastle-open-to-more-midfield-sales-as-besiktas-eye-willock-72988051-6b69-4ef9-931e-646c22e5d39b",
+      "date": "2026-08-14",
+      "why_trusted": "Lowest-weighted source here (no visible byline date on page). Used only to support a small Willock reduction, flagged low confidence."
+    },
+    {
+      "name": "Yahoo Sports (Antonio Losada), citing Chronicle Live - Jacob Murphy transfer update",
+      "type": "beat",
+      "url": "https://sports.yahoo.com/articles/jacob-murphy-transfer-emerges-start-140000939.html",
+      "date": "2026-07-21",
+      "why_trusted": "Relays Chronicle Live's reporting (the club's main regional daily) on Murphy's contract length and sale-ability; Chronicle Live itself blocks automated fetching."
+    }
+  ],
+  "formation": "4-2-3-1",
+  "positions": [
+    {
+      "position": "GK",
+      "starter": "Lukas Hornicek",
+      "confidence": "nailed",
+      "competition": ["Nick Pope", "Ewen Jaouen", "Mark Gillespie", "Aidan Harris"],
+      "note": "GBP 25.7m signing from Braga on 3 Aug 2026; started every Jaissle pre-season game including both mid-August friendlies. Pope has been transfer-listed at around GBP 5m with Celtic interest and was omitted from the pre-season squad in Spain and from both August friendly squads; Jaouen (GBP 18.5m, Reims) was also absent from both. Gillespie and academy keeper Aidan Harris filled the bench."
+    },
+    {
+      "position": "RB",
+      "starter": "unknown",
+      "confidence": "contested",
+      "competition": ["Amar Dedic (signing not yet completed)", "Leo Shahar", "Tino Livramento", "Mason Miley"],
+      "note": "Livramento is out for MD1. Newcastle agreed roughly GBP 30m with Benfica for Amar Dedic on 15 Aug and arranged a medical, hoping to register him for the Liverpool opener - Jaissle coached Dedic at Salzburg. In the two August friendlies the right-back slot went to academy players: Leo Shahar (19) v Everton and Mason Miley v Leverkusen. Neither Dedic nor Shahar nor Mason Miley appears in the FPL squad list this file covers."
+    },
+    {
+      "position": "CB",
+      "starter": "Malick Thiaw",
+      "confidence": "likely",
+      "competition": ["Sven Botman", "Dan Burn", "Fabian Schar"],
+      "note": "Thiaw and Botman started both August friendlies together; Thiaw captained v Leverkusen and scored. No centre-back was signed this summer, so the senior group is only these four. Burn (contracted to 2027, England World Cup squad) missed both friendlies on an extended post-World Cup break. Schar signed a one-year extension on 2 Jun 2026 and is working back from a groin problem."
+    },
+    {
+      "position": "LB",
+      "starter": "Lewis Hall",
+      "confidence": "likely",
+      "competition": ["Dylan Charlton", "Dan Burn", "Tino Livramento"],
+      "note": "Started both August friendlies after leaving the Spain camp early as a precaution. Manchester United have pursued him with a reported GBP 60m bid; Newcastle have publicly told them he is not for sale, but Hall is reported to want the move. Academy left-back Dylan Charlton was the cover in both squads."
+    },
+    {
+      "position": "DM",
+      "starter": "Aladji Bamba",
+      "confidence": "contested",
+      "competition": ["Sean Steur", "Lewis Miley", "Joe Willock", "an unsigned experienced CM"],
+      "note": "Bamba (GBP 30m, Monaco) started v Everton in the double pivot with Joelinton; Steur (GBP 19.6m, Ajax, 18) started v Leverkusen alongside Lewis Miley. Bruno Guimaraes and Sandro Tonali both left this summer and Newcastle are still chasing an experienced central midfielder (Hojbjerg reported furthest advanced at around GBP 13m, Palhinha and Baleba also linked), so this pairing is the least settled area of the team."
+    },
+    {
+      "position": "CM",
+      "starter": "Joelinton",
+      "confidence": "likely",
+      "competition": ["Lewis Miley", "Jacob Ramsey", "Sean Steur", "Aladji Bamba", "Joe Willock"],
+      "note": "Captained the side v Everton on 12 Aug. With Bruno Guimaraes (Arsenal) and Tonali (Tottenham) sold, Joelinton is the senior midfielder; the VAVEL preview XI pairs him with Miley. His own injury history is the main brake on his minutes, not competition."
+    },
+    {
+      "position": "AM",
+      "starter": "unknown",
+      "confidence": "contested",
+      "competition": ["Yoane Wissa", "Nick Woltemade", "Jacob Ramsey"],
+      "note": "Jaissle used a different No.10 in each of the last two friendlies: Wissa behind Osula v Everton, Woltemade behind Wissa v Leverkusen. He said on 13 Aug that he still had games left before deciding the attack for Liverpool. The NUFC Blog match report argues the club still needs a natural No.10."
+    },
+    {
+      "position": "RW",
+      "starter": "Anthony Elanga",
+      "confidence": "likely",
+      "competition": ["Jacob Murphy", "Bazoumana Toure"],
+      "note": "Started all three Jaissle friendlies. He was stretchered off at Valencia but was fit enough to start v Everton three days later. Anthony Gordon's sale to Barcelona removed a first-choice wide forward. Murphy, 31 with 12 months left and Everton interest, was an unused substitute v Everton and not in the Leverkusen squad at all."
+    },
+    {
+      "position": "LW",
+      "starter": "Harvey Barnes",
+      "confidence": "likely",
+      "competition": ["Bazoumana Toure"],
+      "note": "Signed a new contract this summer and started v Leverkusen. Toure (GBP 42.8m from Hoffenheim, 20) was signed to help fill Gordon's void and started on the left v Everton, so the two are likely to share the flank rather than one displacing the other."
+    },
+    {
+      "position": "ST",
+      "starter": "William Osula",
+      "confidence": "contested",
+      "competition": ["Yoane Wissa", "Nick Woltemade"],
+      "note": "The Athletic reported on 14 Jul that Osula had emerged as the leading No.9 option after a strong end to 2025/26, with the club planning to run three strikers. Osula started at centre-forward v Valencia and v Everton; Wissa led the line v Leverkusen. Because Jaissle's 4-2-3-1 lets one of the three play the No.10, two of these three can start in the same XI."
+    }
+  ],
+  "player_deltas": [
+    {
+      "player": "Tino Livramento",
+      "code": 441191,
+      "solio_xmins": 3215,
+      "proposed_xmins": 1550,
+      "delta": -1665,
+      "reason": "Solio has him as a near-nailed 3,215-minute starter. He is ruled out of the Liverpool opener, still rehabbing his calf/knee in the United States, and is only hoped to be available for MD2 at Tottenham. Meanwhile Newcastle agreed roughly GBP 30m with Benfica for right-back Amar Dedic on 15 Aug, arranged his medical, and want him registered in time to face Liverpool - and Jaissle coached Dedic at Salzburg. Livramento also managed only 1,326 league minutes in 2025/26. Late return plus a GBP 30m incumbent-displacing signing makes a full-season allocation untenable.",
+      "source_url": "https://sports.yahoo.com/articles/newcastle-full-backs-mixed-injury-200000948.html",
+      "source_date": "2026-08-13",
+      "confidence": "high"
+    },
+    {
+      "player": "Yoane Wissa",
+      "code": 216646,
+      "solio_xmins": 1277,
+      "proposed_xmins": 1900,
+      "delta": 623,
+      "reason": "Solio's 1,277 anchors on his injury-wrecked 517 minutes in 2025/26. He has started all three of Jaissle's pre-season matches (as the No.10 behind Osula v Everton, as the No.9 v Leverkusen) and scored twice after coming on at Valencia. The Athletic reported the club explored selling him but decided the loss was too large, and expects a World Cup plus a full pre-season to lift his output. The Mag's predicted XI has him leading the line v Liverpool.",
+      "source_url": "https://www.newcastleunited.com/en/news/bayer-leverkusen-h-friendly-team-news-26-27",
+      "source_date": "2026-08-15",
+      "confidence": "high"
+    },
+    {
+      "player": "Anthony Elanga",
+      "code": 449434,
+      "solio_xmins": 1345,
+      "proposed_xmins": 1850,
+      "delta": 505,
+      "reason": "Solio's 1,345 tracks his 1,302 minutes from 2025/26, a season in which he sat behind Anthony Gordon and Jacob Murphy. Gordon has been sold to Barcelona and Elanga has started all three Jaissle friendlies, including three days after being stretchered off at Valencia. The senior wide group is now just Elanga, Barnes, Toure and the out-of-favour Murphy.",
+      "source_url": "https://www.newcastleunited.com/en/news/everton-friendly-team-news-26-27",
+      "source_date": "2026-08-12",
+      "confidence": "high"
+    },
+    {
+      "player": "Joelinton",
+      "code": 180974,
+      "solio_xmins": 1448,
+      "proposed_xmins": 1900,
+      "delta": 452,
+      "reason": "Solio has him at 1,448, below his 1,950 minutes in 2025/26, at a moment when the midfield has been stripped out rather than reinforced. He captained the side v Everton on 12 Aug, and the VAVEL season preview XI names him as one of the two experienced central midfielders after Bruno Guimaraes and Sandro Tonali were both sold. Raised only moderately because his injury record is the genuine constraint.",
+      "source_url": "https://www.newcastleunited.com/en/news/everton-friendly-team-news-26-27",
+      "source_date": "2026-08-12",
+      "confidence": "medium"
+    },
+    {
+      "player": "Fabian Sch\u00e4r",
+      "code": 119471,
+      "solio_xmins": 317,
+      "proposed_xmins": 750,
+      "delta": 433,
+      "reason": "317 minutes is an allocation for a player who is leaving or finished. Schar signed a one-year extension to summer 2027 on 2 Jun 2026, Newcastle signed no centre-back this window, and the senior centre-back group is only Thiaw, Botman, Burn and Schar. Jaissle said on 13 Aug that Schar 'is on the way back now' and hoped to have him in team training within days with a chance of minutes that weekend. Held well below a rotation share because he is 34 and lost most of 2025/26 to ankle, foot and groin problems.",
+      "source_url": "https://uk.sports.yahoo.com/news/matthias-jaissles-newcastle-attack-verdict-090432569.html",
+      "source_date": "2026-08-13",
+      "confidence": "medium"
+    },
+    {
+      "player": "Jacob Ramsey",
+      "code": 232653,
+      "solio_xmins": 889,
+      "proposed_xmins": 1200,
+      "delta": 311,
+      "reason": "889 minutes is a fringe allocation in a midfield that lost both Bruno Guimaraes and Sandro Tonali and has not yet replaced them. He was an available, unused substitute v Everton (so fit) and The Mag's predicted XI for the Liverpool opener starts him. Raised only modestly because he did not start either August friendly and Newcastle are actively pursuing an experienced central midfielder.",
+      "source_url": "https://sports.yahoo.com/articles/looking-newcastle-united-team-v-061058967.html",
+      "source_date": "2026-08-11",
+      "confidence": "medium"
+    },
+    {
+      "player": "Lewis Miley",
+      "code": 547719,
+      "solio_xmins": 1790,
+      "proposed_xmins": 2090,
+      "delta": 300,
+      "reason": "FPL still lists him as injured with a 30 Aug return, but that flag is stale: he started v Leverkusen on 15 Aug, played 45 minutes on his comeback from the fractured fibula that ended his 2025/26, and beat reporting on 13 Aug expected him fit for the Liverpool opener. The VAVEL preview XI starts him in the double pivot. Small raise only - his injury record is real and Bamba and Steur are direct competition.",
+      "source_url": "https://www.newcastleunited.com/en/news/bayer-leverkusen-h-friendly-team-news-26-27",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Bazoumana Tour\u00e9",
+      "code": 611665,
+      "solio_xmins": 1197,
+      "proposed_xmins": 1400,
+      "delta": 203,
+      "reason": "A GBP 42.8m signing from Hoffenheim on 5 Jul 2026, explicitly bought to help fill the hole left by Anthony Gordon's sale, who started on the left v Everton in Jaissle's second match. Raised only slightly: he is 20, has no Premier League record, and Harvey Barnes signed a new contract and started the other friendly on that flank.",
+      "source_url": "https://www.newcastleunited.com/en/news/everton-friendly-team-news-26-27",
+      "source_date": "2026-08-12",
+      "confidence": "medium"
+    },
+    {
+      "player": "Jacob Murphy",
+      "code": 114243,
+      "solio_xmins": 1835,
+      "proposed_xmins": 1150,
+      "delta": -685,
+      "reason": "Solio's 1,835 reflects his standing as an Eddie Howe regular. Under Jaissle he was an unused substitute v Everton and was not in the matchday squad at all v Leverkusen, while Elanga started both. He is 31 with 12 months left on his contract, valued at around EUR 12m, and Everton have been interested. Not cut further because he is a genuine multi-position senior option and has said he wants to stay and fight for his place.",
+      "source_url": "https://sports.yahoo.com/articles/jacob-murphy-transfer-emerges-start-140000939.html",
+      "source_date": "2026-07-21",
+      "confidence": "medium"
+    },
+    {
+      "player": "Sean Steur",
+      "code": 636852,
+      "solio_xmins": 1379,
+      "proposed_xmins": 1080,
+      "delta": -299,
+      "reason": "Steur is 18, arrived from Ajax on 9 Jul 2026 with no Premier League record, and Newcastle are actively pursuing an experienced central midfielder (Hojbjerg reported furthest advanced at around GBP 13m, with Palhinha also targeted) precisely to shield him and Bamba. The Mag judged him likely too young for the Liverpool opener. Offset by the fact he did start v Leverkusen, so the cut is modest.",
+      "source_url": "https://sports.yahoo.com/articles/report-newcastle-united-considering-moves-135000856.html",
+      "source_date": "2026-08-10",
+      "confidence": "medium"
+    },
+    {
+      "player": "Nick Woltemade",
+      "code": 470313,
+      "solio_xmins": 2371,
+      "proposed_xmins": 2100,
+      "delta": -271,
+      "reason": "Solio gives him the largest share of the three strikers. The Athletic reported on 14 Jul that Osula, not Woltemade, is the leading No.9 and that Woltemade's system fit is uncertain, and Newcastle told interested clubs he was available for sale this summer. Against that, Jaissle has publicly backed him and started him as the No.10 v Leverkusen, so this is a small trim rather than a demotion.",
+      "source_url": "https://sports.yahoo.com/articles/newcastle-plans-2026-27-striker-160000277.html",
+      "source_date": "2026-07-14",
+      "confidence": "low"
+    },
+    {
+      "player": "Joe Willock",
+      "code": 200089,
+      "solio_xmins": 912,
+      "proposed_xmins": 620,
+      "delta": -292,
+      "reason": "Reported to be someone Newcastle are willing to sell, with Besiktas interested at around GBP 20m, to avoid losing him for nothing when his contract expires in 2027; he made only 10 league starts in 2025/26. He was an unused substitute v Everton and absent from the Leverkusen squad. Low confidence: the reporting carries no visible byline date and no bid has been confirmed.",
+      "source_url": "https://www.tribalfootball.com/article/soccer-premier-league-newcastle-open-to-more-midfield-sales-as-besiktas-eye-willock-72988051-6b69-4ef9-931e-646c22e5d39b",
+      "source_date": "2026-08-14",
+      "confidence": "low"
+    }
+  ],
+  "budget_check": {
+    "solio_total": 37580,
+    "proposed_total": 37195,
+    "difference": -385
+  },
+  "reinforcement_risk": [
+    {
+      "position": "RB",
+      "incumbent": "Tino Livramento",
+      "note": "Newcastle agreed a package worth around GBP 30m with Benfica for Amar Dedic on 15 Aug and arranged a medical, hoping to register him in time to debut against Liverpool on 23 Aug. Jaissle managed Dedic at Red Bull Salzburg. If it completes, Dedic is likely to take the bulk of the right-back minutes Solio gave Livramento. Dedic is not in the FPL squad list this file covers.",
+      "source_url": "https://ca.sports.yahoo.com/news/newcastle-push-complete-30m-amar-093206311.html"
+    },
+    {
+      "position": "DM/CM",
+      "incumbent": "Sean Steur / Aladji Bamba / Jacob Ramsey / Joe Willock",
+      "note": "With Bruno Guimaraes and Sandro Tonali both sold, Newcastle are pursuing an experienced central midfielder before the 1 Sept deadline. Pierre-Emile Hojbjerg (Marseille, around GBP 13m) is reported as the most advanced, with Joao Palhinha and Carlos Baleba also linked. Any of those arriving would push the 18-year-old Steur and the fringe options further down.",
+      "source_url": "https://sports.yahoo.com/articles/report-newcastle-united-considering-moves-135000856.html"
+    },
+    {
+      "position": "AM/RW",
+      "incumbent": "Nick Woltemade / Jacob Murphy",
+      "note": "After the Leverkusen defeat the club's own fan press argued Newcastle still need a leader, a natural No.10 and right-wing reinforcement. The window is open until 1 Sept and the sporting director has signalled at least two or three more arrivals were wanted.",
+      "source_url": "https://nufcblog.co.uk/work-to-do-for-jaissles-mags-newcastle-1-2-bayer-leverkusen-38956"
+    },
+    {
+      "position": "GK",
+      "incumbent": "Nick Pope",
+      "note": "Newcastle spent a combined figure reported at around GBP 50m on Lukas Hornicek and Ewen Jaouen this summer. Pope has been made available at around GBP 5m with Celtic, Ipswich and Leeds linked, and Jaissle has said publicly that Pope 'knows exactly the situation right now'. Solio's 4 minutes for Pope is consistent with a departure; no delta is proposed because no deal is confirmed either way.",
+      "source_url": "https://uk.sports.yahoo.com/news/matthias-jaissle-opens-nick-pope-100806676.html"
+    }
+  ],
+  "injuries": [
+    {
+      "player": "Tino Livramento",
+      "issue": "Calf injury sustained before the World Cup, reported by some outlets as also involving knee ligament damage; had an operation and has been rehabbing in the United States.",
+      "expected_return": "Ruled out of MD1 v Liverpool (23 Aug); possibly available for MD2 at Tottenham (29 Aug).",
+      "beneficiary": "Amar Dedic if the signing completes, otherwise Leo Shahar (who started at right-back v Everton) or Mason Miley (v Leverkusen)",
+      "source_url": "https://sports.yahoo.com/articles/newcastle-full-backs-mixed-injury-200000948.html"
+    },
+    {
+      "player": "Lewis Miley",
+      "issue": "Fractured fibula, which ended his 2025/26 season; required surgery.",
+      "expected_return": "Already returned - started and played 45 minutes v Leverkusen on 15 Aug; expected fit for the Liverpool opener. FPL's 30 Aug return flag is stale.",
+      "beneficiary": "n/a - he is back",
+      "source_url": "https://www.newcastleunited.com/en/news/bayer-leverkusen-h-friendly-team-news-26-27"
+    },
+    {
+      "player": "Fabian Sch\u00e4r",
+      "issue": "Groin problem picked up at Gateshead on 25 Jul, on top of the ankle ligament injury and foot infection that cost him roughly seven months of 2025/26. Trained individually in Spain.",
+      "expected_return": "Jaissle said on 13 Aug he was 'on the way back' and hoped to include him in team training within days, with a chance of minutes that weekend.",
+      "beneficiary": "Dan Burn as third centre-back while Schar is out",
+      "source_url": "https://uk.sports.yahoo.com/news/matthias-jaissles-newcastle-attack-verdict-090432569.html"
+    },
+    {
+      "player": "Lewis Hall",
+      "issue": "Knock - left the Spain training camp early as a precaution and was listed as a doubt for the Leverkusen game.",
+      "expected_return": "Effectively resolved - started both the Everton and Leverkusen friendlies; expected available v Liverpool.",
+      "beneficiary": "Dylan Charlton was the named cover in both squads",
+      "source_url": "https://sports.yahoo.com/articles/newcastle-full-backs-mixed-injury-200000948.html"
+    },
+    {
+      "player": "Anthony Elanga",
+      "issue": "Stretchered off during the Valencia friendly on 8 Aug.",
+      "expected_return": "Already returned - the club noted he was fit enough to start v Everton on 12 Aug.",
+      "beneficiary": "n/a - he is back",
+      "source_url": "https://www.newcastleunited.com/en/news/everton-friendly-team-news-26-27"
+    }
+  ],
+  "unknowns": [
+    "Structural problem with the budget rule: Solio allocates essentially all 37,620 club minutes to the 24 FPL-listed players, but Newcastle's actual back four is set to include Amar Dedic (signing agreed, not completed) and academy right-backs Leo Shahar and Mason Miley, none of whom are in this list. Honestly, the listed defenders should collectively lose about 2,000 more minutes than proposed here. Balancing to within 500 of Solio's total forces those minutes into midfield and attack, so the proposed MID+FWD block sits roughly 5-6% above a strict six-outfield-slot budget. Solio was already about 300 minutes over on that block before any change.",
+    "Whether the Amar Dedic transfer completes before the 1 Sept deadline, and whether he starts immediately. Every right-back number here is conditional on that.",
+    "Whether Lewis Hall stays. Manchester United have pursued him with a reported GBP 60m bid, Newcastle have publicly said he is not for sale, and Hall is reported to want the move. No delta is proposed because the two credible readings point in opposite directions, but his 2,702 minutes are the single largest unhedged exposure in this file.",
+    "Whether Nick Pope leaves. He is available at around GBP 5m with Celtic interest and was omitted from all three pre-season squads, but he is also reported as unwilling to be anyone's number two elsewhere and may simply stay. Solio's 4 minutes assumes he goes; if he stays as backup to Hornicek he would be worth a few hundred.",
+    "Matthias Jaissle was appointed only six days after Eddie Howe stepped down and had his first game on 8 Aug. There are only three matches of team-selection evidence, and he said on 13 Aug that he had not yet decided his attack for Liverpool. Every 'starter' judgement here rests on a very short sample.",
+    "The No.10 role is genuinely open between Wissa and Woltemade - Jaissle used a different one in each of the last two friendlies - so the split between Wissa, Woltemade and Osula could move substantially in either direction.",
+    "Horn\u00ed\u010dek, Bamba, Steur, Toure and Jaouen have no Premier League minutes at all, so their allocations are pure projection with no domestic baseline to check against.",
+    "Dan Burn was not in either August friendly squad, on an extended break after England's World Cup run. No delta is proposed for him: raising him would push Newcastle's four-man centre-back group further above the 6,840 minutes two centre-back slots provide, which Solio's allocation already exceeds.",
+    "Chronicle Live, the Shields Gazette and Newcastle World - the three most useful local outlets - all block automated fetching (HTTP 403). Their reporting was read only where syndicated via Yahoo, so some beat detail was certainly missed.",
+    "Data-quality note: the auto-generated transcript of one YouTube tactical analysis of Jaissle's Newcastle contained obviously wrong player names (it rendered current squad members as 'Isak', 'Vlahovic' and 'Asensio', and the manager as 'Hurzeler'). It was discarded for all factual claims and no delta rests on it. No page or transcript encountered contained text addressed to an AI or any attempt to issue instructions."
+  ]
+}

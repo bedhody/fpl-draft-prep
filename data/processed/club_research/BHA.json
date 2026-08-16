@@ -1,0 +1,450 @@
+{
+  "club": "BHA",
+  "researched_at": "2026-08-16",
+  "sources": [
+    {
+      "name": "Sky Sports match centre - Brighton 3-0 Roma, confirmed line-ups and substitution minutes",
+      "type": "official",
+      "url": "https://www.skysports.com/football/brighton-and-hove-albion-vs-roma/teams/562343",
+      "date": "2026-08-08",
+      "why_trusted": "Official team sheet with per-player substitution minutes, not a predicted XI. Primary evidence for who Hurzeler actually picks."
+    },
+    {
+      "name": "Sky Sports match centre - Brighton 1-0 Bologna, confirmed line-ups and substitution minutes",
+      "type": "official",
+      "url": "https://www.skysports.com/football/brighton-and-hove-albion-vs-bologna/teams/577491",
+      "date": "2026-08-15",
+      "why_trusted": "Final pre-season friendly, played 8 days before the PL opener - the closest thing to a dress rehearsal for the opening XI. Official team sheet."
+    },
+    {
+      "name": "FootballPlace - Jack Hinshelwood fires Brighton past Bologna in pre-season win",
+      "type": "beat",
+      "url": "https://footballplace.co.uk/brighton-bologna-jack-hinshelwood-pre-season/",
+      "date": "2026-08-15",
+      "why_trusted": "Match report stating Hurzeler made 'only one enforced change from the side that started against Roma' (Minteh's injury) - establishes that the same XI started both August friendlies by design."
+    },
+    {
+      "name": "Wikipedia - 2026-27 Brighton & Hove Albion F.C. season",
+      "type": "official",
+      "url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Brighton_%26_Hove_Albion_F.C._season",
+      "date": "2026-08-16",
+      "why_trusted": "Dated transfer ledger (ins, outs, loans out with exact dates and fees), pre-season results, and confirmation of Conference League participation. Cross-checked against the Sports Mole ins-and-outs feature and the FPL bootstrap."
+    },
+    {
+      "name": "FPL bootstrap-static API (Brighton, team id 5)",
+      "type": "official",
+      "url": "https://fantasy.premierleague.com/api/bootstrap-static/",
+      "date": "2026-08-16",
+      "why_trusted": "Authoritative registered-squad list and dated injury/availability flags (news_added timestamps). Used to date every injury delta."
+    },
+    {
+      "name": "Sports Mole - Brighton & Hove Albion summer transfers: every confirmed signing and sale, 2026 window",
+      "type": "beat",
+      "url": "https://www.sportsmole.co.uk/football/brighton-and-hove-albion/transfer-talk/feature/brighton--hove-albion-summer-transfers-all-confirmed-ins-and-outs-for-2026_599174.html",
+      "date": "2026-08-13",
+      "why_trusted": "Independently maintained running ledger of confirmed deals; used as the cross-check on the Wikipedia transfer table."
+    },
+    {
+      "name": "Sports Mole - Brighton vs Bologna preview, team news and line-ups",
+      "type": "beat",
+      "url": "https://www.sportsmole.co.uk/football/brighton-and-hove-albion/preview/brighton-vs-bologna-prediction-team-news-lineups_602896.html",
+      "date": "2026-08-14",
+      "why_trusted": "Pre-match team news two days ago, naming the expected 4-2-3-1 and confirming Baleba's ankle absence."
+    },
+    {
+      "name": "We Are Brighton - Five into two: the maths says Brighton have too many centre-backs",
+      "type": "local press",
+      "url": "https://www.wearebrighton.com/newsopinion/five-into-two-the-maths-says-brighton-have-too-many-centre-backs/",
+      "date": "2026-08-11",
+      "why_trusted": "Long-running Brighton-specific outlet; the only source that works through the centre-back pecking order explicitly, including that Dunk risks being restricted to cup football."
+    },
+    {
+      "name": "The Guardian (via AOL) - Premier League 2026-27 preview No 5: Brighton, John Brewin",
+      "type": "beat",
+      "url": "https://www.aol.co.uk/articles/premier-league-2026-27-preview-230111000.html",
+      "date": "2026-08-11",
+      "why_trusted": "National-title season preview; notes the veteran contingent is now only Gross, Dunk and Steele, and flags European fixture strain and the forward line as the squad's soft spot."
+    },
+    {
+      "name": "VAVEL - Fabian Hurzeler gives an update on Yankuba Minteh's injury",
+      "type": "beat",
+      "url": "https://www.vavel.com/en/football/2026/08/09/brighton-hove-albion/1267629-fabian-hurzeler-gives-an-update-on-yankuba-minteh-s-injury.html",
+      "date": "2026-08-09",
+      "why_trusted": "Head coach's own words the day after the injury; date is verifiable from the URL path. Corroborated by the FPL flag (28 Nov) added 2026-08-14."
+    },
+    {
+      "name": "Goal.com - Brighton break their transfer record for Luka Vuskovic",
+      "type": "beat",
+      "url": "https://www.goal.com/en-us/lists/brighton-break-transfer-record-sign-luka-vuskovic-tottenham-46m-deal/blt41d714e41f2fff83",
+      "date": "2026-07-14",
+      "why_trusted": "Reports the fee (GBP 46m guaranteed, rising to 50m) and that Vuskovic is primed for an immediate first-team role. Signing date matches the Wikipedia ledger."
+    },
+    {
+      "name": "Brighton & Hove Albion official - Successful surgery for Mitoma",
+      "type": "official",
+      "url": "https://www.brightonandhovealbion.com/media-article/successful-surgery-for-mitoma",
+      "date": "2026-05-25",
+      "why_trusted": "Club's own confirmation of hamstring surgery and start of rehab, with no return date given - the reason Mitoma's timeline is a genuine unknown rather than an estimate."
+    }
+  ],
+  "formation": "4-2-3-1",
+  "positions": [
+    {
+      "position": "GK",
+      "starter": "Bart Verbruggen",
+      "confidence": "nailed",
+      "competition": ["Jason Steele"],
+      "note": "Played all 3420 PL minutes in 2025/26 and started both August friendlies. Carl Rushworth was sold to Coventry on 4 Aug 2026 and James Beadle loaned to Birmingham, leaving only Verbruggen and the veteran Steele as senior keepers - no realistic rotation, but also no cover."
+    },
+    {
+      "position": "RB",
+      "starter": "Mats Wieffer",
+      "confidence": "likely",
+      "competition": ["Costinha (Joao Pedro Loureiro da Costa)", "Ferdi Kadioglu", "Igor Julio"],
+      "note": "Wieffer started at right-back in both August friendlies (off 59' v Roma, 78' v Bologna). Costinha, an GBP 11m right-back signed from Olympiacos on 15 Jun 2026, replaced him at 78' against Bologna and is the direct understudy - Solio's 346 minutes for a first-window GBP 11m full-back looks like stale pre-signing data."
+    },
+    {
+      "position": "CB",
+      "starter": "Luka Vuskovic",
+      "confidence": "likely",
+      "competition": ["Pascal Struijk", "Olivier Boscagli", "Lewis Dunk", "Michael Svoboda"],
+      "note": "Club-record GBP 46m signing (rising to 50m) from Tottenham on 14 Jul 2026; started both August friendlies. Described as primed for an immediate first-team role, and joined for regular minutes after 28 Bundesliga appearances on loan at Hamburg. Five senior centre-backs for two slots means real rotation across the Conference League, so 'likely' rather than 'nailed'."
+    },
+    {
+      "position": "CB",
+      "starter": "Olivier Boscagli",
+      "confidence": "contested",
+      "competition": ["Pascal Struijk", "Lewis Dunk", "Michael Svoboda"],
+      "note": "Genuinely contested and the position where Solio is furthest off. Boscagli started alongside Vuskovic in BOTH August friendlies, including the final one on 15 Aug - yet Solio flags him 'fade (losing his place)' at 826 minutes. Against that, We Are Brighton (11 Aug) name him the leading candidate to depart before the window shuts. Struijk (GBP 15-18m from Leeds, 30 Jun) featured in neither friendly and carries a 75%-doubtful knock flagged by FPL on 15 Aug; Dunk came off the bench in both (45' v Roma, 66' v Bologna) and the same piece suggests he is being pushed towards cup football."
+    },
+    {
+      "position": "LB",
+      "starter": "Ferdi Kadioglu",
+      "confidence": "likely",
+      "competition": ["Maxim De Cuyper", "Igor Julio"],
+      "note": "Started both friendlies at left-back; 3130 PL minutes in 2025/26. The only reason for restraint is that 2026/27 adds Conference League football to the schedule, which last season's total did not include."
+    },
+    {
+      "position": "DM",
+      "starter": "Pascal Gross",
+      "confidence": "likely",
+      "competition": ["Carlos Baleba", "Yasin Ayari", "Jack Hinshelwood"],
+      "note": "Gross captained Brighton in both August friendlies from the deeper midfield role. He returned from Borussia Dortmund in January 2026 and played 1636 minutes in half a season, so the role is real - but he turned 35 in June 2026 and is now one of only three players the Guardian preview classes as veterans. Baleba's ankle (FPL: back 23 Aug) kept him out of both friendlies; Manchester United's interest cooled after Brighton set a Caicedo-level asking price, so he is expected to stay."
+    },
+    {
+      "position": "CM",
+      "starter": "Yasin Ayari",
+      "confidence": "likely",
+      "competition": ["Carlos Baleba", "Jack Hinshelwood", "Matt O'Riley"],
+      "note": "Started both August friendlies and scored twice against Roma. Solio's 'fade (losing his place)' flag at 1402 minutes is contradicted by team selection in the two most recent matches. Baleba returning around 23 Aug is the main threat to the volume."
+    },
+    {
+      "position": "AM",
+      "starter": "Jack Hinshelwood",
+      "confidence": "likely",
+      "competition": ["Diego Gomez", "Matt O'Riley"],
+      "note": "Started both friendlies and scored the winner against Bologna. Gomez also started both, shuttling between the right and the centre of the three. Both look correctly sized by Solio, so neither is changed."
+    },
+    {
+      "position": "RW",
+      "starter": "unknown",
+      "confidence": "unknown",
+      "competition": ["Yankuba Minteh", "Zadok Yohanna", "Diego Gomez"],
+      "note": "Minteh started here against Roma and then suffered a right-leg injury in that match; Hurzeler put him at two to three months out and FPL has him back 28 Nov. Brighton have said they do not plan to sign a replacement. Yohanna (GBP 21.5m from AIK, 15 Jun 2026, aged 18) came off the bench in both friendlies and is the natural beneficiary, but Hurzeler's stated plan is gradual integration, and Gomez/Hinshelwood can shuffle across instead. Genuinely open."
+    },
+    {
+      "position": "LW",
+      "starter": "unknown",
+      "confidence": "contested",
+      "competition": ["Maxim De Cuyper", "Kaoru Mitoma", "Zadok Yohanna"],
+      "note": "Mitoma had hamstring surgery in late May 2026 and the club gave no return date; he is still flagged 'unknown return' by FPL as of 24 Jul. De Cuyper - a left-back by trade, and flagged 'fade' by Solio - started at left wing against Bologna on 15 Aug, which was the one enforced change from the Roma XI. Whether that is a stopgap or a plan is not knowable yet."
+    },
+    {
+      "position": "ST",
+      "starter": "Georginio Rutter",
+      "confidence": "likely",
+      "competition": ["Charalampos Kostoulas", "Stefanos Tzimas", "Evan Ferguson"],
+      "note": "Started both friendlies as the lone striker; Kostoulas replaced him both times. Danny Welbeck's sale to Chelsea on 1 Aug 2026 removed the experienced backup and the Guardian preview flags the forward line as the squad's weak point. Ferguson is back at the club after his Roma loan but is recovering from March 2026 ankle surgery (FPL: back 10 Oct); Tzimas is 75% with a knee problem."
+    }
+  ],
+  "player_deltas": [
+    {
+      "player": "Yankuba Minteh",
+      "code": 592031,
+      "solio_xmins": 2713,
+      "proposed_xmins": 1550,
+      "delta": -1163,
+      "reason": "Suffered a right-leg injury in the Roma friendly on 8 Aug 2026. Hurzeler said Brighton expect to be without him for two to three months; FPL's flag (added 2026-08-14) says 'Expected back 28 Nov', which is roughly Gameweek 14. Solio projects 2713, an INCREASE on his 2389 minutes last season, so it clearly predates the injury. Allowing ~24 gameweeks from a late-November return, at his 83.2 mins/start with a fitness ramp and no guarantee against setbacks, lands near 1550.",
+      "source_url": "https://www.vavel.com/en/football/2026/08/09/brighton-hove-albion/1267629-fabian-hurzeler-gives-an-update-on-yankuba-minteh-s-injury.html",
+      "source_date": "2026-08-09",
+      "confidence": "high"
+    },
+    {
+      "player": "Olivier Boscagli",
+      "code": 204120,
+      "solio_xmins": 826,
+      "proposed_xmins": 1750,
+      "delta": 924,
+      "reason": "Solio flags him 'fade (losing his place)' at 826 minutes, but he STARTED at centre-back in both August friendlies - v Roma on 8 Aug (off 85') and v Bologna on 15 Aug (off 66') - partnering Vuskovic each time, while Dunk came off the bench and Struijk did not feature at all. The 15 Aug XI was the last rehearsal before the opener. Held below a full starter's allocation only because We Are Brighton (11 Aug) name him the likeliest of the five centre-backs to be sold before the window shuts on 1 Sep.",
+      "source_url": "https://www.skysports.com/football/brighton-and-hove-albion-vs-bologna/teams/577491",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Pascal Struijk",
+      "code": 222694,
+      "solio_xmins": 2548,
+      "proposed_xmins": 1600,
+      "delta": -948,
+      "reason": "Signed from Leeds on 30 Jun 2026, but appeared in neither August friendly while Vuskovic and Boscagli started both, and FPL added a 'Knock - 75% chance of playing' flag on 2026-08-15. Solio's 2548 is anchored to his 2935 minutes as a Leeds regular; at Brighton he is currently behind two other centre-backs and short of match sharpness. Left with a substantial allocation because five centre-backs across four competitions guarantees him minutes, and the knock is minor.",
+      "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Lewis Dunk",
+      "code": 83299,
+      "solio_xmins": 1898,
+      "proposed_xmins": 1000,
+      "delta": -898,
+      "reason": "Came off the BENCH in both August friendlies (on at 45' v Roma, on at 66' v Bologna) while Vuskovic and Boscagli started. We Are Brighton's centre-back analysis (11 Aug) concludes this scenario 'would likely relegate Lewis Dunk to cup competitions'. He turns 35 in November and Brighton spent roughly GBP 65m on Vuskovic, Struijk and Svoboda this summer after selling van Hecke. Retained a meaningful figure because he is club captain and injuries in a five-CB group are certain.",
+      "source_url": "https://www.wearebrighton.com/newsopinion/five-into-two-the-maths-says-brighton-have-too-many-centre-backs/",
+      "source_date": "2026-08-11",
+      "confidence": "medium"
+    },
+    {
+      "player": "Luka Vuskovic",
+      "code": 610799,
+      "solio_xmins": 1708,
+      "proposed_xmins": 2450,
+      "delta": 742,
+      "reason": "Brighton's record signing (GBP 46m guaranteed, rising to GBP 50m) from Tottenham on 14 Jul 2026, reported as primed for an immediate first-team role having made 28 Bundesliga appearances on loan at Hamburg. He started both August friendlies at centre-back. Solio's 1708 (about 20 starts) reads like a squad-player allocation for a club-record buy. Not pushed to a full 3000+ because he is 19, has four competitions to be managed across, and has four senior centre-backs behind him.",
+      "source_url": "https://www.goal.com/en-us/lists/brighton-break-transfer-record-sign-luka-vuskovic-tottenham-46m-deal/blt41d714e41f2fff83",
+      "source_date": "2026-07-14",
+      "confidence": "high"
+    },
+    {
+      "player": "Yasin Ayari",
+      "code": 509416,
+      "solio_xmins": 1402,
+      "proposed_xmins": 2000,
+      "delta": 598,
+      "reason": "Solio flags 'fade (losing his place)' and cuts him from 1921 minutes to 1402, but he started in central midfield in both August friendlies and scored twice against Roma. Sports Mole's 14 Aug team news names him and Gross as the expected pivot. Capped at 2000 rather than higher because Baleba returns from an ankle injury around 23 Aug and directly competes for the same slot.",
+      "source_url": "https://www.skysports.com/football/brighton-and-hove-albion-vs-bologna/teams/577491",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Zadok Yohanna",
+      "code": 700308,
+      "solio_xmins": 162,
+      "proposed_xmins": 740,
+      "delta": 578,
+      "reason": "GBP 21.5m signing from AIK on 15 Jun 2026 on a five-year deal - Brighton beat Chelsea to him - and he came off the bench in both August friendlies. Solio's 162 minutes predates or ignores the signing. Raised but kept modest: he is 18, Hurzeler has only said he 'will be involved' in the first-team squad, and Brighton have a long record of easing teenagers in. The wide-area injuries to Minteh and Mitoma are what make even 740 plausible.",
+      "source_url": "https://www.espn.com/espn/story/_/id/48997587/brighton-sign-nigerian-starlet-zadok-yohanna-18-aik-stockholm-5-year-deal",
+      "source_date": "2026-06-06",
+      "confidence": "medium"
+    },
+    {
+      "player": "Pascal Gross",
+      "code": 60307,
+      "solio_xmins": 3164,
+      "proposed_xmins": 2650,
+      "delta": -514,
+      "reason": "Role is not in doubt - he captained both August friendlies from midfield - but Solio's 3164 is 92% of every available Premier League minute for a player who turned 35 in June 2026, in a season that adds Conference League group football to two domestic cups. The Guardian preview notes European demands create scheduling strain and that Gross is now one of only three veterans in the squad. Baleba, Ayari, Hinshelwood, Gomez and O'Riley all compete for central minutes. Direction is well founded; the size of the cut is a judgement call, hence low confidence.",
+      "source_url": "https://www.aol.co.uk/articles/premier-league-2026-27-preview-230111000.html",
+      "source_date": "2026-08-11",
+      "confidence": "low"
+    },
+    {
+      "player": "Ferdi Kadioglu",
+      "code": 231416,
+      "solio_xmins": 3198,
+      "proposed_xmins": 2850,
+      "delta": -348,
+      "reason": "Solio extrapolates his 3130 minutes from 2025/26 slightly upward to 3198, i.e. 94% of everything available. But 2025/26 had no European football; 2026/27 is Brighton's first Conference League campaign since 2023/24, and they signed Costinha (GBP 11m, Olympiacos) as a full-back in June. Kadioglu was substituted on 78' against Bologna with Costinha replacing him. A modest haircut, not a demotion.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Brighton_%26_Hove_Albion_F.C._season",
+      "source_date": "2026-08-16",
+      "confidence": "low"
+    },
+    {
+      "player": "Evan Ferguson",
+      "code": 487117,
+      "solio_xmins": 0,
+      "proposed_xmins": 450,
+      "delta": 450,
+      "reason": "Solio gives him zero, but he is a registered Brighton player, is back from his Roma loan rather than being sent out for a third straight season, and is under contract to 2029. He had ankle surgery in March 2026; FPL's flag says 'Expected back 10 Oct'. With Welbeck sold to Chelsea and only Rutter, Kostoulas and a 75%-fit Tzimas ahead of him, some Premier League minutes from October are more likely than none. Kept small because he could still leave on loan before 1 Sep and has a poor recent fitness record.",
+      "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/",
+      "source_date": "2026-07-23",
+      "confidence": "medium"
+    },
+    {
+      "player": "Maxim De Cuyper",
+      "code": 465730,
+      "solio_xmins": 830,
+      "proposed_xmins": 1150,
+      "delta": 320,
+      "reason": "Flagged 'fade (losing his place)' by Solio at 830, but he started at left wing against Bologna on 15 Aug - the single enforced change from the Roma XI, forced by Minteh's injury - and came on at 60' against Roma. With Minteh out to around late November and Mitoma's return undated, he is currently covering two positions. Modest raise only, since his 2025/26 total was 1404 and Kadioglu is ahead of him at left-back.",
+      "source_url": "https://footballplace.co.uk/brighton-bologna-jack-hinshelwood-pre-season/",
+      "source_date": "2026-08-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Costinha (Joao Pedro Loureiro da Costa)",
+      "code": 451490,
+      "solio_xmins": 346,
+      "proposed_xmins": 650,
+      "delta": 304,
+      "reason": "Signed from Olympiacos for GBP 11m on 15 Jun 2026 as a right-back, and Solio's 346 minutes carries a null 2025/26 record, i.e. it is a no-data placeholder rather than a judgement. He came off the bench in both August friendlies (59' v Roma, 78' v Bologna). Wieffer is clearly ahead of him, so this is a backup allocation with Conference League starts, not a starter's.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Brighton_%26_Hove_Albion_F.C._season",
+      "source_date": "2026-06-15",
+      "confidence": "medium"
+    },
+    {
+      "player": "Kaoru Mitoma",
+      "code": 451340,
+      "solio_xmins": 1353,
+      "proposed_xmins": 1150,
+      "delta": -203,
+      "reason": "Brighton confirmed on 25 May 2026 that he had hamstring surgery and had begun early-stage rehab, giving no return date; FPL still lists 'Hamstring injury - Unknown return date' as of 2026-07-24. Solio already fades him to 1353, so this is a trim rather than a correction - it reflects that he will miss at least the opening weeks and that De Cuyper started ahead of him on the left on 15 Aug.",
+      "source_url": "https://www.brightonandhovealbion.com/media-article/successful-surgery-for-mitoma",
+      "source_date": "2026-05-25",
+      "confidence": "low"
+    },
+    {
+      "player": "Igor Julio",
+      "code": 223434,
+      "solio_xmins": 0,
+      "proposed_xmins": 200,
+      "delta": 200,
+      "reason": "Solio gives him zero, but he is registered and available (FPL status 'a') and came on at 78' against Bologna, replacing Kadioglu. With van Hecke and Coppola both sold, he is emergency defensive cover. A small non-zero allocation, not a role claim.",
+      "source_url": "https://www.skysports.com/football/brighton-and-hove-albion-vs-bologna/teams/577491",
+      "source_date": "2026-08-15",
+      "confidence": "low"
+    },
+    {
+      "player": "Diego Coppola",
+      "code": 550090,
+      "solio_xmins": 3,
+      "proposed_xmins": 0,
+      "delta": -3,
+      "reason": "Sold permanently to Paris FC on 16 Jul 2026 for GBP 16.5m (reported EUR 18m plus EUR 2m add-ons) after a loan spell there from January. He can play no Premier League minutes. Note: the FPL bootstrap STILL lists him as an available Brighton player as of 2026-08-16, which is an FPL data lag worth flagging to anyone else consuming that feed.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Brighton_%26_Hove_Albion_F.C._season",
+      "source_date": "2026-07-16",
+      "confidence": "high"
+    },
+    {
+      "player": "Facundo Buonanotte",
+      "code": 536916,
+      "solio_xmins": 81,
+      "proposed_xmins": 0,
+      "delta": -81,
+      "reason": "Joined Elche on loan for the rest of the season on 7 Aug 2026 (FPL status 'u', news added 2026-08-10). No Premier League minutes possible.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Brighton_%26_Hove_Albion_F.C._season",
+      "source_date": "2026-08-07",
+      "confidence": "high"
+    },
+    {
+      "player": "Tom Watson",
+      "code": 549074,
+      "solio_xmins": 57,
+      "proposed_xmins": 0,
+      "delta": -57,
+      "reason": "Joined Leicester City on loan for the rest of the season on 1 Aug 2026 (FPL status 'u', news added 2026-08-03). Leicester are not in the Premier League, so no Premier League minutes are possible.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Brighton_%26_Hove_Albion_F.C._season",
+      "source_date": "2026-08-01",
+      "confidence": "high"
+    }
+  ],
+  "budget_check": {
+    "solio_total": 37720,
+    "proposed_total": 37621,
+    "difference": -99
+  },
+  "reinforcement_risk": [
+    {
+      "position": "GK",
+      "incumbent": "Jason Steele (backup)",
+      "note": "Brighton sold Carl Rushworth to Coventry City on 4 Aug 2026 for GBP 22.5m and loaned James Beadle to Birmingham, leaving only Verbruggen and the 36-year-old Steele as senior keepers with four competitions to cover. A late window signing is plausible. It would not move Verbruggen's minutes but would zero out Steele's 35.",
+      "source_url": "https://en.wikipedia.org/wiki/2026%E2%80%9327_Brighton_%26_Hove_Albion_F.C._season"
+    },
+    {
+      "position": "RW / LW",
+      "incumbent": "Yankuba Minteh (injured), Kaoru Mitoma (injured)",
+      "note": "Both first-choice wingers are unavailable at the start of the season. Reporting after the Minteh injury said there are 'no plans to sign a replacement during the remainder of the summer window', which is the main reason Yohanna and De Cuyper were raised rather than an unnamed incoming. If Brighton reverse that position before 1 Sep, the Yohanna and De Cuyper deltas are the first things that break.",
+      "source_url": "https://www.vavel.com/en/football/2026/08/09/brighton-hove-albion/1267629-fabian-hurzeler-gives-an-update-on-yankuba-minteh-s-injury.html"
+    },
+    {
+      "position": "ST",
+      "incumbent": "Georginio Rutter",
+      "note": "Welbeck was sold to Chelsea on 1 Aug 2026, Ferguson is out until roughly October and Tzimas is 75% with a knee issue. The Guardian's season preview flags the forward line as the area still needing development. A striker signing would compress Kostoulas, Tzimas and Ferguson rather than Rutter.",
+      "source_url": "https://www.aol.co.uk/articles/premier-league-2026-27-preview-230111000.html"
+    },
+    {
+      "position": "CB (outgoing risk)",
+      "incumbent": "Olivier Boscagli",
+      "note": "Opposite direction to the others - Brighton have five senior centre-backs for two slots and We Are Brighton name Boscagli the leading candidate to leave, despite him starting both August friendlies. If he goes before 1 Sep his +924 delta should transfer to Struijk and Dunk.",
+      "source_url": "https://www.wearebrighton.com/newsopinion/five-into-two-the-maths-says-brighton-have-too-many-centre-backs/"
+    },
+    {
+      "position": "DM (outgoing risk)",
+      "incumbent": "Carlos Baleba",
+      "note": "Manchester United held direct talks but are not expected to return after Brighton set a Caicedo-level asking price; Baleba is under contract to 2028 plus an option and is expected to stay this summer. Left at Solio's 1989 on that basis. Not zero risk until the window shuts on 1 Sep.",
+      "source_url": "https://www.si.com/soccer/man-utd-carlos-baleba-transfer-decision-formal-brighton-contact"
+    }
+  ],
+  "injuries": [
+    {
+      "player": "Yankuba Minteh",
+      "issue": "Right-leg injury sustained in the Roma friendly on 8 Aug 2026; surgery reportedly not yet ruled in or out",
+      "expected_return": "Two to three months per Hurzeler (i.e. Oct-Nov); FPL flag says 28 Nov",
+      "beneficiary": "Zadok Yohanna, Diego Gomez, Maxim De Cuyper",
+      "source_url": "https://www.vavel.com/en/football/2026/08/09/brighton-hove-albion/1267629-fabian-hurzeler-gives-an-update-on-yankuba-minteh-s-injury.html"
+    },
+    {
+      "player": "Kaoru Mitoma",
+      "issue": "Hamstring; underwent surgery, confirmed by the club on 25 May 2026",
+      "expected_return": "Undated - club gave no timeline, FPL still says 'Unknown return date' (flag added 2026-07-24)",
+      "beneficiary": "Maxim De Cuyper, Zadok Yohanna",
+      "source_url": "https://www.brightonandhovealbion.com/media-article/successful-surgery-for-mitoma"
+    },
+    {
+      "player": "Carlos Baleba",
+      "issue": "Ankle; missed both August friendlies",
+      "expected_return": "23 Aug 2026 per FPL (flag added 2026-08-06) - around the opening fixture v Aston Villa",
+      "beneficiary": "Pascal Gross, Yasin Ayari, Jack Hinshelwood",
+      "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+    },
+    {
+      "player": "Pascal Struijk",
+      "issue": "Knock, 75% chance of playing (FPL flag added 2026-08-15); did not feature in either August friendly",
+      "expected_return": "Doubtful for the opener, short-term",
+      "beneficiary": "Olivier Boscagli, Lewis Dunk",
+      "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+    },
+    {
+      "player": "Evan Ferguson",
+      "issue": "Ankle; underwent surgery in March 2026 while on loan at Roma, out since",
+      "expected_return": "10 Oct 2026 per FPL (flag added 2026-07-23); Hurzeler has spoken of an October return",
+      "beneficiary": "Charalampos Kostoulas, Stefanos Tzimas",
+      "source_url": "https://fantasy.premierleague.com/api/bootstrap-static/"
+    },
+    {
+      "player": "Stefanos Tzimas",
+      "issue": "Knee, 75% chance of playing (FPL flag added 2026-07-23); recovering from a cruciate rupture but described as back in training",
+      "expected_return": "Available in some capacity from the start of the season",
+      "beneficiary": "Charalampos Kostoulas",
+      "source_url": "https://www.aol.co.uk/articles/premier-league-2026-27-preview-230111000.html"
+    }
+  ],
+  "unknowns": [
+    "Matt O'Riley: left at Solio's 0 minutes. He is registered and FPL lists him as available, but he missed the Roma friendly through an illness that Hurzeler said cost him weight and energy, he did not appear against Bologna, and he has been linked with Roma and Atalanta with no deal done as of mid-August. Zero could be right (he leaves) or badly wrong (he recovers and plays). There was no confirmed outcome to justify a delta either way.",
+    "How Hurzeler splits the squad between the Premier League and Brighton's first Conference League campaign since 2023/24 is the single biggest source of error in this whole allocation. It is the stated basis for the Gross and Kadioglu trims, and both are marked low confidence for that reason.",
+    "Eiran Cashin, Ibrahim Osman, Amario Cozier-Duberry, Mahamadou Yalcouye and several academy players (Simmonds, Middleton, McGill) appeared in the August friendlies but are NOT in the FPL bootstrap list for Brighton, so they have no code and no Solio line. Any Premier League minutes they take have to come from someone in this allocation, and are unaccounted for here.",
+    "The FPL bootstrap still lists Diego Coppola as an available Brighton player despite his 16 Jul 2026 sale to Paris FC. Anyone else consuming that feed for Brighton should not treat status flags as a transfer ledger.",
+    "The exact size of the Boscagli raise is the least certain number in this file: on-pitch evidence from 8 and 15 August says starter, one local-press piece from 11 August says likeliest to be sold. Those cannot both be right.",
+    "Minteh's return is given as a range (two to three months) by the head coach and as a fixed date (28 Nov) by FPL. The allocation uses the FPL date, which is the more conservative end. An earlier return would push his figure up by several hundred minutes.",
+    "Sussex Express / Sussex World articles, FourFourTwo's season preview and Read Brighton's 3 Aug injury round-up all returned HTTP 403 to the fetch tool, so several pieces of local beat coverage could not be read. Nothing in this file rests on them.",
+    "No Brighton podcast or video transcript was pulled. No obviously authoritative recent episode surfaced in search, and the two confirmed team sheets from 8 and 15 August were stronger evidence than any preview discussion would have been."
+  ]
+}
