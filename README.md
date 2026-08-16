@@ -724,6 +724,7 @@ scripts/
   defcon_model.py      Defensive-action rate -> Poisson threshold model,
                        and shrunk minutes per start
   research_xmins.py    Flatten the club research into adjusted xMins
+  levers_report.py     One sortable page of every input that moves a number
   build_master.py      Join everything into one row per player
   verify_master.py     Cross-source agreement checks (exits non-zero on failure)
   build_panel.py       Same join, run per season, for the model test

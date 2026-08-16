@@ -35,6 +35,7 @@ import fetch_pulselive
 import fetch_solio
 import fetch_understat
 import fetch_vaastav
+import levers_report
 import penalties_model
 import research_xmins
 import team_defence
@@ -145,6 +146,8 @@ def main() -> int:
     print("\n=== workbook ===")
     export_excel.main()
     xpts_model.main()
+    print("\n=== levers page ===")
+    levers_report.main()
     print("\n=== verify xPts formulas ===")
     rc = verify_xpts.main()
 
