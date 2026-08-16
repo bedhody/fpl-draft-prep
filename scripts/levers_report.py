@@ -321,7 +321,7 @@ def assemble() -> pd.DataFrame:
 
         "xg_season": (d["xG_p90"].fillna(0) * n90).round(1),
         "xa_season": (d["xA_p90"].fillna(0) * n90).round(1),
-        "pens": d["pens_season"].round(2),
+        "pens": d["pens_season"].round(6),
         "defcon_hit": (s["defcon_hit"] * 100).round(1),
         # Full precision, not display precision: the browser re-scores every
         # row and verify_levers compares the two.  Rounding here would
@@ -335,10 +335,26 @@ def assemble() -> pd.DataFrame:
         # lets the page reproduce the model exactly rather than approximate it.
         # verify_levers() checks that it does.
         "rate_p90": s["rate_pts_p90"].round(6),
+        # The raw ingredients too, so the browser can rebuild the rate from
+        # scratch.  Needed because position is editable: the shipped rate is
+        # priced at the position the model had, and changing DEF to MID has to
+        # re-price goals, clean sheets, saves and goals conceded, not just the
+        # appearance and DefCon terms.
+        "pcs": d["pcs_input"].fillna(0).round(6),
+        "bonus_p90": d["bonus_p90"].fillna(0).round(6),
+        "saves_per_match": d["saves_per_match"].fillna(0).round(6),
+        "ga_per_match": d["ga_per_match"].fillna(0).round(6),
+        "card_pts_p90": d["card_pts_p90"].fillna(0).round(6),
         "pen_pts": s["pen_pts_season"].round(6),
+        "pen_save_pts": d["pen_save_pts"].fillna(0).round(6),
         "defcon_lambda": d["defcon_lambda"].fillna(0).round(6),
         "xg_p90": d["xG_p90"].fillna(0).round(6),
         "xa_p90": d["xA_p90"].fillna(0).round(6),
+        # The editable twins.  They start life equal to the originals, which
+        # stay put in their own column so a change is always reversible by
+        # reading across rather than by remembering.
+        "xg_p90_adj": d["xG_p90"].fillna(0).round(6),
+        "xa_p90_adj": d["xA_p90"].fillna(0).round(6),
     }).join(set_pieces(m))
 
     # "No rates" means the data cannot supply an attacking rate, not that the
@@ -592,8 +608,15 @@ td.dim{color:var(--faint)}
    so without a floor the control clips to "ne". */
 select.edit{text-align:left; font-family:inherit; font-size:12px;
   min-width:104px; width:auto}
+input.edit.txt{text-align:left; font-family:inherit; min-width:54px; width:54px}
 input.edit{min-width:74px}
-td.edited .edit{background:var(--editd); font-weight:650}
+td.edited{position:relative}
+td.edited .edit{background:var(--editd); font-weight:650; padding-right:15px}
+/* One click puts a single field back, without touching the rest of the sheet. */
+.undo{position:absolute; right:2px; top:50%; transform:translateY(-50%);
+  border:0; background:none; cursor:pointer; padding:0 2px; line-height:1;
+  font-size:11px; color:var(--muted)}
+.undo:hover{color:var(--down)}
 .legend{display:flex; flex-wrap:wrap; gap:14px; align-items:center;
   color:var(--faint); font-size:11.5px; padding:0 2px}
 .legend b{font-weight:650; color:var(--muted)}
@@ -653,7 +676,6 @@ COLS = [
     ("player", "Player", False, "Player", None),
     ("team", "Team", False, "Player", None),
     ("pos", "Pos", False, "Player", None),
-    ("price", "&pound;m", True, "Player", None),
     ("role", "Role", False, "Role", "select"),
     ("threat", "Transfer threat", False, "Role", "select"),
     ("xmins_solio", "xMins Solio", True, "Minutes", None),
@@ -662,34 +684,41 @@ COLS = [
     ("confidence", "Conf", False, "Minutes", None),
     ("mins_per_start", "Mins/start", True, "Minutes", "num1"),
     ("matches", "Matches", True, "Minutes", None),
-    ("xg_season", "xG", True, "Attacking, season", None),
-    ("xa_season", "xA", True, "Attacking, season", None),
+    ("xg_p90", "xG/90", True, "Attacking", None),
+    ("xg_p90_adj", "xG/90 mine", True, "Attacking", "num3"),
+    ("xg_season", "xG season", True, "Attacking", None),
+    ("xa_p90", "xA/90", True, "Attacking", None),
+    ("xa_p90_adj", "xA/90 mine", True, "Attacking", "num3"),
+    ("xa_season", "xA season", True, "Attacking", None),
     ("corner_share", "Corners", True, "Set pieces", None),
     ("corner_role", "Cnr role", False, "Set pieces", None),
     ("fk_role", "Direct FK", False, "Set pieces", None),
     ("pen_role", "Pens", False, "Set pieces", None),
     ("pens", "Pens exp", True, "Set pieces", None),
     ("defcon_hit", "DefCon %", True, "Other levers", None),
-    ("games_missed", "Games lost", True, "Other levers", None),
     ("adr_pros", "ADR Pros", True, "Other levers", None),
     ("adp", "ADP", True, "Draft", "num1"),
     ("band", "There at", True, "Draft", None),
     ("xpts", "xPts", True, "Model", None),
     ("vorp", "VORP", True, "Model", None),
-    ("rvorp", "Rapid VORP", True, "Model", None),
+    ("rvorp1", "R1 VORP", True, "Rapid VORP", None),
+    ("rvorp2", "R2 VORP", True, "Rapid VORP", None),
+    ("rvorp3", "R3 VORP", True, "Rapid VORP", None),
+    ("rvorp4", "R4 VORP", True, "Rapid VORP", None),
+    ("rvorp5", "R5 VORP", True, "Rapid VORP", None),
 ]
 
 JS = r"""
 const $ = s => document.querySelector(s);
 const byCode = new Map(DATA.map(r => [r.code, r]));
 const K = {tray:'fpl_tray_v1', mark:'fpl_marked_v1', edit:'fpl_edits_v1',
-           draft:'fpl_draft_v1', cols:'fpl_cols_v1'};
+           draft:'fpl_draft_v2', cols:'fpl_cols_v1'};
 const FIXED = ['mark', 'player'];               // frozen left, never reordered
 
 let tray = load(K.tray, []);
 let marked = new Set(load(K.mark, []));
 let edits = load(K.edit, {});
-let draft = Object.assign({slot:4, teams:8, rounds:15, on:true, depth:2}, load(K.draft, {}));
+let draft = Object.assign({slot:5, teams:8, rounds:15, on:true}, load(K.draft, {}));
 let order = load(K.cols, null) || COLS.map(c => c.k);
 // A saved order from an older build can be missing columns or naming ones that
 // no longer exist; reconcile rather than rendering a broken table.
@@ -741,17 +770,64 @@ function poissonAtLeast(k, lam){
   for (let i = 1; i < k; i++){ term *= lam / i; cdf += term; }
   return Math.min(1, Math.max(0, 1 - cdf));
 }
+/* The per-90 rate with your own xG and xA swapped in.  rate_p90 arrives from
+   Python with the original xG and xA already priced into it, so the edit is
+   applied as a difference -- subtract what the model used, add what you typed
+   -- rather than by rebuilding the whole rate here and risking it drifting
+   from xpts_calc. */
+/* E[floor(X/per)] for X ~ Poisson(lam), as a sum of tails -- the same closed
+   form xpts_calc uses. FPL settles saves and goals conceded every match, so
+   two saves in a match are worth nothing and the season total is not the
+   season count divided by three. */
+function floorPoints(lam, per){
+  if (!(per > 0) || !(lam > 0)) return 0;
+  let total = 0;
+  for (let k = 1; k <= FLOOR_TERMS; k++) total += poissonAtLeast(per * k, lam);
+  return total;
+}
+
+/* The whole per-90 rate, rebuilt rather than adjusted, so that editing the
+   position re-prices everything that depends on it. */
+function rateOf(r){
+  const sc = SCORING[val(r, 'pos')];
+  if (!sc) return 0;
+  const num = (f, base) => { const v = Number(val(r, f)); return Number.isFinite(v) ? v : base; };
+  return num('xg_p90_adj', r.xg_p90) * sc.goal
+       + num('xa_p90_adj', r.xa_p90) * sc.assist * UPLIFT
+       + num('pcs', r.pcs) * sc.cs
+       + num('bonus_p90', r.bonus_p90)
+       + floorPoints(num('saves_per_match', r.saves_per_match), sc.save_per)
+       - floorPoints(num('ga_per_match', r.ga_per_match), sc.gc_per)
+       + num('card_pts_p90', r.card_pts_p90);
+}
+
+/* Expected penalties is an input, not an output, so editing it has to re-price
+   the points rather than just changing what is printed. Same formula as
+   xpts_calc: conversion x goal points, less the misses, plus any saves. */
+function penPtsOf(r){
+  const sc = SCORING[val(r, 'pos')];
+  if (!sc) return r.pen_pts;
+  const p = Number(val(r, 'pens'));
+  if (!Number.isFinite(p)) return r.pen_pts;
+  return p * (PEN_CONV * sc.goal - (1 - PEN_CONV) * MISS_PTS) + r.pen_save_pts;
+}
+
 function scoreOne(r){
-  const sc = SCORING[r.pos];
+  const sc = SCORING[val(r, 'pos')];
   if (!sc) return {matches:0, app:0, hit:0, dc:0, xpts:0};
   const xm = Math.max(0, Number(val(r, 'xmins_adj')) || 0);
   const mps = Math.max(0, Number(val(r, 'mins_per_start')) || 0);
   const matches = mps > 0 ? Math.min(MATCHES, xm / mps) : 0;
   const mpa = matches > 0 ? xm / matches : 0;
   const app = matches * (mpa >= 60 ? sc.app : 1);
-  const hit = sc.dc_pts > 0 ? poissonAtLeast(sc.dc_thr, r.defcon_lambda * mps / 90) : 0;
+  // A typed DefCon % overrides the Poisson outright: if you know something the
+  // action rate does not, the model should not argue with you.
+  const typed = Number(val(r, 'defcon_hit'));
+  const hit = isEdited(r, 'defcon_hit') && Number.isFinite(typed)
+    ? Math.min(1, Math.max(0, typed / 100))
+    : (sc.dc_pts > 0 ? poissonAtLeast(sc.dc_thr, r.defcon_lambda * mps / 90) : 0);
   const dc = matches * hit * sc.dc_pts;
-  return {matches, app, hit, dc, xpts: r.rate_p90 * xm / 90 + app + dc + r.pen_pts};
+  return {matches, app, hit, dc, xpts: rateOf(r) * xm / 90 + app + dc + penPtsOf(r)};
 }
 
 function myPicks(){
@@ -768,7 +844,9 @@ function recompute(){
     const s = scoreOne(r);
     r._matches = s.matches; r._hit = s.hit * 100; r._xpts = s.xpts;
     const xm = Math.max(0, Number(val(r, 'xmins_adj')) || 0);
-    r._xg = r.xg_p90 * xm / 90; r._xa = r.xa_p90 * xm / 90;
+    const xg = Number(val(r, 'xg_p90_adj')), xa = Number(val(r, 'xa_p90_adj'));
+    r._xg = (Number.isFinite(xg) ? xg : r.xg_p90) * xm / 90;
+    r._xa = (Number.isFinite(xa) ? xa : r.xa_p90) * xm / 90;
     // Number(null) is 0, not NaN.  Left unguarded that gave every undrafted
     // player an ADP of 0, which sorted them above the first pick in the league
     // and labelled them "gone" instead of unknown.
@@ -796,25 +874,39 @@ function recompute(){
     r._band = last;
   });
 
-  /* Rapid VORP: not "better than a replacement-level body at the end of the
-     draft", but "better than what I could still get at this position one round
-     later".  The baseline is the mean xPts of the best `depth` players at the
-     same position whose ADP says they survive past my next pick. It answers
-     the only question that matters with the clock running -- what does waiting
-     actually cost me here -- and it collapses toward zero at a position where
-     the drop-off is flat. */
+  /* Rapid VORP, at five depths.  Not "better than a replacement-level body at
+     the end of the draft" but "better than what I could still get at this
+     position one round later", so it prices what waiting actually costs.
+
+     Two things it has to get right, both of which it got wrong first time and
+     produced a defender on 120.
+
+     A player with NO ADP is not unavailable -- he is the most available player
+     there is, because nobody in the sample drafted him at all. Excluding him
+     left only six defenders in the pool past pick 109, the best of them on
+     51.8 xPts and the next on 18.0, so the baseline collapsed and every
+     late-ADP player looked like a superstar.
+
+     And a player who survives to the LAST pick has no next pick, so there is
+     nothing to wait for and the number is undefined rather than enormous. */
   const byPos = {};
   DATA.forEach(r => { if (r.draftable && (r.pos in SLOTS)) (byPos[r.pos] ||= []).push(r); });
   Object.values(byPos).forEach(a => a.sort((x, y) => y._xpts - x._xpts));
   DATA.forEach(r => {
-    r._rvorp = null; r._rbase = null;
+    for (let n = 1; n <= 5; n++){ r['_rvorp' + n] = null; r['_rbase' + n] = null; }
     if (!r.draftable || r._band === null || !(r.pos in byPos)) return;
-    const nextPick = picks[Math.min(r._band + 1, picks.length - 1)];
-    const left = byPos[r.pos].filter(o => o.code !== r.code && isNum(o._adp) && o._adp > nextPick);
+    if (r._band >= picks.length - 1) return;          // no next pick to wait for
+    const nextPick = picks[r._band + 1];
+    const left = byPos[r.pos].filter(o =>
+      o.code !== r.code && (o._adp === null || o._adp > nextPick));
     if (!left.length) return;
-    const top = left.slice(0, draft.depth);
-    r._rbase = top.reduce((s, o) => s + o._xpts, 0) / top.length;
-    r._rvorp = r._xpts - r._rbase;
+    for (let n = 1; n <= 5; n++){
+      const top = left.slice(0, n);
+      if (top.length < n) break;                      // do not pad a short pool
+      const base = top.reduce((sum, o) => sum + o._xpts, 0) / top.length;
+      r['_rbase' + n] = base;
+      r['_rvorp' + n] = r._xpts - base;
+    }
   });
 }
 
@@ -828,49 +920,74 @@ const CELL = {
   player: r => `<td class="name${r.moved ? ' movedname' : ''}" draggable="true" data-drag="${r.code}"
       title="${esc(r.player)}${r.moved ? ' -- changed club this summer, so his xG and xA are rates he produced somewhere else' : ''}">${
       esc(r.player)}${r.no_pl_rates ? '<span class="flag norates" title="No Premier League record, so every attacking rate is empty.">no rates</span>' : ''}</td>`,
-  team: r => `<td>${r.team}</td>`,
-  pos: r => `<td><span class="pos">${r.pos}</span></td>`,
-  price: r => `<td class="num">${fmt(r.price, 1)}</td>`,
+  team: r => txtCell(r, 'team', 5),
+  pos: r => selCell(r, 'pos', val(r, 'pos'), POS_OPTS),
   role: r => selCell(r, 'role', r._role, ROLE_OPTS),
   threat: r => selCell(r, 'threat', r._threat, THREAT_OPTS),
-  xmins_solio: r => `<td class="num">${fmt(r.xmins_solio, 0)}</td>`,
+  xmins_solio: r => numCell(r, 'xmins_solio', 0),
   xmins_adj: r => numCell(r, 'xmins_adj', 0),
   research_delta: r => {
-    const d = r.research_delta;
+    const d = val(r, 'research_delta');
     return `<td class="num">${!isNum(d) ? dash :
       `<span class="delta ${d > 0 ? 'up' : d < 0 ? 'down' : ''}">${d > 0 ? '+' : ''}${Math.round(d)}</span>`}</td>`;
   },
-  confidence: r => `<td class="conf">${r.confidence || dash}</td>`,
+  confidence: r => selCell(r, 'confidence', val(r, 'confidence') || '', CONF_OPTS),
   mins_per_start: r => numCell(r, 'mins_per_start', 1),
   matches: r => `<td class="num">${fmt(r._matches, 1)}</td>`,
+  xg_p90: r => `<td class="num dim">${fmt(r.xg_p90, 3)}</td>`,
+  xa_p90: r => `<td class="num dim">${fmt(r.xa_p90, 3)}</td>`,
+  xg_p90_adj: r => numCell(r, 'xg_p90_adj', 3),
+  xa_p90_adj: r => numCell(r, 'xa_p90_adj', 3),
   xg_season: r => `<td class="num">${fmt(r._xg, 1)}</td>`,
   xa_season: r => `<td class="num">${fmt(r._xa, 1)}</td>`,
-  corner_share: r => `<td class="num">${isNum(r.corner_share) ? Number(r.corner_share).toFixed(0) + '%' : dash}</td>`,
-  corner_role: r => `<td class="dim">${r.corner_role || dash}</td>`,
-  fk_role: r => `<td class="dim">${r.fk_role || dash}</td>`,
-  pen_role: r => `<td class="dim">${r.pen_role || dash}</td>`,
-  pens: r => `<td class="num">${fmt(r.pens, 2)}</td>`,
-  defcon_hit: r => `<td class="num">${fmt(r._hit, 1)}</td>`,
-  games_missed: r => `<td class="num">${fmt(r.games_missed, 1)}</td>`,
-  adr_pros: r => `<td class="num">${fmt(r.adr_pros, 1)}</td>`,
+  corner_share: r => numCell(r, 'corner_share', 0),
+  corner_role: r => selCell(r, 'corner_role', val(r, 'corner_role') || '', SP_OPTS),
+  fk_role: r => selCell(r, 'fk_role', val(r, 'fk_role') || '', SP_OPTS),
+  pen_role: r => selCell(r, 'pen_role', val(r, 'pen_role') || '', SP_OPTS),
+  pens: r => numCell(r, 'pens', 2),
+  defcon_hit: r => numCell(r, 'defcon_hit', 1, isEdited(r, 'defcon_hit') ? val(r, 'defcon_hit') : r._hit),
+  adr_pros: r => numCell(r, 'adr_pros', 1),
   adp: r => numCell(r, 'adp', 1, r._adp),
   band: r => `<td class="num">${r._band === null ? dash :
       r._band < 0 ? '<span class="bandtag gone">gone</span>'
                   : `<span class="bandtag">R${r._band + 1}</span>`}</td>`,
   xpts: r => `<td class="num">${fmt(r._xpts, 1)}</td>`,
   vorp: r => `<td class="num">${fmt(r._vorp, 1)}</td>`,
-  rvorp: r => `<td class="num"${r._rbase !== null ?
-      ` title="baseline ${r._rbase.toFixed(1)} xPts -- the best ${draft.depth} at ${r.pos} still there at your next pick"` : ''
-      }>${fmt(r._rvorp, 1)}</td>`,
+  rvorp1: r => rvorpCell(r, 1), rvorp2: r => rvorpCell(r, 2),
+  rvorp3: r => rvorpCell(r, 3), rvorp4: r => rvorpCell(r, 4),
+  rvorp5: r => rvorpCell(r, 5),
 };
+function rvorpCell(r, n){
+  const b = r['_rbase' + n];
+  return `<td class="num"${b !== null ?
+    ` title="baseline ${b.toFixed(1)} xPts -- the best ${n} at ${r.pos} still on the board at your next pick"` : ''
+    }>${fmt(r['_rvorp' + n], 1)}</td>`;
+}
+function undoBtn(r, f){
+  if (!isEdited(r, f)) return '';
+  const was = r[f];
+  return `<button class="undo" data-undo="${r.code}" data-f="${f}"
+    title="Put this back to ${isNum(was) ? Number(was).toFixed(3).replace(/0+$/, '').replace(/\.$/, '') : (was ?? 'its original value')}"
+    aria-label="Undo this edit">&#8630;</button>`;
+}
+function txtCell(r, f, size){
+  return `<td class="${isEdited(r, f) ? 'edited' : ''}"><input class="edit txt" size="${size}"
+    data-code="${r.code}" data-f="${f}" data-text="1"
+    value="${esc(val(r, f) ?? '')}">${undoBtn(r, f)}</td>`;
+}
 function numCell(r, f, dp, v){
   const x = v === undefined ? val(r, f) : v;
   return `<td class="num ${isEdited(r, f) ? 'edited' : ''}"><input class="edit" inputmode="decimal"
-    data-code="${r.code}" data-f="${f}" value="${isNum(x) ? Number(x).toFixed(dp) : ''}"></td>`;
+    data-code="${r.code}" data-f="${f}" value="${isNum(x) ? Number(x).toFixed(dp) : ''}">${undoBtn(r, f)}</td>`;
 }
 function selCell(r, f, v, opts){
   return `<td class="${isEdited(r, f) ? 'edited' : ''}"><select class="edit" data-code="${r.code}" data-f="${f}">
-    ${opts.map(o => `<option value="${o}"${o === v ? ' selected' : ''}>${o}</option>`).join('')}</select></td>`;
+    ${opts.map(o => `<option value="${o}"${o === v ? ' selected' : ''}>${o}</option>`).join('')}</select>${undoBtn(r, f)}</td>`;
+}
+function revert(code, field){
+  if (edits[code]) delete edits[code][field];
+  if (edits[code] && !Object.keys(edits[code]).length) delete edits[code];
+  save(); recompute(); render(); renderSide();
 }
 
 /* ---------- header, rebuilt so it follows the column order ---------- */
@@ -947,7 +1064,9 @@ function visible(){
   });
 }
 
-const SORTED = {matches:'_matches', xpts:'_xpts', vorp:'_vorp', rvorp:'_rvorp',
+const SORTED = {matches:'_matches', xpts:'_xpts', vorp:'_vorp',
+                rvorp1:'_rvorp1', rvorp2:'_rvorp2', rvorp3:'_rvorp3',
+                rvorp4:'_rvorp4', rvorp5:'_rvorp5',
                 adp:'_adp', xg_season:'_xg', xa_season:'_xa', defcon_hit:'_hit',
                 role:'_role', threat:'_threat', band:'_band'};
 
@@ -991,11 +1110,17 @@ function wireRows(){
       save(); render(); renderSide();
     }));
   document.querySelectorAll('input.edit').forEach(el => {
-    el.addEventListener('change', () => setVal(Number(el.dataset.code), el.dataset.f, el.value, true));
+    el.addEventListener('change', () =>
+      setVal(Number(el.dataset.code), el.dataset.f, el.value, !el.dataset.text));
     el.addEventListener('keydown', e => { if (e.key === 'Enter') el.blur(); });
   });
   document.querySelectorAll('select.edit').forEach(el =>
     el.addEventListener('change', () => setVal(Number(el.dataset.code), el.dataset.f, el.value, false)));
+  document.querySelectorAll('[data-undo]').forEach(b =>
+    b.addEventListener('click', e => {
+      e.stopPropagation();
+      revert(Number(b.dataset.undo), b.dataset.f);
+    }));
   document.querySelectorAll('td.name[data-drag]').forEach(el =>
     el.addEventListener('dragstart', e => {
       e.dataTransfer.setData('text/plain', el.dataset.drag);
@@ -1130,10 +1255,6 @@ $('#togglePanels').addEventListener('click', () => {
   $('#slot').max = draft.teams;
   save(); recompute(); render(); renderSide();
 }));
-$('#depth').addEventListener('change', e => {
-  draft.depth = Number(e.target.value) || 2;
-  save(); recompute(); render();
-});
 $('#bandsOn').addEventListener('click', e => {
   draft.on = !draft.on;
   e.target.setAttribute('aria-pressed', String(draft.on));
@@ -1152,7 +1273,7 @@ $('#resetCols').addEventListener('click', () => {
 });
 
 $('#slot').value = draft.slot; $('#teams').value = draft.teams;
-$('#slot').max = draft.teams; $('#depth').value = draft.depth;
+$('#slot').max = draft.teams;
 $('#bandsOn').setAttribute('aria-pressed', String(draft.on));
 recompute(); renderHead(); render(); renderSide();
 """
@@ -1173,15 +1294,24 @@ def html(df: pd.DataFrame) -> str:
 
     cols = [{"k": k, "label": label, "num": num, "group": group}
             for k, label, num, group, _ in COLS]
-    scoring = {pos: {"app": v[4], "dc_thr": v[5], "dc_pts": v[3]}
+    scoring = {pos: {"app": v[4], "dc_thr": v[5], "dc_pts": v[3],
+                     "goal": v[0], "assist": v[1], "cs": v[2],
+                     "save_per": v[6], "gc_per": v[7]}
                for pos, v in xpts_calc.SCORING.items()}
     consts = (f"const COLS={json.dumps(cols)};"
               f"const SCORING={json.dumps(scoring)};"
               f"const SLOTS={json.dumps(xpts_model.SQUAD_SLOTS)};"
               f"const MATCHES={xpts_calc.MATCHES};"
+              f"const UPLIFT={xpts_calc.ASSIST_UPLIFT};"
+              f"const PEN_CONV={xpts_calc.PENALTY_CONVERSION};"
+              f"const MISS_PTS={xpts_calc.MISS_POINTS};"
+              f"const FLOOR_TERMS={xpts_calc.FLOOR_TERMS};"
               f"const ROLE_RANK={json.dumps({**ROLE_RANK, 'rotation': 2.5})};"
               f"const ROLE_OPTS={json.dumps(sorted(set(list(ROLE_RANK) + ['rotation'])))};"
-              f"const THREAT_OPTS={json.dumps(['none', 'reinforcement', 'exit'])};")
+              f"const THREAT_OPTS={json.dumps(['none', 'reinforcement', 'exit'])};"
+              f"const POS_OPTS={json.dumps(sorted(xpts_calc.SCORING))};"
+              f"const CONF_OPTS={json.dumps(['', 'low', 'medium', 'high'])};"
+              f"const SP_OPTS={json.dumps(['', 'Primary', 'Secondary', 'Tertiary'])};")
 
     n_moved = int((df.moved | df.no_pl_rates).sum())
     n_adr = int(df.adr_pros.notna().sum())
@@ -1222,12 +1352,8 @@ def html(df: pd.DataFrame) -> str:
     <input type="number" id="slot" min="1" max="8" step="1" style="width:58px"></label>
   <label class="picks">Teams
     <input type="number" id="teams" min="2" max="20" step="1" style="width:58px"></label>
-  <label class="picks">Rapid VORP baseline: best
-    <select id="depth" style="width:56px">
-      <option value="1">1</option><option value="2">2</option><option value="3">3</option>
-    </select> left at my next pick</label>
   <button class="chip" id="bandsOn" aria-pressed="true">Shade by draft band</button>
-  <button class="chip" id="stripes" aria-pressed="false">Shade my pick rows</button>
+  <button class="chip" id="stripes" aria-pressed="true">Shade my pick rows</button>
   <span class="count"><span id="editN"></span>
     <button class="chip" id="resetEdits" style="margin-left:8px">Reset edits</button>
     <button class="chip" id="resetCols" style="margin-left:6px">Reset columns</button>
@@ -1240,13 +1366,13 @@ def html(df: pd.DataFrame) -> str:
 
 <div class="legend">
   <span><span class="swatch" style="background:var(--input)"></span><b>Blue cells</b> are yours to type in</span>
-  <span><span class="swatch" style="background:var(--editd)"></span>an edit you have made</span>
+  <span><span class="swatch" style="background:var(--editd)"></span>an edit you have made &mdash; the <b>&#8630;</b> in the cell puts it back</span>
   <span><b class="movedname">Coloured names</b> changed club this summer</span>
   <span><b>The number</b> is the row's place in the current sort &mdash; click it to add him to the research list</span>
   <span><b>Drag a column header</b> to move it</span>
 </div>
 
-<div class="layout" id="layout">
+<div class="layout striped" id="layout">
   <div class="main">
     <div class="tablebox">
       <table>
@@ -1311,12 +1437,24 @@ def html(df: pd.DataFrame) -> str:
   who is still on the board.</p>
 
   <h3>Editing and columns</h3>
-  <p>Five things are editable: <strong>xMins adjusted</strong>,
-  <strong>Mins/start</strong>, <strong>Role</strong>, <strong>Transfer
-  threat</strong> and <strong>ADP</strong>. The first two re-score the player
-  using the same arithmetic as <code>xpts_calc.py</code>, not an approximation.
-  Edits save in this browser, show in a darker blue, filter with <em>Edited by
-  me</em>, and clear with <em>Reset edits</em>.</p>
+  <p>Seven things are editable: <strong>xMins adjusted</strong>,
+  <strong>Mins/start</strong>, <strong>xG/90 mine</strong>, <strong>xA/90
+  mine</strong>, <strong>Role</strong>, <strong>Transfer threat</strong> and
+  <strong>ADP</strong>. All four numeric ones re-score the player using the
+  same arithmetic as <code>xpts_calc.py</code>, not an approximation of it.</p>
+  <p>The rates you can change sit in their own columns. <strong>xG/90</strong>
+  and <strong>xA/90</strong> are the model's, greyed and untouchable;
+  <strong>xG/90 mine</strong> and <strong>xA/90 mine</strong> start equal to
+  them and are yours. So the original is always readable next to the change,
+  and <strong>xG season</strong> and <strong>xA season</strong> follow whatever
+  you set, multiplied by your minutes.</p>
+  <p>That matters most for the {n_moved} summer arrivals: their minutes are
+  researched but their rates are empty, because nothing in the Premier League
+  data can supply them. These are the cells to fill in from what you know about
+  what they did elsewhere.</p>
+  <p>Every edit shows in a darker blue with a <strong>&#8630;</strong> that puts
+  that one field back to the model's number. <em>Edited by me</em> filters to
+  the rows you have touched, and <em>Reset edits</em> clears the lot.</p>
   <p>Drag any column header sideways to move it; the order saves too. The
   number and the player name stay pinned at the left so a wide table still
   reads. <em>Reset columns</em> puts them back.</p>
