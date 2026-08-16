@@ -42,18 +42,39 @@ MOVED_FILL = PatternFill("solid", fgColor="FCE4D6")
 MOVED_COLS = ("Player", "Club 25/26", "xG/90", "xA/90",
               "xG pts/90", "xA pts/90")
 
+# Green: the club-by-club research moved this player's minutes off Solio's
+# forecast.  Marked so that a disagreement is visible without reading two
+# columns and subtracting.
+RESEARCH_FILL = PatternFill("solid", fgColor="E2EFDA")
+RESEARCH_COLS = ("xMins Solio adjusted", "Research delta",
+                 "Research confidence", "Research reason")
+
 # Scoring, straight from the FPL API's game_config for 2026/27.  Defined once,
 # in xpts_calc; reproduced on the Assumptions sheet so the workbook says what it
 # was scored under without anyone having to open the code.
 SCORING = [(pos, *vals) for pos, vals in xpts_calc.SCORING.items()]
 
 NOTES = [
-    ("xMins", "Your minutes forecast for 2026/27. Defaults to Solio's own "
-              "forecast, which is forward-looking and so already prices "
-              "injuries and late World Cup returns; where Solio has no view it "
-              "falls back to 2025/26 minutes. Column 'xMins source' says "
-              "which. This is the single biggest lever in the model and the "
-              "one number no dataset can settle for you."),
+    ("xMins", "Your minutes forecast for 2026/27, in the blue cell. Three "
+              "columns sit behind it. 'xMins Solio' is Solio's raw forecast, "
+              "which is forward-looking and so already prices injuries and "
+              "late World Cup returns. 'xMins Solio adjusted' is that figure "
+              "after the club-by-club research moved it, for the 226 players "
+              "the research reached; everyone else keeps Solio's number, or "
+              "2025/26 minutes where Solio has no view. 'xMins 26/27' starts "
+              "at the adjusted figure and is yours to overwrite. 'xMins "
+              "source' says which of the three a row is on, 'Research delta' "
+              "how far the research moved it, and 'Research reason' why, with "
+              "the article or podcast it came from. This is the single biggest "
+              "lever in the model and the one number no dataset can settle."),
+    ("Research", "Green cells mark the 226 players whose minutes the "
+                 "club-by-club research changed. It read what beat writers, "
+                 "local press and club podcasts were saying in the fortnight "
+                 "to 16 August 2026, one club at a time, and every change "
+                 "carries a source URL and a date. Confidence is the "
+                 "researcher's own: high, medium or low. It is a dated "
+                 "snapshot, not a live feed -- it does not know anything that "
+                 "happened after that date, and it cannot see January."),
     ("Saves", "Goalkeepers only, 1 point per 3 saves settled every match. "
               "'Saves/match' is the club's expected saves, derived from the "
               "goals it is expected to concede and the quality of the shots it "
@@ -103,6 +124,21 @@ NOTES = [
                "threshold of 10 in 14% of 60-minute starts and 54% of 90-minute "
                "starts. Both minutes inputs matter: xMins sets how many starts "
                "he gets, mins per start sets how likely each one pays."),
+    ("Mins per start", "Minutes played in matches he started, over starts, "
+                       "from 2025/26 -- with sendings-off dropped from both "
+                       "sides, since a red card is not rotation risk. It is "
+                       "shrunk toward the position mean by 10 starts, which "
+                       "out of sample beats both the raw average (MAE 4.07 "
+                       "against 5.20) and the position mean alone (4.76). "
+                       "'Mins/start starts' is how many starts it rests on: a "
+                       "small number means the figure is mostly the prior. "
+                       "Editable, because the research knows things the "
+                       "measurement cannot -- a player promoted to nailed is "
+                       "usually hooked less often than he was, and no row from "
+                       "last season can say so. Note the direction: at a fixed "
+                       "xMins, a LOWER figure here means more matches and so "
+                       "more appearance points. The early hook costs you "
+                       "through xMins, not through this column."),
     ("Bonus", "Bonus per 90 from 2025/26 replayed under the 2026/27 BPS weighting. "
               "Modelled as a rate rather than a share of points, so it does not "
               "depend on the rest of the model."),
@@ -218,7 +254,10 @@ def build_rows() -> pd.DataFrame:
             "master has no `mins_per_start` -- run defcon_model.py before "
             "build_master.py (run_all.py does this in order).")
     d["mins_per_start"] = mps.fillna(xpts_calc.DEFAULT_MINS_PER_START)
-    d["mins_per_start_measured"] = mps.notna()
+    # How many starts the figure rests on, after sendings-off are removed.  It
+    # is already shrunk toward the position mean by 10 starts, so a small count
+    # here means the number is mostly the position prior, not this player.
+    d["mps_starts"] = m.get("mps_starts")
 
     d["bonus_p90"] = m.get("bonus_new_p90").round(4)
 
@@ -251,10 +290,29 @@ def build_rows() -> pd.DataFrame:
     # Solio's forecast is the default because it is forward-looking: it prices
     # this summer's injuries and the late World Cup returns, which last
     # season's minutes cannot.  Players Solio has no view on keep their 2025/26
-    # minutes, and 'xMins source' records which of the two a row is using.
+    # minutes, and 'xMins source' records which of the three a row is using.
     solio = m.get("solio_season_xmins")
-    d["xMins_input"] = solio.where(solio.notna(), m["minutes"]).round(0)
-    d["xmins_source"] = np.where(solio.notna(), "Solio", "25/26 actual")
+    base = solio.where(solio.notna(), m["minutes"])
+    base_source = np.where(solio.notna(), "Solio", "25/26 actual")
+
+    # The club-by-club research sits in its own column rather than overwriting
+    # Solio's.  Both are visible, so the size of every disagreement can be read
+    # off the sheet -- and if the research turns out to be wrong about a player,
+    # the number it replaced is still right there.
+    research = m.get("research_xmins")
+    if research is None:
+        research = pd.Series(pd.NA, index=m.index, dtype="Float64")
+    d["research_xmins"] = research
+    d["research_confidence"] = m.get("research_confidence")
+    d["research_reason"] = m.get("research_reason")
+    d["xmins_adjusted"] = research.where(research.notna(), base).round(0)
+    d["research_delta"] = (d["xmins_adjusted"] - base).round(0)
+
+    # The editable cell defaults to the researched figure: it is the more
+    # informed of the two wherever it exists.  Overwrite the blue cell to
+    # disagree -- that is what it is for.
+    d["xMins_input"] = d["xmins_adjusted"]
+    d["xmins_source"] = np.where(research.notna(), "research", base_source)
     d.loc[d["xMins_input"].isna(), "xmins_source"] = ""
     d["pcs_input"] = m["team_2627"].map(cs)
 
@@ -276,14 +334,21 @@ COLUMNS = [
     ("News", "news", "text"),
     ("Mins 25/26", "mins_2526", "num"),
     ("Pts 25/26", "pts_2526", "num"),
-    ("xMins (Solio)", "solio_season_xmins", "derived"),
+    ("xMins Solio", "solio_season_xmins", "derived"),
+    ("xMins Solio adjusted", "xmins_adjusted", "derived"),
+    ("Research delta", "research_delta", "derived"),
+    ("Research confidence", "research_confidence", "text"),
     ("xMins pattern", "xmins_pattern", "text"),
     ("xMins 26/27", "xMins_input", "input"),
     ("xMins source", "xmins_source", "text"),
+    ("Research reason", "research_reason", "text"),
     # Sits with the minutes block rather than with DefCon: it is how long a
     # start lasts, which is the first thing you want next to a minutes forecast.
-    ("Mins per start", "mins_per_start", "derived"),
-    ("Mins/start measured", "mins_per_start_measured", "text"),
+    # Editable, because the research knows things the measurement cannot: a
+    # player promoted to nailed is usually hooked less often than he was, and
+    # nothing in last season's rows can say so.
+    ("Mins per start", "mins_per_start", "input"),
+    ("Mins/start starts", "mps_starts", "num"),
     ("Matches", None, "formula"),
     ("P(CS)", "pcs_input", "input"),
     ("xG/90", "xG_p90", "derived"),
@@ -339,11 +404,20 @@ LEAGUE_TEAMS = 8
 # Measured over 2022/23-2025/26: 381 penalties taken, 316 scored.
 PENALTY_CONVERSION = 0.8294
 # First row of the four-position VORP table on the Assumptions sheet.  It sits
-# below the notes, so it moves whenever a note is added -- hence the constant.
-VORP_ROW = 36
+# below the notes, so it moves whenever a note is added or reworded.
+#
+# Derived rather than hardcoded.  The constant it replaces was 36, which with
+# 15 notes already put the notes loop on top of the "VORP settings" heading and
+# silently erased it -- the notes are written after the VORP block, so they win.
+# Two more notes pushed them onto "Teams in league" as well, which is what
+# verify_xpts caught.  The +5 is the blank row plus the four-row settings
+# header, so the table always clears the last note.
+NOTES_ROW = 18                  # first note; "Notes" heading sits above it
+VORP_ROW = NOTES_ROW + len(NOTES) + 5
 TEAMS_ROW = VORP_ROW - 2        # the "Teams in league" input, referenced by LARGE()
 # Season totals read better to one decimal than to three.
-SEASON_FORMAT = {"Matches": "0.0", "App pts season": "0.0",
+SEASON_FORMAT = {"Matches": "0.0", "xMins Solio adjusted": "0",
+                 "Research delta": "0", "App pts season": "0.0",
                  "DC pts season": "0.0", "Pen pts season": "0.0",
                  "xPts season": "0.0", "VORP": "0.0", "Mins per start": "0.0"}
 
@@ -425,9 +499,8 @@ def main() -> int:
         wrap_text=True, vertical="top")
     a.row_dimensions[tail].height = 46
 
-    a["A17"] = "Notes"
-    a["A17"].font = Font(bold=True)
-    r = 18
+    a.cell(row=NOTES_ROW - 1, column=1, value="Notes").font = Font(bold=True)
+    r = NOTES_ROW
     for label, text in NOTES:
         a.cell(row=r, column=1, value=label).font = Font(bold=True)
         c = a.cell(row=r, column=2, value=text)
@@ -517,10 +590,13 @@ def main() -> int:
             f'=IFERROR({col["VORP"]}{i}/{col["Price"]}{i},"")')
 
         moved = bool(rec.get("moved_club"))
+        researched = pd.notna(rec.get("research_xmins"))
         for h, _, kind in COLUMNS:
             cell = ws[f"{col[h]}{i}"]
             if moved and h in MOVED_COLS:
                 cell.fill = MOVED_FILL
+            elif researched and h in RESEARCH_COLS:
+                cell.fill = RESEARCH_FILL
             elif kind == "input":
                 cell.fill = INPUT_FILL
             elif kind in ("derived", "formula"):
@@ -549,7 +625,8 @@ def main() -> int:
 
     wb.save(path)
     print(f"added 'xPts model' ({ws.max_row - 1} players) and 'Assumptions' to {path}")
-    print("  blue cells are yours to edit: xMins 26/27, P(CS), Pens/season")
+    print("  blue cells are yours to edit: xMins 26/27, Mins per start, "
+          "P(CS), Pens/season")
     print("  everything else is a value from the model -- change it in Python")
 
     live = sum(1 for _, _, k in COLUMNS if k == "formula")

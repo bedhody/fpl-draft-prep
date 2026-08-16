@@ -203,6 +203,28 @@ def invariants() -> pd.DataFrame:
           f"{int((s.app_pts_season[playing] <= 0).sum())} of "
           f"{int(playing.sum())} on zero")
 
+    # The research layer must actually reach the number that gets scored.  It
+    # is easy to add a column, wire nothing to it, and ship a sheet that looks
+    # researched -- which is what the workbook did before this ran.
+    researched = j.research_xmins.notna()
+    check("the club research reached the master",
+          bool(researched.sum() > 0), f"{int(researched.sum())} players")
+    check("xMins scored is the research figure wherever there is one",
+          bool((j.xMins_input[researched]
+                - j.research_xmins[researched]).abs().max() < 0.5),
+          f"max gap {float((j.xMins_input[researched] - j.research_xmins[researched]).abs().max()):.2f}")
+    check("xMins scored falls back to Solio everywhere else",
+          bool((j.xMins_input[~researched].fillna(0)
+                - j.solio_season_xmins[~researched].fillna(
+                    j.mins_2526[~researched]).fillna(0)).abs().max() < 0.5))
+    # Minutes per start is shrunk toward a position mean of roughly 80-90, so
+    # nothing should sit at an extreme any more.  The bug this replaces put a
+    # midfielder on 45.0 off one start, and with it his DefCon at 0.3%.
+    mps = j.mins_per_start[j.pos.isin(list(xpts_calc.SCORING))]
+    check("no shrunk minutes-per-start below 60 or above 90",
+          bool(((mps >= 60) & (mps <= 90)).all()),
+          f"range {mps.min():.1f} to {mps.max():.1f}")
+
     outfield = j.pos.isin(["DEF", "MID", "FWD"])
     check("outfielders get no save points",
           bool((s.save_pts_p90[outfield].abs() < TOL).all()))
@@ -333,8 +355,8 @@ def main() -> int:
     top = j.nlargest(12, "xpts_season")[
         ["player", "team", "pos", "xMins_input", "matches", "xpts_p90",
          "xpts_season", "pts_2526"]]
-    print("\ntop of the sheet on the default xMins (Solio's forecast where it "
-          "has one):")
+    print("\ntop of the sheet on the default xMins (the club research where it "
+          "reached a player, else Solio, else 2025/26 actual):")
     print(top.round(2).to_string(index=False))
     return 0
 

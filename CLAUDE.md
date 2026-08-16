@@ -130,6 +130,9 @@ it takes a deliberate act rather than a careless one. Treat it that way.
     podcasts said about each club's line-up in the fortnight to 16 Aug 2026.
     Re-running that research gives different answers next week and useless ones
     once the season starts. It can be replaced, never regenerated.
+    `research_xmins.py` flattens it into `research_xmins.csv`, which *is*
+    reproducible and so stays ignored; it feeds the `xMins Solio adjusted`
+    column that the model scores.
   - `data/processed/injury_model.csv` — reproducible only from a 244MB
     Transfermarkt scrape that is itself ignored and takes hours behind a rate
     limit.

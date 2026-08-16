@@ -36,6 +36,7 @@ import fetch_solio
 import fetch_understat
 import fetch_vaastav
 import penalties_model
+import research_xmins
 import team_defence
 import verify_master
 import verify_xpts
@@ -130,6 +131,10 @@ def main() -> int:
     # match count.  It has to land in the master before the third merge.
     print("\n=== defensive contributions ===")
     defcon_model.main()
+    # Flattens the committed club research.  It reads only files in git, so
+    # unlike the research itself this step does rebuild from scratch tonight.
+    print("\n=== club research -> adjusted xMins ===")
+    research_xmins.main()
     print("\n=== cards ===")
     cards_model.main()
     print("\n=== penalties ===")

@@ -253,20 +253,50 @@ compute it. Ten columns stay live as real formulas — `CS pts/90`, `Rate pts/90
 `xPts/90`, `VORP`, `VORP per £m` — and all ten are plain arithmetic. Nothing
 that needs a probability distribution is expressed in Excel any more.
 
-That leaves three blue input cells worth editing in the sheet:
+That leaves four blue input cells worth editing in the sheet:
 
 | Input | Default | Note |
 |---|---|---|
-| `xMins 26/27` | Solio's forecast, else 2025/26 minutes | The biggest lever, and the one no dataset settles. `xMins source` records which was used |
+| `xMins 26/27` | `xMins Solio adjusted` | The biggest lever, and the one no dataset settles. `xMins source` records which layer it came from |
+| `Mins per start` | 2025/26, shrunk toward the position mean | How long a start lasts. See the direction warning below |
 | `P(CS)` | Market-implied, all 20 clubs | See below |
 | `Pens/season` | Club penalties × this player's share | Season total, not a rate |
 
+**Three columns sit behind `xMins 26/27`.** `xMins Solio` is Solio's raw
+forecast. `xMins Solio adjusted` is that figure after the club-by-club
+research moved it — 226 players of 719; everyone else keeps Solio's number, or
+2025/26 minutes where Solio has no view. `xMins 26/27` starts at the adjusted
+figure and is what the model actually scores. Green cells mark a row the
+research changed; `Research delta`, `Research confidence` and `Research reason`
+give the size, the researcher's own confidence, and the sourced why with a URL
+and a date.
+
+**`Mins per start` runs in the direction you would not expect.** It does not
+reduce a player's minutes — `xMins` is set independently, and this column only
+divides it into matches: `matches = min(38, xMins / mins per start)`. Since
+appearance points are earned per match, at a *fixed* `xMins` a lower figure
+here means more matches and so more points. On a midfielder holding 2,400
+minutes, 62 minutes a start is worth 159.8 xPts against 145.7 at 90 — a
+14-point swing, and being hooked early gains. An early substitution costs you
+through `xMins`, not through this column.
+
+It is measured as minutes in matches he started over starts, with sendings-off
+dropped from both sides — a red card is not rotation risk, and `cards_model`
+already prices it. Then shrunk toward the position mean by 10 starts, a
+strength fitted out of sample rather than chosen: predicting the second half of
+2025/26 from the first, MAE is 4.07 shrunk against 5.20 for the raw per-player
+average it replaces and 4.76 for the position mean alone. `Mins/start starts`
+is how many starts the figure rests on; a small number means it is mostly the
+prior. Without shrinkage one 45-minute start read 45.0 forever, which put a
+midfielder whose own action rate implies a 13.9% DefCon hit rate at 0.3% — a
+10-point error off a single match.
+
 Everything grey is a value the model wrote and will overwrite on the next run.
-`Mins per start`, `Saves/match` and `Goals against/match` used to be editable;
-they now feed a Poisson that lives in Python, so editing them in the sheet
-moves nothing. Change them in the model instead. Where a player has no Premier
-League record to measure — a promoted club's keeper, an incoming signing —
-`Mins per start` falls back to 85, and `Mins/start measured` records that.
+`Saves/match` and `Goals against/match` used to be editable; they now feed a
+Poisson that lives in Python, so editing them in the sheet moves nothing.
+Change them in the model instead. Where a player has no Premier League record
+at all — a promoted club's keeper, an incoming signing — `Mins per start`
+falls back to 85.
 
 Component sources:
 
@@ -691,7 +721,9 @@ scripts/
   team_defence.py      Club shots faced -> saves and goals-conceded points
   cards_model.py       Booking rate per player, shrunk toward position
   penalties_model.py   Club penalty counts and who takes them
-  defcon_model.py      Defensive-action rate -> Poisson threshold model
+  defcon_model.py      Defensive-action rate -> Poisson threshold model,
+                       and shrunk minutes per start
+  research_xmins.py    Flatten the club research into adjusted xMins
   build_master.py      Join everything into one row per player
   verify_master.py     Cross-source agreement checks (exits non-zero on failure)
   build_panel.py       Same join, run per season, for the model test
