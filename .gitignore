@@ -8,6 +8,11 @@ data/processed/
 __pycache__/
 *.pyc
 
+# API keys. This repo is public -- nothing with a credential in it goes in git.
+.env
+.env.*
+!.env.example
+
 # Anything produced after someone confirmed they wanted to break the league's
 # no-AI-picks rule. See CLAUDE.md. Kept out of git because this repo is public
 # and the rest of the league can read it.
