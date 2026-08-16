@@ -255,6 +255,11 @@ COLUMNS = [
     ("xMins pattern", "xmins_pattern", "text"),
     ("xMins 26/27", "xMins_input", "input"),
     ("xMins source", "xmins_source", "text"),
+    # Sits with the minutes block rather than with DefCon: it is how long a
+    # start lasts, which is the first thing you want next to a minutes forecast.
+    ("Mins per start", "mins_per_start", "derived"),
+    ("Mins/start measured", "mins_per_start_measured", "text"),
+    ("Matches", None, "formula"),
     ("P(CS)", "pcs_input", "input"),
     ("xG/90", "xG_p90", "derived"),
     ("xG basis", "xG_basis", "text"),
@@ -263,10 +268,6 @@ COLUMNS = [
     ("Placement sample xG", "hist_xG", "derived"),
     ("xA/90", "xA_p90", "derived"),
     ("DefCon actions/90", "defcon_lambda", "derived"),
-    # Grey, not blue: these feed a Poisson, and a Poisson lives in Python now.
-    # Editing them in the sheet moves nothing.
-    ("Mins per start", "mins_per_start", "derived"),
-    ("Mins/start measured", "mins_per_start_measured", "text"),
     ("DefCon hit %", "defcon_hit", "derived"),
     ("Bonus/90", "bonus_p90", "derived"),
     ("App pts 25/26", "app_pts_2526", "derived"),
@@ -285,7 +286,6 @@ COLUMNS = [
     ("Cards pts/90", "cards_pts_p90", "derived"),
     ("Rate pts/90", None, "formula"),
     # --- the two earned per match, plus penalties, as season totals ---------
-    ("Matches", None, "formula"),
     ("App pts season", None, "formula"),
     ("DC pts season", None, "formula"),
     ("Pen pts season", None, "formula"),
