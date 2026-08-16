@@ -1,21 +1,24 @@
-"""The xPts sheet, rebuilt from first principles as live Excel formulas.
+"""The xPts sheet: assemble the inputs, score them in Python, write the workbook.
 
-    xPts per 90  =  appearance + xG + xA + CS + DC + bonus
-                    + saves + goals conceded + cards
-    xPts season  =  xPts per 90  x  (xMins / 90)  +  penalties
+All nine of FPL's scoring elements are present.  The scoring itself lives in
+xpts_calc.py; this file gathers the inputs, hands them over, and lays the
+answer out in Excel.
 
-All nine of FPL's scoring elements are present.  Penalties sit outside the per
-90 term on purpose: a penalty is taken by whoever is on the pitch and holds the
-duty, so the expected count already prices availability and must not be scaled
-by minutes a second time.
+    xPts season  =  rate x (xMins / 90)  +  appearance  +  DefCon  +  penalties
 
-Everything is written as a real formula referencing a visible input, so the
-sheet can be reasoned about and changed in Excel rather than re-run here.
-Blue-filled columns are inputs meant to be overwritten with your own judgement;
-everything else is computed from them.
+Only the first term is linear in minutes, which is why the season total is not
+one multiplication.  Appearance and DefCon points are earned per match and
+capped at the 38 matches a season has; penalties are a season count already,
+because the taker's expected share prices how much of the season he plays.
 
-The scoring multipliers live on the Assumptions sheet and are looked up by
-position, so a rule change is one edit rather than 700.
+Almost every cell is a value.  Six columns stay live, and they are all
+arithmetic rather than modelling: the chain from `xMins 26/27` through matches,
+appearance and DefCon points to the season total, VORP, and VORP per £m.  That
+is the one knob worth turning during a draft -- change a player's minutes and
+his value moves -- and it is cheap to keep honest.  Everything else changes by
+re-running the model.
+
+Blue-filled columns are inputs; grey ones come out of the model.
 """
 from __future__ import annotations
 
@@ -26,21 +29,17 @@ import pandas as pd
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 
+import xpts_calc
 from common import OUT, PROC
 
 INPUT_FILL = PatternFill("solid", fgColor="DDEBF7")     # editable
 DERIVED_FILL = PatternFill("solid", fgColor="F2F2F2")   # from the data
 HEAD_FILL = PatternFill("solid", fgColor="404040")
 
-# Scoring, straight from the FPL API's game_config for 2026/27.
-SCORING = [
-    # position, goal, assist, clean sheet, defcon, appearance(60+),
-    # defcon threshold, saves per point, goals conceded per -1 point
-    ("GKP", 10, 3, 4, 0, 2, 99, 3, 2),
-    ("DEF", 6, 3, 4, 2, 2, 10, 0, 2),
-    ("MID", 5, 3, 1, 2, 2, 12, 0, 0),
-    ("FWD", 4, 3, 0, 2, 2, 12, 0, 0),
-]
+# Scoring, straight from the FPL API's game_config for 2026/27.  Defined once,
+# in xpts_calc; reproduced on the Assumptions sheet so the workbook says what it
+# was scored under without anyone having to open the code.
+SCORING = [(pos, *vals) for pos, vals in xpts_calc.SCORING.items()]
 
 NOTES = [
     ("xMins", "Your minutes forecast for 2026/27. Defaults to Solio's own "
@@ -81,7 +80,9 @@ NOTES = [
                       "deflections, won penalties). Across 2025/26 that was 765 "
                       "FPL assists vs 580 Opta assists, so 1.32. Both xG models "
                       "measure the Opta definition, so xA needs this to become "
-                      "FPL assists. Set to 1 to switch it off."),
+                      "FPL assists. Applied in the model, not in the sheet: "
+                      "changing the number here does nothing until scripts are "
+                      "re-run."),
     ("xG source", "Adjusted xGOT where a player has shot-placement history, "
                   "otherwise blended xG. Column 'xG basis' says which was used. "
                   "Either way it is scaled to the non-penalty share of his "
@@ -108,12 +109,22 @@ NOTES = [
                     "this measures scarcity against the £100m budget that "
                     "still binds you in a normal FPL season."),
     ("Appearance", "1 point for playing, 2 for 60 minutes or more, earned per "
-                   "match rather than per 90. Appearances are xMins divided by "
-                   "'Mins per start', so a player on short cameos banks more "
-                   "appearances for the same minutes but only one point each. "
-                   "A regular starter lands just above 2 per 90. 'App pts "
-                   "25/26' is what he actually earned last season, for "
+                   "match rather than per 90 -- which is why it is shown as a "
+                   "season total. 'Matches' is xMins divided by 'Mins per "
+                   "start', capped at the 38 a season has. The cap matters: "
+                   "Christian Nørgaard's 45 minutes per start came from a "
+                   "cameo-heavy year, and 2,804 forecast minutes divided by it "
+                   "claims 62 matches. Once capped he is making 38 longer "
+                   "appearances instead, which clears the 60-minute line. 'App "
+                   "pts 25/26' is what he actually earned last season, for "
                    "comparison only -- it does not feed the model."),
+    ("Live cells", "Almost everything on this sheet is a value, computed in "
+                   "Python. Six columns are still real formulas -- Matches, App "
+                   "pts season, DC pts season, xPts season, VORP and VORP per "
+                   "£m -- so that changing 'xMins 26/27' or 'Mins per start' "
+                   "moves a player's total and his rank the way it should. "
+                   "Change anything else and you are editing a number the model "
+                   "will overwrite on the next run."),
 ]
 
 
@@ -178,7 +189,13 @@ def build_rows() -> pd.DataFrame:
     # so the answer responds to minutes instead of ignoring them.
     d["defcon_lambda"] = m.get("defcon_lambda")
     d.loc[m["position"] == "GKP", "defcon_lambda"] = 0.0
-    d["mins_per_start"] = m.get("mins_per_start")
+    # Anyone with no Premier League record -- a promoted club's keeper, an
+    # incoming signing -- has no measured appearance length, so he gets the
+    # default.  Leaving it blank makes his match count zero, and with it his
+    # appearance and DefCon points, however many minutes he is forecast.
+    mps = m.get("mins_per_start")
+    d["mins_per_start"] = mps.fillna(xpts_calc.DEFAULT_MINS_PER_START)
+    d["mins_per_start_measured"] = mps.notna()
 
     d["bonus_p90"] = m.get("bonus_new_p90").round(4)
 
@@ -246,27 +263,34 @@ COLUMNS = [
     ("Placement sample xG", "hist_xG", "derived"),
     ("xA/90", "xA_p90", "derived"),
     ("DefCon actions/90", "defcon_lambda", "derived"),
-    ("Mins per start", "mins_per_start", "input"),
-    ("DefCon hit %", None, "formula"),
+    # Grey, not blue: these feed a Poisson, and a Poisson lives in Python now.
+    # Editing them in the sheet moves nothing.
+    ("Mins per start", "mins_per_start", "derived"),
+    ("Mins/start measured", "mins_per_start_measured", "text"),
+    ("DefCon hit %", "defcon_hit", "derived"),
     ("Bonus/90", "bonus_p90", "derived"),
     ("App pts 25/26", "app_pts_2526", "derived"),
-    ("Saves/match", "saves_per_match", "input"),
-    ("Goals against/match", "ga_per_match", "input"),
+    ("Saves/match", "saves_per_match", "derived"),
+    ("Goals against/match", "ga_per_match", "derived"),
     ("Card rate/90", "card_pts_p90", "derived"),
     ("Pens/season", "pens_season", "input"),
     ("Pen save pts", "pen_save_pts", "derived"),
-    ("App pts/90", None, "formula"),
-    ("xG pts/90", None, "formula"),
-    ("xA pts/90", None, "formula"),
+    # --- the seven elements that scale with minutes, and their sum ----------
+    ("xG pts/90", "xg_pts_p90", "derived"),
+    ("xA pts/90", "xa_pts_p90", "derived"),
     ("CS pts/90", None, "formula"),
-    ("DC pts/90", None, "formula"),
-    ("Bonus pts/90", None, "formula"),
-    ("Save pts/90", None, "formula"),
-    ("GC pts/90", None, "formula"),
-    ("Cards pts/90", None, "formula"),
-    ("xPts/90", None, "formula"),
+    ("Bonus pts/90", "bonus_pts_p90", "derived"),
+    ("Save pts/90", "save_pts_p90", "derived"),
+    ("GC pts/90", "gc_pts_p90", "derived"),
+    ("Cards pts/90", "cards_pts_p90", "derived"),
+    ("Rate pts/90", None, "formula"),
+    # --- the two earned per match, plus penalties, as season totals ---------
+    ("Matches", None, "formula"),
+    ("App pts season", None, "formula"),
+    ("DC pts season", None, "formula"),
     ("Pen pts season", None, "formula"),
     ("xPts season", None, "formula"),
+    ("xPts/90", None, "formula"),
     ("VORP", None, "formula"),
     ("VORP per £m", None, "formula"),
     # Helper columns: xPts season, but blank unless the player is draftable and
@@ -276,10 +300,12 @@ COLUMNS = [
     ("_pool DEF", None, "helper"),
     ("_pool MID", None, "helper"),
     ("_pool FWD", None, "helper"),
-    # The two "1 point per N" divisors, looked up once per row so the Poisson
-    # series below stays short enough to read.
-    ("_saves per pt", None, "helper"),
-    ("_conceded per pt", None, "helper"),
+    # This row's scoring multipliers, written as values so the live formulas
+    # above need no VLOOKUP into the Assumptions sheet.
+    ("_app 60+", "app_mult", "helper"),
+    ("_dc pts", "dc_mult", "helper"),
+    ("_cs pts", "cs_mult", "helper"),
+    ("_goal pts", "goal_mult", "helper"),
 ]
 
 POSITIONS = ["GKP", "DEF", "MID", "FWD"]
@@ -291,12 +317,28 @@ PENALTY_CONVERSION = 0.8294
 # below the notes, so it moves whenever a note is added -- hence the constant.
 VORP_ROW = 36
 TEAMS_ROW = VORP_ROW - 2        # the "Teams in league" input, referenced by LARGE()
+# Season totals read better to one decimal than to three.
+SEASON_FORMAT = {"Matches": "0.0", "App pts season": "0.0",
+                 "DC pts season": "0.0", "Pen pts season": "0.0",
+                 "xPts season": "0.0", "VORP": "0.0", "Mins per start": "0.0"}
 
 
 def main() -> int:
     from openpyxl import load_workbook
 
     d = build_rows()
+
+    # Score in Python, then write the answers out.  The sheet keeps the live
+    # chain from xMins onward, so the columns it recomputes are written as
+    # formulas below and the values here are only used for the summary print.
+    scored = xpts_calc.score(d)
+    d = d.join(scored)
+    mult = xpts_calc.multipliers(d["pos"])
+    d["app_mult"] = mult["appearance"]
+    d["dc_mult"] = mult["defcon"]
+    d["cs_mult"] = mult["clean_sheet"]
+    d["goal_mult"] = mult["goal"]
+
     path = OUT / "FPL_2026_27_draft_data.xlsx"
     if not path.exists():
         print(f"!! {path} not found -- run export_excel.py first", file=sys.stderr)
@@ -323,15 +365,16 @@ def main() -> int:
     a["A10"] = "Global inputs"
     a["A10"].font = Font(bold=True)
     a["A11"] = "Assist uplift (FPL assists / Opta assists)"
-    a["B11"] = 1.32
-    a["B11"].fill = INPUT_FILL
+    a["B11"] = xpts_calc.ASSIST_UPLIFT
     a["A12"] = "DefCon points per qualifying match"
     a["B12"] = 2
     a["A13"] = "Penalty conversion rate"
     a["B13"] = PENALTY_CONVERSION
     a["B13"].fill = INPUT_FILL
     a["A14"] = "Points for a missed penalty"
-    a["B14"] = 2
+    a["B14"] = xpts_calc.MISS_POINTS
+    a["A15"] = "Matches in a season"
+    a["B15"] = xpts_calc.MATCHES
 
     # ---- VORP settings, below the notes so nothing above shifts ----------
     head = VORP_ROW - 1
@@ -357,9 +400,9 @@ def main() -> int:
         wrap_text=True, vertical="top")
     a.row_dimensions[tail].height = 46
 
-    a["A15"] = "Notes"
-    a["A15"].font = Font(bold=True)
-    r = 16
+    a["A17"] = "Notes"
+    a["A17"].font = Font(bold=True)
+    r = 18
     for label, text in NOTES:
         a.cell(row=r, column=1, value=label).font = Font(bold=True)
         c = a.cell(row=r, column=2, value=text)
@@ -379,8 +422,6 @@ def main() -> int:
         c.alignment = Alignment(wrap_text=True, vertical="bottom")
 
     col = {h: get_column_letter(i + 1) for i, (h, _, _) in enumerate(COLUMNS)}
-    P = col["Pos"]
-    S = "Assumptions!$A$4:$I$7"
 
     for i, rec in enumerate(d.to_dict("records"), start=2):
         vals = []
@@ -392,73 +433,52 @@ def main() -> int:
                 vals.append(None if pd.isna(v) else v)
         ws.append(vals)
 
-        # VLOOKUP the multiplier for this row's position out of Assumptions.
-        def mult(n):
-            return f"IFERROR(VLOOKUP(${P}{i},{S},{n},FALSE),0)"
-
+        xm = f"{col['xMins 26/27']}{i}"
         mps = f"{col['Mins per start']}{i}"
-        # 1 point for playing, 2 for 60 minutes or more, earned per match.
-        # Appearances per 90 = 90 / minutes per start, so a shorter shift means
-        # more appearances for the same minutes -- but only one point each.
-        ws[f"{col['App pts/90']}{i}"] = (
-            f"=IF(N({mps})<=0,{mult(6)},"
-            f"90/N({mps})*IF(N({mps})>=60,{mult(6)},1))")
-        ws[f"{col['xG pts/90']}{i}"] = f"=N({col['xG/90']}{i})*{mult(2)}"
-        ws[f"{col['xA pts/90']}{i}"] = (
-            f"=N({col['xA/90']}{i})*{mult(3)}*Assumptions!$B$11")
-        ws[f"{col['CS pts/90']}{i}"] = f"=N({col['P(CS)']}{i})*{mult(4)}"
-        lam = f"{col['DefCon actions/90']}{i}"
-        # The threshold must fail safe to 99, not 0: an unknown position makes
-        # the VLOOKUP fail, and POISSON(-1, ...) is a #NUM! error that would
-        # propagate all the way to xPts season.
-        thr = (f"IFERROR(VLOOKUP(${P}{i},{S},7,FALSE),99)")
-        ws[f"{col['DefCon hit %']}{i}"] = (
-            f'=IF(OR(N({lam})=0,N({mps})=0),0,'
-            f'1-POISSON({thr}-1,N({lam})*N({mps})/90,TRUE))')
-        # POISSON, not POISSON.DIST: the latter is a post-2007 function and
-        # needs an _xlfn. prefix in the file format, which openpyxl does not
-        # add, so it silently evaluates to an error. The legacy name works
-        # unprefixed in both Excel and LibreOffice.
-        # Season DefCon points = 2 x starts x P(hit), and starts = xMins / mins
-        # per start, so per 90 that is 2 x P(hit) x 90 / mins per start.
-        ws[f"{col['DC pts/90']}{i}"] = (
-            f"=IF(N({mps})=0,0,{col['DefCon hit %']}{i}*{mult(5)}*90/N({mps}))")
-        ws[f"{col['Bonus pts/90']}{i}"] = f"=N({col['Bonus/90']}{i})"
 
-        # FPL's two counting rules -- 1 point per 3 saves, -1 per 2 conceded --
-        # are settled every match, so the season total is not the season count
-        # divided by 3 or 2.  E[floor(X/m)] = sum over k>=1 of P(X >= m*k), a
-        # sum of Poisson tails, which is what the series below is.  Eight terms
-        # is exact to 1e-4 at any rate a real club produces.  Skipping this
-        # would make saves 56% too generous and goals conceded 57% too harsh.
-        ws[f"{col['_saves per pt']}{i}"] = f"={mult(8)}"
-        ws[f"{col['_conceded per pt']}{i}"] = f"={mult(9)}"
-        per_sv = f"{col['_saves per pt']}{i}"
-        per_gc = f"{col['_conceded per pt']}{i}"
-        spm = f"{col['Saves/match']}{i}"
-        gapm = f"{col['Goals against/match']}{i}"
-        sv_series = "+".join(
-            f"(1-POISSON({per_sv}*{k}-1,N({spm}),TRUE))" for k in range(1, 9))
-        gc_series = "+".join(
-            f"(1-POISSON({per_gc}*{k}-1,N({gapm}),TRUE))" for k in range(1, 9))
-        ws[f"{col['Save pts/90']}{i}"] = (
-            f"=IF(OR({per_sv}=0,N({spm})<=0),0,{sv_series})")
-        ws[f"{col['GC pts/90']}{i}"] = (
-            f"=IF(OR({per_gc}=0,N({gapm})<=0),0,-({gc_series}))")
-        ws[f"{col['Cards pts/90']}{i}"] = f"=N({col['Card rate/90']}{i})"
+        # Clean sheets and the rate sum stay live so that editing P(CS) -- the
+        # one modelling assumption a human might genuinely want to override for
+        # a particular club -- still moves the total.
+        ws[f"{col['CS pts/90']}{i}"] = (
+            f"=N({col['P(CS)']}{i})*N({col['_cs pts']}{i})")
+        ws[f"{col['Rate pts/90']}{i}"] = (
+            f"=SUM({col['xG pts/90']}{i}:{col['Cards pts/90']}{i})")
 
-        ws[f"{col['xPts/90']}{i}"] = (
-            f"=SUM({col['App pts/90']}{i}:{col['Cards pts/90']}{i})")
+        # Matches, capped at the 38 a season has.  Without the cap a forecast
+        # of 2,804 minutes against 45 minutes per start claims 62 of them.
+        ws[f"{col['Matches']}{i}"] = (
+            f"=IF(N({mps})<=0,0,MIN(Assumptions!$B$15,N({xm})/N({mps})))")
+        mt = f"{col['Matches']}{i}"
+        # 1 point an appearance, 2 if it lasts 60 minutes.  The 60-minute test
+        # uses minutes per *appearance* recomputed from the capped count, not
+        # the raw minutes per start: a player pinned at 38 matches is making
+        # longer appearances than his history suggests, not more of them.
+        # The "1 point" branch has to be gated on the multiplier too, or a player
+        # with no 2026/27 position -- who scores nothing anywhere else -- would
+        # still bank a point for every short appearance.
+        ws[f"{col['App pts season']}{i}"] = (
+            f"=IF(OR(N({mt})<=0,N({col['_app 60+']}{i})=0),0,"
+            f"N({mt})*IF(N({xm})/N({mt})>=60,N({col['_app 60+']}{i}),1))")
+        # 2 points every match the threshold is cleared.  The probability of
+        # clearing it comes from the model; only the count of chances is live.
+        ws[f"{col['DC pts season']}{i}"] = (
+            f"=N({mt})*N({col['DefCon hit %']}{i})*N({col['_dc pts']}{i})")
         # Penalties are already an expected count for the whole season -- the
-        # taker's share prices his availability -- so they are added after the
-        # minutes scaling, not inside it.
+        # taker's share prices his availability -- so they are never scaled by
+        # minutes.
         ws[f"{col['Pen pts season']}{i}"] = (
-            f"=N({col['Pens/season']}{i})*(Assumptions!$B$13*{mult(2)}"
+            f"=N({col['Pens/season']}{i})*(Assumptions!$B$13*N({col['_goal pts']}{i})"
             f"-(1-Assumptions!$B$13)*Assumptions!$B$14)"
             f"+N({col['Pen save pts']}{i})")
         ws[f"{col['xPts season']}{i}"] = (
-            f"=N({col['xPts/90']}{i})*N({col['xMins 26/27']}{i})/90"
+            f"=N({col['Rate pts/90']}{i})*N({xm})/90"
+            f"+N({col['App pts season']}{i})+N({col['DC pts season']}{i})"
             f"+N({col['Pen pts season']}{i})")
+        # Shown per 90 for comparability. Penalties are excluded: they do not
+        # scale with minutes, so folding them in would flatter a part-time taker.
+        ws[f"{col['xPts/90']}{i}"] = (
+            f"=IF(N({xm})<=0,0,(N({col['xPts season']}{i})"
+            f"-N({col['Pen pts season']}{i}))*90/N({xm}))")
 
         season = f"{col['xPts season']}{i}"
         for pos in POSITIONS:
@@ -478,7 +498,8 @@ def main() -> int:
             elif kind in ("derived", "formula"):
                 cell.fill = DERIVED_FILL
             if kind in ("num", "derived", "formula") and h != "Pts 25/26":
-                cell.number_format = "0.000" if kind != "num" else "0"
+                cell.number_format = (
+                    "0" if kind == "num" else SEASON_FORMAT.get(h, "0.000"))
 
     last = ws.max_row
     for i, pos in enumerate(POSITIONS):
@@ -487,8 +508,9 @@ def main() -> int:
         a.cell(row=r, column=3,
                value=f"=IFERROR(LARGE({pool},$B${TEAMS_ROW}*B{r}+1),0)"
                ).number_format = "0.0"
-    for letter in (col[f"_pool {p}"] for p in POSITIONS):
-        ws.column_dimensions[letter].hidden = True
+    for h, _, kind in COLUMNS:
+        if kind == "helper":
+            ws.column_dimensions[col[h]].hidden = True
 
     ws.freeze_panes = "B2"
     ws.auto_filter.ref = f"A1:{get_column_letter(len(COLUMNS))}{ws.max_row}"
@@ -499,7 +521,13 @@ def main() -> int:
 
     wb.save(path)
     print(f"added 'xPts model' ({ws.max_row - 1} players) and 'Assumptions' to {path}")
-    print("  blue cells are yours to edit: xMins 26/27, P(CS), and the assist uplift")
+    print("  blue cells are yours to edit: xMins 26/27, P(CS), Pens/season")
+    print("  everything else is a value from the model -- change it in Python")
+
+    live = sum(1 for _, _, k in COLUMNS if k == "formula")
+    print(f"  {live} live formula columns, all arithmetic; no Poisson in the sheet")
+    capped = int((d["matches"] >= xpts_calc.MATCHES - 1e-9).sum())
+    print(f"  {capped} players pinned at the {xpts_calc.MATCHES}-match ceiling")
     return 0
 
 

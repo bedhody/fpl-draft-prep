@@ -98,15 +98,27 @@ it takes a deliberate act rather than a careless one. Treat it that way.
 
 - **Verify, don't assert.** Every derived artifact in this repo has a check
   behind it: `verify_master.py` proves the cross-source joins by making
-  independent sources agree on goals and minutes; `verify_xpts.py` recalculates
-  the workbook through LibreOffice and compares every formula against
-  independent arithmetic; `bps_remodel.py` validates its bonus allocator by
-  reproducing the real 2025/26 bonus before touching anything. Keep that up. If
-  you cannot check something, say so rather than implying you did.
-- **Live formulas over baked numbers.** The `xPts model` sheet is real Excel
-  formulas pointing at the `Assumptions` sheet, deliberately. The predecessor
-  to this repo had every formula flattened to values by a script, which made it
-  impossible to audit and left errors nobody could see. Do not repeat that.
+  independent sources agree on goals and minutes; `verify_xpts.py` checks the
+  scoring model against closed-form identities, hand-worked examples and
+  invariants, then recalculates the workbook's remaining formulas through
+  LibreOffice; `bps_remodel.py` validates its bonus allocator by reproducing the
+  real 2025/26 bonus before touching anything. Keep that up. If you cannot check
+  something, say so rather than implying you did.
+- **The model is Python; the workbook displays it.** Scoring lives in
+  `xpts_calc.py`. The sheet keeps ten live formulas, all plain arithmetic, so
+  that changing `xMins` still moves a player's total and his rank — nothing
+  needing a probability distribution belongs in a cell.
+
+  This reverses an earlier convention, so the reason matters. The predecessor
+  to this repo had every formula flattened to values by a script and became
+  impossible to audit. The protection against that is **not** formulas in
+  Excel; it is that the logic is readable and independently checked. Excel
+  turned out to be the worse place for both: `MIN(90, x)` quietly pinned every
+  starter's appearance rate to exactly 2, and no reimplementation-style check
+  could see it, because the reimplementation copied the same mistake. So: baked
+  numbers are fine, silently baked numbers are not. Anything baked has to be
+  regenerable by `run_all.py` and covered by a check in `verify_xpts.py` that
+  does not simply restate the model.
 - **Data traps are documented in the README** — FPL assists running 32% above
   Opta's, DefCon actions not being DefCon points, Understat undercounting
   substitute minutes. Read that section before writing anything that consumes

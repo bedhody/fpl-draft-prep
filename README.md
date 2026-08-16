@@ -4,8 +4,10 @@ Everything needed to analyse 2025/26 Premier League player performance in one
 workbook, pulled from five sources and joined on the Opta player id.
 
 **Output:** `output/FPL_2026_27_draft_data.xlsx` — a `Players` sheet of 719
-players × 146 columns, plus an `xPts model` sheet built from live Excel
-formulas you can edit, covering all nine of FPL's scoring elements.
+players × 146 columns, plus an `xPts model` sheet covering all nine of FPL's
+scoring elements. The model runs in Python; the sheet displays it, and keeps
+the chain from `xMins` to the season total live so a minutes change still moves
+a player's rank.
 
 ## Setup
 
@@ -28,9 +30,9 @@ every response is cached under `data/raw/` and re-runs take seconds. Pass
 cache that the pipeline rebuilds on demand. The finished workbooks in
 `output/` are committed, so you can read the results without running anything.
 
-Formula verification (`scripts/verify_xpts.py`) shells out to LibreOffice to
-recalculate the workbook. Without LibreOffice installed that step is skipped;
-nothing else depends on it.
+Verification (`scripts/verify_xpts.py`) shells out to LibreOffice to
+recalculate the workbook. Without LibreOffice installed that one step is
+skipped; the identity, worked-example and invariant checks still run.
 
 ---
 
@@ -210,31 +212,49 @@ workbook next to the originals.
 ## The xPts model
 
 ```
-xPts per 90 = appearance + xG + xA + clean sheet + defensive contribution
-              + bonus + saves + goals conceded + cards
-xPts season = xPts per 90 × xMins / 90 + penalties
+rate per 90 = xG + xA + clean sheet + bonus + saves + goals conceded + cards
+xPts season = rate per 90 × xMins / 90        the seven that scale with minutes
+            + appearance points               earned per match, capped at 38
+            + DefCon points                   earned per match, convex in length
+            + penalties                       a season count already
 ```
 
-All nine of FPL's scoring elements are in. Penalties sit outside the per-90
-term deliberately: a penalty goes to whoever holds the duty and is on the
-pitch, so the expected count already prices availability and must not be
-scaled by minutes twice.
+All nine of FPL's scoring elements are in. **Only the first line is linear in
+minutes**, which is why the season total is not one multiplication:
 
-It is written as **live Excel formulas**, not baked-in numbers, so every
-assumption is visible and changeable in the sheet. Blue cells are inputs:
+- **Appearance and DefCon** points are earned per *match*. The number of
+  matches is `xMins ÷ Mins per start`, capped at the 38 a season has. The cap
+  is not cosmetic: Christian Nørgaard's 45 minutes per start came from a
+  cameo-heavy year, and 2,804 forecast minutes divided by it claimed 62
+  matches. Once capped he is making 38 longer appearances instead — 74 minutes
+  each, which clears the 60-minute line — so he goes from 62 appearance points
+  to 76. Sixteen players were over the ceiling before the cap went in.
+- **Penalties** sit outside the per-90 term because a penalty goes to whoever
+  holds the duty and is on the pitch, so the expected count already prices
+  availability and must not be scaled by minutes twice.
+
+### Where the model lives
+
+The scoring is in `scripts/xpts_calc.py`. The workbook displays it; it does not
+compute it. Ten columns stay live as real formulas — `CS pts/90`, `Rate pts/90`,
+`Matches`, `App pts season`, `DC pts season`, `Pen pts season`, `xPts season`,
+`xPts/90`, `VORP`, `VORP per £m` — and all ten are plain arithmetic. Nothing
+that needs a probability distribution is expressed in Excel any more.
+
+That leaves three blue input cells worth editing in the sheet:
 
 | Input | Default | Note |
 |---|---|---|
 | `xMins 26/27` | Solio's forecast, else 2025/26 minutes | The biggest lever, and the one no dataset settles. `xMins source` records which was used |
 | `P(CS)` | Market-implied, all 20 clubs | See below |
-| `Mins per start` | Minutes played in matches he started ÷ starts | Drives appearances *and* DefCon exposure |
-| `Saves/match` | The club's expected saves | Goalkeepers |
-| `Goals against/match` | The club's expected goals against | Goalkeepers and defenders |
 | `Pens/season` | Club penalties × this player's share | Season total, not a rate |
-| Assist uplift, penalty conversion | 1.32, 0.829 | On the `Assumptions` sheet |
 
-Scoring multipliers sit on `Assumptions` and are pulled in by `VLOOKUP` on
-position, so a rule change is one edit rather than 700.
+Everything grey is a value the model wrote and will overwrite on the next run.
+`Mins per start`, `Saves/match` and `Goals against/match` used to be editable;
+they now feed a Poisson that lives in Python, so editing them in the sheet
+moves nothing. Change them in the model instead. Where a player has no Premier
+League record to measure — a promoted club's keeper, an incoming signing —
+`Mins per start` falls back to 85, and `Mins/start measured` records that.
 
 Component sources:
 
@@ -243,7 +263,7 @@ Component sources:
 - **Clean sheet** — `P(CS)` × 4/4/1/0 by position
 - **DefCon** — the player's action rate, shrunk toward his position, run through a Poisson against the threshold over `Mins per start`
 - **Bonus** — bonus per 90 from the BPS re-model, as a rate rather than a share of points, so it does not depend on the rest of the model
-- **Appearance** — 1 point an appearance, 2 at 60 minutes. Appearances are `xMins ÷ Mins per start`, so a substitute banks more appearances for the same minutes but only one point each
+- **Appearance** — 1 point an appearance, 2 at 60 minutes. A substitute banks more appearances for the same minutes but only one point each. The 60-minute test uses minutes per appearance recomputed from the *capped* match count, not the raw minutes per start
 - **Saves, goals conceded, cards, penalties** — see the four sections below
 
 ### The per-match floor, and why it matters
@@ -255,14 +275,39 @@ conceded. Dividing a season total by 3 or by 2 therefore gets both badly wrong
 save, not 0.333) and goals conceded **57% too harsh** (−0.32 per goal, not
 −0.50).
 
-The sheet models both as `E[floor(X/m)]` for a Poisson `X`, which equals the
-sum over `k ≥ 1` of `P(X ≥ m·k)` — a sum of Poisson tails, so it stays a live
-formula. Eight terms is exact to 1e-4 at any rate a real club produces.
+The model computes both as `E[floor(X/m)]` for a Poisson `X`, which equals the
+sum over `k ≥ 1` of `P(X ≥ m·k)`. Eight terms is exact to 1e-4 at any rate a
+real club produces.
 
-`verify_xpts.py` recalculates the workbook with LibreOffice and checks all
-thirteen formula columns against the same arithmetic done independently in
-Python. It currently passes 719/719 on every column, plus the four replacement
-levels and both VORP columns.
+### How it is checked
+
+`verify_xpts.py` used to reimplement the sheet's formulas in Python and compare
+the two. That was a real check while the model was written in Excel. Now that
+the model is Python, comparing it against a Python reimplementation would only
+show that a function agrees with a copy of itself. So the checks are of four
+kinds, and only the last is a comparison:
+
+1. **Identities.** `E[floor(X/m)]` is computed as a sum of Poisson tails and
+   checked against the definition of an expectation, `Σ floor(n/m)·P(X=n)`.
+   `P(clearing a threshold)` is computed as `1 − cdf` and checked against
+   summing the mass above it. The two routes share no code, so these are
+   proofs rather than comparisons.
+2. **Worked examples.** Whole players with round-numbered inputs, hand-computed
+   and written into the test as literals — an ever-present defender, a
+   20 × 30-minute substitute, the 62-matches case, a penalty taker with no
+   minutes.
+3. **Invariants.** Nobody plays more than 38 matches; appearance points sit
+   between one and two a match; an outfielder never earns save points; a card
+   is never worth more than zero; a player with no 2026/27 position scores
+   nothing. This is the class of check that catches a bug *both*
+   implementations share, which is exactly what the old comparison could not do
+   — the 62-appearance error survived it for that reason.
+4. **The workbook.** The ten live columns are recalculated through LibreOffice
+   and compared against Python, which is where the one genuine second
+   implementation still lives.
+
+All of it currently passes: 719/719 on every live column, the four replacement
+levels, and VORP.
 
 ## Clean sheets from the betting market
 
@@ -635,8 +680,9 @@ scripts/
   build_panel.py       Same join, run per season, for the model test
   xg_bakeoff.py        Calibration, forecast and bootstrap comparison
   export_excel.py      Write the workbook
-  xpts_model.py        Add the xPts sheet as live Excel formulas
-  verify_xpts.py       Recalculate with LibreOffice, check every formula
+  xpts_calc.py         The scoring model: every element, in Python
+  xpts_model.py        Assemble the inputs, score them, lay out the xPts sheet
+  verify_xpts.py       Identities, worked examples, invariants, LibreOffice
   run_all.py           All of the above, in order
 data/raw/              Cached API responses
 data/processed/        Intermediate CSVs
