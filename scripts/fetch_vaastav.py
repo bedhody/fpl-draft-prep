@@ -24,7 +24,7 @@ URL = ("https://raw.githubusercontent.com/vaastav/Fantasy-Premier-League/"
 TEAMS_URL = ("https://raw.githubusercontent.com/vaastav/Fantasy-Premier-League/"
              "master/data/{season}/teams.csv")
 
-SEASONS = ["2022-23", "2023-24", "2024-25", "2025-26"]
+SEASONS = ["2021-22", "2022-23", "2023-24", "2024-25", "2025-26"]
 
 COLS = ["code", "id", "web_name", "first_name", "second_name", "element_type",
         "team", "minutes", "starts", "total_points", "goals_scored", "assists",

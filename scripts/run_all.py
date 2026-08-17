@@ -36,6 +36,7 @@ import fetch_pulselive
 import fetch_solio
 import fetch_understat
 import fetch_vaastav
+import history_study
 import levers_report
 import minutes_risk
 import penalties_model
@@ -163,6 +164,10 @@ def main() -> int:
     xpts_model.main()
     print("\n=== levers page ===")
     levers_report.main()
+    # Reads the workbook's own inputs to compare the projection's shape with
+    # five seasons of history, so it runs after the model is built.
+    print("\n=== five seasons restated under 2026/27 rules ===")
+    history_study.main()
     print("\n=== verify xPts formulas ===")
     rc = verify_xpts.main()
 
