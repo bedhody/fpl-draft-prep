@@ -131,6 +131,12 @@ td.dim{color:var(--faint)}
 .ranknum:hover{border-color:var(--mark); color:var(--mark)}
 .ranknum.on{background:var(--mark); border-color:var(--mark); color:#fff;
   font-weight:700}
+.hasnote{color:var(--mark); font-size:13px; line-height:1; margin-left:1px}
+textarea.note{width:100%; margin-top:5px; font:inherit; font-size:11.5px;
+  color:var(--ink); background:var(--input); border:1px solid var(--line);
+  border-radius:6px; padding:5px 6px; resize:vertical}
+textarea.note::placeholder{color:var(--faint)}
+textarea.note:focus{border-color:var(--accent); background:var(--surface)}
 
 .pos{display:inline-block; min-width:34px; text-align:center; padding:1px 6px;
   border-radius:5px; font-size:11px; font-weight:700; letter-spacing:.04em;
@@ -378,7 +384,9 @@ details h3{font-size:13px; margin:18px 0 6px}
       <h2>Research list <span class="n" id="markedN"></span></h2>
       <div class="body" id="markedBody"></div>
       <div class="act"><button id="copyMarked">Copy list</button></div>
-      <p class="hint">Players you starred as needing a closer look.</p>
+      <p class="hint">Players you flagged for a closer look. Write what you
+      want checked in the box &mdash; the note copies out with the list, and a
+      dot appears next to his number in the table.</p>
     </section>
   </aside>
 </div>
@@ -485,12 +493,13 @@ it knows nothing after that, and it cannot see January.</footer>
 const $ = s => document.querySelector(s);
 const byCode = new Map(DATA.map(r => [r.code, r]));
 const K = {tray:'fpl_tray_v1', mark:'fpl_marked_v1', edit:'fpl_edits_v1',
-           draft:'fpl_draft_v2', cols:'fpl_cols_v1'};
+           draft:'fpl_draft_v2', cols:'fpl_cols_v1', notes:'fpl_notes_v1'};
 const FIXED = ['mark', 'player'];               // frozen left, never reordered
 
 let tray = load(K.tray, []);
 let marked = new Set(load(K.mark, []));
 let edits = load(K.edit, {});
+let notes = load(K.notes, {});
 let draft = Object.assign({slot:5, teams:8, rounds:15, on:true}, load(K.draft, {}));
 let order = load(K.cols, null) || COLS.map(c => c.k);
 // A saved order from an older build can be missing columns or naming ones that
@@ -509,6 +518,7 @@ function save(){ try {
   localStorage.setItem(K.edit, JSON.stringify(edits));
   localStorage.setItem(K.draft, JSON.stringify(draft));
   localStorage.setItem(K.cols, JSON.stringify(order));
+  localStorage.setItem(K.notes, JSON.stringify(notes));
 } catch {} }
 
 const esc = s => String(s ?? '').replace(/[&<>"]/g,
@@ -689,7 +699,8 @@ const CELL = {
       data-mark="${r.code}"
       title="Number ${r._rank} of ${DATA.length} in the current sort. ${marked.has(r.code) ? 'On your research list -- click to remove' : 'Click to put on your research list'}"
       aria-pressed="${marked.has(r.code)}"
-      aria-label="Rank ${r._rank}, ${esc(r.player)}, research list toggle">${r._rank}</button></td>`,
+      aria-label="Rank ${r._rank}, ${esc(r.player)}, research list toggle">${r._rank}</button>${
+      notes[r.code] ? `<span class="hasnote" title="${esc(notes[r.code])}">&bull;</span>` : ''}</td>`,
   player: r => `<td class="name${r.moved ? ' movedname' : ''}" draggable="true" data-drag="${r.code}"
       title="${esc(r.player)}${r.moved ? ' -- changed club this summer, so his xG and xA are rates he produced somewhere else' : ''}">${
       esc(r.player)}${r.no_pl_rates ? '<span class="flag norates" title="No Premier League record, so every attacking rate is empty.">no rates</span>' : ''}</td>`,
@@ -962,7 +973,11 @@ function renderSide(){
   $('#markedBody').innerHTML = list.length
     ? list.map(r => `<div class="card"><div class="top"><span class="who">${esc(r.player)}</span>
         <span class="meta">${r.pos} ${r.team}</span>
-        <button class="x" data-unmark="${r.code}" aria-label="Remove ${esc(r.player)} from the research list">&times;</button></div></div>`).join('')
+        <button class="x" data-unmark="${r.code}" aria-label="Remove ${esc(r.player)} from the research list">&times;</button></div>
+        <textarea class="note" data-note="${r.code}" rows="2"
+          placeholder="What do you want checked? e.g. is his xG from set pieces?"
+          aria-label="Research note for ${esc(r.player)}">${esc(notes[r.code] || '')}</textarea>
+        </div>`).join('')
     : '<div class="empty">Nothing here yet. Click the number at the left of any row to add that player.</div>';
   $('#markedN').textContent = list.length;
 
@@ -989,8 +1004,19 @@ function wireSide(){
     b.addEventListener('click', e => {
       e.stopPropagation();
       marked.delete(Number(b.dataset.unmark));
+      delete notes[Number(b.dataset.unmark)];
       save(); render(); renderSide();
     }));
+  // Saved on the way out of the box, not on every keystroke, so a long note
+  // does not re-render the panel from under the cursor.
+  document.querySelectorAll('[data-note]').forEach(t => {
+    t.addEventListener('change', () => {
+      const c = Number(t.dataset.note);
+      if (t.value.trim()) notes[c] = t.value.trim(); else delete notes[c];
+      save(); render();
+    });
+    t.addEventListener('blur', () => t.dispatchEvent(new Event('change')));
+  });
 }
 
 const trayEl = $('#tray');
@@ -1024,7 +1050,9 @@ $('#copyTray').addEventListener('click', e =>
 $('#clearTray').addEventListener('click', () => { tray = []; save(); renderSide(); });
 $('#copyMarked').addEventListener('click', e =>
   copy(e.target, DATA.filter(r => marked.has(r.code))
-    .map(r => `${r.player} (${r.pos}, ${r.team}) -- ${r._role}${r._threat !== 'none' ? ', ' + r._threat + ' risk' : ''}`)
+    .map(r => `${r.player} (${r.pos}, ${r.team}) -- ${r._role}`
+      + `${r._threat !== 'none' ? ', ' + r._threat + ' risk' : ''}`
+      + `${notes[r.code] ? '\n    ' + notes[r.code] : ''}`)
     .join('\n')));
 
 /* ---------- controls ---------- */

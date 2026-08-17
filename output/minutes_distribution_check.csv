@@ -1,0 +1,1642 @@
+block,season,key,metric,value,note
+bands,2026-27,FORECAST 26/27,band 0,108.0,"registered 26/27 squads, n=587"
+bands,2026-27,FORECAST 26/27,band 1-500,123.0,"registered 26/27 squads, n=587"
+bands,2026-27,FORECAST 26/27,band 500-1500,108.0,"registered 26/27 squads, n=587"
+bands,2026-27,FORECAST 26/27,band 1500-2500,108.0,"registered 26/27 squads, n=587"
+bands,2026-27,FORECAST 26/27,band 2500-3000,74.0,"registered 26/27 squads, n=587"
+bands,2026-27,FORECAST 26/27,band 3000+,61.0,"registered 26/27 squads, n=587"
+bands,2026-27,FORECAST 26/27,n players,582.0,"registered 26/27 squads, n=587"
+bands,2026-27,FORECAST 26/27,total minutes,751407.0,"registered 26/27 squads, n=587"
+bands,2026-27,FORECAST 26/27,mean,1291.1,"registered 26/27 squads, n=587"
+bands,2026-27,FORECAST 26/27,median,1013.0,"registered 26/27 squads, n=587"
+deciles,2026-27,FORECAST 26/27,p10,0.0,"registered 26/27 squads, n=587"
+deciles,2026-27,FORECAST 26/27,p20,15.0,"registered 26/27 squads, n=587"
+deciles,2026-27,FORECAST 26/27,p30,175.2,"registered 26/27 squads, n=587"
+deciles,2026-27,FORECAST 26/27,p40,530.4,"registered 26/27 squads, n=587"
+deciles,2026-27,FORECAST 26/27,p50,1013.0,"registered 26/27 squads, n=587"
+deciles,2026-27,FORECAST 26/27,p60,1600.0,"registered 26/27 squads, n=587"
+deciles,2026-27,FORECAST 26/27,p70,2150.0,"registered 26/27 squads, n=587"
+deciles,2026-27,FORECAST 26/27,p80,2654.8,"registered 26/27 squads, n=587"
+deciles,2026-27,FORECAST 26/27,p90,3041.1,"registered 26/27 squads, n=587"
+thresholds,2026-27,FORECAST 26/27,>=1000,296.0,"registered 26/27 squads, n=587"
+thresholds,2026-27,FORECAST 26/27,>=1500,246.0,"registered 26/27 squads, n=587"
+thresholds,2026-27,FORECAST 26/27,>=2000,194.0,"registered 26/27 squads, n=587"
+thresholds,2026-27,FORECAST 26/27,>=2500,139.0,"registered 26/27 squads, n=587"
+thresholds,2026-27,FORECAST 26/27,>=2750,103.0,"registered 26/27 squads, n=587"
+thresholds,2026-27,FORECAST 26/27,>=3000,63.0,"registered 26/27 squads, n=587"
+thresholds,2026-27,FORECAST 26/27,>=3200,35.0,"registered 26/27 squads, n=587"
+concentration,2026-27,FORECAST 26/27,gini,0.5152,"registered 26/27 squads, n=587"
+bands,2023-24,actual 2023-24 all,band 0,295.0,end-of-season FPL roster
+bands,2023-24,actual 2023-24 all,band 1-500,175.0,end-of-season FPL roster
+bands,2023-24,actual 2023-24 all,band 500-1500,165.0,end-of-season FPL roster
+bands,2023-24,actual 2023-24 all,band 1500-2500,127.0,end-of-season FPL roster
+bands,2023-24,actual 2023-24 all,band 2500-3000,65.0,end-of-season FPL roster
+bands,2023-24,actual 2023-24 all,band 3000+,38.0,end-of-season FPL roster
+bands,2023-24,actual 2023-24 all,n players,865.0,end-of-season FPL roster
+bands,2023-24,actual 2023-24 all,total minutes,748630.0,end-of-season FPL roster
+bands,2023-24,actual 2023-24 all,mean,865.5,end-of-season FPL roster
+bands,2023-24,actual 2023-24 all,median,343.0,end-of-season FPL roster
+deciles,2023-24,actual 2023-24 all,p10,0.0,end-of-season FPL roster
+deciles,2023-24,actual 2023-24 all,p20,0.0,end-of-season FPL roster
+deciles,2023-24,actual 2023-24 all,p30,0.0,end-of-season FPL roster
+deciles,2023-24,actual 2023-24 all,p40,23.2,end-of-season FPL roster
+deciles,2023-24,actual 2023-24 all,p50,343.0,end-of-season FPL roster
+deciles,2023-24,actual 2023-24 all,p60,829.8,end-of-season FPL roster
+deciles,2023-24,actual 2023-24 all,p70,1336.6,end-of-season FPL roster
+deciles,2023-24,actual 2023-24 all,p80,1934.6,end-of-season FPL roster
+deciles,2023-24,actual 2023-24 all,p90,2614.0,end-of-season FPL roster
+thresholds,2023-24,actual 2023-24 all,>=1000,319.0,end-of-season FPL roster
+thresholds,2023-24,actual 2023-24 all,>=1500,231.0,end-of-season FPL roster
+thresholds,2023-24,actual 2023-24 all,>=2000,161.0,end-of-season FPL roster
+thresholds,2023-24,actual 2023-24 all,>=2500,103.0,end-of-season FPL roster
+thresholds,2023-24,actual 2023-24 all,>=2750,70.0,end-of-season FPL roster
+thresholds,2023-24,actual 2023-24 all,>=3000,40.0,end-of-season FPL roster
+thresholds,2023-24,actual 2023-24 all,>=3200,17.0,end-of-season FPL roster
+concentration,2023-24,actual 2023-24 all,gini,0.6341,end-of-season FPL roster
+bands,2023-24,actual 2023-24 stayers,band 0,186.0,no mid-season arrival/departure
+bands,2023-24,actual 2023-24 stayers,band 1-500,74.0,no mid-season arrival/departure
+bands,2023-24,actual 2023-24 stayers,band 500-1500,122.0,no mid-season arrival/departure
+bands,2023-24,actual 2023-24 stayers,band 1500-2500,121.0,no mid-season arrival/departure
+bands,2023-24,actual 2023-24 stayers,band 2500-3000,61.0,no mid-season arrival/departure
+bands,2023-24,actual 2023-24 stayers,band 3000+,38.0,no mid-season arrival/departure
+bands,2023-24,actual 2023-24 stayers,n players,602.0,no mid-season arrival/departure
+bands,2023-24,actual 2023-24 stayers,total minutes,670984.0,no mid-season arrival/departure
+bands,2023-24,actual 2023-24 stayers,mean,1114.6,no mid-season arrival/departure
+bands,2023-24,actual 2023-24 stayers,median,911.0,no mid-season arrival/departure
+deciles,2023-24,actual 2023-24 stayers,p10,0.0,no mid-season arrival/departure
+deciles,2023-24,actual 2023-24 stayers,p20,0.0,no mid-season arrival/departure
+deciles,2023-24,actual 2023-24 stayers,p30,0.0,no mid-season arrival/departure
+deciles,2023-24,actual 2023-24 stayers,p40,383.2,no mid-season arrival/departure
+deciles,2023-24,actual 2023-24 stayers,p50,911.0,no mid-season arrival/departure
+deciles,2023-24,actual 2023-24 stayers,p60,1351.6,no mid-season arrival/departure
+deciles,2023-24,actual 2023-24 stayers,p70,1799.5,no mid-season arrival/departure
+deciles,2023-24,actual 2023-24 stayers,p80,2261.8,no mid-season arrival/departure
+deciles,2023-24,actual 2023-24 stayers,p90,2789.7,no mid-season arrival/departure
+thresholds,2023-24,actual 2023-24 stayers,>=1000,292.0,no mid-season arrival/departure
+thresholds,2023-24,actual 2023-24 stayers,>=1500,220.0,no mid-season arrival/departure
+thresholds,2023-24,actual 2023-24 stayers,>=2000,154.0,no mid-season arrival/departure
+thresholds,2023-24,actual 2023-24 stayers,>=2500,99.0,no mid-season arrival/departure
+thresholds,2023-24,actual 2023-24 stayers,>=2750,67.0,no mid-season arrival/departure
+thresholds,2023-24,actual 2023-24 stayers,>=3000,39.0,no mid-season arrival/departure
+thresholds,2023-24,actual 2023-24 stayers,>=3200,17.0,no mid-season arrival/departure
+concentration,2023-24,actual 2023-24 stayers,gini,0.5488,no mid-season arrival/departure
+bands,2024-25,actual 2024-25 all,band 0,242.0,end-of-season FPL roster
+bands,2024-25,actual 2024-25 all,band 1-500,177.0,end-of-season FPL roster
+bands,2024-25,actual 2024-25 all,band 500-1500,145.0,end-of-season FPL roster
+bands,2024-25,actual 2024-25 all,band 1500-2500,134.0,end-of-season FPL roster
+bands,2024-25,actual 2024-25 all,band 2500-3000,64.0,end-of-season FPL roster
+bands,2024-25,actual 2024-25 all,band 3000+,42.0,end-of-season FPL roster
+bands,2024-25,actual 2024-25 all,n players,804.0,end-of-season FPL roster
+bands,2024-25,actual 2024-25 all,total minutes,748481.0,end-of-season FPL roster
+bands,2024-25,actual 2024-25 all,mean,930.9,end-of-season FPL roster
+bands,2024-25,actual 2024-25 all,median,426.5,end-of-season FPL roster
+deciles,2024-25,actual 2024-25 all,p10,0.0,end-of-season FPL roster
+deciles,2024-25,actual 2024-25 all,p20,0.0,end-of-season FPL roster
+deciles,2024-25,actual 2024-25 all,p30,0.0,end-of-season FPL roster
+deciles,2024-25,actual 2024-25 all,p40,121.6,end-of-season FPL roster
+deciles,2024-25,actual 2024-25 all,p50,426.5,end-of-season FPL roster
+deciles,2024-25,actual 2024-25 all,p60,889.8,end-of-season FPL roster
+deciles,2024-25,actual 2024-25 all,p70,1461.1,end-of-season FPL roster
+deciles,2024-25,actual 2024-25 all,p80,2088.6,end-of-season FPL roster
+deciles,2024-25,actual 2024-25 all,p90,2664.9,end-of-season FPL roster
+thresholds,2024-25,actual 2024-25 all,>=1000,305.0,end-of-season FPL roster
+thresholds,2024-25,actual 2024-25 all,>=1500,240.0,end-of-season FPL roster
+thresholds,2024-25,actual 2024-25 all,>=2000,171.0,end-of-season FPL roster
+thresholds,2024-25,actual 2024-25 all,>=2500,106.0,end-of-season FPL roster
+thresholds,2024-25,actual 2024-25 all,>=2750,73.0,end-of-season FPL roster
+thresholds,2024-25,actual 2024-25 all,>=3000,42.0,end-of-season FPL roster
+thresholds,2024-25,actual 2024-25 all,>=3200,20.0,end-of-season FPL roster
+concentration,2024-25,actual 2024-25 all,gini,0.6161,end-of-season FPL roster
+bands,2024-25,actual 2024-25 stayers,band 0,138.0,no mid-season arrival/departure
+bands,2024-25,actual 2024-25 stayers,band 1-500,92.0,no mid-season arrival/departure
+bands,2024-25,actual 2024-25 stayers,band 500-1500,119.0,no mid-season arrival/departure
+bands,2024-25,actual 2024-25 stayers,band 1500-2500,125.0,no mid-season arrival/departure
+bands,2024-25,actual 2024-25 stayers,band 2500-3000,63.0,no mid-season arrival/departure
+bands,2024-25,actual 2024-25 stayers,band 3000+,40.0,no mid-season arrival/departure
+bands,2024-25,actual 2024-25 stayers,n players,577.0,no mid-season arrival/departure
+bands,2024-25,actual 2024-25 stayers,total minutes,688937.0,no mid-season arrival/departure
+bands,2024-25,actual 2024-25 stayers,mean,1194.0,no mid-season arrival/departure
+bands,2024-25,actual 2024-25 stayers,median,978.0,no mid-season arrival/departure
+deciles,2024-25,actual 2024-25 stayers,p10,0.0,no mid-season arrival/departure
+deciles,2024-25,actual 2024-25 stayers,p20,0.0,no mid-season arrival/departure
+deciles,2024-25,actual 2024-25 stayers,p30,149.2,no mid-season arrival/departure
+deciles,2024-25,actual 2024-25 stayers,p40,509.6,no mid-season arrival/departure
+deciles,2024-25,actual 2024-25 stayers,p50,978.0,no mid-season arrival/departure
+deciles,2024-25,actual 2024-25 stayers,p60,1434.2,no mid-season arrival/departure
+deciles,2024-25,actual 2024-25 stayers,p70,1921.0,no mid-season arrival/departure
+deciles,2024-25,actual 2024-25 stayers,p80,2385.8,no mid-season arrival/departure
+deciles,2024-25,actual 2024-25 stayers,p90,2853.6,no mid-season arrival/departure
+thresholds,2024-25,actual 2024-25 stayers,>=1000,286.0,no mid-season arrival/departure
+thresholds,2024-25,actual 2024-25 stayers,>=1500,228.0,no mid-season arrival/departure
+thresholds,2024-25,actual 2024-25 stayers,>=2000,163.0,no mid-season arrival/departure
+thresholds,2024-25,actual 2024-25 stayers,>=2500,103.0,no mid-season arrival/departure
+thresholds,2024-25,actual 2024-25 stayers,>=2750,70.0,no mid-season arrival/departure
+thresholds,2024-25,actual 2024-25 stayers,>=3000,40.0,no mid-season arrival/departure
+thresholds,2024-25,actual 2024-25 stayers,>=3200,20.0,no mid-season arrival/departure
+concentration,2024-25,actual 2024-25 stayers,gini,0.5215,no mid-season arrival/departure
+bands,2025-26,actual 2025-26 all,band 0,304.0,end-of-season FPL roster
+bands,2025-26,actual 2025-26 all,band 1-500,143.0,end-of-season FPL roster
+bands,2025-26,actual 2025-26 all,band 500-1500,154.0,end-of-season FPL roster
+bands,2025-26,actual 2025-26 all,band 1500-2500,135.0,end-of-season FPL roster
+bands,2025-26,actual 2025-26 all,band 2500-3000,61.0,end-of-season FPL roster
+bands,2025-26,actual 2025-26 all,band 3000+,44.0,end-of-season FPL roster
+bands,2025-26,actual 2025-26 all,n players,841.0,end-of-season FPL roster
+bands,2025-26,actual 2025-26 all,total minutes,748552.0,end-of-season FPL roster
+bands,2025-26,actual 2025-26 all,mean,890.1,end-of-season FPL roster
+bands,2025-26,actual 2025-26 all,median,319.0,end-of-season FPL roster
+deciles,2025-26,actual 2025-26 all,p10,0.0,end-of-season FPL roster
+deciles,2025-26,actual 2025-26 all,p20,0.0,end-of-season FPL roster
+deciles,2025-26,actual 2025-26 all,p30,0.0,end-of-season FPL roster
+deciles,2025-26,actual 2025-26 all,p40,19.0,end-of-season FPL roster
+deciles,2025-26,actual 2025-26 all,p50,319.0,end-of-season FPL roster
+deciles,2025-26,actual 2025-26 all,p60,920.0,end-of-season FPL roster
+deciles,2025-26,actual 2025-26 all,p70,1410.0,end-of-season FPL roster
+deciles,2025-26,actual 2025-26 all,p80,1909.0,end-of-season FPL roster
+deciles,2025-26,actual 2025-26 all,p90,2706.0,end-of-season FPL roster
+thresholds,2025-26,actual 2025-26 all,>=1000,321.0,end-of-season FPL roster
+thresholds,2025-26,actual 2025-26 all,>=1500,240.0,end-of-season FPL roster
+thresholds,2025-26,actual 2025-26 all,>=2000,155.0,end-of-season FPL roster
+thresholds,2025-26,actual 2025-26 all,>=2500,105.0,end-of-season FPL roster
+thresholds,2025-26,actual 2025-26 all,>=2750,78.0,end-of-season FPL roster
+thresholds,2025-26,actual 2025-26 all,>=3000,44.0,end-of-season FPL roster
+thresholds,2025-26,actual 2025-26 all,>=3200,24.0,end-of-season FPL roster
+concentration,2025-26,actual 2025-26 all,gini,0.6323,end-of-season FPL roster
+bands,2025-26,actual 2025-26 stayers,band 0,228.0,no mid-season arrival/departure
+bands,2025-26,actual 2025-26 stayers,band 1-500,74.0,no mid-season arrival/departure
+bands,2025-26,actual 2025-26 stayers,band 500-1500,132.0,no mid-season arrival/departure
+bands,2025-26,actual 2025-26 stayers,band 1500-2500,118.0,no mid-season arrival/departure
+bands,2025-26,actual 2025-26 stayers,band 2500-3000,58.0,no mid-season arrival/departure
+bands,2025-26,actual 2025-26 stayers,band 3000+,42.0,no mid-season arrival/departure
+bands,2025-26,actual 2025-26 stayers,n players,652.0,no mid-season arrival/departure
+bands,2025-26,actual 2025-26 stayers,total minutes,672047.0,no mid-season arrival/departure
+bands,2025-26,actual 2025-26 stayers,mean,1030.7,no mid-season arrival/departure
+bands,2025-26,actual 2025-26 stayers,median,682.5,no mid-season arrival/departure
+deciles,2025-26,actual 2025-26 stayers,p10,0.0,no mid-season arrival/departure
+deciles,2025-26,actual 2025-26 stayers,p20,0.0,no mid-season arrival/departure
+deciles,2025-26,actual 2025-26 stayers,p30,0.0,no mid-season arrival/departure
+deciles,2025-26,actual 2025-26 stayers,p40,100.4,no mid-season arrival/departure
+deciles,2025-26,actual 2025-26 stayers,p50,682.5,no mid-season arrival/departure
+deciles,2025-26,actual 2025-26 stayers,p60,1167.6,no mid-season arrival/departure
+deciles,2025-26,actual 2025-26 stayers,p70,1670.0,no mid-season arrival/departure
+deciles,2025-26,actual 2025-26 stayers,p80,2167.2,no mid-season arrival/departure
+deciles,2025-26,actual 2025-26 stayers,p90,2795.9,no mid-season arrival/departure
+thresholds,2025-26,actual 2025-26 stayers,>=1000,286.0,no mid-season arrival/departure
+thresholds,2025-26,actual 2025-26 stayers,>=1500,218.0,no mid-season arrival/departure
+thresholds,2025-26,actual 2025-26 stayers,>=2000,146.0,no mid-season arrival/departure
+thresholds,2025-26,actual 2025-26 stayers,>=2500,100.0,no mid-season arrival/departure
+thresholds,2025-26,actual 2025-26 stayers,>=2750,74.0,no mid-season arrival/departure
+thresholds,2025-26,actual 2025-26 stayers,>=3000,42.0,no mid-season arrival/departure
+thresholds,2025-26,actual 2025-26 stayers,>=3200,24.0,no mid-season arrival/departure
+concentration,2025-26,actual 2025-26 stayers,gini,0.5856,no mid-season arrival/departure
+bands,2026-27,FORECAST 26/27 top30,band 0,85.0,top 30 minutes per club
+bands,2026-27,FORECAST 26/27 top30,band 1-500,123.0,top 30 minutes per club
+bands,2026-27,FORECAST 26/27 top30,band 500-1500,108.0,top 30 minutes per club
+bands,2026-27,FORECAST 26/27 top30,band 1500-2500,108.0,top 30 minutes per club
+bands,2026-27,FORECAST 26/27 top30,band 2500-3000,74.0,top 30 minutes per club
+bands,2026-27,FORECAST 26/27 top30,band 3000+,61.0,top 30 minutes per club
+bands,2026-27,FORECAST 26/27 top30,n players,559.0,top 30 minutes per club
+bands,2026-27,FORECAST 26/27 top30,total minutes,751407.0,top 30 minutes per club
+bands,2026-27,FORECAST 26/27 top30,mean,1344.2,top 30 minutes per club
+bands,2026-27,FORECAST 26/27 top30,median,1150.0,top 30 minutes per club
+deciles,2026-27,FORECAST 26/27 top30,p10,0.0,top 30 minutes per club
+deciles,2026-27,FORECAST 26/27 top30,p20,35.0,top 30 minutes per club
+deciles,2026-27,FORECAST 26/27 top30,p30,263.8,top 30 minutes per club
+deciles,2026-27,FORECAST 26/27 top30,p40,619.2,top 30 minutes per club
+deciles,2026-27,FORECAST 26/27 top30,p50,1150.0,top 30 minutes per club
+deciles,2026-27,FORECAST 26/27 top30,p60,1750.0,top 30 minutes per club
+deciles,2026-27,FORECAST 26/27 top30,p70,2200.0,top 30 minutes per club
+deciles,2026-27,FORECAST 26/27 top30,p80,2696.0,top 30 minutes per club
+deciles,2026-27,FORECAST 26/27 top30,p90,3050.0,top 30 minutes per club
+thresholds,2026-27,FORECAST 26/27 top30,>=1000,296.0,top 30 minutes per club
+thresholds,2026-27,FORECAST 26/27 top30,>=1500,246.0,top 30 minutes per club
+thresholds,2026-27,FORECAST 26/27 top30,>=2000,194.0,top 30 minutes per club
+thresholds,2026-27,FORECAST 26/27 top30,>=2500,139.0,top 30 minutes per club
+thresholds,2026-27,FORECAST 26/27 top30,>=2750,103.0,top 30 minutes per club
+thresholds,2026-27,FORECAST 26/27 top30,>=3000,63.0,top 30 minutes per club
+thresholds,2026-27,FORECAST 26/27 top30,>=3200,35.0,top 30 minutes per club
+concentration,2026-27,FORECAST 26/27 top30,gini,0.4952,top 30 minutes per club
+bands,2023-24,actual 2023-24 top30,band 0,41.0,top 30 minutes per club
+bands,2023-24,actual 2023-24 top30,band 1-500,164.0,top 30 minutes per club
+bands,2023-24,actual 2023-24 top30,band 500-1500,165.0,top 30 minutes per club
+bands,2023-24,actual 2023-24 top30,band 1500-2500,127.0,top 30 minutes per club
+bands,2023-24,actual 2023-24 top30,band 2500-3000,65.0,top 30 minutes per club
+bands,2023-24,actual 2023-24 top30,band 3000+,38.0,top 30 minutes per club
+bands,2023-24,actual 2023-24 top30,n players,600.0,top 30 minutes per club
+bands,2023-24,actual 2023-24 top30,total minutes,748534.0,top 30 minutes per club
+bands,2023-24,actual 2023-24 top30,mean,1247.6,top 30 minutes per club
+bands,2023-24,actual 2023-24 top30,median,1125.5,top 30 minutes per club
+deciles,2023-24,actual 2023-24 top30,p10,5.0,top 30 minutes per club
+deciles,2023-24,actual 2023-24 top30,p20,118.0,top 30 minutes per club
+deciles,2023-24,actual 2023-24 top30,p30,404.4,top 30 minutes per club
+deciles,2023-24,actual 2023-24 top30,p40,776.0,top 30 minutes per club
+deciles,2023-24,actual 2023-24 top30,p50,1125.5,top 30 minutes per club
+deciles,2023-24,actual 2023-24 top30,p60,1440.0,top 30 minutes per club
+deciles,2023-24,actual 2023-24 top30,p70,1885.3,top 30 minutes per club
+deciles,2023-24,actual 2023-24 top30,p80,2319.0,top 30 minutes per club
+deciles,2023-24,actual 2023-24 top30,p90,2840.1,top 30 minutes per club
+thresholds,2023-24,actual 2023-24 top30,>=1000,319.0,top 30 minutes per club
+thresholds,2023-24,actual 2023-24 top30,>=1500,231.0,top 30 minutes per club
+thresholds,2023-24,actual 2023-24 top30,>=2000,161.0,top 30 minutes per club
+thresholds,2023-24,actual 2023-24 top30,>=2500,103.0,top 30 minutes per club
+thresholds,2023-24,actual 2023-24 top30,>=2750,70.0,top 30 minutes per club
+thresholds,2023-24,actual 2023-24 top30,>=3000,40.0,top 30 minutes per club
+thresholds,2023-24,actual 2023-24 top30,>=3200,17.0,top 30 minutes per club
+concentration,2023-24,actual 2023-24 top30,gini,0.4726,top 30 minutes per club
+bands,2024-25,actual 2024-25 top30,band 0,50.0,top 30 minutes per club
+bands,2024-25,actual 2024-25 top30,band 1-500,165.0,top 30 minutes per club
+bands,2024-25,actual 2024-25 top30,band 500-1500,145.0,top 30 minutes per club
+bands,2024-25,actual 2024-25 top30,band 1500-2500,134.0,top 30 minutes per club
+bands,2024-25,actual 2024-25 top30,band 2500-3000,64.0,top 30 minutes per club
+bands,2024-25,actual 2024-25 top30,band 3000+,42.0,top 30 minutes per club
+bands,2024-25,actual 2024-25 top30,n players,600.0,top 30 minutes per club
+bands,2024-25,actual 2024-25 top30,total minutes,748238.0,top 30 minutes per club
+bands,2024-25,actual 2024-25 top30,mean,1247.1,top 30 minutes per club
+bands,2024-25,actual 2024-25 top30,median,1049.0,top 30 minutes per club
+deciles,2024-25,actual 2024-25 top30,p10,3.9,top 30 minutes per club
+deciles,2024-25,actual 2024-25 top30,p20,125.8,top 30 minutes per club
+deciles,2024-25,actual 2024-25 top30,p30,341.4,top 30 minutes per club
+deciles,2024-25,actual 2024-25 top30,p40,669.2,top 30 minutes per club
+deciles,2024-25,actual 2024-25 top30,p50,1049.0,top 30 minutes per club
+deciles,2024-25,actual 2024-25 top30,p60,1495.8,top 30 minutes per club
+deciles,2024-25,actual 2024-25 top30,p70,1925.7,top 30 minutes per club
+deciles,2024-25,actual 2024-25 top30,p80,2385.2,top 30 minutes per club
+deciles,2024-25,actual 2024-25 top30,p90,2880.9,top 30 minutes per club
+thresholds,2024-25,actual 2024-25 top30,>=1000,305.0,top 30 minutes per club
+thresholds,2024-25,actual 2024-25 top30,>=1500,240.0,top 30 minutes per club
+thresholds,2024-25,actual 2024-25 top30,>=2000,171.0,top 30 minutes per club
+thresholds,2024-25,actual 2024-25 top30,>=2500,106.0,top 30 minutes per club
+thresholds,2024-25,actual 2024-25 top30,>=2750,73.0,top 30 minutes per club
+thresholds,2024-25,actual 2024-25 top30,>=3000,42.0,top 30 minutes per club
+thresholds,2024-25,actual 2024-25 top30,>=3200,20.0,top 30 minutes per club
+concentration,2024-25,actual 2024-25 top30,gini,0.486,top 30 minutes per club
+bands,2025-26,actual 2025-26 top30,band 0,63.0,top 30 minutes per club
+bands,2025-26,actual 2025-26 top30,band 1-500,143.0,top 30 minutes per club
+bands,2025-26,actual 2025-26 top30,band 500-1500,154.0,top 30 minutes per club
+bands,2025-26,actual 2025-26 top30,band 1500-2500,135.0,top 30 minutes per club
+bands,2025-26,actual 2025-26 top30,band 2500-3000,61.0,top 30 minutes per club
+bands,2025-26,actual 2025-26 top30,band 3000+,44.0,top 30 minutes per club
+bands,2025-26,actual 2025-26 top30,n players,600.0,top 30 minutes per club
+bands,2025-26,actual 2025-26 top30,total minutes,748552.0,top 30 minutes per club
+bands,2025-26,actual 2025-26 top30,mean,1247.6,top 30 minutes per club
+bands,2025-26,actual 2025-26 top30,median,1092.0,top 30 minutes per club
+deciles,2025-26,actual 2025-26 top30,p10,0.0,top 30 minutes per club
+deciles,2025-26,actual 2025-26 top30,p20,68.6,top 30 minutes per club
+deciles,2025-26,actual 2025-26 top30,p30,340.0,top 30 minutes per club
+deciles,2025-26,actual 2025-26 top30,p40,733.8,top 30 minutes per club
+deciles,2025-26,actual 2025-26 top30,p50,1092.0,top 30 minutes per club
+deciles,2025-26,actual 2025-26 top30,p60,1499.8,top 30 minutes per club
+deciles,2025-26,actual 2025-26 top30,p70,1839.2,top 30 minutes per club
+deciles,2025-26,actual 2025-26 top30,p80,2331.8,top 30 minutes per club
+deciles,2025-26,actual 2025-26 top30,p90,2861.8,top 30 minutes per club
+thresholds,2025-26,actual 2025-26 top30,>=1000,321.0,top 30 minutes per club
+thresholds,2025-26,actual 2025-26 top30,>=1500,240.0,top 30 minutes per club
+thresholds,2025-26,actual 2025-26 top30,>=2000,155.0,top 30 minutes per club
+thresholds,2025-26,actual 2025-26 top30,>=2500,105.0,top 30 minutes per club
+thresholds,2025-26,actual 2025-26 top30,>=2750,78.0,top 30 minutes per club
+thresholds,2025-26,actual 2025-26 top30,>=3000,44.0,top 30 minutes per club
+thresholds,2025-26,actual 2025-26 top30,>=3200,24.0,top 30 minutes per club
+concentration,2025-26,actual 2025-26 top30,gini,0.4845,top 30 minutes per club
+per_club,2026-27,FORECAST|ARS,players,28.0,
+per_club,2026-27,FORECAST|AVL,players,28.0,
+per_club,2026-27,FORECAST|BHA,players,30.0,
+per_club,2026-27,FORECAST|BOU,players,27.0,
+per_club,2026-27,FORECAST|BRE,players,26.0,
+per_club,2026-27,FORECAST|CHE,players,38.0,
+per_club,2026-27,FORECAST|COV,players,30.0,
+per_club,2026-27,FORECAST|CRY,players,30.0,
+per_club,2026-27,FORECAST|EVE,players,24.0,
+per_club,2026-27,FORECAST|FUL,players,23.0,
+per_club,2026-27,FORECAST|HUL,players,31.0,
+per_club,2026-27,FORECAST|IPS,players,30.0,
+per_club,2026-27,FORECAST|LEE,players,25.0,
+per_club,2026-27,FORECAST|LIV,players,35.0,
+per_club,2026-27,FORECAST|MCI,players,30.0,
+per_club,2026-27,FORECAST|MUN,players,33.0,
+per_club,2026-27,FORECAST|NEW,players,25.0,
+per_club,2026-27,FORECAST|NFO,players,28.0,
+per_club,2026-27,FORECAST|SUN,players,25.0,
+per_club,2026-27,FORECAST|TOT,players,36.0,
+per_club,2026-27,FORECAST|ARS,used(>0),25.0,
+per_club,2026-27,FORECAST|AVL,used(>0),24.0,
+per_club,2026-27,FORECAST|BHA,used(>0),24.0,
+per_club,2026-27,FORECAST|BOU,used(>0),24.0,
+per_club,2026-27,FORECAST|BRE,used(>0),21.0,
+per_club,2026-27,FORECAST|CHE,used(>0),26.0,
+per_club,2026-27,FORECAST|COV,used(>0),24.0,
+per_club,2026-27,FORECAST|CRY,used(>0),22.0,
+per_club,2026-27,FORECAST|EVE,used(>0),23.0,
+per_club,2026-27,FORECAST|FUL,used(>0),22.0,
+per_club,2026-27,FORECAST|HUL,used(>0),25.0,
+per_club,2026-27,FORECAST|IPS,used(>0),26.0,
+per_club,2026-27,FORECAST|LEE,used(>0),21.0,
+per_club,2026-27,FORECAST|LIV,used(>0),26.0,
+per_club,2026-27,FORECAST|MCI,used(>0),22.0,
+per_club,2026-27,FORECAST|MUN,used(>0),24.0,
+per_club,2026-27,FORECAST|NEW,used(>0),23.0,
+per_club,2026-27,FORECAST|NFO,used(>0),25.0,
+per_club,2026-27,FORECAST|SUN,used(>0),21.0,
+per_club,2026-27,FORECAST|TOT,used(>0),26.0,
+per_club,2026-27,FORECAST|ARS,total_mins,37611.0,
+per_club,2026-27,FORECAST|AVL,total_mins,37609.0,
+per_club,2026-27,FORECAST|BHA,total_mins,37621.0,
+per_club,2026-27,FORECAST|BOU,total_mins,37749.0,
+per_club,2026-27,FORECAST|BRE,total_mins,37802.0,
+per_club,2026-27,FORECAST|CHE,total_mins,37628.0,
+per_club,2026-27,FORECAST|COV,total_mins,37524.0,
+per_club,2026-27,FORECAST|CRY,total_mins,36367.0,
+per_club,2026-27,FORECAST|EVE,total_mins,37714.0,
+per_club,2026-27,FORECAST|FUL,total_mins,37773.0,
+per_club,2026-27,FORECAST|HUL,total_mins,37570.0,
+per_club,2026-27,FORECAST|IPS,total_mins,37610.0,
+per_club,2026-27,FORECAST|LEE,total_mins,37427.0,
+per_club,2026-27,FORECAST|LIV,total_mins,37911.0,
+per_club,2026-27,FORECAST|MCI,total_mins,37609.0,
+per_club,2026-27,FORECAST|MUN,total_mins,37894.0,
+per_club,2026-27,FORECAST|NEW,total_mins,37195.0,
+per_club,2026-27,FORECAST|NFO,total_mins,37693.0,
+per_club,2026-27,FORECAST|SUN,total_mins,37587.0,
+per_club,2026-27,FORECAST|TOT,total_mins,37513.0,
+per_club,2026-27,FORECAST|ARS,n_1000+,16.0,
+per_club,2026-27,FORECAST|AVL,n_1000+,14.0,
+per_club,2026-27,FORECAST|BHA,n_1000+,16.0,
+per_club,2026-27,FORECAST|BOU,n_1000+,15.0,
+per_club,2026-27,FORECAST|BRE,n_1000+,15.0,
+per_club,2026-27,FORECAST|CHE,n_1000+,13.0,
+per_club,2026-27,FORECAST|COV,n_1000+,13.0,
+per_club,2026-27,FORECAST|CRY,n_1000+,17.0,
+per_club,2026-27,FORECAST|EVE,n_1000+,12.0,
+per_club,2026-27,FORECAST|FUL,n_1000+,17.0,
+per_club,2026-27,FORECAST|HUL,n_1000+,14.0,
+per_club,2026-27,FORECAST|IPS,n_1000+,15.0,
+per_club,2026-27,FORECAST|LEE,n_1000+,13.0,
+per_club,2026-27,FORECAST|LIV,n_1000+,15.0,
+per_club,2026-27,FORECAST|MCI,n_1000+,14.0,
+per_club,2026-27,FORECAST|MUN,n_1000+,17.0,
+per_club,2026-27,FORECAST|NEW,n_1000+,18.0,
+per_club,2026-27,FORECAST|NFO,n_1000+,11.0,
+per_club,2026-27,FORECAST|SUN,n_1000+,16.0,
+per_club,2026-27,FORECAST|TOT,n_1000+,15.0,
+per_club,2026-27,FORECAST|ARS,n_2000+,9.0,
+per_club,2026-27,FORECAST|AVL,n_2000+,11.0,
+per_club,2026-27,FORECAST|BHA,n_2000+,9.0,
+per_club,2026-27,FORECAST|BOU,n_2000+,10.0,
+per_club,2026-27,FORECAST|BRE,n_2000+,10.0,
+per_club,2026-27,FORECAST|CHE,n_2000+,10.0,
+per_club,2026-27,FORECAST|COV,n_2000+,10.0,
+per_club,2026-27,FORECAST|CRY,n_2000+,7.0,
+per_club,2026-27,FORECAST|EVE,n_2000+,10.0,
+per_club,2026-27,FORECAST|FUL,n_2000+,11.0,
+per_club,2026-27,FORECAST|HUL,n_2000+,10.0,
+per_club,2026-27,FORECAST|IPS,n_2000+,10.0,
+per_club,2026-27,FORECAST|LEE,n_2000+,11.0,
+per_club,2026-27,FORECAST|LIV,n_2000+,9.0,
+per_club,2026-27,FORECAST|MCI,n_2000+,10.0,
+per_club,2026-27,FORECAST|MUN,n_2000+,10.0,
+per_club,2026-27,FORECAST|NEW,n_2000+,9.0,
+per_club,2026-27,FORECAST|NFO,n_2000+,11.0,
+per_club,2026-27,FORECAST|SUN,n_2000+,10.0,
+per_club,2026-27,FORECAST|TOT,n_2000+,7.0,
+per_club,2026-27,FORECAST|ARS,n_3000+,2.0,
+per_club,2026-27,FORECAST|AVL,n_3000+,4.0,
+per_club,2026-27,FORECAST|BHA,n_3000+,1.0,
+per_club,2026-27,FORECAST|BOU,n_3000+,3.0,
+per_club,2026-27,FORECAST|BRE,n_3000+,5.0,
+per_club,2026-27,FORECAST|CHE,n_3000+,2.0,
+per_club,2026-27,FORECAST|COV,n_3000+,3.0,
+per_club,2026-27,FORECAST|CRY,n_3000+,3.0,
+per_club,2026-27,FORECAST|EVE,n_3000+,5.0,
+per_club,2026-27,FORECAST|FUL,n_3000+,3.0,
+per_club,2026-27,FORECAST|HUL,n_3000+,3.0,
+per_club,2026-27,FORECAST|IPS,n_3000+,3.0,
+per_club,2026-27,FORECAST|LEE,n_3000+,5.0,
+per_club,2026-27,FORECAST|LIV,n_3000+,4.0,
+per_club,2026-27,FORECAST|MCI,n_3000+,2.0,
+per_club,2026-27,FORECAST|MUN,n_3000+,2.0,
+per_club,2026-27,FORECAST|NEW,n_3000+,2.0,
+per_club,2026-27,FORECAST|NFO,n_3000+,4.0,
+per_club,2026-27,FORECAST|SUN,n_3000+,3.0,
+per_club,2026-27,FORECAST|TOT,n_3000+,4.0,
+per_club,2026-27,FORECAST|ARS,top11_share,0.742822966507177,
+per_club,2026-27,FORECAST|AVL,top11_share,0.802046783625731,
+per_club,2026-27,FORECAST|BHA,top11_share,0.7405369484316853,
+per_club,2026-27,FORECAST|BOU,top11_share,0.7874269005847954,
+per_club,2026-27,FORECAST|BRE,top11_share,0.7926103136629452,
+per_club,2026-27,FORECAST|CHE,top11_share,0.7777777777777778,
+per_club,2026-27,FORECAST|COV,top11_share,0.8021796916533759,
+per_club,2026-27,FORECAST|CRY,top11_share,0.7169324827219564,
+per_club,2026-27,FORECAST|EVE,top11_share,0.8191653375863902,
+per_club,2026-27,FORECAST|FUL,top11_share,0.762254120148857,
+per_club,2026-27,FORECAST|HUL,top11_share,0.7984316852737905,
+per_club,2026-27,FORECAST|IPS,top11_share,0.7654173312068049,
+per_club,2026-27,FORECAST|LEE,top11_share,0.8413343965975545,
+per_club,2026-27,FORECAST|LIV,top11_share,0.7808612440191387,
+per_club,2026-27,FORECAST|MCI,top11_share,0.7745614035087719,
+per_club,2026-27,FORECAST|MUN,top11_share,0.7542796384901648,
+per_club,2026-27,FORECAST|NEW,top11_share,0.694949494949495,
+per_club,2026-27,FORECAST|NFO,top11_share,0.8147262094630515,
+per_club,2026-27,FORECAST|SUN,top11_share,0.7849813928761297,
+per_club,2026-27,FORECAST|TOT,top11_share,0.7395800106326422,
+per_club,2026-27,FORECAST|ARS,gini,0.4702471161552281,
+per_club,2026-27,FORECAST|AVL,gini,0.5021565886584898,
+per_club,2026-27,FORECAST|BHA,gini,0.4945137024534169,
+per_club,2026-27,FORECAST|BOU,gini,0.4745183340642823,
+per_club,2026-27,FORECAST|BRE,gini,0.4751763235970421,
+per_club,2026-27,FORECAST|CHE,gini,0.6117071273911365,
+per_club,2026-27,FORECAST|COV,gini,0.5415094339622641,
+per_club,2026-27,FORECAST|CRY,gini,0.5159521910889909,
+per_club,2026-27,FORECAST|EVE,gini,0.435921231726503,
+per_club,2026-27,FORECAST|FUL,gini,0.3742608879818688,
+per_club,2026-27,FORECAST|HUL,gini,0.5612302197188903,
+per_club,2026-27,FORECAST|IPS,gini,0.5134024638837189,
+per_club,2026-27,FORECAST|LEE,gini,0.490896946054987,
+per_club,2026-27,FORECAST|LIV,gini,0.5957200510971185,
+per_club,2026-27,FORECAST|MCI,gini,0.5306770542511987,
+per_club,2026-27,FORECAST|MUN,gini,0.5541806410545524,
+per_club,2026-27,FORECAST|NEW,gini,0.373364161849711,
+per_club,2026-27,FORECAST|NFO,gini,0.4875261037479486,
+per_club,2026-27,FORECAST|SUN,gini,0.4497916832947561,
+per_club,2026-27,FORECAST|TOT,gini,0.5827424270697269,
+per_club,2023-24,actual 2023-24|ARS,players,38.0,
+per_club,2023-24,actual 2023-24|AVL,players,44.0,
+per_club,2023-24,actual 2023-24|BHA,players,47.0,
+per_club,2023-24,actual 2023-24|BOU,players,41.0,
+per_club,2023-24,actual 2023-24|BRE,players,44.0,
+per_club,2023-24,actual 2023-24|BUR,players,44.0,
+per_club,2023-24,actual 2023-24|CHE,players,59.0,
+per_club,2023-24,actual 2023-24|CRY,players,39.0,
+per_club,2023-24,actual 2023-24|EVE,players,34.0,
+per_club,2023-24,actual 2023-24|FUL,players,38.0,
+per_club,2023-24,actual 2023-24|LIV,players,42.0,
+per_club,2023-24,actual 2023-24|LUT,players,49.0,
+per_club,2023-24,actual 2023-24|MCI,players,31.0,
+per_club,2023-24,actual 2023-24|MUN,players,47.0,
+per_club,2023-24,actual 2023-24|NEW,players,44.0,
+per_club,2023-24,actual 2023-24|NFO,players,56.0,
+per_club,2023-24,actual 2023-24|SHU,players,45.0,
+per_club,2023-24,actual 2023-24|TOT,players,43.0,
+per_club,2023-24,actual 2023-24|WHU,players,34.0,
+per_club,2023-24,actual 2023-24|WOL,players,46.0,
+per_club,2023-24,actual 2023-24|ARS,used(>0),25.0,
+per_club,2023-24,actual 2023-24|AVL,used(>0),30.0,
+per_club,2023-24,actual 2023-24|BHA,used(>0),30.0,
+per_club,2023-24,actual 2023-24|BOU,used(>0),30.0,
+per_club,2023-24,actual 2023-24|BRE,used(>0),28.0,
+per_club,2023-24,actual 2023-24|BUR,used(>0),31.0,
+per_club,2023-24,actual 2023-24|CHE,used(>0),32.0,
+per_club,2023-24,actual 2023-24|CRY,used(>0),26.0,
+per_club,2023-24,actual 2023-24|EVE,used(>0),24.0,
+per_club,2023-24,actual 2023-24|FUL,used(>0),25.0,
+per_club,2023-24,actual 2023-24|LIV,used(>0),30.0,
+per_club,2023-24,actual 2023-24|LUT,used(>0),28.0,
+per_club,2023-24,actual 2023-24|MCI,used(>0),22.0,
+per_club,2023-24,actual 2023-24|MUN,used(>0),30.0,
+per_club,2023-24,actual 2023-24|NEW,used(>0),32.0,
+per_club,2023-24,actual 2023-24|NFO,used(>0),31.0,
+per_club,2023-24,actual 2023-24|SHU,used(>0),35.0,
+per_club,2023-24,actual 2023-24|TOT,used(>0),29.0,
+per_club,2023-24,actual 2023-24|WHU,used(>0),26.0,
+per_club,2023-24,actual 2023-24|WOL,used(>0),26.0,
+per_club,2023-24,actual 2023-24|ARS,total_mins,37472.0,
+per_club,2023-24,actual 2023-24|AVL,total_mins,37496.0,
+per_club,2023-24,actual 2023-24|BHA,total_mins,37437.0,
+per_club,2023-24,actual 2023-24|BOU,total_mins,37429.0,
+per_club,2023-24,actual 2023-24|BRE,total_mins,37892.0,
+per_club,2023-24,actual 2023-24|BUR,total_mins,37334.0,
+per_club,2023-24,actual 2023-24|CHE,total_mins,36991.0,
+per_club,2023-24,actual 2023-24|CRY,total_mins,37501.0,
+per_club,2023-24,actual 2023-24|EVE,total_mins,37252.0,
+per_club,2023-24,actual 2023-24|FUL,total_mins,37971.0,
+per_club,2023-24,actual 2023-24|LIV,total_mins,37297.0,
+per_club,2023-24,actual 2023-24|LUT,total_mins,37480.0,
+per_club,2023-24,actual 2023-24|MCI,total_mins,37572.0,
+per_club,2023-24,actual 2023-24|MUN,total_mins,37099.0,
+per_club,2023-24,actual 2023-24|NEW,total_mins,37521.0,
+per_club,2023-24,actual 2023-24|NFO,total_mins,37121.0,
+per_club,2023-24,actual 2023-24|SHU,total_mins,37380.0,
+per_club,2023-24,actual 2023-24|TOT,total_mins,37569.0,
+per_club,2023-24,actual 2023-24|WHU,total_mins,37607.0,
+per_club,2023-24,actual 2023-24|WOL,total_mins,37209.0,
+per_club,2023-24,actual 2023-24|ARS,n_1000+,14.0,
+per_club,2023-24,actual 2023-24|AVL,n_1000+,15.0,
+per_club,2023-24,actual 2023-24|BHA,n_1000+,17.0,
+per_club,2023-24,actual 2023-24|BOU,n_1000+,16.0,
+per_club,2023-24,actual 2023-24|BRE,n_1000+,17.0,
+per_club,2023-24,actual 2023-24|BUR,n_1000+,16.0,
+per_club,2023-24,actual 2023-24|CHE,n_1000+,16.0,
+per_club,2023-24,actual 2023-24|CRY,n_1000+,18.0,
+per_club,2023-24,actual 2023-24|EVE,n_1000+,14.0,
+per_club,2023-24,actual 2023-24|FUL,n_1000+,18.0,
+per_club,2023-24,actual 2023-24|LIV,n_1000+,18.0,
+per_club,2023-24,actual 2023-24|LUT,n_1000+,19.0,
+per_club,2023-24,actual 2023-24|MCI,n_1000+,15.0,
+per_club,2023-24,actual 2023-24|MUN,n_1000+,16.0,
+per_club,2023-24,actual 2023-24|NEW,n_1000+,17.0,
+per_club,2023-24,actual 2023-24|NFO,n_1000+,18.0,
+per_club,2023-24,actual 2023-24|SHU,n_1000+,13.0,
+per_club,2023-24,actual 2023-24|TOT,n_1000+,15.0,
+per_club,2023-24,actual 2023-24|WHU,n_1000+,13.0,
+per_club,2023-24,actual 2023-24|WOL,n_1000+,14.0,
+per_club,2023-24,actual 2023-24|ARS,n_2000+,9.0,
+per_club,2023-24,actual 2023-24|AVL,n_2000+,10.0,
+per_club,2023-24,actual 2023-24|BHA,n_2000+,6.0,
+per_club,2023-24,actual 2023-24|BOU,n_2000+,9.0,
+per_club,2023-24,actual 2023-24|BRE,n_2000+,7.0,
+per_club,2023-24,actual 2023-24|BUR,n_2000+,8.0,
+per_club,2023-24,actual 2023-24|CHE,n_2000+,7.0,
+per_club,2023-24,actual 2023-24|CRY,n_2000+,8.0,
+per_club,2023-24,actual 2023-24|EVE,n_2000+,11.0,
+per_club,2023-24,actual 2023-24|FUL,n_2000+,8.0,
+per_club,2023-24,actual 2023-24|LIV,n_2000+,8.0,
+per_club,2023-24,actual 2023-24|LUT,n_2000+,5.0,
+per_club,2023-24,actual 2023-24|MCI,n_2000+,11.0,
+per_club,2023-24,actual 2023-24|MUN,n_2000+,6.0,
+per_club,2023-24,actual 2023-24|NEW,n_2000+,7.0,
+per_club,2023-24,actual 2023-24|NFO,n_2000+,3.0,
+per_club,2023-24,actual 2023-24|SHU,n_2000+,7.0,
+per_club,2023-24,actual 2023-24|TOT,n_2000+,11.0,
+per_club,2023-24,actual 2023-24|WHU,n_2000+,10.0,
+per_club,2023-24,actual 2023-24|WOL,n_2000+,10.0,
+per_club,2023-24,actual 2023-24|ARS,n_3000+,4.0,
+per_club,2023-24,actual 2023-24|AVL,n_3000+,4.0,
+per_club,2023-24,actual 2023-24|BHA,n_3000+,1.0,
+per_club,2023-24,actual 2023-24|BOU,n_3000+,2.0,
+per_club,2023-24,actual 2023-24|BRE,n_3000+,2.0,
+per_club,2023-24,actual 2023-24|BUR,n_3000+,1.0,
+per_club,2023-24,actual 2023-24|CHE,n_3000+,1.0,
+per_club,2023-24,actual 2023-24|CRY,n_3000+,2.0,
+per_club,2023-24,actual 2023-24|EVE,n_3000+,4.0,
+per_club,2023-24,actual 2023-24|FUL,n_3000+,2.0,
+per_club,2023-24,actual 2023-24|LIV,n_3000+,1.0,
+per_club,2023-24,actual 2023-24|LUT,n_3000+,1.0,
+per_club,2023-24,actual 2023-24|MCI,n_3000+,0.0,
+per_club,2023-24,actual 2023-24|MUN,n_3000+,3.0,
+per_club,2023-24,actual 2023-24|NEW,n_3000+,2.0,
+per_club,2023-24,actual 2023-24|NFO,n_3000+,1.0,
+per_club,2023-24,actual 2023-24|SHU,n_3000+,0.0,
+per_club,2023-24,actual 2023-24|TOT,n_3000+,2.0,
+per_club,2023-24,actual 2023-24|WHU,n_3000+,4.0,
+per_club,2023-24,actual 2023-24|WOL,n_3000+,3.0,
+per_club,2023-24,actual 2023-24|ARS,top11_share,0.7857788410419989,
+per_club,2023-24,actual 2023-24|AVL,top11_share,0.7534556087187666,
+per_club,2023-24,actual 2023-24|BHA,top11_share,0.6124136097820309,
+per_club,2023-24,actual 2023-24|BOU,top11_share,0.7365762892078681,
+per_club,2023-24,actual 2023-24|BRE,top11_share,0.6906964380648591,
+per_club,2023-24,actual 2023-24|BUR,top11_share,0.6542530568846359,
+per_club,2023-24,actual 2023-24|CHE,top11_share,0.698006379585327,
+per_club,2023-24,actual 2023-24|CRY,top11_share,0.6820308346624137,
+per_club,2023-24,actual 2023-24|EVE,top11_share,0.7891812865497077,
+per_club,2023-24,actual 2023-24|FUL,top11_share,0.6940723019670388,
+per_club,2023-24,actual 2023-24|LIV,top11_share,0.662307283359915,
+per_club,2023-24,actual 2023-24|LUT,top11_share,0.669351408825093,
+per_club,2023-24,actual 2023-24|MCI,top11_share,0.7589048378522063,
+per_club,2023-24,actual 2023-24|MUN,top11_share,0.6890749601275917,
+per_club,2023-24,actual 2023-24|NEW,top11_share,0.6859117490696438,
+per_club,2023-24,actual 2023-24|NFO,top11_share,0.5899787347155768,
+per_club,2023-24,actual 2023-24|SHU,top11_share,0.6788676236044657,
+per_club,2023-24,actual 2023-24|TOT,top11_share,0.7525784157363105,
+per_club,2023-24,actual 2023-24|WHU,top11_share,0.7985645933014354,
+per_club,2023-24,actual 2023-24|WOL,top11_share,0.764327485380117,
+per_club,2023-24,actual 2023-24|ARS,gini,0.6346043642410895,
+per_club,2023-24,actual 2023-24|AVL,gini,0.6658686017417615,
+per_club,2023-24,actual 2023-24|BHA,gini,0.5924551828632386,
+per_club,2023-24,actual 2023-24|BOU,gini,0.6273327907341966,
+per_club,2023-24,actual 2023-24|BRE,gini,0.6211577401802252,
+per_club,2023-24,actual 2023-24|BUR,gini,0.5891266552058324,
+per_club,2023-24,actual 2023-24|CHE,gini,0.7320782105037918,
+per_club,2023-24,actual 2023-24|CRY,gini,0.5816583352649057,
+per_club,2023-24,actual 2023-24|EVE,gini,0.5970007137398071,
+per_club,2023-24,actual 2023-24|FUL,gini,0.5766124840425311,
+per_club,2023-24,actual 2023-24|LIV,gini,0.5952214974522398,
+per_club,2023-24,actual 2023-24|LUT,gini,0.6512991963060571,
+per_club,2023-24,actual 2023-24|MCI,gini,0.518682409343952,
+per_club,2023-24,actual 2023-24|MUN,gini,0.6556120971317114,
+per_club,2023-24,actual 2023-24|NEW,gini,0.6228748264608183,
+per_club,2023-24,actual 2023-24|NFO,gini,0.6501907853467618,
+per_club,2023-24,actual 2023-24|SHU,gini,0.6063230485702396,
+per_club,2023-24,actual 2023-24|TOT,gini,0.6502231243349447,
+per_club,2023-24,actual 2023-24|WHU,gini,0.5855269435133321,
+per_club,2023-24,actual 2023-24|WOL,gini,0.6862055346590995,
+per_club,2024-25,actual 2024-25|ARS,players,37.0,
+per_club,2024-25,actual 2024-25|AVL,players,44.0,
+per_club,2024-25,actual 2024-25|BHA,players,52.0,
+per_club,2024-25,actual 2024-25|BOU,players,41.0,
+per_club,2024-25,actual 2024-25|BRE,players,40.0,
+per_club,2024-25,actual 2024-25|CHE,players,48.0,
+per_club,2024-25,actual 2024-25|CRY,players,36.0,
+per_club,2024-25,actual 2024-25|EVE,players,36.0,
+per_club,2024-25,actual 2024-25|FUL,players,32.0,
+per_club,2024-25,actual 2024-25|IPS,players,40.0,
+per_club,2024-25,actual 2024-25|LEI,players,41.0,
+per_club,2024-25,actual 2024-25|LIV,players,35.0,
+per_club,2024-25,actual 2024-25|MCI,players,39.0,
+per_club,2024-25,actual 2024-25|MUN,players,43.0,
+per_club,2024-25,actual 2024-25|NEW,players,35.0,
+per_club,2024-25,actual 2024-25|NFO,players,35.0,
+per_club,2024-25,actual 2024-25|SOU,players,43.0,
+per_club,2024-25,actual 2024-25|TOT,players,48.0,
+per_club,2024-25,actual 2024-25|WHU,players,33.0,
+per_club,2024-25,actual 2024-25|WOL,players,46.0,
+per_club,2024-25,actual 2024-25|ARS,used(>0),25.0,
+per_club,2024-25,actual 2024-25|AVL,used(>0),27.0,
+per_club,2024-25,actual 2024-25|BHA,used(>0),30.0,
+per_club,2024-25,actual 2024-25|BOU,used(>0),28.0,
+per_club,2024-25,actual 2024-25|BRE,used(>0),28.0,
+per_club,2024-25,actual 2024-25|CHE,used(>0),28.0,
+per_club,2024-25,actual 2024-25|CRY,used(>0),25.0,
+per_club,2024-25,actual 2024-25|EVE,used(>0),26.0,
+per_club,2024-25,actual 2024-25|FUL,used(>0),26.0,
+per_club,2024-25,actual 2024-25|IPS,used(>0),32.0,
+per_club,2024-25,actual 2024-25|LEI,used(>0),32.0,
+per_club,2024-25,actual 2024-25|LIV,used(>0),24.0,
+per_club,2024-25,actual 2024-25|MCI,used(>0),30.0,
+per_club,2024-25,actual 2024-25|MUN,used(>0),30.0,
+per_club,2024-25,actual 2024-25|NEW,used(>0),24.0,
+per_club,2024-25,actual 2024-25|NFO,used(>0),22.0,
+per_club,2024-25,actual 2024-25|SOU,used(>0),35.0,
+per_club,2024-25,actual 2024-25|TOT,used(>0),31.0,
+per_club,2024-25,actual 2024-25|WHU,used(>0),27.0,
+per_club,2024-25,actual 2024-25|WOL,used(>0),32.0,
+per_club,2024-25,actual 2024-25|ARS,total_mins,37460.0,
+per_club,2024-25,actual 2024-25|AVL,total_mins,38384.0,
+per_club,2024-25,actual 2024-25|BHA,total_mins,36896.0,
+per_club,2024-25,actual 2024-25|BOU,total_mins,37211.0,
+per_club,2024-25,actual 2024-25|BRE,total_mins,37481.0,
+per_club,2024-25,actual 2024-25|CHE,total_mins,38155.0,
+per_club,2024-25,actual 2024-25|CRY,total_mins,36149.0,
+per_club,2024-25,actual 2024-25|EVE,total_mins,37491.0,
+per_club,2024-25,actual 2024-25|FUL,total_mins,37533.0,
+per_club,2024-25,actual 2024-25|IPS,total_mins,37893.0,
+per_club,2024-25,actual 2024-25|LEI,total_mins,37630.0,
+per_club,2024-25,actual 2024-25|LIV,total_mins,37387.0,
+per_club,2024-25,actual 2024-25|MCI,total_mins,37495.0,
+per_club,2024-25,actual 2024-25|MUN,total_mins,36370.0,
+per_club,2024-25,actual 2024-25|NEW,total_mins,37433.0,
+per_club,2024-25,actual 2024-25|NFO,total_mins,37072.0,
+per_club,2024-25,actual 2024-25|SOU,total_mins,37392.0,
+per_club,2024-25,actual 2024-25|TOT,total_mins,37497.0,
+per_club,2024-25,actual 2024-25|WHU,total_mins,38060.0,
+per_club,2024-25,actual 2024-25|WOL,total_mins,37492.0,
+per_club,2024-25,actual 2024-25|ARS,n_1000+,15.0,
+per_club,2024-25,actual 2024-25|AVL,n_1000+,16.0,
+per_club,2024-25,actual 2024-25|BHA,n_1000+,15.0,
+per_club,2024-25,actual 2024-25|BOU,n_1000+,14.0,
+per_club,2024-25,actual 2024-25|BRE,n_1000+,14.0,
+per_club,2024-25,actual 2024-25|CHE,n_1000+,15.0,
+per_club,2024-25,actual 2024-25|CRY,n_1000+,14.0,
+per_club,2024-25,actual 2024-25|EVE,n_1000+,17.0,
+per_club,2024-25,actual 2024-25|FUL,n_1000+,15.0,
+per_club,2024-25,actual 2024-25|IPS,n_1000+,16.0,
+per_club,2024-25,actual 2024-25|LEI,n_1000+,17.0,
+per_club,2024-25,actual 2024-25|LIV,n_1000+,14.0,
+per_club,2024-25,actual 2024-25|MCI,n_1000+,16.0,
+per_club,2024-25,actual 2024-25|MUN,n_1000+,16.0,
+per_club,2024-25,actual 2024-25|NEW,n_1000+,14.0,
+per_club,2024-25,actual 2024-25|NFO,n_1000+,12.0,
+per_club,2024-25,actual 2024-25|SOU,n_1000+,17.0,
+per_club,2024-25,actual 2024-25|TOT,n_1000+,18.0,
+per_club,2024-25,actual 2024-25|WHU,n_1000+,16.0,
+per_club,2024-25,actual 2024-25|WOL,n_1000+,14.0,
+per_club,2024-25,actual 2024-25|ARS,n_2000+,9.0,
+per_club,2024-25,actual 2024-25|AVL,n_2000+,9.0,
+per_club,2024-25,actual 2024-25|BHA,n_2000+,7.0,
+per_club,2024-25,actual 2024-25|BOU,n_2000+,9.0,
+per_club,2024-25,actual 2024-25|BRE,n_2000+,10.0,
+per_club,2024-25,actual 2024-25|CHE,n_2000+,9.0,
+per_club,2024-25,actual 2024-25|CRY,n_2000+,10.0,
+per_club,2024-25,actual 2024-25|EVE,n_2000+,8.0,
+per_club,2024-25,actual 2024-25|FUL,n_2000+,10.0,
+per_club,2024-25,actual 2024-25|IPS,n_2000+,6.0,
+per_club,2024-25,actual 2024-25|LEI,n_2000+,8.0,
+per_club,2024-25,actual 2024-25|LIV,n_2000+,10.0,
+per_club,2024-25,actual 2024-25|MCI,n_2000+,8.0,
+per_club,2024-25,actual 2024-25|MUN,n_2000+,6.0,
+per_club,2024-25,actual 2024-25|NEW,n_2000+,11.0,
+per_club,2024-25,actual 2024-25|NFO,n_2000+,10.0,
+per_club,2024-25,actual 2024-25|SOU,n_2000+,7.0,
+per_club,2024-25,actual 2024-25|TOT,n_2000+,6.0,
+per_club,2024-25,actual 2024-25|WHU,n_2000+,9.0,
+per_club,2024-25,actual 2024-25|WOL,n_2000+,9.0,
+per_club,2024-25,actual 2024-25|ARS,n_3000+,2.0,
+per_club,2024-25,actual 2024-25|AVL,n_3000+,3.0,
+per_club,2024-25,actual 2024-25|BHA,n_3000+,1.0,
+per_club,2024-25,actual 2024-25|BOU,n_3000+,3.0,
+per_club,2024-25,actual 2024-25|BRE,n_3000+,4.0,
+per_club,2024-25,actual 2024-25|CHE,n_3000+,3.0,
+per_club,2024-25,actual 2024-25|CRY,n_3000+,5.0,
+per_club,2024-25,actual 2024-25|EVE,n_3000+,3.0,
+per_club,2024-25,actual 2024-25|FUL,n_3000+,3.0,
+per_club,2024-25,actual 2024-25|IPS,n_3000+,1.0,
+per_club,2024-25,actual 2024-25|LEI,n_3000+,0.0,
+per_club,2024-25,actual 2024-25|LIV,n_3000+,3.0,
+per_club,2024-25,actual 2024-25|MCI,n_3000+,1.0,
+per_club,2024-25,actual 2024-25|MUN,n_3000+,2.0,
+per_club,2024-25,actual 2024-25|NEW,n_3000+,2.0,
+per_club,2024-25,actual 2024-25|NFO,n_3000+,3.0,
+per_club,2024-25,actual 2024-25|SOU,n_3000+,0.0,
+per_club,2024-25,actual 2024-25|TOT,n_3000+,0.0,
+per_club,2024-25,actual 2024-25|WHU,n_3000+,2.0,
+per_club,2024-25,actual 2024-25|WOL,n_3000+,1.0,
+per_club,2024-25,actual 2024-25|ARS,top11_share,0.733652312599681,
+per_club,2024-25,actual 2024-25|AVL,top11_share,0.7137958532695374,
+per_club,2024-25,actual 2024-25|BHA,top11_share,0.6810207336523126,
+per_club,2024-25,actual 2024-25|BOU,top11_share,0.7592238171185539,
+per_club,2024-25,actual 2024-25|BRE,top11_share,0.8208931419457736,
+per_club,2024-25,actual 2024-25|CHE,top11_share,0.7665337586390218,
+per_club,2024-25,actual 2024-25|CRY,top11_share,0.8012493354598618,
+per_club,2024-25,actual 2024-25|EVE,top11_share,0.7206007442849548,
+per_club,2024-25,actual 2024-25|FUL,top11_share,0.7491228070175439,
+per_club,2024-25,actual 2024-25|IPS,top11_share,0.6423710792131845,
+per_club,2024-25,actual 2024-25|LEI,top11_share,0.6658958001063264,
+per_club,2024-25,actual 2024-25|LIV,top11_share,0.7753854332801702,
+per_club,2024-25,actual 2024-25|MCI,top11_share,0.6675438596491228,
+per_club,2024-25,actual 2024-25|MUN,top11_share,0.6700425305688463,
+per_club,2024-25,actual 2024-25|NEW,top11_share,0.7879319510898458,
+per_club,2024-25,actual 2024-25|NFO,top11_share,0.8147793726741095,
+per_club,2024-25,actual 2024-25|SOU,top11_share,0.6528708133971292,
+per_club,2024-25,actual 2024-25|TOT,top11_share,0.6058213716108453,
+per_club,2024-25,actual 2024-25|WHU,top11_share,0.7176236044657097,
+per_club,2024-25,actual 2024-25|WOL,top11_share,0.7257575757575757,
+per_club,2024-25,actual 2024-25|ARS,gini,0.5868558895254037,
+per_club,2024-25,actual 2024-25|AVL,gini,0.626480256925234,
+per_club,2024-25,actual 2024-25|BHA,gini,0.6832187354059643,
+per_club,2024-25,actual 2024-25|BOU,gini,0.6499559860020411,
+per_club,2024-25,actual 2024-25|BRE,gini,0.6708312211520504,
+per_club,2024-25,actual 2024-25|CHE,gini,0.6923180666579304,
+per_club,2024-25,actual 2024-25|CRY,gini,0.6413509210336232,
+per_club,2024-25,actual 2024-25|EVE,gini,0.5781661672875564,
+per_club,2024-25,actual 2024-25|FUL,gini,0.5438305957424133,
+per_club,2024-25,actual 2024-25|IPS,gini,0.5292408888185153,
+per_club,2024-25,actual 2024-25|LEI,gini,0.5757160542639176,
+per_club,2024-25,actual 2024-25|LIV,gini,0.5914294120569029,
+per_club,2024-25,actual 2024-25|MCI,gini,0.5607667347099271,
+per_club,2024-25,actual 2024-25|MUN,gini,0.6152579112608781,
+per_club,2024-25,actual 2024-25|NEW,gini,0.5960928287111067,
+per_club,2024-25,actual 2024-25|NFO,gini,0.6251310191750417,
+per_club,2024-25,actual 2024-25|SOU,gini,0.5792185369834114,
+per_club,2024-25,actual 2024-25|TOT,gini,0.5923434985909984,
+per_club,2024-25,actual 2024-25|WHU,gini,0.5099937897100272,
+per_club,2024-25,actual 2024-25|WOL,gini,0.6555555040147695,
+per_club,2025-26,actual 2025-26|ARS,players,36.0,
+per_club,2025-26,actual 2025-26|AVL,players,48.0,
+per_club,2025-26,actual 2025-26|BHA,players,47.0,
+per_club,2025-26,actual 2025-26|BOU,players,45.0,
+per_club,2025-26,actual 2025-26|BRE,players,44.0,
+per_club,2025-26,actual 2025-26|BUR,players,45.0,
+per_club,2025-26,actual 2025-26|CHE,players,40.0,
+per_club,2025-26,actual 2025-26|CRY,players,44.0,
+per_club,2025-26,actual 2025-26|EVE,players,37.0,
+per_club,2025-26,actual 2025-26|FUL,players,31.0,
+per_club,2025-26,actual 2025-26|LEE,players,39.0,
+per_club,2025-26,actual 2025-26|LIV,players,39.0,
+per_club,2025-26,actual 2025-26|MCI,players,38.0,
+per_club,2025-26,actual 2025-26|MUN,players,44.0,
+per_club,2025-26,actual 2025-26|NEW,players,39.0,
+per_club,2025-26,actual 2025-26|NFO,players,42.0,
+per_club,2025-26,actual 2025-26|SUN,players,52.0,
+per_club,2025-26,actual 2025-26|TOT,players,45.0,
+per_club,2025-26,actual 2025-26|WHU,players,41.0,
+per_club,2025-26,actual 2025-26|WOL,players,45.0,
+per_club,2025-26,actual 2025-26|ARS,used(>0),25.0,
+per_club,2025-26,actual 2025-26|AVL,used(>0),29.0,
+per_club,2025-26,actual 2025-26|BHA,used(>0),29.0,
+per_club,2025-26,actual 2025-26|BOU,used(>0),25.0,
+per_club,2025-26,actual 2025-26|BRE,used(>0),26.0,
+per_club,2025-26,actual 2025-26|BUR,used(>0),28.0,
+per_club,2025-26,actual 2025-26|CHE,used(>0),28.0,
+per_club,2025-26,actual 2025-26|CRY,used(>0),28.0,
+per_club,2025-26,actual 2025-26|EVE,used(>0),22.0,
+per_club,2025-26,actual 2025-26|FUL,used(>0),23.0,
+per_club,2025-26,actual 2025-26|LEE,used(>0),24.0,
+per_club,2025-26,actual 2025-26|LIV,used(>0),23.0,
+per_club,2025-26,actual 2025-26|MCI,used(>0),26.0,
+per_club,2025-26,actual 2025-26|MUN,used(>0),27.0,
+per_club,2025-26,actual 2025-26|NEW,used(>0),26.0,
+per_club,2025-26,actual 2025-26|NFO,used(>0),30.0,
+per_club,2025-26,actual 2025-26|SUN,used(>0),28.0,
+per_club,2025-26,actual 2025-26|TOT,used(>0),30.0,
+per_club,2025-26,actual 2025-26|WHU,used(>0),30.0,
+per_club,2025-26,actual 2025-26|WOL,used(>0),30.0,
+per_club,2025-26,actual 2025-26|ARS,total_mins,37573.0,
+per_club,2025-26,actual 2025-26|AVL,total_mins,37183.0,
+per_club,2025-26,actual 2025-26|BHA,total_mins,37582.0,
+per_club,2025-26,actual 2025-26|BOU,total_mins,35648.0,
+per_club,2025-26,actual 2025-26|BRE,total_mins,37466.0,
+per_club,2025-26,actual 2025-26|BUR,total_mins,37829.0,
+per_club,2025-26,actual 2025-26|CHE,total_mins,37000.0,
+per_club,2025-26,actual 2025-26|CRY,total_mins,38165.0,
+per_club,2025-26,actual 2025-26|EVE,total_mins,37559.0,
+per_club,2025-26,actual 2025-26|FUL,total_mins,37631.0,
+per_club,2025-26,actual 2025-26|LEE,total_mins,37516.0,
+per_club,2025-26,actual 2025-26|LIV,total_mins,37499.0,
+per_club,2025-26,actual 2025-26|MCI,total_mins,40636.0,
+per_club,2025-26,actual 2025-26|MUN,total_mins,37419.0,
+per_club,2025-26,actual 2025-26|NEW,total_mins,37393.0,
+per_club,2025-26,actual 2025-26|NFO,total_mins,37152.0,
+per_club,2025-26,actual 2025-26|SUN,total_mins,37382.0,
+per_club,2025-26,actual 2025-26|TOT,total_mins,36709.0,
+per_club,2025-26,actual 2025-26|WHU,total_mins,37229.0,
+per_club,2025-26,actual 2025-26|WOL,total_mins,35981.0,
+per_club,2025-26,actual 2025-26|ARS,n_1000+,16.0,
+per_club,2025-26,actual 2025-26|AVL,n_1000+,15.0,
+per_club,2025-26,actual 2025-26|BHA,n_1000+,16.0,
+per_club,2025-26,actual 2025-26|BOU,n_1000+,15.0,
+per_club,2025-26,actual 2025-26|BRE,n_1000+,15.0,
+per_club,2025-26,actual 2025-26|BUR,n_1000+,20.0,
+per_club,2025-26,actual 2025-26|CHE,n_1000+,15.0,
+per_club,2025-26,actual 2025-26|CRY,n_1000+,15.0,
+per_club,2025-26,actual 2025-26|EVE,n_1000+,14.0,
+per_club,2025-26,actual 2025-26|FUL,n_1000+,17.0,
+per_club,2025-26,actual 2025-26|LEE,n_1000+,17.0,
+per_club,2025-26,actual 2025-26|LIV,n_1000+,14.0,
+per_club,2025-26,actual 2025-26|MCI,n_1000+,16.0,
+per_club,2025-26,actual 2025-26|MUN,n_1000+,16.0,
+per_club,2025-26,actual 2025-26|NEW,n_1000+,19.0,
+per_club,2025-26,actual 2025-26|NFO,n_1000+,15.0,
+per_club,2025-26,actual 2025-26|SUN,n_1000+,14.0,
+per_club,2025-26,actual 2025-26|TOT,n_1000+,17.0,
+per_club,2025-26,actual 2025-26|WHU,n_1000+,17.0,
+per_club,2025-26,actual 2025-26|WOL,n_1000+,18.0,
+per_club,2025-26,actual 2025-26|ARS,n_2000+,8.0,
+per_club,2025-26,actual 2025-26|AVL,n_2000+,6.0,
+per_club,2025-26,actual 2025-26|BHA,n_2000+,7.0,
+per_club,2025-26,actual 2025-26|BOU,n_2000+,8.0,
+per_club,2025-26,actual 2025-26|BRE,n_2000+,10.0,
+per_club,2025-26,actual 2025-26|BUR,n_2000+,6.0,
+per_club,2025-26,actual 2025-26|CHE,n_2000+,8.0,
+per_club,2025-26,actual 2025-26|CRY,n_2000+,10.0,
+per_club,2025-26,actual 2025-26|EVE,n_2000+,9.0,
+per_club,2025-26,actual 2025-26|FUL,n_2000+,7.0,
+per_club,2025-26,actual 2025-26|LEE,n_2000+,8.0,
+per_club,2025-26,actual 2025-26|LIV,n_2000+,10.0,
+per_club,2025-26,actual 2025-26|MCI,n_2000+,9.0,
+per_club,2025-26,actual 2025-26|MUN,n_2000+,8.0,
+per_club,2025-26,actual 2025-26|NEW,n_2000+,6.0,
+per_club,2025-26,actual 2025-26|NFO,n_2000+,8.0,
+per_club,2025-26,actual 2025-26|SUN,n_2000+,8.0,
+per_club,2025-26,actual 2025-26|TOT,n_2000+,5.0,
+per_club,2025-26,actual 2025-26|WHU,n_2000+,7.0,
+per_club,2025-26,actual 2025-26|WOL,n_2000+,7.0,
+per_club,2025-26,actual 2025-26|ARS,n_3000+,2.0,
+per_club,2025-26,actual 2025-26|AVL,n_3000+,3.0,
+per_club,2025-26,actual 2025-26|BHA,n_3000+,3.0,
+per_club,2025-26,actual 2025-26|BOU,n_3000+,3.0,
+per_club,2025-26,actual 2025-26|BRE,n_3000+,3.0,
+per_club,2025-26,actual 2025-26|BUR,n_3000+,2.0,
+per_club,2025-26,actual 2025-26|CHE,n_3000+,2.0,
+per_club,2025-26,actual 2025-26|CRY,n_3000+,3.0,
+per_club,2025-26,actual 2025-26|EVE,n_3000+,4.0,
+per_club,2025-26,actual 2025-26|FUL,n_3000+,1.0,
+per_club,2025-26,actual 2025-26|LEE,n_3000+,1.0,
+per_club,2025-26,actual 2025-26|LIV,n_3000+,3.0,
+per_club,2025-26,actual 2025-26|MCI,n_3000+,3.0,
+per_club,2025-26,actual 2025-26|MUN,n_3000+,2.0,
+per_club,2025-26,actual 2025-26|NEW,n_3000+,0.0,
+per_club,2025-26,actual 2025-26|NFO,n_3000+,4.0,
+per_club,2025-26,actual 2025-26|SUN,n_3000+,2.0,
+per_club,2025-26,actual 2025-26|TOT,n_3000+,1.0,
+per_club,2025-26,actual 2025-26|WHU,n_3000+,2.0,
+per_club,2025-26,actual 2025-26|WOL,n_3000+,0.0,
+per_club,2025-26,actual 2025-26|ARS,top11_share,0.726581605528974,
+per_club,2025-26,actual 2025-26|AVL,top11_share,0.6915204678362573,
+per_club,2025-26,actual 2025-26|BHA,top11_share,0.7093567251461989,
+per_club,2025-26,actual 2025-26|BOU,top11_share,0.7318181818181818,
+per_club,2025-26,actual 2025-26|BRE,top11_share,0.7845295055821372,
+per_club,2025-26,actual 2025-26|BUR,top11_share,0.6586656034024455,
+per_club,2025-26,actual 2025-26|CHE,top11_share,0.7338383838383838,
+per_club,2025-26,actual 2025-26|CRY,top11_share,0.746996278575226,
+per_club,2025-26,actual 2025-26|EVE,top11_share,0.7936469962785753,
+per_club,2025-26,actual 2025-26|FUL,top11_share,0.7009303561935141,
+per_club,2025-26,actual 2025-26|LEE,top11_share,0.7373205741626794,
+per_club,2025-26,actual 2025-26|LIV,top11_share,0.7749867091972356,
+per_club,2025-26,actual 2025-26|MCI,top11_share,0.7575225943646996,
+per_club,2025-26,actual 2025-26|MUN,top11_share,0.7130249867091972,
+per_club,2025-26,actual 2025-26|NEW,top11_share,0.6424508240297714,
+per_club,2025-26,actual 2025-26|NFO,top11_share,0.7250132908027644,
+per_club,2025-26,actual 2025-26|SUN,top11_share,0.7494949494949495,
+per_club,2025-26,actual 2025-26|TOT,top11_share,0.6248006379585327,
+per_club,2025-26,actual 2025-26|WHU,top11_share,0.6697767145135566,
+per_club,2025-26,actual 2025-26|WOL,top11_share,0.6258904837852206,
+per_club,2025-26,actual 2025-26|ARS,gini,0.5708450512631706,
+per_club,2025-26,actual 2025-26|AVL,gini,0.6638556822562282,
+per_club,2025-26,actual 2025-26|BHA,gini,0.6706526551302853,
+per_club,2025-26,actual 2025-26|BOU,gini,0.6905021942948334,
+per_club,2025-26,actual 2025-26|BRE,gini,0.6916003843484759,
+per_club,2025-26,actual 2025-26|BUR,gini,0.6160940607000508,
+per_club,2025-26,actual 2025-26|CHE,gini,0.6146162162162162,
+per_club,2025-26,actual 2025-26|CRY,gini,0.6588003048962042,
+per_club,2025-26,actual 2025-26|EVE,gini,0.6325615266215389,
+per_club,2025-26,actual 2025-26|FUL,gini,0.4843501539996622,
+per_club,2025-26,actual 2025-26|LEE,gini,0.6117294227967007,
+per_club,2025-26,actual 2025-26|LIV,gini,0.634849066060565,
+per_club,2025-26,actual 2025-26|MCI,gini,0.574151258153258,
+per_club,2025-26,actual 2025-26|MUN,gini,0.6457663705118207,
+per_club,2025-26,actual 2025-26|NEW,gini,0.5488398692474321,
+per_club,2025-26,actual 2025-26|NFO,gini,0.6281210266190886,
+per_club,2025-26,actual 2025-26|SUN,gini,0.7101474177205813,
+per_club,2025-26,actual 2025-26|TOT,gini,0.6044972319836794,
+per_club,2025-26,actual 2025-26|WHU,gini,0.590972550247676,
+per_club,2025-26,actual 2025-26|WOL,gini,0.6043671196835367,
+club_avg,FORECAST 26/27,mean over 20 clubs,mean total mins,37570.35,
+club_avg,FORECAST 26/27,mean over 20 clubs,mean used(>0),23.7,
+club_avg,FORECAST 26/27,mean over 20 clubs,mean n_1000+,14.8,
+club_avg,FORECAST 26/27,mean over 20 clubs,mean n_2000+,9.7,
+club_avg,FORECAST 26/27,mean over 20 clubs,mean n_3000+,3.15,
+club_avg,FORECAST 26/27,mean over 20 clubs,mean top11 share,0.775,
+club_avg,FORECAST 26/27,mean over 20 clubs,mean gini,0.502,
+club_avg,actual 2023-24,mean over 20 clubs,mean total mins,37431.5,
+club_avg,actual 2023-24,mean over 20 clubs,mean used(>0),28.5,
+club_avg,actual 2023-24,mean over 20 clubs,mean n_1000+,15.95,
+club_avg,actual 2023-24,mean over 20 clubs,mean n_2000+,8.05,
+club_avg,actual 2023-24,mean over 20 clubs,mean n_3000+,2.0,
+club_avg,actual 2023-24,mean over 20 clubs,mean top11 share,0.707,
+club_avg,actual 2023-24,mean over 20 clubs,mean gini,0.622,
+club_avg,actual 2024-25,mean over 20 clubs,mean total mins,37424.05,
+club_avg,actual 2024-25,mean over 20 clubs,mean used(>0),28.1,
+club_avg,actual 2024-25,mean over 20 clubs,mean n_1000+,15.25,
+club_avg,actual 2024-25,mean over 20 clubs,mean n_2000+,8.55,
+club_avg,actual 2024-25,mean over 20 clubs,mean n_3000+,2.1,
+club_avg,actual 2024-25,mean over 20 clubs,mean top11 share,0.724,
+club_avg,actual 2024-25,mean over 20 clubs,mean gini,0.605,
+club_avg,actual 2025-26,mean over 20 clubs,mean total mins,37427.6,
+club_avg,actual 2025-26,mean over 20 clubs,mean used(>0),26.85,
+club_avg,actual 2025-26,mean over 20 clubs,mean n_1000+,16.05,
+club_avg,actual 2025-26,mean over 20 clubs,mean n_2000+,7.75,
+club_avg,actual 2025-26,mean over 20 clubs,mean n_3000+,2.2,
+club_avg,actual 2025-26,mean over 20 clubs,mean top11 share,0.715,
+club_avg,actual 2025-26,mean over 20 clubs,mean gini,0.622,
+per_position,2026-27,FORECAST|DEF,n,193.0,
+per_position,2026-27,FORECAST|FWD,n,68.0,
+per_position,2026-27,FORECAST|GKP,n,64.0,
+per_position,2026-27,FORECAST|MID,n,257.0,
+per_position,2026-27,FORECAST|DEF,median,1440.0,
+per_position,2026-27,FORECAST|FWD,median,608.0,
+per_position,2026-27,FORECAST|GKP,median,35.0,
+per_position,2026-27,FORECAST|MID,median,1100.0,
+per_position,2026-27,FORECAST|DEF,mean,1469.300518134715,
+per_position,2026-27,FORECAST|FWD,mean,1072.6323529411766,
+per_position,2026-27,FORECAST|GKP,mean,1068.8125,
+per_position,2026-27,FORECAST|MID,mean,1270.385214007782,
+per_position,2026-27,FORECAST|DEF,n_2000+,77.0,
+per_position,2026-27,FORECAST|FWD,n_2000+,19.0,
+per_position,2026-27,FORECAST|GKP,n_2000+,20.0,
+per_position,2026-27,FORECAST|MID,n_2000+,78.0,
+per_position,2026-27,FORECAST|DEF,n_3000+,26.0,
+per_position,2026-27,FORECAST|FWD,n_3000+,4.0,
+per_position,2026-27,FORECAST|GKP,n_3000+,20.0,
+per_position,2026-27,FORECAST|MID,n_3000+,13.0,
+per_position,2026-27,FORECAST|DEF,p90,3050.0,
+per_position,2026-27,FORECAST|FWD,p90,2662.9,
+per_position,2026-27,FORECAST|GKP,p90,3385.0,
+per_position,2026-27,FORECAST|MID,p90,2842.8,
+per_position,2026-27,FORECAST|DEF,gini,0.4545506187422888,
+per_position,2026-27,FORECAST|FWD,gini,0.5529489589608723,
+per_position,2026-27,FORECAST|GKP,gini,0.6815797504531899,
+per_position,2026-27,FORECAST|MID,gini,0.4861546809908553,
+per_position,2023-24,actual 2023-24|DEF,n,278.0,
+per_position,2023-24,actual 2023-24|FWD,n,113.0,
+per_position,2023-24,actual 2023-24|GKP,n,100.0,
+per_position,2023-24,actual 2023-24|MID,n,374.0,
+per_position,2023-24,actual 2023-24|DEF,median,739.5,
+per_position,2023-24,actual 2023-24|FWD,median,158.0,
+per_position,2023-24,actual 2023-24|GKP,median,0.0,
+per_position,2023-24,actual 2023-24|MID,median,302.5,
+per_position,2023-24,actual 2023-24|DEF,mean,1015.1726618705036,
+per_position,2023-24,actual 2023-24|FWD,mean,699.7433628318585,
+per_position,2023-24,actual 2023-24|GKP,mean,683.92,
+per_position,2023-24,actual 2023-24|MID,mean,852.8048128342245,
+per_position,2023-24,actual 2023-24|DEF,n_2000+,60.0,
+per_position,2023-24,actual 2023-24|FWD,n_2000+,15.0,
+per_position,2023-24,actual 2023-24|GKP,n_2000+,15.0,
+per_position,2023-24,actual 2023-24|MID,n_2000+,71.0,
+per_position,2023-24,actual 2023-24|DEF,n_3000+,17.0,
+per_position,2023-24,actual 2023-24|FWD,n_3000+,2.0,
+per_position,2023-24,actual 2023-24|GKP,n_3000+,8.0,
+per_position,2023-24,actual 2023-24|MID,n_3000+,13.0,
+per_position,2023-24,actual 2023-24|DEF,p90,2737.3000000000006,
+per_position,2023-24,actual 2023-24|FWD,p90,2144.6,
+per_position,2023-24,actual 2023-24|GKP,p90,2794.500000000001,
+per_position,2023-24,actual 2023-24|MID,p90,2607.7,
+per_position,2023-24,actual 2023-24|DEF,gini,0.5750840044007003,
+per_position,2023-24,actual 2023-24|FWD,gini,0.6700519965085708,
+per_position,2023-24,actual 2023-24|GKP,gini,0.7557717276874488,
+per_position,2023-24,actual 2023-24|MID,gini,0.6304365911818366,
+per_position,2024-25,actual 2024-25|DEF,n,268.0,
+per_position,2024-25,actual 2024-25|FWD,n,87.0,
+per_position,2024-25,actual 2024-25|GKP,n,82.0,
+per_position,2024-25,actual 2024-25|MID,n,347.0,
+per_position,2024-25,actual 2024-25|DEF,median,520.5,
+per_position,2024-25,actual 2024-25|FWD,median,270.0,
+per_position,2024-25,actual 2024-25|GKP,median,112.5,
+per_position,2024-25,actual 2024-25|MID,median,610.0,
+per_position,2024-25,actual 2024-25|DEF,mean,1029.179104477612,
+per_position,2024-25,actual 2024-25|FWD,mean,798.5402298850574,
+per_position,2024-25,actual 2024-25|GKP,mean,834.109756097561,
+per_position,2024-25,actual 2024-25|MID,mean,964.815561959654,
+per_position,2024-25,actual 2024-25|DEF,n_2000+,63.0,
+per_position,2024-25,actual 2024-25|FWD,n_2000+,16.0,
+per_position,2024-25,actual 2024-25|GKP,n_2000+,19.0,
+per_position,2024-25,actual 2024-25|MID,n_2000+,73.0,
+per_position,2024-25,actual 2024-25|DEF,n_3000+,21.0,
+per_position,2024-25,actual 2024-25|FWD,n_3000+,0.0,
+per_position,2024-25,actual 2024-25|GKP,n_3000+,9.0,
+per_position,2024-25,actual 2024-25|MID,n_3000+,12.0,
+per_position,2024-25,actual 2024-25|DEF,p90,2919.2,
+per_position,2024-25,actual 2024-25|FWD,p90,2587.0,
+per_position,2024-25,actual 2024-25|GKP,p90,3042.000000000001,
+per_position,2024-25,actual 2024-25|MID,p90,2563.0,
+per_position,2024-25,actual 2024-25|DEF,gini,0.5882293178441056,
+per_position,2024-25,actual 2024-25|FWD,gini,0.6474858090077498,
+per_position,2024-25,actual 2024-25|GKP,gini,0.7051530572764388,
+per_position,2024-25,actual 2024-25|MID,gini,0.5815570240445161,
+per_position,2025-26,actual 2025-26|DEF,n,270.0,
+per_position,2025-26,actual 2025-26|FWD,n,95.0,
+per_position,2025-26,actual 2025-26|GKP,n,97.0,
+per_position,2025-26,actual 2025-26|MID,n,379.0,
+per_position,2025-26,actual 2025-26|DEF,median,682.5,
+per_position,2025-26,actual 2025-26|FWD,median,351.0,
+per_position,2025-26,actual 2025-26|GKP,median,0.0,
+per_position,2025-26,actual 2025-26|MID,median,262.0,
+per_position,2025-26,actual 2025-26|DEF,mean,1056.0037037037036,
+per_position,2025-26,actual 2025-26|FWD,mean,796.978947368421,
+per_position,2025-26,actual 2025-26|GKP,mean,705.1030927835052,
+per_position,2025-26,actual 2025-26|MID,mean,842.5408970976254,
+per_position,2025-26,actual 2025-26|DEF,n_2000+,63.0,
+per_position,2025-26,actual 2025-26|FWD,n_2000+,13.0,
+per_position,2025-26,actual 2025-26|GKP,n_2000+,18.0,
+per_position,2025-26,actual 2025-26|MID,n_2000+,61.0,
+per_position,2025-26,actual 2025-26|DEF,n_3000+,20.0,
+per_position,2025-26,actual 2025-26|FWD,n_3000+,2.0,
+per_position,2025-26,actual 2025-26|GKP,n_3000+,11.0,
+per_position,2025-26,actual 2025-26|MID,n_3000+,11.0,
+per_position,2025-26,actual 2025-26|DEF,p90,2863.1,
+per_position,2025-26,actual 2025-26|FWD,p90,2236.2000000000003,
+per_position,2025-26,actual 2025-26|GKP,p90,3048.0,
+per_position,2025-26,actual 2025-26|MID,p90,2458.7999999999997,
+per_position,2025-26,actual 2025-26|DEF,gini,0.5805613263348751,
+per_position,2025-26,actual 2025-26|FWD,gini,0.6298474780455557,
+per_position,2025-26,actual 2025-26|GKP,gini,0.7612547791294203,
+per_position,2025-26,actual 2025-26|MID,gini,0.6293197621415697,
+forecast_source,2026-27,Solio,n players,353.0,
+forecast_source,2026-27,Solio,total minutes,433605.0,
+forecast_source,2026-27,research,n players,226.0,
+forecast_source,2026-27,research,total minutes,317795.0,
+forecast_source,2026-27,25/26 actual,n players,3.0,
+forecast_source,2026-27,25/26 actual,total minutes,7.0,
+forecast_source,2026-27,25/26 actual,>=3000,0.0,
+bands,2026-27,FORECAST excl 25/26-fallback,band 0,106.0,research+Solio rows only
+bands,2026-27,FORECAST excl 25/26-fallback,band 1-500,122.0,research+Solio rows only
+bands,2026-27,FORECAST excl 25/26-fallback,band 500-1500,108.0,research+Solio rows only
+bands,2026-27,FORECAST excl 25/26-fallback,band 1500-2500,108.0,research+Solio rows only
+bands,2026-27,FORECAST excl 25/26-fallback,band 2500-3000,74.0,research+Solio rows only
+bands,2026-27,FORECAST excl 25/26-fallback,band 3000+,61.0,research+Solio rows only
+bands,2026-27,FORECAST excl 25/26-fallback,n players,579.0,research+Solio rows only
+bands,2026-27,FORECAST excl 25/26-fallback,total minutes,751400.0,research+Solio rows only
+bands,2026-27,FORECAST excl 25/26-fallback,mean,1297.8,research+Solio rows only
+bands,2026-27,FORECAST excl 25/26-fallback,median,1050.0,research+Solio rows only
+deciles,2026-27,FORECAST excl 25/26-fallback,p10,0.0,research+Solio rows only
+deciles,2026-27,FORECAST excl 25/26-fallback,p20,19.6,research+Solio rows only
+deciles,2026-27,FORECAST excl 25/26-fallback,p30,184.4,research+Solio rows only
+deciles,2026-27,FORECAST excl 25/26-fallback,p40,542.0,research+Solio rows only
+deciles,2026-27,FORECAST excl 25/26-fallback,p50,1050.0,research+Solio rows only
+deciles,2026-27,FORECAST excl 25/26-fallback,p60,1600.0,research+Solio rows only
+deciles,2026-27,FORECAST excl 25/26-fallback,p70,2153.0,research+Solio rows only
+deciles,2026-27,FORECAST excl 25/26-fallback,p80,2660.8,research+Solio rows only
+deciles,2026-27,FORECAST excl 25/26-fallback,p90,3045.2,research+Solio rows only
+thresholds,2026-27,FORECAST excl 25/26-fallback,>=1000,296.0,research+Solio rows only
+thresholds,2026-27,FORECAST excl 25/26-fallback,>=1500,246.0,research+Solio rows only
+thresholds,2026-27,FORECAST excl 25/26-fallback,>=2000,194.0,research+Solio rows only
+thresholds,2026-27,FORECAST excl 25/26-fallback,>=2500,139.0,research+Solio rows only
+thresholds,2026-27,FORECAST excl 25/26-fallback,>=2750,103.0,research+Solio rows only
+thresholds,2026-27,FORECAST excl 25/26-fallback,>=3000,63.0,research+Solio rows only
+thresholds,2026-27,FORECAST excl 25/26-fallback,>=3200,35.0,research+Solio rows only
+concentration,2026-27,FORECAST excl 25/26-fallback,gini,0.5127,research+Solio rows only
+budget,2026-27,league,forecast total minutes,751407.0,
+budget,2026-27,league,budget (20 x 37620),752400.0,
+budget,2026-27,league,pct of budget,0.9987,
+budget,2023-24,league,actual total minutes,748630.0,
+budget,2023-24,league,pct of budget,0.995,
+budget,2024-25,league,actual total minutes,748481.0,
+budget,2024-25,league,pct of budget,0.9948,
+budget,2025-26,league,actual total minutes,748552.0,
+budget,2025-26,league,pct of budget,0.9949,
+budget,2026-27,ARS,forecast club mins / 37620,0.9998,
+budget,2026-27,AVL,forecast club mins / 37620,0.9997,
+budget,2026-27,BHA,forecast club mins / 37620,1.0,
+budget,2026-27,BOU,forecast club mins / 37620,1.0034,
+budget,2026-27,BRE,forecast club mins / 37620,1.0048,
+budget,2026-27,CHE,forecast club mins / 37620,1.0002,
+budget,2026-27,COV,forecast club mins / 37620,0.9974,
+budget,2026-27,CRY,forecast club mins / 37620,0.9667,
+budget,2026-27,EVE,forecast club mins / 37620,1.0025,
+budget,2026-27,FUL,forecast club mins / 37620,1.0041,
+budget,2026-27,HUL,forecast club mins / 37620,0.9987,
+budget,2026-27,IPS,forecast club mins / 37620,0.9997,
+budget,2026-27,LEE,forecast club mins / 37620,0.9949,
+budget,2026-27,LIV,forecast club mins / 37620,1.0077,
+budget,2026-27,MCI,forecast club mins / 37620,0.9997,
+budget,2026-27,MUN,forecast club mins / 37620,1.0073,
+budget,2026-27,NEW,forecast club mins / 37620,0.9887,
+budget,2026-27,NFO,forecast club mins / 37620,1.0019,
+budget,2026-27,SUN,forecast club mins / 37620,0.9991,
+budget,2026-27,TOT,forecast club mins / 37620,0.9972,
+roster,2023-24,league,GW1 roster,658.0,
+roster,2023-24,league,end-of-season roster,865.0,
+roster,2023-24,league,players with >0 minutes,570.0,
+roster,2023-24,league,mid-season arrivals,207.0,
+roster,2023-24,league,mid-season departures (upper bound),56.0,
+roster,2023-24,league,minutes played by mid-season arrivals,61305.0,
+roster,2024-25,league,GW1 roster,616.0,
+roster,2024-25,league,end-of-season roster,804.0,
+roster,2024-25,league,players with >0 minutes,562.0,
+roster,2024-25,league,mid-season arrivals,188.0,
+roster,2024-25,league,mid-season departures (upper bound),39.0,
+roster,2024-25,league,minutes played by mid-season arrivals,50825.0,
+roster,2025-26,league,GW1 roster,690.0,
+roster,2025-26,league,end-of-season roster,841.0,
+roster,2025-26,league,players with >0 minutes,537.0,
+roster,2025-26,league,mid-season arrivals,151.0,
+roster,2025-26,league,mid-season departures (upper bound),38.0,
+roster,2025-26,league,minutes played by mid-season arrivals,67345.0,
+roster,2026-27,league,FPL registered today,587.0,
+roster,2026-27,league,forecast rows with an xMins,582.0,
+check,2025-26,master vs vaastav,players matched,591.0,
+check,2025-26,master vs vaastav,players disagreeing,89.0,
+depth_curve,FORECAST 26/27,club rank 1,mean minutes,3355.1,
+depth_curve,2023-24,club rank 1,mean minutes,3249.8,
+depth_curve,2024-25,club rank 1,mean minutes,3235.1,
+depth_curve,2025-26,club rank 1,mean minutes,3246.8,
+depth_curve,fc - 25/26,club rank 1,mean minutes,108.2,
+depth_curve,fc - 2yr avg,club rank 1,mean minutes,114.1,
+depth_curve,FORECAST 26/27,club rank 2,mean minutes,3198.4,
+depth_curve,2023-24,club rank 2,mean minutes,3040.4,
+depth_curve,2024-25,club rank 2,mean minutes,3054.3,
+depth_curve,2025-26,club rank 2,mean minutes,3078.5,
+depth_curve,fc - 25/26,club rank 2,mean minutes,119.9,
+depth_curve,fc - 2yr avg,club rank 2,mean minutes,132.0,
+depth_curve,FORECAST 26/27,club rank 3,mean minutes,3052.6,
+depth_curve,2023-24,club rank 3,mean minutes,2808.7,
+depth_curve,2024-25,club rank 3,mean minutes,2926.1,
+depth_curve,2025-26,club rank 3,mean minutes,2965.6,
+depth_curve,fc - 25/26,club rank 3,mean minutes,87.0,
+depth_curve,fc - 2yr avg,club rank 3,mean minutes,106.8,
+depth_curve,FORECAST 26/27,club rank 4,mean minutes,2922.4,
+depth_curve,2023-24,club rank 4,mean minutes,2663.0,
+depth_curve,2024-25,club rank 4,mean minutes,2753.8,
+depth_curve,2025-26,club rank 4,mean minutes,2760.3,
+depth_curve,fc - 25/26,club rank 4,mean minutes,162.1,
+depth_curve,fc - 2yr avg,club rank 4,mean minutes,165.4,
+depth_curve,FORECAST 26/27,club rank 5,mean minutes,2809.0,
+depth_curve,2023-24,club rank 5,mean minutes,2578.3,
+depth_curve,2024-25,club rank 5,mean minutes,2602.8,
+depth_curve,2025-26,club rank 5,mean minutes,2599.0,
+depth_curve,fc - 25/26,club rank 5,mean minutes,210.0,
+depth_curve,fc - 2yr avg,club rank 5,mean minutes,208.1,
+depth_curve,FORECAST 26/27,club rank 6,mean minutes,2684.1,
+depth_curve,2023-24,club rank 6,mean minutes,2371.2,
+depth_curve,2024-25,club rank 6,mean minutes,2440.9,
+depth_curve,2025-26,club rank 6,mean minutes,2447.3,
+depth_curve,fc - 25/26,club rank 6,mean minutes,236.8,
+depth_curve,fc - 2yr avg,club rank 6,mean minutes,240.0,
+depth_curve,FORECAST 26/27,club rank 7,mean minutes,2528.0,
+depth_curve,2023-24,club rank 7,mean minutes,2266.5,
+depth_curve,2024-25,club rank 7,mean minutes,2316.8,
+depth_curve,2025-26,club rank 7,mean minutes,2279.0,
+depth_curve,fc - 25/26,club rank 7,mean minutes,249.0,
+depth_curve,fc - 2yr avg,club rank 7,mean minutes,230.1,
+depth_curve,FORECAST 26/27,club rank 8,mean minutes,2378.2,
+depth_curve,2023-24,club rank 8,mean minutes,2104.7,
+depth_curve,2024-25,club rank 8,mean minutes,2198.5,
+depth_curve,2025-26,club rank 8,mean minutes,2097.7,
+depth_curve,fc - 25/26,club rank 8,mean minutes,280.6,
+depth_curve,fc - 2yr avg,club rank 8,mean minutes,230.2,
+depth_curve,FORECAST 26/27,club rank 9,mean minutes,2225.2,
+depth_curve,2023-24,club rank 9,mean minutes,1983.7,
+depth_curve,2024-25,club rank 9,mean minutes,2035.7,
+depth_curve,2025-26,club rank 9,mean minutes,1927.4,
+depth_curve,fc - 25/26,club rank 9,mean minutes,297.8,
+depth_curve,fc - 2yr avg,club rank 9,mean minutes,243.7,
+depth_curve,FORECAST 26/27,club rank 10,mean minutes,2099.6,
+depth_curve,2023-24,club rank 10,mean minutes,1848.2,
+depth_curve,2024-25,club rank 10,mean minutes,1890.7,
+depth_curve,2025-26,club rank 10,mean minutes,1802.3,
+depth_curve,fc - 25/26,club rank 10,mean minutes,297.3,
+depth_curve,fc - 2yr avg,club rank 10,mean minutes,253.1,
+depth_curve,FORECAST 26/27,club rank 11,mean minutes,1889.5,
+depth_curve,2023-24,club rank 11,mean minutes,1694.8,
+depth_curve,2024-25,club rank 11,mean minutes,1767.4,
+depth_curve,2025-26,club rank 11,mean minutes,1691.0,
+depth_curve,fc - 25/26,club rank 11,mean minutes,198.5,
+depth_curve,fc - 2yr avg,club rank 11,mean minutes,160.2,
+depth_curve,FORECAST 26/27,club rank 12,mean minutes,1595.2,
+depth_curve,2023-24,club rank 12,mean minutes,1518.5,
+depth_curve,2024-25,club rank 12,mean minutes,1611.6,
+depth_curve,2025-26,club rank 12,mean minutes,1569.2,
+depth_curve,fc - 25/26,club rank 12,mean minutes,26.1,
+depth_curve,fc - 2yr avg,club rank 12,mean minutes,4.9,
+depth_curve,FORECAST 26/27,club rank 13,mean minutes,1399.5,
+depth_curve,2023-24,club rank 13,mean minutes,1373.8,
+depth_curve,2024-25,club rank 13,mean minutes,1409.0,
+depth_curve,2025-26,club rank 13,mean minutes,1425.8,
+depth_curve,fc - 25/26,club rank 13,mean minutes,-26.3,
+depth_curve,fc - 2yr avg,club rank 13,mean minutes,-17.9,
+depth_curve,FORECAST 26/27,club rank 14,mean minutes,1193.5,
+depth_curve,2023-24,club rank 14,mean minutes,1228.0,
+depth_curve,2024-25,club rank 14,mean minutes,1202.2,
+depth_curve,2025-26,club rank 14,mean minutes,1299.3,
+depth_curve,fc - 25/26,club rank 14,mean minutes,-105.8,
+depth_curve,fc - 2yr avg,club rank 14,mean minutes,-57.2,
+depth_curve,FORECAST 26/27,club rank 15,mean minutes,1006.0,
+depth_curve,2023-24,club rank 15,mean minutes,1148.5,
+depth_curve,2024-25,club rank 15,mean minutes,1047.0,
+depth_curve,2025-26,club rank 15,mean minutes,1154.8,
+depth_curve,fc - 25/26,club rank 15,mean minutes,-148.8,
+depth_curve,fc - 2yr avg,club rank 15,mean minutes,-94.9,
+depth_curve,FORECAST 26/27,club rank 16,mean minutes,878.0,
+depth_curve,2023-24,club rank 16,mean minutes,1048.4,
+depth_curve,2024-25,club rank 16,mean minutes,942.1,
+depth_curve,2025-26,club rank 16,mean minutes,1014.9,
+depth_curve,fc - 25/26,club rank 16,mean minutes,-136.9,
+depth_curve,fc - 2yr avg,club rank 16,mean minutes,-100.5,
+depth_curve,FORECAST 26/27,club rank 17,mean minutes,727.9,
+depth_curve,2023-24,club rank 17,mean minutes,941.2,
+depth_curve,2024-25,club rank 17,mean minutes,790.9,
+depth_curve,2025-26,club rank 17,mean minutes,903.1,
+depth_curve,fc - 25/26,club rank 17,mean minutes,-175.3,
+depth_curve,fc - 2yr avg,club rank 17,mean minutes,-119.1,
+depth_curve,FORECAST 26/27,club rank 18,mean minutes,546.8,
+depth_curve,2023-24,club rank 18,mean minutes,831.8,
+depth_curve,2024-25,club rank 18,mean minutes,650.2,
+depth_curve,2025-26,club rank 18,mean minutes,766.8,
+depth_curve,fc - 25/26,club rank 18,mean minutes,-220.0,
+depth_curve,fc - 2yr avg,club rank 18,mean minutes,-161.8,
+depth_curve,FORECAST 26/27,club rank 19,mean minutes,383.7,
+depth_curve,2023-24,club rank 19,mean minutes,665.0,
+depth_curve,2024-25,club rank 19,mean minutes,573.6,
+depth_curve,2025-26,club rank 19,mean minutes,677.9,
+depth_curve,fc - 25/26,club rank 19,mean minutes,-294.2,
+depth_curve,fc - 2yr avg,club rank 19,mean minutes,-242.1,
+depth_curve,FORECAST 26/27,club rank 20,mean minutes,289.9,
+depth_curve,2023-24,club rank 20,mean minutes,523.6,
+depth_curve,2024-25,club rank 20,mean minutes,477.6,
+depth_curve,2025-26,club rank 20,mean minutes,565.3,
+depth_curve,fc - 25/26,club rank 20,mean minutes,-275.4,
+depth_curve,fc - 2yr avg,club rank 20,mean minutes,-231.6,
+depth_curve,FORECAST 26/27,club rank 21,mean minutes,159.6,
+depth_curve,2023-24,club rank 21,mean minutes,432.8,
+depth_curve,2024-25,club rank 21,mean minutes,417.6,
+depth_curve,2025-26,club rank 21,mean minutes,435.8,
+depth_curve,fc - 25/26,club rank 21,mean minutes,-276.2,
+depth_curve,fc - 2yr avg,club rank 21,mean minutes,-267.1,
+depth_curve,FORECAST 26/27,club rank 22,mean minutes,106.2,
+depth_curve,2023-24,club rank 22,mean minutes,316.1,
+depth_curve,2024-25,club rank 22,mean minutes,314.2,
+depth_curve,2025-26,club rank 22,mean minutes,278.9,
+depth_curve,fc - 25/26,club rank 22,mean minutes,-172.8,
+depth_curve,fc - 2yr avg,club rank 22,mean minutes,-190.5,
+depth_curve,FORECAST 26/27,club rank 23,mean minutes,70.9,
+depth_curve,2023-24,club rank 23,mean minutes,238.9,
+depth_curve,2024-25,club rank 23,mean minutes,232.8,
+depth_curve,2025-26,club rank 23,mean minutes,179.8,
+depth_curve,fc - 25/26,club rank 23,mean minutes,-108.8,
+depth_curve,fc - 2yr avg,club rank 23,mean minutes,-135.4,
+depth_curve,FORECAST 26/27,club rank 24,mean minutes,40.3,
+depth_curve,2023-24,club rank 24,mean minutes,180.5,
+depth_curve,2024-25,club rank 24,mean minutes,167.2,
+depth_curve,2025-26,club rank 24,mean minutes,99.9,
+depth_curve,fc - 25/26,club rank 24,mean minutes,-59.6,
+depth_curve,fc - 2yr avg,club rank 24,mean minutes,-93.3,
+depth_curve,FORECAST 26/27,club rank 25,mean minutes,25.0,
+depth_curve,2023-24,club rank 25,mean minutes,137.4,
+depth_curve,2024-25,club rank 25,mean minutes,123.7,
+depth_curve,2025-26,club rank 25,mean minutes,78.9,
+depth_curve,fc - 25/26,club rank 25,mean minutes,-53.9,
+depth_curve,fc - 2yr avg,club rank 25,mean minutes,-76.3,
+depth_curve,FORECAST 26/27,club rank 26,mean minutes,5.8,
+depth_curve,2023-24,club rank 26,mean minutes,92.2,
+depth_curve,2024-25,club rank 26,mean minutes,90.8,
+depth_curve,2025-26,club rank 26,mean minutes,41.5,
+depth_curve,fc - 25/26,club rank 26,mean minutes,-35.7,
+depth_curve,fc - 2yr avg,club rank 26,mean minutes,-60.4,
+depth_curve,FORECAST 26/27,club rank 27,mean minutes,0.0,
+depth_curve,2023-24,club rank 27,mean minutes,68.8,
+depth_curve,2024-25,club rank 27,mean minutes,59.8,
+depth_curve,2025-26,club rank 27,mean minutes,21.8,
+depth_curve,fc - 25/26,club rank 27,mean minutes,-21.8,
+depth_curve,fc - 2yr avg,club rank 27,mean minutes,-40.8,
+depth_curve,FORECAST 26/27,club rank 28,mean minutes,0.0,
+depth_curve,2023-24,club rank 28,mean minutes,39.5,
+depth_curve,2024-25,club rank 28,mean minutes,41.5,
+depth_curve,2025-26,club rank 28,mean minutes,11.1,
+depth_curve,fc - 25/26,club rank 28,mean minutes,-11.1,
+depth_curve,fc - 2yr avg,club rank 28,mean minutes,-26.2,
+depth_curve,FORECAST 26/27,club rank 29,mean minutes,0.0,
+depth_curve,2023-24,club rank 29,mean minutes,23.4,
+depth_curve,2024-25,club rank 29,mean minutes,23.2,
+depth_curve,2025-26,club rank 29,mean minutes,6.3,
+depth_curve,fc - 25/26,club rank 29,mean minutes,-6.3,
+depth_curve,fc - 2yr avg,club rank 29,mean minutes,-14.8,
+depth_curve,FORECAST 26/27,club rank 30,mean minutes,0.0,
+depth_curve,2023-24,club rank 30,mean minutes,9.1,
+depth_curve,2024-25,club rank 30,mean minutes,14.9,
+depth_curve,2025-26,club rank 30,mean minutes,1.6,
+depth_curve,fc - 25/26,club rank 30,mean minutes,-1.6,
+depth_curve,fc - 2yr avg,club rank 30,mean minutes,-8.2,
+depth_curve,FORECAST 26/27,club rank 31,mean minutes,0.0,
+depth_curve,2023-24,club rank 31,mean minutes,2.4,
+depth_curve,2024-25,club rank 31,mean minutes,6.3,
+depth_curve,2025-26,club rank 31,mean minutes,0.0,
+depth_curve,fc - 25/26,club rank 31,mean minutes,0.0,
+depth_curve,fc - 2yr avg,club rank 31,mean minutes,-3.1,
+depth_curve,FORECAST 26/27,club rank 32,mean minutes,0.0,
+depth_curve,2023-24,club rank 32,mean minutes,1.1,
+depth_curve,2024-25,club rank 32,mean minutes,3.4,
+depth_curve,2025-26,club rank 32,mean minutes,0.0,
+depth_curve,fc - 25/26,club rank 32,mean minutes,0.0,
+depth_curve,fc - 2yr avg,club rank 32,mean minutes,-1.7,
+cumulative_share,FORECAST 26/27,top 1 of club,share of 37620,0.0892,
+cumulative_share,2023-24,top 1 of club,share of 37620,0.0864,
+cumulative_share,2024-25,top 1 of club,share of 37620,0.086,
+cumulative_share,2025-26,top 1 of club,share of 37620,0.0863,
+cumulative_share,FORECAST 26/27,top 2 of club,share of 37620,0.1742,
+cumulative_share,2023-24,top 2 of club,share of 37620,0.1672,
+cumulative_share,2024-25,top 2 of club,share of 37620,0.1672,
+cumulative_share,2025-26,top 2 of club,share of 37620,0.1681,
+cumulative_share,FORECAST 26/27,top 3 of club,share of 37620,0.2553,
+cumulative_share,2023-24,top 3 of club,share of 37620,0.2419,
+cumulative_share,2024-25,top 3 of club,share of 37620,0.245,
+cumulative_share,2025-26,top 3 of club,share of 37620,0.247,
+cumulative_share,FORECAST 26/27,top 4 of club,share of 37620,0.333,
+cumulative_share,2023-24,top 4 of club,share of 37620,0.3126,
+cumulative_share,2024-25,top 4 of club,share of 37620,0.3182,
+cumulative_share,2025-26,top 4 of club,share of 37620,0.3203,
+cumulative_share,FORECAST 26/27,top 5 of club,share of 37620,0.4077,
+cumulative_share,2023-24,top 5 of club,share of 37620,0.3812,
+cumulative_share,2024-25,top 5 of club,share of 37620,0.3873,
+cumulative_share,2025-26,top 5 of club,share of 37620,0.3894,
+cumulative_share,FORECAST 26/27,top 6 of club,share of 37620,0.479,
+cumulative_share,2023-24,top 6 of club,share of 37620,0.4442,
+cumulative_share,2024-25,top 6 of club,share of 37620,0.4522,
+cumulative_share,2025-26,top 6 of club,share of 37620,0.4545,
+cumulative_share,FORECAST 26/27,top 7 of club,share of 37620,0.5462,
+cumulative_share,2023-24,top 7 of club,share of 37620,0.5045,
+cumulative_share,2024-25,top 7 of club,share of 37620,0.5138,
+cumulative_share,2025-26,top 7 of club,share of 37620,0.5151,
+cumulative_share,FORECAST 26/27,top 8 of club,share of 37620,0.6095,
+cumulative_share,2023-24,top 8 of club,share of 37620,0.5604,
+cumulative_share,2024-25,top 8 of club,share of 37620,0.5723,
+cumulative_share,2025-26,top 8 of club,share of 37620,0.5708,
+cumulative_share,FORECAST 26/27,top 9 of club,share of 37620,0.6686,
+cumulative_share,2023-24,top 9 of club,share of 37620,0.6131,
+cumulative_share,2024-25,top 9 of club,share of 37620,0.6264,
+cumulative_share,2025-26,top 9 of club,share of 37620,0.6221,
+cumulative_share,FORECAST 26/27,top 10 of club,share of 37620,0.7244,
+cumulative_share,2023-24,top 10 of club,share of 37620,0.6623,
+cumulative_share,2024-25,top 10 of club,share of 37620,0.6766,
+cumulative_share,2025-26,top 10 of club,share of 37620,0.67,
+cumulative_share,FORECAST 26/27,top 11 of club,share of 37620,0.7746,
+cumulative_share,2023-24,top 11 of club,share of 37620,0.7073,
+cumulative_share,2024-25,top 11 of club,share of 37620,0.7236,
+cumulative_share,2025-26,top 11 of club,share of 37620,0.7149,
+cumulative_share,FORECAST 26/27,top 12 of club,share of 37620,0.817,
+cumulative_share,2023-24,top 12 of club,share of 37620,0.7477,
+cumulative_share,2024-25,top 12 of club,share of 37620,0.7664,
+cumulative_share,2025-26,top 12 of club,share of 37620,0.7566,
+cumulative_share,FORECAST 26/27,top 13 of club,share of 37620,0.8542,
+cumulative_share,2023-24,top 13 of club,share of 37620,0.7842,
+cumulative_share,2024-25,top 13 of club,share of 37620,0.8039,
+cumulative_share,2025-26,top 13 of club,share of 37620,0.7945,
+cumulative_share,FORECAST 26/27,top 14 of club,share of 37620,0.886,
+cumulative_share,2023-24,top 14 of club,share of 37620,0.8168,
+cumulative_share,2024-25,top 14 of club,share of 37620,0.8359,
+cumulative_share,2025-26,top 14 of club,share of 37620,0.8291,
+cumulative_share,FORECAST 26/27,top 15 of club,share of 37620,0.9127,
+cumulative_share,2023-24,top 15 of club,share of 37620,0.8474,
+cumulative_share,2024-25,top 15 of club,share of 37620,0.8637,
+cumulative_share,2025-26,top 15 of club,share of 37620,0.8598,
+cumulative_share,FORECAST 26/27,top 16 of club,share of 37620,0.9361,
+cumulative_share,2023-24,top 16 of club,share of 37620,0.8752,
+cumulative_share,2024-25,top 16 of club,share of 37620,0.8887,
+cumulative_share,2025-26,top 16 of club,share of 37620,0.8867,
+cumulative_share,FORECAST 26/27,top 17 of club,share of 37620,0.9554,
+cumulative_share,2023-24,top 17 of club,share of 37620,0.9003,
+cumulative_share,2024-25,top 17 of club,share of 37620,0.9098,
+cumulative_share,2025-26,top 17 of club,share of 37620,0.9107,
+cumulative_share,FORECAST 26/27,top 18 of club,share of 37620,0.9699,
+cumulative_share,2023-24,top 18 of club,share of 37620,0.9224,
+cumulative_share,2024-25,top 18 of club,share of 37620,0.927,
+cumulative_share,2025-26,top 18 of club,share of 37620,0.9311,
+cumulative_share,FORECAST 26/27,top 19 of club,share of 37620,0.9801,
+cumulative_share,2023-24,top 19 of club,share of 37620,0.94,
+cumulative_share,2024-25,top 19 of club,share of 37620,0.9423,
+cumulative_share,2025-26,top 19 of club,share of 37620,0.9491,
+cumulative_share,FORECAST 26/27,top 20 of club,share of 37620,0.9878,
+cumulative_share,2023-24,top 20 of club,share of 37620,0.954,
+cumulative_share,2024-25,top 20 of club,share of 37620,0.955,
+cumulative_share,2025-26,top 20 of club,share of 37620,0.9642,
+cumulative_share,FORECAST 26/27,top 21 of club,share of 37620,0.9921,
+cumulative_share,2023-24,top 21 of club,share of 37620,0.9655,
+cumulative_share,2024-25,top 21 of club,share of 37620,0.9661,
+cumulative_share,2025-26,top 21 of club,share of 37620,0.9758,
+cumulative_share,FORECAST 26/27,top 22 of club,share of 37620,0.9949,
+cumulative_share,2023-24,top 22 of club,share of 37620,0.9739,
+cumulative_share,2024-25,top 22 of club,share of 37620,0.9744,
+cumulative_share,2025-26,top 22 of club,share of 37620,0.9832,
+cumulative_share,FORECAST 26/27,top 23 of club,share of 37620,0.9968,
+cumulative_share,2023-24,top 23 of club,share of 37620,0.9802,
+cumulative_share,2024-25,top 23 of club,share of 37620,0.9806,
+cumulative_share,2025-26,top 23 of club,share of 37620,0.9879,
+cumulative_share,FORECAST 26/27,top 24 of club,share of 37620,0.9979,
+cumulative_share,2023-24,top 24 of club,share of 37620,0.985,
+cumulative_share,2024-25,top 24 of club,share of 37620,0.9851,
+cumulative_share,2025-26,top 24 of club,share of 37620,0.9906,
+cumulative_share,FORECAST 26/27,top 25 of club,share of 37620,0.9985,
+cumulative_share,2023-24,top 25 of club,share of 37620,0.9887,
+cumulative_share,2024-25,top 25 of club,share of 37620,0.9884,
+cumulative_share,2025-26,top 25 of club,share of 37620,0.9927,
+cumulative_share,FORECAST 26/27,top 26 of club,share of 37620,0.9987,
+cumulative_share,2023-24,top 26 of club,share of 37620,0.9911,
+cumulative_share,2024-25,top 26 of club,share of 37620,0.9908,
+cumulative_share,2025-26,top 26 of club,share of 37620,0.9938,
+cumulative_share,FORECAST 26/27,top 27 of club,share of 37620,0.9987,
+cumulative_share,2023-24,top 27 of club,share of 37620,0.993,
+cumulative_share,2024-25,top 27 of club,share of 37620,0.9924,
+cumulative_share,2025-26,top 27 of club,share of 37620,0.9944,
+cumulative_share,FORECAST 26/27,top 28 of club,share of 37620,0.9987,
+cumulative_share,2023-24,top 28 of club,share of 37620,0.994,
+cumulative_share,2024-25,top 28 of club,share of 37620,0.9935,
+cumulative_share,2025-26,top 28 of club,share of 37620,0.9947,
+cumulative_share,FORECAST 26/27,top 29 of club,share of 37620,0.9987,
+cumulative_share,2023-24,top 29 of club,share of 37620,0.9946,
+cumulative_share,2024-25,top 29 of club,share of 37620,0.9941,
+cumulative_share,2025-26,top 29 of club,share of 37620,0.9948,
+cumulative_share,FORECAST 26/27,top 30 of club,share of 37620,0.9987,
+cumulative_share,2023-24,top 30 of club,share of 37620,0.9949,
+cumulative_share,2024-25,top 30 of club,share of 37620,0.9945,
+cumulative_share,2025-26,top 30 of club,share of 37620,0.9949,
+cumulative_share,FORECAST 26/27,top 31 of club,share of 37620,0.9987,
+cumulative_share,2023-24,top 31 of club,share of 37620,0.9949,
+cumulative_share,2024-25,top 31 of club,share of 37620,0.9946,
+cumulative_share,2025-26,top 31 of club,share of 37620,0.9949,
+cumulative_share,FORECAST 26/27,top 32 of club,share of 37620,0.9987,
+cumulative_share,2023-24,top 32 of club,share of 37620,0.995,
+cumulative_share,2024-25,top 32 of club,share of 37620,0.9947,
+cumulative_share,2025-26,top 32 of club,share of 37620,0.9949,
+bands_gw1_roster,FORECAST 26/27 (n=582),league,band 0,108.0,
+bands_gw1_roster,FORECAST 26/27 (n=582),league,band 1-500,123.0,
+bands_gw1_roster,FORECAST 26/27 (n=582),league,band 500-1500,108.0,
+bands_gw1_roster,FORECAST 26/27 (n=582),league,band 1500-2500,108.0,
+bands_gw1_roster,FORECAST 26/27 (n=582),league,band 2500-3000,74.0,
+bands_gw1_roster,FORECAST 26/27 (n=582),league,band 3000+,61.0,
+bands_gw1_roster,FORECAST 26/27 (n=582),league,band total,582.0,
+bands_gw1_roster,actual 2023-24 GW1 roster (n=658),league,band 0,186.0,
+bands_gw1_roster,actual 2023-24 GW1 roster (n=658),league,band 1-500,121.0,
+bands_gw1_roster,actual 2023-24 GW1 roster (n=658),league,band 500-1500,131.0,
+bands_gw1_roster,actual 2023-24 GW1 roster (n=658),league,band 1500-2500,121.0,
+bands_gw1_roster,actual 2023-24 GW1 roster (n=658),league,band 2500-3000,61.0,
+bands_gw1_roster,actual 2023-24 GW1 roster (n=658),league,band 3000+,38.0,
+bands_gw1_roster,actual 2023-24 GW1 roster (n=658),league,band total,658.0,
+bands_gw1_roster,actual 2024-25 GW1 roster (n=616),league,band 0,138.0,
+bands_gw1_roster,actual 2024-25 GW1 roster (n=616),league,band 1-500,124.0,
+bands_gw1_roster,actual 2024-25 GW1 roster (n=616),league,band 500-1500,126.0,
+bands_gw1_roster,actual 2024-25 GW1 roster (n=616),league,band 1500-2500,125.0,
+bands_gw1_roster,actual 2024-25 GW1 roster (n=616),league,band 2500-3000,63.0,
+bands_gw1_roster,actual 2024-25 GW1 roster (n=616),league,band 3000+,40.0,
+bands_gw1_roster,actual 2024-25 GW1 roster (n=616),league,band total,616.0,
+bands_gw1_roster,actual 2025-26 GW1 roster (n=690),league,band 0,228.0,
+bands_gw1_roster,actual 2025-26 GW1 roster (n=690),league,band 1-500,107.0,
+bands_gw1_roster,actual 2025-26 GW1 roster (n=690),league,band 500-1500,136.0,
+bands_gw1_roster,actual 2025-26 GW1 roster (n=690),league,band 1500-2500,119.0,
+bands_gw1_roster,actual 2025-26 GW1 roster (n=690),league,band 2500-3000,58.0,
+bands_gw1_roster,actual 2025-26 GW1 roster (n=690),league,band 3000+,42.0,
+bands_gw1_roster,actual 2025-26 GW1 roster (n=690),league,band total,690.0,
+late_arrivals,2023-24,league,players added after GW1,207.0,
+late_arrivals,2023-24,league,minutes they played,61305.0,
+late_arrivals,2023-24,league,share of league budget,0.0815,
+late_arrivals,2023-24,league,of them with 500+ minutes,44.0,
+late_arrivals,2024-25,league,players added after GW1,188.0,
+late_arrivals,2024-25,league,minutes they played,50825.0,
+late_arrivals,2024-25,league,share of league budget,0.0676,
+late_arrivals,2024-25,league,of them with 500+ minutes,31.0,
+late_arrivals,2025-26,league,players added after GW1,151.0,
+late_arrivals,2025-26,league,minutes they played,67345.0,
+late_arrivals,2025-26,league,share of league budget,0.0895,
+late_arrivals,2025-26,league,of them with 500+ minutes,39.0,
+zero_rate,2023-24,GW1 roster,pct on 0 minutes,0.2827,
+zero_rate,2024-25,GW1 roster,pct on 0 minutes,0.224,
+zero_rate,2025-26,GW1 roster,pct on 0 minutes,0.3304,
+zero_rate,2026-27,forecast,pct on 0 minutes,0.1856,
+keepers,2026-27,forecast,clubs with a 3000+ keeper,20.0,
+keepers,2026-27,forecast,clubs with a 3200+ keeper,18.0,
+keepers,2026-27,forecast,keepers used per club (mean),2.05,
+keepers,2023-24,actual,clubs with a 3000+ keeper,8.0,
+keepers,2023-24,actual,clubs with a 3200+ keeper,6.0,
+keepers,2023-24,actual,keepers used per club (mean),2.0,
+keepers,2024-25,actual,clubs with a 3000+ keeper,9.0,
+keepers,2024-25,actual,clubs with a 3200+ keeper,7.0,
+keepers,2024-25,actual,keepers used per club (mean),2.2,
+keepers,2025-26,actual,clubs with a 3000+ keeper,11.0,
+keepers,2025-26,actual,clubs with a 3200+ keeper,7.0,
+keepers,2025-26,actual,keepers used per club (mean),2.0,
+outfield,2026-27,forecast,>=3000,43.0,
+outfield,2026-27,forecast,>=2500,119.0,
+outfield,2026-27,forecast,>=2000,174.0,
+outfield,2023-24,actual,>=3000,32.0,
+outfield,2023-24,actual,>=2500,88.0,
+outfield,2023-24,actual,>=2000,146.0,
+outfield,2024-25,actual,>=3000,33.0,
+outfield,2024-25,actual,>=2500,91.0,
+outfield,2024-25,actual,>=2000,152.0,
+outfield,2025-26,actual,>=3000,33.0,
+outfield,2025-26,actual,>=2500,90.0,
+outfield,2025-26,actual,>=2000,137.0,
+top_n_share,FORECAST 26/27,top 11,mean share of 37620,0.7746,
+top_n_share,2023-24,top 11,mean share of 37620,0.7073,
+top_n_share,2024-25,top 11,mean share of 37620,0.7236,
+top_n_share,2025-26,top 11,mean share of 37620,0.7149,
+top_n_share,FORECAST 26/27,top 14,mean share of 37620,0.886,
+top_n_share,2023-24,top 14,mean share of 37620,0.8168,
+top_n_share,2024-25,top 14,mean share of 37620,0.8359,
+top_n_share,2025-26,top 14,mean share of 37620,0.8291,
+top_n_share,FORECAST 26/27,top 16,mean share of 37620,0.9361,
+top_n_share,2023-24,top 16,mean share of 37620,0.8752,
+top_n_share,2024-25,top 16,mean share of 37620,0.8887,
+top_n_share,2025-26,top 16,mean share of 37620,0.8867,
+top_n_share,FORECAST 26/27,top 18,mean share of 37620,0.9699,
+top_n_share,2023-24,top 18,mean share of 37620,0.9224,
+top_n_share,2024-25,top 18,mean share of 37620,0.927,
+top_n_share,2025-26,top 18,mean share of 37620,0.9311,
+top_n_share,FORECAST 26/27,top 22,mean share of 37620,0.9949,
+top_n_share,2023-24,top 22,mean share of 37620,0.9739,
+top_n_share,2024-25,top 22,mean share of 37620,0.9744,
+top_n_share,2025-26,top 22,mean share of 37620,0.9832,
+club_thresholds,FORECAST 26/27,>=1000,mean per club,14.8,
+club_thresholds,FORECAST 26/27,>=1000,max club,18.0,
+club_thresholds,FORECAST 26/27,>=1000,min club,11.0,
+club_thresholds,FORECAST 26/27,>=2000,mean per club,9.7,
+club_thresholds,FORECAST 26/27,>=2000,max club,11.0,
+club_thresholds,FORECAST 26/27,>=2000,min club,7.0,
+club_thresholds,FORECAST 26/27,>=2500,mean per club,6.95,
+club_thresholds,FORECAST 26/27,>=2500,max club,9.0,
+club_thresholds,FORECAST 26/27,>=2500,min club,3.0,
+club_thresholds,FORECAST 26/27,>=3000,mean per club,3.15,
+club_thresholds,FORECAST 26/27,>=3000,max club,5.0,
+club_thresholds,FORECAST 26/27,>=3000,min club,1.0,
+club_thresholds,actual 2023-24,>=1000,mean per club,15.95,
+club_thresholds,actual 2023-24,>=1000,max club,19.0,
+club_thresholds,actual 2023-24,>=1000,min club,13.0,
+club_thresholds,actual 2023-24,>=2000,mean per club,8.05,
+club_thresholds,actual 2023-24,>=2000,max club,11.0,
+club_thresholds,actual 2023-24,>=2000,min club,3.0,
+club_thresholds,actual 2023-24,>=2500,mean per club,5.15,
+club_thresholds,actual 2023-24,>=2500,max club,9.0,
+club_thresholds,actual 2023-24,>=2500,min club,2.0,
+club_thresholds,actual 2023-24,>=3000,mean per club,2.0,
+club_thresholds,actual 2023-24,>=3000,max club,4.0,
+club_thresholds,actual 2023-24,>=3000,min club,0.0,
+club_thresholds,actual 2024-25,>=1000,mean per club,15.25,
+club_thresholds,actual 2024-25,>=1000,max club,18.0,
+club_thresholds,actual 2024-25,>=1000,min club,12.0,
+club_thresholds,actual 2024-25,>=2000,mean per club,8.55,
+club_thresholds,actual 2024-25,>=2000,max club,11.0,
+club_thresholds,actual 2024-25,>=2000,min club,6.0,
+club_thresholds,actual 2024-25,>=2500,mean per club,5.3,
+club_thresholds,actual 2024-25,>=2500,max club,8.0,
+club_thresholds,actual 2024-25,>=2500,min club,1.0,
+club_thresholds,actual 2024-25,>=3000,mean per club,2.1,
+club_thresholds,actual 2024-25,>=3000,max club,5.0,
+club_thresholds,actual 2024-25,>=3000,min club,0.0,
+club_thresholds,actual 2025-26,>=1000,mean per club,16.05,
+club_thresholds,actual 2025-26,>=1000,max club,20.0,
+club_thresholds,actual 2025-26,>=1000,min club,14.0,
+club_thresholds,actual 2025-26,>=2000,mean per club,7.75,
+club_thresholds,actual 2025-26,>=2000,max club,10.0,
+club_thresholds,actual 2025-26,>=2000,min club,5.0,
+club_thresholds,actual 2025-26,>=2500,mean per club,5.25,
+club_thresholds,actual 2025-26,>=2500,max club,8.0,
+club_thresholds,actual 2025-26,>=2500,min club,2.0,
+club_thresholds,actual 2025-26,>=3000,mean per club,2.2,
+club_thresholds,actual 2025-26,>=3000,max club,4.0,
+club_thresholds,actual 2025-26,>=3000,min club,0.0,
+stability,2021/22,league,players >=3000 mins,39.0,weighted 0 before 23/24
+stability,2021/22,league,players >=2500 mins,100.0,weighted 0 before 23/24
+stability,2022/23,league,players >=3000 mins,46.0,weighted 0 before 23/24
+stability,2022/23,league,players >=2500 mins,99.0,weighted 0 before 23/24
+stability,2023/24,league,players >=3000 mins,40.0,weighted 0 before 23/24
+stability,2023/24,league,players >=2500 mins,103.0,weighted 0 before 23/24
+stability,2024/25,league,players >=3000 mins,42.0,weighted 0 before 23/24
+stability,2024/25,league,players >=2500 mins,106.0,weighted 0 before 23/24
+stability,2025/26,league,players >=3000 mins,44.0,weighted 0 before 23/24
+stability,2025/26,league,players >=2500 mins,105.0,weighted 0 before 23/24
+stability,2026-27,forecast,players >=3000 mins,63.0,
+stability,2026-27,forecast,players >=2500 mins,139.0,
+top_end_by_source,2026-27,Solio untouched rows,n rows,353.0,
+top_end_by_source,2026-27,research rows,n rows,226.0,
+top_end_by_source,2026-27,25/26 actual rows,n rows,3.0,
+top_end_by_source,2026-27,Solio untouched rows,of them >=3000,52.0,
+top_end_by_source,2026-27,research rows,of them >=3000,11.0,
+top_end_by_source,2026-27,25/26 actual rows,of them >=3000,0.0,
+top_end_by_source,2026-27,"Solio raw, all 568 draftable rows",>=3000,89.0,
+top_end_by_source,2026-27,"Solio raw, all 568 draftable rows",>=2500,162.0,
+top_end_by_source,2026-27,the 215 researched rows,Solio said >=3000,37.0,
+top_end_by_source,2026-27,the 215 researched rows,research says >=3000,11.0,
+top_end_by_source,2026-27,the 215 researched rows,mean minutes delta vs Solio,0.0,"research redistributed, it did not shrink"
