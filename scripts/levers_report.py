@@ -334,6 +334,14 @@ def assemble() -> pd.DataFrame:
         # weighting loses out of sample on seven of nine folds, so what ships
         # is the flag, which is a prompt to go and find out why -- the thing
         # only a human can do.
+        # How far a minutes forecast can reasonably be wrong, measured from
+        # four season-to-season pairs.  An ever-present's band is 0.80-1.26; a
+        # squad player's is 0.40-1.58, which is the whole reason a fifteenth
+        # pick and a first pick should not be judged the same way.
+        "mins_lo": m.get("mins_lo_mult", pd.Series(0.55, index=m.index)).fillna(0.55),
+        "mins_hi": m.get("mins_hi_mult", pd.Series(1.25, index=m.index)).fillna(1.25),
+        "games_missed": m.get("expected_games_missed_2627"),
+
         "rec_z_xg": m.get("recency_z_xg"),
         "rec_z_xa": m.get("recency_z_xa"),
         "rec_z_dc": m.get("recency_z_dc"),
@@ -745,6 +753,9 @@ COLS = [
     ("adp", "ADP", True, "Draft", "num1"),
     ("band", "There at", True, "Draft", None),
     ("xpts", "xPts", True, "Model", None),
+    ("floor_xpts", "Floor", True, "Model", None),
+    ("ceil_xpts", "Ceiling", True, "Model", None),
+    ("pick_value", "Pick value", True, "Model", None),
     ("vorp", "VORP", True, "Model", None),
     ("rvorp1", "R1 VORP", True, "Rapid VORP", None),
     ("rvorp2", "R2 VORP", True, "Rapid VORP", None),
@@ -764,7 +775,8 @@ let tray = load(K.tray, []);
 let marked = new Set(load(K.mark, []));
 let edits = load(K.edit, {});
 let notes = load(K.notes, {});
-let draft = Object.assign({slot:5, teams:8, rounds:15, on:true}, load(K.draft, {}));
+let draft = Object.assign({slot:5, teams:8, rounds:15, on:true, cross:8},
+                          load(K.draft, {}));
 let order = load(K.cols, null) || COLS.map(c => c.k);
 // A saved order from an older build can be missing columns or naming ones that
 // no longer exist; reconcile rather than rendering a broken table.
@@ -858,10 +870,11 @@ function penPtsOf(r){
   return p * (PEN_CONV * sc.goal - (1 - PEN_CONV) * MISS_PTS) + r.pen_save_pts;
 }
 
-function scoreOne(r){
+function scoreOne(r, xmOverride){
   const sc = SCORING[val(r, 'pos')];
-  if (!sc) return {matches:0, app:0, hit:0, dc:0, xpts:0};
-  const xm = Math.max(0, Number(val(r, 'xmins_adj')) || 0);
+  if (!sc) return {matches:0, app:0, hit:0, dc:0, bpm:0, bonus:0, xpts:0};
+  const xm = Math.max(0, xmOverride !== undefined ? xmOverride
+                                                  : (Number(val(r, 'xmins_adj')) || 0));
   const mps = Math.max(0, Number(val(r, 'mins_per_start')) || 0);
   const matches = mps > 0 ? Math.min(MATCHES, xm / mps) : 0;
   const mpa = matches > 0 ? xm / matches : 0;
@@ -933,6 +946,41 @@ function recompute(){
     let last = -1;
     picks.forEach((p, i) => { if (p < r._adp) last = i; });
     r._band = last;
+  });
+
+  /* Floor, ceiling, and what the pick is actually worth at the round you
+     would be making it.
+
+     An early pick is a core player you cannot replace, so his downside is what
+     costs you. A fifteenth-round pick can be dropped for somebody off the free
+     pool for almost nothing, so his downside costs you almost nothing and his
+     upside is the only reason to take him. Ranking the whole board on the
+     expected value prices neither.
+
+     `t` runs from +1 at the first round (judge him on his floor) through 0 at
+     the crossover round to -1 at the last (judge him on his ceiling). The
+     crossover is a strategy choice, so it is an input, not a constant. */
+  DATA.forEach(r => {
+    const xm = Math.max(0, Number(val(r, 'xmins_adj')) || 0);
+    // Capped at the 3,420 minutes a season physically has. Without the cap a
+    // 1.6x band on a 3,200-minute forecast claims 5,400 minutes.
+    const lo = scoreOne(r, Math.min(xm * r.mins_lo, 3420)).xpts;
+    const hi = scoreOne(r, Math.min(xm * r.mins_hi, 3420)).xpts;
+    // Named by outcome, not by minutes. For a promoted club's defender with no
+    // attacking rates at all the per-90 rate is negative, so more minutes
+    // score fewer points and the high-minutes case IS his downside.
+    r._floor = Math.min(lo, hi, r._xpts);
+    r._ceil  = Math.max(lo, hi, r._xpts);
+    // A player nobody in the ADP sample drafted is a last-round pick, not an
+    // unknown one; a player gone before my first pick is a first-round player.
+    const round = r._band === null ? draft.rounds
+                : r._band < 0 ? 1 : Math.min(r._band + 1, draft.rounds);
+    const c = Math.min(Math.max(draft.cross, 2), draft.rounds - 1);
+    const tt = round <= c ? (c - round) / (c - 1)
+                          : -(round - c) / (draft.rounds - c);
+    r._t = tt;
+    r._pickval = r._xpts + (tt > 0 ? tt * (r._floor - r._xpts)
+                                   : -tt * (r._ceil - r._xpts));
   });
 
   /* Rapid VORP, at five depths.  Not "better than a replacement-level body at
@@ -1035,6 +1083,18 @@ const CELL = {
       r._band < 0 ? '<span class="bandtag gone">gone</span>'
                   : `<span class="bandtag">R${r._band + 1}</span>`}</td>`,
   xpts: r => `<td class="num">${fmt(r._xpts, 1)}</td>`,
+  floor_xpts: r => `<td class="num" title="Scored at ${Math.round(r.mins_lo * 100)}% of his minutes -- the 20th percentile of how wrong a minutes forecast turns out to be for a player with his last-season minutes and his age. One player in five lands here or worse.">${fmt(r._floor, 1)}</td>`,
+  ceil_xpts: r => `<td class="num" title="Scored at ${Math.round(r.mins_hi * 100)}% of his minutes -- the 80th percentile of the same band.">${fmt(r._ceil, 1)}</td>`,
+  pick_value: r => {
+    const w = r._t > 0 ? `${Math.round(r._t * 100)}% toward his floor`
+            : r._t < 0 ? `${Math.round(-r._t * 100)}% toward his ceiling`
+                       : 'on his expected value';
+    const cls = r._pickval > r._xpts + 0.05 ? 'up'
+              : r._pickval < r._xpts - 0.05 ? 'down' : '';
+    return `<td class="num" title="xPts weighted ${w}, because his ADP puts him in round ${
+      r._band === null ? draft.rounds : r._band < 0 ? 1 : r._band + 1} and the crossover is set to round ${draft.cross}.">
+      <span class="delta ${cls}">${fmt(r._pickval, 1)}</span></td>`;
+  },
   vorp: r => `<td class="num">${fmt(r._vorp, 1)}</td>`,
   rvorp1: r => rvorpCell(r, 1), rvorp2: r => rvorpCell(r, 2),
   rvorp3: r => rvorpCell(r, 3), rvorp4: r => rvorpCell(r, 4),
@@ -1153,7 +1213,8 @@ const SORTED = {matches:'_matches', xpts:'_xpts', vorp:'_vorp',
                 rvorp4:'_rvorp4', rvorp5:'_rvorp5',
                 adp:'_adp', xg_season:'_xg', xa_season:'_xa', defcon_hit:'_hit',
                 role:'_role', threat:'_threat', band:'_band', rec_z:'_rec_z',
-                bonus_pm:'_bpm'};
+                bonus_pm:'_bpm', floor_xpts:'_floor', ceil_xpts:'_ceil',
+                pick_value:'_pickval'};
 
 function render(){
   const key = SORTED[sortKey] || sortKey;
@@ -1378,7 +1439,7 @@ $('#togglePanels').addEventListener('click', () => {
   const off = $('#layout').classList.toggle('no-side');
   $('#togglePanels').textContent = off ? 'Show panels' : 'Hide panels';
 });
-['slot', 'teams'].forEach(f => $('#' + f).addEventListener('change', e => {
+['slot', 'teams', 'cross'].forEach(f => $('#' + f).addEventListener('change', e => {
   const v = Number(e.target.value);
   if (Number.isFinite(v) && v > 0) draft[f] = v;
   if (draft.slot > draft.teams){ draft.slot = draft.teams; $('#slot').value = draft.slot; }
@@ -1403,6 +1464,7 @@ $('#resetCols').addEventListener('click', () => {
 });
 
 $('#slot').value = draft.slot; $('#teams').value = draft.teams;
+$('#cross').value = draft.cross;
 $('#slot').max = draft.teams;
 $('#bandsOn').setAttribute('aria-pressed', String(draft.on));
 recompute(); renderHead(); render(); renderSide();
@@ -1483,6 +1545,8 @@ def html(df: pd.DataFrame) -> str:
     <input type="number" id="slot" min="1" max="8" step="1" style="width:58px"></label>
   <label class="picks">Teams
     <input type="number" id="teams" min="2" max="20" step="1" style="width:58px"></label>
+  <label class="picks" title="The round where Pick value stops leaning on a player's floor and starts leaning on his ceiling. Before it, availability risk is priced in; after it, upside is, because a late pick costs almost nothing to drop.">Risk crossover round
+    <input type="number" id="cross" min="2" max="14" step="1" style="width:58px"></label>
   <button class="chip" id="bandsOn" aria-pressed="true">Shade by draft band</button>
   <button class="chip" id="stripes" aria-pressed="true">Shade my pick rows</button>
   <span class="count"><span id="editN"></span>

@@ -388,6 +388,55 @@ and a −0.51 bias; both are printed so the trade is visible.
 source publishes times-tackled per match; and the goalkeeper save-location
 changes.
 
+### Floor, ceiling, and pick value
+
+One expected-points number ranks the whole board the same way, and a draft does
+not work like that. A first-round pick is a core player you cannot replace, so
+his downside is what costs you. A fifteenth-round pick can be dropped for
+somebody off the free pool for almost nothing, so his downside costs almost
+nothing and his upside is the only reason to take him.
+
+`minutes_risk.py` measures how wrong a minutes forecast turns out to be, from
+four season-to-season pairs. It fits what a reasonable forecast would have been
+(binned means on last season's minutes and age — not a regression, because
+minutes are censored at 3,420 and the bottom of the range behaves nothing like
+the top), then reads the 20th and 80th percentiles of actual ÷ forecast:
+
+| Forecast minutes | Floor | Ceiling |
+|---|---:|---:|
+| 900–1,700 | 0.32× | 1.62× |
+| 1,700–2,400 | 0.59× | 1.39× |
+| 2,400–2,900 | 0.80× | 1.26× |
+
+The asymmetry is the whole point. An ever-present's minutes are knowable to
+±25%; a squad player's are not knowable at all. Where the injury model has a
+player's actual history of games missed it moves his floor, capped at ±15% so
+one unusual record cannot halve it on its own.
+
+The band is checked out of sample — fit on three pairs, test coverage on the
+fourth: **62.3% of players landed inside a band claiming 60%, and 18.3% below a
+floor claiming 20%.**
+
+Two mistakes worth recording, because both looked fine until they were checked.
+The band was first indexed on *last season's* minutes, which handed every
+promoted-club regular the band of a fringe player and put six of them on a
+ceiling of 5,400 minutes in a 3,420-minute season. And "ceiling" cannot simply
+mean "more minutes": a promoted club's centre-half with no attacking rates at
+all has a *negative* per-90 rate, so more minutes score him fewer points and
+the high-minutes case is his downside. Floor and ceiling are named by outcome.
+
+`Pick value` then blends them by the round his ADP puts him in:
+
+```
+t = +1 at round 1 → 0 at the crossover round → −1 at the last round
+value = xPts + (t>0 ? t·(floor − xPts) : −t·(ceiling − xPts))
+```
+
+The crossover is a strategy choice, not a constant, so it is an input on the
+page — default round 8. At the default, Bukayo Saka in round 1 is judged
+entirely on his floor (156.5, not 201.7) and Mats Wieffer in round 12 comes out
+at 166.4 against an expected 156.0.
+
 ### Recency weighting, and why it is off
 
 `recency.py` splits each player's 2025/26 into two halves of equal **minutes**

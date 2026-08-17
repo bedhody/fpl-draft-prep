@@ -37,6 +37,7 @@ import fetch_solio
 import fetch_understat
 import fetch_vaastav
 import levers_report
+import minutes_risk
 import penalties_model
 import recency
 import research_xmins
@@ -151,6 +152,9 @@ def main() -> int:
     # here because its output goes into the master with the scoring models.
     print("\n=== recency: which rates moved more than noise ===")
     recency.main()
+    # Needs the panel (four seasons of minutes) and the master's birth dates.
+    print("\n=== how wrong a minutes forecast can be ===")
+    minutes_risk.main()
     print("\n=== re-merge with the scoring models ===")
     build_master.build()
 
