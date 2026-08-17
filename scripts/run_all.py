@@ -38,6 +38,7 @@ import fetch_understat
 import fetch_vaastav
 import history_study
 import levers_report
+import pro_gap
 import minutes_risk
 import penalties_model
 import recency
@@ -168,6 +169,10 @@ def main() -> int:
     # five seasons of history, so it runs after the model is built.
     print("\n=== five seasons restated under 2026/27 rules ===")
     history_study.main()
+    # Compares the finished projection against the published rankings, so it
+    # runs last of the reports.
+    print("\n=== model against the published rankings ===")
+    pro_gap.main()
     print("\n=== verify xPts formulas ===")
     rc = verify_xpts.main()
 

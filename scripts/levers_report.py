@@ -34,7 +34,7 @@ import pandas as pd
 
 import xpts_calc
 import xpts_model
-from common import PROC, OUT, strip_accents
+from common import RAW, PROC, OUT, strip_accents
 
 RESEARCH = PROC / "club_research"
 
@@ -162,8 +162,13 @@ def research_roles(m: pd.DataFrame) -> pd.DataFrame:
 # --------------------------------------------------------------------------
 # Published draft rankings from named analysts
 # --------------------------------------------------------------------------
-def pro_rankings(m: pd.DataFrame) -> pd.Series:
+def pro_rankings(m: pd.DataFrame, detail: bool = False):
     """Mean published rank per player, across whichever analysts were found.
+
+    With `detail`, also returns the matched rows from the whole-draft lists, so
+    a caller can see which analysts named a player and at what rank rather than
+    only the mean of them.  The name matching is fiddly enough that a second
+    copy of it elsewhere would be a second thing to get wrong.
 
     Deliberately averages the rank rather than scoring it: an analyst who ranks
     only a top 30 says nothing about number 31, and inventing a number for him
@@ -180,31 +185,52 @@ def pro_rankings(m: pd.DataFrame) -> pd.Series:
     # between the two is the whole reason verify_pro_rankings.py exists.
     path = PROC / "pro_rankings" / "rankings_verified.csv"
     blank = pd.Series(np.nan, index=m.index, dtype=float)
+    empty_rows = pd.DataFrame(columns=["code", "source_name", "rank", "player_name"])
     if not path.exists():
         print("  no rankings_verified.csv -- run verify_pro_rankings.py; "
               "ADR Pros left empty")
-        return blank
+        return (blank, empty_rows) if detail else blank
 
     r = pd.read_csv(path)
     if r.empty or "player_name" not in r.columns:
         print("  rankings_verified.csv is empty -- ADR Pros left empty")
-        return blank
+        return (blank, empty_rows) if detail else blank
     if "verified" in r.columns:
         dropped = int((~r["verified"].astype(bool)).sum())
         r = r[r["verified"].astype(bool)]
         if dropped:
             print(f"  {dropped} unverified ranking row(s) excluded")
 
-    # Published lists name players three different ways: in full ("Alisson
-    # Becker"), by surname alone ("Gross"), and abbreviated ("A.Becker").  So
-    # match on the full name first, then fall back to the surname -- but only
-    # where that surname belongs to exactly one player, since "Adams" and
-    # "Gabriel" do not identify anybody on their own.
-    by_full: dict[str, int] = {}
+    # Published lists name players four different ways: in full ("Alisson
+    # Becker"), by surname alone ("Gross"), abbreviated ("A.Becker"), and by
+    # FPL's own display name ("Gabriel", "Virgil", "Enzo").  That last one is
+    # the important case and it used to be dropped on the floor: analysts write
+    # what the FPL site shows them, and the site shows web_name.  Gabriel
+    # Magalhaes is "Gabriel" there, so all four whole-draft lists ranked him 3rd
+    # to 9th and every one of them failed to match, along with Van Dijk,
+    # Palmer, Cunha and a dozen more.
+    #
+    # So web_name is a matching key, taken from FPL's own bootstrap, and the
+    # club column disambiguates whatever is left -- "Gabriel" alone is three
+    # players at Arsenal, but FPL calls exactly one of them that.
+    by_full: dict[str, set[int]] = {}
+    by_web: dict[str, set[int]] = {}
     surnames: dict[str, set[int]] = {}
+    club_of = dict(m[["code", "team_2627"]].dropna().itertuples(index=False))
+
+    web = {}
+    boot = RAW / "fpl" / "bootstrap.json"
+    if boot.exists():
+        elements = json.loads(boot.read_text()).get("elements", [])
+        web = {int(e["code"]): e["web_name"] for e in elements if e.get("web_name")}
+    else:
+        print("  no fpl/bootstrap.json -- matching without FPL display names")
+
     for code, player in m[["code", "player"]].itertuples(index=False):
         key = norm(player)
-        by_full.setdefault(key, code)
+        by_full.setdefault(key, set()).add(code)
+        if code in web:
+            by_web.setdefault(norm(web[code]), set()).add(code)
         parts = key.split()
         if parts:
             surnames.setdefault(parts[-1], set()).add(code)
@@ -215,17 +241,46 @@ def pro_rankings(m: pd.DataFrame) -> pd.Series:
                 # rule -- "Gibbs-White" would collide with Ben White.
                 surnames.setdefault(" ".join(parts[-2:]), set()).add(code)
 
-    def resolve(name: str) -> int | None:
+    # Published club name -> the short code the model uses.  FPL's own team
+    # table supplies both sides, so this is a lookup rather than a guess; the
+    # prefix fallback is only for "Nottingham Forest" against FPL's "Nott'm
+    # Forest", and it has to be unique among the twenty to count.
+    club_code: dict[str, str] = {}
+    if boot.exists():
+        for t in json.loads(boot.read_text()).get("teams", []):
+            club_code[norm(t["name"])] = t["short_name"]
+
+    def to_code(club: str) -> str | None:
+        key = norm(club or "")
+        if key in club_code:
+            return club_code[key]
+        hits = {v for k, v in club_code.items() if k[:4] == key[:4]} if len(key) >= 4 else set()
+        return next(iter(hits)) if len(hits) == 1 else None
+
+    def resolve(name: str, club: str = "") -> int | None:
         key = norm(name)
-        if key in by_full:
-            return by_full[key]
-        for k in (key, " ".join(key.split()[-1:])):
-            hits = surnames.get(k)
-            if hits and len(hits) == 1:
-                return next(iter(hits))
+        pool: set[int] = set()
+        for idx in (by_full, by_web):
+            pool = idx.get(key, set())
+            if pool:
+                break
+        if not pool:
+            for k in (key, " ".join(key.split()[-1:])):
+                pool = surnames.get(k, set())
+                if pool:
+                    break
+        if len(pool) == 1:
+            return next(iter(pool))
+        # Ambiguous: let the club decide, and only if it decides outright.
+        want = to_code(club)
+        if want and len(pool) > 1:
+            narrowed = {c for c in pool if club_of.get(c) == want}
+            if len(narrowed) == 1:
+                return next(iter(narrowed))
         return None
 
-    r["code"] = r["player_name"].map(resolve)
+    r["code"] = [resolve(n, c) for n, c in
+                 zip(r["player_name"], r.get("player_team", pd.Series("", index=r.index)))]
     missed = r[r["code"].isna()]
     r = r.dropna(subset=["code"])
     pos_of = dict(m[["code", "position"]].itertuples(index=False))
@@ -259,6 +314,8 @@ def pro_rankings(m: pd.DataFrame) -> pd.Series:
     # earlier merge, so aligning on index quietly handed each player somebody
     # else's rank -- which is what put a mean rank of 2.0 on a man one list
     # had at 51.
+    if detail:
+        return agg, g_rows[["code", "source_name", "rank", "player_name"]]
     return agg
 
 

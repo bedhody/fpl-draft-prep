@@ -818,6 +818,49 @@ resolves most of the recency-vs-size tension by itself.
 None of it is stored. Only league id, size, draft date, player code, pick,
 round and the auto flag are kept.
 
+## Published rankings, and where the model disagrees with them
+
+`rankings_verified.csv` holds published draft rankings from named analysts —
+`rankings.csv` is what the research reported, the verified file is what
+survived re-fetching every source, and only the verified one feeds anything.
+Four whole-draft lists supply the `ADR Pros` column; the Premier League Scout's
+four positional lists are excluded, because averaging "best goalkeeper" against
+a global top 100 makes the best keeper look like the best player alive.
+
+**Matching names is the hard part, and it was silently failing.** Analysts
+write what the FPL site shows them, which is `web_name` — "Gabriel", "Virgil",
+"Enzo", "Costinha". The matcher knew full names and surnames only, so it
+dropped every one of those. Gabriel Magalhães was ranked 3rd, 6th, 8th and 9th
+by all four lists and matched nothing at all; Van Dijk, Palmer, Cunha, Reece
+James, Ben White and a dozen more went the same way. FPL's own `web_name` is
+now a matching key, and the published club column disambiguates what is left —
+"Gabriel" alone is three players at Arsenal, but FPL calls exactly one of them
+that, and the three different Wilsons on one board separate cleanly by club.
+**Unmatched names went from 43 to 0, and matched players from 231 to 259.**
+
+`pro_gap.py` writes `output/pro_gap.md`: where the two orderings disagree most,
+and which part of the model's own arithmetic produced the number. Both sides
+are ranked *within* the pool of players carrying a published rank, so neither
+is compared against players the other never saw. Over 256 such players the two
+orderings correlate at **Spearman 0.62** (0.74 over the 81 ranked by two or
+more analysts), with a median disagreement of **40 places**.
+
+Every gap is split into how much is the minutes and how much is the player, by
+re-scoring the whole board at a flat 2,700 minutes. A gap that collapses was a
+minutes call; one that widens means the model rates the player poorly per
+minute and a generous minutes forecast is currently propping him up. The first
+version of this used the pool's median minutes and was wrong: the published
+boards run 240 deep, so their median forward plays 1,325 minutes, and
+"neutralising" a player the analysts rank 27th actually cut his minutes.
+
+Six checks run on every build, including that the points decomposition closes
+exactly, that the neutral ranking survives being rebuilt at 2,400 and 3,000
+minutes instead, and that every matched player shares a name token with an
+authoritative name for his code.
+
+It is a diagnostic on the model. It reports which side is which, never which
+side is right.
+
 ## Solio projections
 
 Solio publishes 19 gameweeks of projected points and minutes. Doubling that for
@@ -937,6 +980,8 @@ scripts/
                        and shrunk minutes per start
   research_xmins.py    Flatten the club research into adjusted xMins
   levers_report.py     One sortable page of every input that moves a number
+  pro_gap.py           Where the model and the published rankings disagree,
+                       and whether it is the minutes or the player
   build_master.py      Join everything into one row per player
   verify_master.py     Cross-source agreement checks (exits non-zero on failure)
   build_panel.py       Same join, run per season, for the model test
