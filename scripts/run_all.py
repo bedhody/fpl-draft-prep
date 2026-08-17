@@ -38,6 +38,7 @@ import fetch_understat
 import fetch_vaastav
 import levers_report
 import penalties_model
+import recency
 import research_xmins
 import team_defence
 import verify_master
@@ -146,6 +147,10 @@ def main() -> int:
     # last of the scoring models and still ahead of the third merge.
     print("\n=== bonus from BPS components ===")
     bonus_model.main()
+    # Reads only the raw gameweek files, so it could sit anywhere; it lands
+    # here because its output goes into the master with the scoring models.
+    print("\n=== recency: which rates moved more than noise ===")
+    recency.main()
     print("\n=== re-merge with the scoring models ===")
     build_master.build()
 

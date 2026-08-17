@@ -388,6 +388,52 @@ and a −0.51 bias; both are printed so the trade is visible.
 source publishes times-tackled per match; and the goalkeeper save-location
 changes.
 
+### Recency weighting, and why it is off
+
+`recency.py` splits each player's 2025/26 into two halves of equal **minutes**
+— not equal calendar, because a man who missed until February has no first
+half — and asks how far apart the halves are relative to how far apart they
+would be by chance:
+
+```
+z = (late − early) / SE(late − early)
+w = 2·Φ(|z|) − 1                       the two-sided confidence they differ
+estimate = w·late + (1−w)·pooled
+```
+
+The standard error is measured rather than assumed: for a rate that is pure
+noise the variance of (late − early) falls as 1/n, so the noise scale is fitted
+by regressing the observed squared gap on 1/n90 across the whole pool. That
+gives an SE which already knows a 400-minute player cannot generate evidence a
+3,000-minute player can.
+
+**Then it is tested, and it fails.** Build both estimates on one season, score
+them against the next, plus a within-season holdout (first 60% of a player's
+minutes → last 40%):
+
+| Metric | Folds won by recency | Folds won by the whole season |
+|---|---:|---:|
+| xG/90 | 1 | 3 |
+| xA/90 | 1 | 3 |
+| DefCon actions/90 | 0 | 1 |
+
+DefCon loses worst: MAE 1.27 recency-weighted against 1.06 pooled. So the
+multipliers ship at 1.0 and nothing is reweighted. Halving the sample to chase
+a change that mostly is not there costs more than it buys — which is the
+result, not a failure to implement it.
+
+What does ship is the **flag**. 27 players have a rate whose second half
+disagrees with its first by more than 1.96 standard errors *and* by more than
+30%. Sortable in the levers page under "Late vs early", with the full
+comparison in the tooltip. A z-score is not a correction, it is a question:
+this moved by more than the sample can explain, so go and find out whether the
+role changed or the finishing just ran hot. That judgement is the human's.
+
+Worth knowing what the flag does *not* catch. Declan Rice's xG/90 ran
+0.122 in his first half and 0.062 in his second — but at z = −0.85 that is
+inside the noise for the minutes involved, so he is not flagged. The by-thirds
+picture looks starker than the split can support.
+
 ### The per-match floor, and why it matters
 
 Two FPL rules pay per *match*, not per season: 1 point per 3 saves, and −1 per

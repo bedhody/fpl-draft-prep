@@ -205,6 +205,7 @@ def build() -> None:
                         drop=["research_player", "research_club"])
     bonus = optional("bonus_model.csv",
                      drop=["player", "pos", "team_2627", "mins_per_start"])
+    recency = optional("recency.csv", drop=["element", "player"])
 
     master = (spine_out
               .merge(fpl_out, on="code", how="left")
@@ -220,6 +221,7 @@ def build() -> None:
               .merge(pens, on="code", how="left")
               .merge(research, on="code", how="left")
               .merge(bonus, on="code", how="left")
+              .merge(recency, on="code", how="left")
               .rename(columns={"id": "fpl_id", "pl_name": "player",
                                "team_short": "team_2627"}))
 

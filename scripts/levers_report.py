@@ -329,6 +329,22 @@ def assemble() -> pd.DataFrame:
         "xpts": s["xpts_season"].round(6),
         "adp": m["adp"],
 
+        # Which of a player's rates moved between the halves of last season by
+        # more than the noise in them.  Not applied to anything: recency
+        # weighting loses out of sample on seven of nine folds, so what ships
+        # is the flag, which is a prompt to go and find out why -- the thing
+        # only a human can do.
+        "rec_z_xg": m.get("recency_z_xg"),
+        "rec_z_xa": m.get("recency_z_xa"),
+        "rec_z_dc": m.get("recency_z_dc"),
+        "rec_flag": m.get("recency_flag", pd.Series(False, index=m.index)).fillna(False),
+        "rec_xg_early": m.get("xg_early_p90"),
+        "rec_xg_late": m.get("xg_late_p90"),
+        "rec_xa_early": m.get("xa_early_p90"),
+        "rec_xa_late": m.get("xa_late_p90"),
+        "rec_dc_early": m.get("dc_early_p90"),
+        "rec_dc_late": m.get("dc_late_p90"),
+
         # Everything the page needs to re-score a player in the browser when
         # you edit his minutes.  These four are the only parts of xpts_calc
         # that do not depend on xMins or minutes-per-start, so shipping them
@@ -723,6 +739,7 @@ COLS = [
     ("pens", "Pens exp", True, "Set pieces", None),
     ("defcon_hit", "DefCon %", True, "Other levers", None),
     ("base_bps_p90", "Base BPS/90", True, "Other levers", None),
+    ("rec_z", "Late vs early", True, "Other levers", None),
     ("bonus_pm", "Bonus/match", True, "Other levers", None),
     ("adr_pros", "ADR Pros", True, "Other levers", None),
     ("adp", "ADP", True, "Draft", "num1"),
@@ -882,6 +899,7 @@ function recompute(){
   DATA.forEach(r => {
     const s = scoreOne(r);
     r._matches = s.matches; r._hit = s.hit * 100; r._xpts = s.xpts;
+    r._bpm = s.bpm;
     const xm = Math.max(0, Number(val(r, 'xmins_adj')) || 0);
     const xg = Number(val(r, 'xg_p90_adj')), xa = Number(val(r, 'xa_p90_adj'));
     r._xg = (Number.isFinite(xg) ? xg : r.xg_p90) * xm / 90;
@@ -893,6 +911,10 @@ function recompute(){
     const a = (raw === null || raw === undefined || raw === '') ? NaN : Number(raw);
     r._adp = Number.isFinite(a) ? a : null;
     r._role = val(r, 'role'); r._threat = val(r, 'threat');
+    // The strongest of the three half-to-half z-scores, so the column can be
+    // sorted on the size of the disagreement rather than on its sign.
+    r._rec_z = [r.rec_z_xg, r.rec_z_xa, r.rec_z_dc].filter(isNum)
+      .reduce((a, b) => Math.abs(b) > Math.abs(a) ? b : a, NaN);
   });
 
   const repl = {};
@@ -971,6 +993,25 @@ const CELL = {
     return `<td class="num">${!isNum(d) ? dash :
       `<span class="delta ${d > 0 ? 'up' : d < 0 ? 'down' : ''}">${d > 0 ? '+' : ''}${Math.round(d)}</span>`}</td>`;
   },
+  rec_z: r => {
+    // The strongest of the three z-scores, with the whole comparison in the
+    // tooltip. A z is not a correction, it is a question: this rate moved by
+    // more than the sample can explain, so go and find out whether the role
+    // changed or the finishing just ran hot.
+    const parts = [['xG', r.rec_z_xg, r.rec_xg_early, r.rec_xg_late],
+                   ['xA', r.rec_z_xa, r.rec_xa_early, r.rec_xa_late],
+                   ['DefCon', r.rec_z_dc, r.rec_dc_early, r.rec_dc_late]]
+      .filter(p => isNum(p[1]));
+    if (!parts.length) return `<td class="num">${dash}</td>`;
+    const best = parts.reduce((a, b) => Math.abs(b[1]) > Math.abs(a[1]) ? b : a);
+    const tip = parts.map(([n, z, e, l]) =>
+      `${n}: ${isNum(e) ? e.toFixed(2) : '?'} -> ${isNum(l) ? l.toFixed(2) : '?'} per 90 (z ${z.toFixed(1)})`)
+      .join(' | ');
+    const cls = !r.rec_flag ? '' : (best[1] > 0 ? 'up' : 'down');
+    return `<td class="num" title="First half of his 2025/26 minutes against the second. ${tip}${
+      r.rec_flag ? ' -- flagged: bigger than the noise and bigger than 30%.' : ''}"><span class="delta ${cls}">${
+      best[1] > 0 ? '+' : ''}${best[1].toFixed(1)}</span></td>`;
+  },
   confidence: r => selCell(r, 'confidence', val(r, 'confidence') || '', CONF_OPTS),
   mins_per_start: r => numCell(r, 'mins_per_start', 1),
   matches: r => `<td class="num">${fmt(r._matches, 1)}</td>`,
@@ -987,6 +1028,8 @@ const CELL = {
   pens: r => numCell(r, 'pens', 2),
   defcon_hit: r => numCell(r, 'defcon_hit', 1, isEdited(r, 'defcon_hit') ? val(r, 'defcon_hit') : r._hit),
   adr_pros: r => numCell(r, 'adr_pros', 1),
+  base_bps_p90: r => `<td class="num" title="BPS per 90 with every event the model projects elsewhere stripped out -- goals, assists, clean sheets, saves, goals conceded, cards. What is left is appearance, defensive actions, passing and carrying, and it is twice as repeatable as total BPS.">${fmt(r.base_bps_p90, 1)}</td>`,
+  bonus_pm: r => `<td class="num" title="Expected bonus in one match at this player's minutes per start, simulated against the three scores he would have to beat. Moves when you edit xG, xA or P(CS).">${fmt(r._bpm, 2)}</td>`,
   adp: r => numCell(r, 'adp', 1, r._adp),
   band: r => `<td class="num">${r._band === null ? dash :
       r._band < 0 ? '<span class="bandtag gone">gone</span>'
@@ -1100,6 +1143,7 @@ function visible(){
     if (flags.has('threat') && r._threat === 'none') return false;
     if (flags.has('marked') && !marked.has(r.code)) return false;
     if (flags.has('edited') && !edits[r.code]) return false;
+    if (flags.has('recency') && !r.rec_flag) return false;
     return true;
   });
 }
@@ -1108,7 +1152,8 @@ const SORTED = {matches:'_matches', xpts:'_xpts', vorp:'_vorp',
                 rvorp1:'_rvorp1', rvorp2:'_rvorp2', rvorp3:'_rvorp3',
                 rvorp4:'_rvorp4', rvorp5:'_rvorp5',
                 adp:'_adp', xg_season:'_xg', xa_season:'_xa', defcon_hit:'_hit',
-                role:'_role', threat:'_threat', band:'_band'};
+                role:'_role', threat:'_threat', band:'_band', rec_z:'_rec_z',
+                bonus_pm:'_bpm'};
 
 function render(){
   const key = SORTED[sortKey] || sortKey;
@@ -1428,6 +1473,7 @@ def html(df: pd.DataFrame) -> str:
     <button class="chip" data-flag="setpiece" aria-pressed="false">Takes set pieces</button>
     <button class="chip markchip" data-flag="marked" aria-pressed="false">&#9733; On my research list</button>
     <button class="chip" data-flag="edited" aria-pressed="false">Edited by me</button>
+    <button class="chip" data-flag="recency" aria-pressed="false">Second half disagrees with the first</button>
   </div>
   <span class="count" id="count"></span>
 </div>
