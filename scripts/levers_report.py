@@ -329,6 +329,13 @@ def assemble() -> pd.DataFrame:
         "xpts": s["xpts_season"].round(6),
         "adp": m["adp"],
 
+        # Deliberately empty, and it stays empty: this is the column the human
+        # fills in with the pick he would spend on a player.  It ships blank so
+        # that anything in it came from him, and it is a real column rather
+        # than a browser-only field so that clearing a cell reverts to blank
+        # through the same undo path as every other edit.
+        "bd_pick": np.nan,
+
         # Which of a player's rates moved between the halves of last season by
         # more than the noise in them.  Not applied to anything: recency
         # weighting loses out of sample on seven of nine folds, so what ships
@@ -543,19 +550,29 @@ tbody tr:hover td{background:var(--raised)}
 tbody tr.marked td{background:var(--mark-soft)}
 td.num,th.num{text-align:right; font-variant-numeric:tabular-nums;
   font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:12.5px}
-/* Two frozen columns: the star and the name.  The header cells freeze with
-   them, or scrolling right leaves the body showing names under a header that
-   has moved on to Mins/start. */
+/* Three frozen columns: the rank, your own pick, and the name.  The header
+   cells freeze with them, or scrolling right leaves the body showing names
+   under a header that has moved on to Mins/start.  The lefts are hard-coded
+   and have to add up: 40 + 88 = 128.  BD Pick is pinned at all three of
+   width, min and max because the header word sets the natural width, and a
+   column that is wider than the offset the next one sticks at overlaps it as
+   soon as you scroll right. */
 td.mark,th.mark{position:sticky; left:0; z-index:2; background:var(--surface);
   width:40px; min-width:40px; padding-left:6px; padding-right:4px}
+td.bdpick,th.bdpick{position:sticky; left:40px; z-index:2;
+  background:var(--surface); box-sizing:border-box;
+  width:88px; min-width:88px; max-width:88px; padding-right:4px}
+td.bdpick .edit{width:52px; text-align:right}
 /* Capped, because a wide name column pushes every number off the screen.  The
    full name is on the cell's title. */
-td.name,th.pname{position:sticky; left:40px; z-index:2; background:var(--surface);
+td.name,th.pname{position:sticky; left:128px; z-index:2; background:var(--surface);
   font-weight:550; border-right:1px solid var(--line); cursor:grab;
   max-width:158px; overflow:hidden; text-overflow:ellipsis}
-thead th.mark,thead th.pname{z-index:6; background:var(--raised)}
-tbody tr:hover td.name,tbody tr:hover td.mark{background:var(--raised)}
-tbody tr.marked td.name,tbody tr.marked td.mark{background:var(--mark-soft)}
+thead th.mark,thead th.pname,thead th.bdpick{z-index:6; background:var(--raised)}
+tbody tr:hover td.name,tbody tr:hover td.mark,
+tbody tr:hover td.bdpick{background:var(--raised)}
+tbody tr.marked td.name,tbody tr.marked td.mark,
+tbody tr.marked td.bdpick{background:var(--mark-soft)}
 td.dim{color:var(--faint)}
 
 /* The row's rank doubles as the research toggle: outlined by default, filled
@@ -707,10 +724,12 @@ footer{color:var(--faint); font-size:12px}
    is the point -- sort it your way and it shows where your picks fall. */
 .striped tbody tr.mypick td{background:var(--stripe)}
 .striped tbody tr.mypick td.name,
+.striped tbody tr.mypick td.bdpick,
 .striped tbody tr.mypick td.mark{background:var(--stripe)}
 .striped tbody tr.mypick td.name{box-shadow:inset 3px 0 0 var(--accent)}
 .striped tbody tr.mypick:hover td{background:var(--raised)}
-tbody tr.marked td,tbody tr.marked td.name,tbody tr.marked td.mark{background:var(--mark-soft)}
+tbody tr.marked td,tbody tr.marked td.name,tbody tr.marked td.mark,
+tbody tr.marked td.bdpick{background:var(--mark-soft)}
 
 /* A player who changed club: his xG and xA belong to a different team. */
 .movedname{color:var(--moved)}
@@ -727,6 +746,7 @@ details h3{font-size:13px; margin:18px 0 6px}
 # (key, label, numeric, group, editable-kind)
 COLS = [
     ("mark", "#", False, "", None),
+    ("bd_pick", "BD Pick", True, "", "num0"),
     ("player", "Player", False, "Player", None),
     ("team", "Team", False, "Player", None),
     ("pos", "Pos", False, "Player", None),
@@ -773,7 +793,9 @@ const $ = s => document.querySelector(s);
 const byCode = new Map(DATA.map(r => [r.code, r]));
 const K = {tray:'fpl_tray_v1', mark:'fpl_marked_v1', edit:'fpl_edits_v1',
            draft:'fpl_draft_v2', cols:'fpl_cols_v1', notes:'fpl_notes_v1'};
-const FIXED = ['mark', 'player'];               // frozen left, never reordered
+// Frozen left, never reordered.  BD Pick is in here because a board you are
+// filling in by hand is no use if it scrolls off the side.
+const FIXED = ['mark', 'bd_pick', 'player'];
 
 let tray = load(K.tray, []);
 let marked = new Set(load(K.mark, []));
@@ -946,6 +968,9 @@ function recompute(){
     const raw = val(r, 'adp');
     const a = (raw === null || raw === undefined || raw === '') ? NaN : Number(raw);
     r._adp = Number.isFinite(a) ? a : null;
+    const braw = val(r, 'bd_pick');
+    const b = (braw === null || braw === undefined || braw === '') ? NaN : Number(braw);
+    r._bd = (Number.isFinite(b) && b >= 1) ? b : null;
     r._role = val(r, 'role'); r._threat = val(r, 'threat');
     // The strongest of the three half-to-half z-scores, so the column can be
     // sorted on the size of the disagreement rather than on its sign.
@@ -982,7 +1007,14 @@ function recompute(){
 
      `t` runs from +1 at the first round (judge him on his floor) through 0 at
      the crossover round to -1 at the last (judge him on his ceiling). The
-     crossover is a strategy choice, so it is an input, not a constant. */
+     crossover is a strategy choice, so it is an input, not a constant.
+
+     Which round is "his" round comes from BD Pick when you have set one, and
+     only falls back to ADP when you have not. ADP is an average of what other
+     leagues did; it answers "when will he come off the board", which is the
+     right question for There at and Rapid VORP and the wrong one here. The
+     question here is when YOU would spend a pick on him, and nobody but you
+     can answer it -- which is why the column ships empty. */
   DATA.forEach(r => {
     const xm = Math.max(0, Number(val(r, 'xmins_adj')) || 0);
     // Capped at the 3,420 minutes a season physically has. Without the cap a
@@ -996,8 +1028,15 @@ function recompute(){
     r._ceil  = Math.max(lo, hi, r._xpts);
     // A player nobody in the ADP sample drafted is a last-round pick, not an
     // unknown one; a player gone before my first pick is a first-round player.
-    const round = r._band === null ? draft.rounds
+    // A BD Pick is an overall pick number, so pick 9 in an 8-team league is
+    // round 2 -- ceil, not the band, because the band asks a different
+    // question and would put a player taken exactly on your own pick a round
+    // early.
+    const round = r._bd !== null
+                ? Math.min(Math.max(Math.ceil(r._bd / draft.teams), 1), draft.rounds)
+                : r._band === null ? draft.rounds
                 : r._band < 0 ? 1 : Math.min(r._band + 1, draft.rounds);
+    r._round = round;
     const c = Math.min(Math.max(draft.cross, 2), draft.rounds - 1);
     const tt = round <= c ? (c - round) / (c - 1)
                           : -(round - c) / (draft.rounds - c);
@@ -1050,6 +1089,13 @@ const CELL = {
       aria-pressed="${marked.has(r.code)}"
       aria-label="Rank ${r._rank}, ${esc(r.player)}, research list toggle">${r._rank}</button>${
       notes[r.code] ? `<span class="hasnote" title="${esc(notes[r.code])}">&bull;</span>` : ''}</td>`,
+  // Yours, and empty until you fill it in.  An overall pick number, 1 to
+  // teams x rounds, so it reads the same way as ADP next to it.
+  bd_pick: r => `<td class="num bdpick ${isEdited(r, 'bd_pick') ? 'edited' : ''}"
+      title="The overall pick you would spend on him, 1 to ${draft.teams * draft.rounds}. Sets the round Pick value judges him in${
+      r._bd !== null ? ` -- currently round ${r._round}` : ', instead of his ADP'}."><input
+      class="edit" inputmode="numeric" data-code="${r.code}" data-f="bd_pick"
+      value="${isNum(r._bd) ? String(Math.round(r._bd)) : ''}">${undoBtn(r, 'bd_pick')}</td>`,
   player: r => `<td class="name${r.moved ? ' movedname' : ''}" draggable="true" data-drag="${r.code}"
       title="${esc(r.player)}${r.moved ? ' -- changed club this summer, so his xG and xA are rates he produced somewhere else' : ''}">${
       esc(r.player)}${r.no_pl_rates ? '<span class="flag norates" title="No Premier League record, so every attacking rate is empty.">no rates</span>' : ''}</td>`,
@@ -1114,8 +1160,10 @@ const CELL = {
                        : 'on his expected value';
     const cls = r._pickval > r._xpts + 0.05 ? 'up'
               : r._pickval < r._xpts - 0.05 ? 'down' : '';
-    return `<td class="num" title="xPts weighted ${w}, because his ADP puts him in round ${
-      r._band === null ? draft.rounds : r._band < 0 ? 1 : r._band + 1} and the crossover is set to round ${draft.cross}.">
+    const src = r._bd !== null ? `your BD Pick of ${Math.round(r._bd)}`
+                               : 'his ADP';
+    return `<td class="num" title="xPts weighted ${w}, because ${src} puts him in round ${
+      r._round} and the crossover is set to round ${draft.cross}.">
       <span class="delta ${cls}">${fmt(r._pickval, 1)}</span></td>`;
   },
   vorp: r => `<td class="num">${fmt(r._vorp, 1)}</td>`,
@@ -1170,7 +1218,9 @@ function renderHead(){
   $('#headrow').innerHTML = order.map(k => {
     const c = meta[k];
     if (k === 'mark') return '<th class="mark"></th>';
-    const cls = k === 'player' ? 'pname' : (c.num ? 'num' : '');
+    const cls = k === 'player' ? 'pname'
+              : k === 'bd_pick' ? 'num bdpick'
+              : (c.num ? 'num' : '');
     const movable = FIXED.includes(k) ? '' : ' draggable="true"';
     const dir = k === sortKey ? ` data-dir="${sortDir}"` : '';
     return `<th class="${cls}"${movable} data-col="${k}">
@@ -1186,7 +1236,8 @@ function wireHead(){
       if (sortKey === k) sortDir = sortDir === 'desc' ? 'asc' : 'desc';
       else { sortKey = k;
              sortDir = ['player','team','pos','role','threat','corner_role','fk_role',
-                        'pen_role','adp','band','games_missed','adr_pros','confidence'].includes(k)
+                        'pen_role','adp','bd_pick','band','games_missed','adr_pros',
+                        'confidence'].includes(k)
                         ? 'asc' : 'desc'; }
       renderHead(); render();
     }));
@@ -1234,7 +1285,8 @@ function visible(){
 const SORTED = {matches:'_matches', xpts:'_xpts', vorp:'_vorp',
                 rvorp1:'_rvorp1', rvorp2:'_rvorp2', rvorp3:'_rvorp3',
                 rvorp4:'_rvorp4', rvorp5:'_rvorp5',
-                adp:'_adp', xg_season:'_xg', xa_season:'_xa', defcon_hit:'_hit',
+                adp:'_adp', bd_pick:'_bd',
+                xg_season:'_xg', xa_season:'_xa', defcon_hit:'_hit',
                 role:'_role', threat:'_threat', band:'_band', rec_z:'_rec_z',
                 bonus_pm:'_bpm', floor_xpts:'_floor', ceil_xpts:'_ceil',
                 pick_value:'_pickval'};
@@ -1479,7 +1531,12 @@ $('#stripes').addEventListener('click', e => {
   e.target.setAttribute('aria-pressed', String(on));
 });
 $('#resetEdits').addEventListener('click', () => {
-  if (!confirm('Discard every edit and go back to the model\'s own numbers?')) return;
+  // BD Picks are stored as edits like everything else, and they are the one
+  // thing in here that cannot be recovered by re-running the model.  Say so
+  // before wiping them.
+  const nbd = Object.values(edits).filter(o => o.bd_pick !== undefined).length;
+  if (!confirm('Discard every edit and go back to the model\'s own numbers?'
+      + (nbd ? `\n\nThat includes your ${nbd} BD Pick${nbd === 1 ? '' : 's'}, which nothing can rebuild.` : ''))) return;
   edits = {}; save(); recompute(); render(); renderSide();
 });
 $('#resetCols').addEventListener('click', () => {
@@ -1530,6 +1587,10 @@ def html(df: pd.DataFrame) -> str:
 
     n_moved = int((df.moved | df.no_pl_rates).sum())
     n_adr = int(df.adr_pros.notna().sum())
+    # Static prose only, for the help panel.  The live tooltip on a BD Pick
+    # cell uses draft.teams x draft.rounds, so it follows the controls; this
+    # is the default league, 8 teams of one 15-man squad each.
+    n_picks = 8 * sum(xpts_model.SQUAD_SLOTS.values())
     return f"""<meta charset="utf-8">
 <title>Draft Levers</title>
 <style>{CSS}</style>
@@ -1659,12 +1720,38 @@ def html(df: pd.DataFrame) -> str:
   also moves when you edit somebody <em>else's</em> ADP, because that changes
   who is still on the board.</p>
 
+  <h3>BD Pick, and the round Pick value judges him in</h3>
+  <p><strong>BD Pick</strong> is the second column and it ships empty. Put in
+  the overall pick number you would actually spend on a player &mdash; 1 to
+  {n_picks} in this league &mdash; and <strong>Pick value</strong> starts
+  judging him in that round instead of the round his ADP implies. Nine in an
+  eight-team league is round two. Clear the cell and it goes back to ADP.</p>
+  <p>The reason for the column: ADP is an average of what other people's
+  leagues did, which answers <em>when will he come off the board</em>. That is
+  the right question for <strong>There at</strong> and <strong>Rapid
+  VORP</strong>, and both still use ADP for exactly that reason. It is the
+  wrong question for Pick value, which needs to know when <em>you</em> would
+  spend a pick, because that is what decides whether his downside is
+  unaffordable or his upside is free. Nobody but you can supply that, which is
+  why it is a blank column rather than a default.</p>
+  <p>What it changes: before the crossover round a player is marked down toward
+  his <strong>Floor</strong>, after it he is marked up toward his
+  <strong>Ceiling</strong>, and at the crossover he is scored flat on
+  <strong>xPts</strong>. So a volatile player is punished as an early pick and
+  rewarded as a late one &mdash; same projection, different question. Hover a
+  Pick value cell to see which round it used and where the number came
+  from.</p>
+  <p>BD Picks are saved in this browser along with your other edits, and
+  <em>Reset edits</em> clears them &mdash; it will warn you first. Nothing
+  re-runnable can rebuild them, because they are yours.</p>
+
   <h3>Editing and columns</h3>
-  <p>Seven things are editable: <strong>xMins adjusted</strong>,
-  <strong>Mins/start</strong>, <strong>xG/90 mine</strong>, <strong>xA/90
-  mine</strong>, <strong>Role</strong>, <strong>Transfer threat</strong> and
-  <strong>ADP</strong>. All four numeric ones re-score the player using the
-  same arithmetic as <code>xpts_calc.py</code>, not an approximation of it.</p>
+  <p>Eight things are editable: <strong>BD Pick</strong>, <strong>xMins
+  adjusted</strong>, <strong>Mins/start</strong>, <strong>xG/90 mine</strong>,
+  <strong>xA/90 mine</strong>, <strong>Role</strong>, <strong>Transfer
+  threat</strong> and <strong>ADP</strong>. The four rate ones re-score the
+  player using the same arithmetic as <code>xpts_calc.py</code>, not an
+  approximation of it.</p>
   <p>The rates you can change sit in their own columns. <strong>xG/90</strong>
   and <strong>xA/90</strong> are the model's, greyed and untouchable;
   <strong>xG/90 mine</strong> and <strong>xA/90 mine</strong> start equal to
@@ -1696,7 +1783,8 @@ def html(df: pd.DataFrame) -> str:
   <code>gone</code> means his ADP is earlier than your first pick. Edit an ADP
   and the bands and Rapid VORP both move. This is arithmetic on other people's
   draft behaviour, not a view about any player, and it does not choose
-  anyone.</p>
+  anyone. BD Pick deliberately does <em>not</em> feed these two: what you would
+  do cannot make a player survive to your next pick.</p>
 
   <h3>ADR Pros</h3>
   <p>The mean rank a player is given by published draft rankings from named

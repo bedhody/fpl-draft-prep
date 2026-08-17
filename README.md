@@ -425,7 +425,7 @@ mean "more minutes": a promoted club's centre-half with no attacking rates at
 all has a *negative* per-90 rate, so more minutes score him fewer points and
 the high-minutes case is his downside. Floor and ceiling are named by outcome.
 
-`Pick value` then blends them by the round his ADP puts him in:
+`Pick value` then blends them by the round the pick would be made in:
 
 ```
 t = +1 at round 1 → 0 at the crossover round → −1 at the last round
@@ -434,8 +434,26 @@ value = xPts + (t>0 ? t·(floor − xPts) : −t·(ceiling − xPts))
 
 The crossover is a strategy choice, not a constant, so it is an input on the
 page — default round 8. At the default, Bukayo Saka in round 1 is judged
-entirely on his floor (156.5, not 201.7) and Mats Wieffer in round 12 comes out
-at 166.4 against an expected 156.0.
+entirely on his floor (158.3, not 204.1) and Mats Wieffer in round 12 comes out
+at 162.1 against an expected 151.9.
+
+**Which round is "his" round comes from `BD Pick`**, the second column on the
+page, which ships empty for every player and is filled in by hand. It is an
+overall pick number — 9 in an eight-team league is round 2 — and it only falls
+back to ADP where nothing has been entered.
+
+The split matters. ADP is an average of what other people's leagues did, so it
+answers *when will he come off the board*: the right question for `There at`
+and `Rapid VORP`, and both still read ADP for exactly that reason. It is the
+wrong question here. Pick value needs to know when *you* would spend a pick,
+because that is what decides whether a player's downside is unaffordable or his
+upside is free — and no data source can supply that, which is why the column is
+blank rather than defaulted. BD Picks deliberately do not feed the bands: what
+you would do cannot make a player survive to your next pick.
+
+They are stored in the browser alongside the other edits, and *Reset edits*
+clears them, with a warning that names them — nothing re-runnable can rebuild
+a board somebody typed in by hand.
 
 ### Five seasons of history, and what the projection is checked against
 
