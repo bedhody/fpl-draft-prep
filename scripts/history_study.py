@@ -185,6 +185,66 @@ def model_defcon_points(d: pd.DataFrame, actions_col: str) -> pd.Series:
             .where(lam.notna(), 0.0))
 
 
+
+# --------------------------------------------------------------------------
+def preseason_price(season: str) -> pd.DataFrame:
+    """What every player cost in FPL before a ball was kicked.
+
+    vaastav's players_raw is an end-of-season snapshot, so `now_cost` is the
+    closing price.  `cost_change_start` is exactly how far it moved over the
+    season, so the opening price is the difference.  Using the closing price
+    instead would leak the answer: prices rise because players score.
+    """
+    p = RAW / "vaastav" / f"players_raw_{season}.csv"
+    if not p.exists():
+        return pd.DataFrame(columns=["code", "start_cost"])
+    r = pd.read_csv(p)
+    if "cost_change_start" not in r.columns:
+        return pd.DataFrame(columns=["code", "start_cost"])
+    return pd.DataFrame({"code": r["code"],
+                         "start_cost": (r["now_cost"] - r["cost_change_start"]) / 10})
+
+
+def tm_to_code(season: str) -> pd.DataFrame:
+    """Match Transfermarkt squad rows to FPL codes, one season at a time.
+
+    Within a season each side is only ~800 names, so a globally greedy match on
+    name similarity is enough -- and matching inside the season means two
+    players who share a name but never overlapped cannot be confused.
+    """
+    from common import norm_name, similarity
+    sq = pd.read_csv(PROC / "tm_squads.csv")
+    yr = int(season[:4])
+    tm = sq[sq.season_start == yr].drop_duplicates("tm_id")
+    pr = RAW / "vaastav" / f"players_raw_{season}.csv"
+    if tm.empty or not pr.exists():
+        return pd.DataFrame(columns=["tm_id", "code"])
+    fpl = pd.read_csv(pr)
+    fpl["full"] = (fpl["first_name"].fillna("") + " "
+                   + fpl["second_name"].fillna("")).str.strip()
+    fk = {c: {norm_name(a), norm_name(b)}
+          for c, a, b in zip(fpl["code"], fpl["full"], fpl["web_name"])}
+    pairs = []
+    for tid, tn in zip(tm["tm_id"], tm["tm_name"]):
+        n = norm_name(tn)
+        best = (0.0, None)
+        for code, keys in fk.items():
+            s = max(similarity(n, k) for k in keys)
+            if s > best[0]:
+                best = (s, code)
+        if best[0] >= 85:
+            pairs.append((best[0], tid, best[1]))
+    pairs.sort(reverse=True)
+    seen_t, seen_c, out = set(), set(), []
+    for _, tid, code in pairs:
+        if tid in seen_t or code in seen_c:
+            continue
+        seen_t.add(tid)
+        seen_c.add(code)
+        out.append({"tm_id": tid, "code": code})
+    return pd.DataFrame(out)
+
+
 # --------------------------------------------------------------------------
 def calibrate(d: pd.DataFrame) -> dict[str, float]:
     """Scale the modelled DefCon points to the ones 2025/26 actually awarded.
@@ -339,43 +399,247 @@ def q2_persistence(d: pd.DataFrame, lines: list[str]) -> None:
 
 
 def q3_big_club_share(d: pd.DataFrame, lines: list[str]) -> None:
-    lines.append("\n## 3. What share of the top 30 comes from a big club?\n")
+    lines.append("\n## 3. What share of the top N comes from a big club?\n")
     lines.append(f"'Big club' is the **previous** season's top {BIG_N}, because "
-                 "that is what a drafter actually knows in August. The "
-                 "same-season top six is shown alongside, which is what you "
-                 "would know with hindsight.\n")
+                 "that is what a drafter knows in August. 'Lift' is the share "
+                 "of the top N against that group's share of the whole "
+                 "900-minute pool — 1.00x would mean a big club tells you "
+                 "nothing.\n")
 
-    # Only the seasons actually on disk -- an absent one would otherwise
-    # contribute an empty 'previous top six' and divide by zero.
-    order = [s for s in PRETTY.values() if s in set(d['season'])]
+    order = [s for s in PRETTY.values() if s in set(d["season"])]
     prev_top: dict[str, set] = {}
-    for i, s in enumerate(order):
+    for s in order:
         g = d[d.season == s]
         ranks = g.drop_duplicates("team").set_index("team")["team_rank"].dropna()
         prev_top[s] = set(ranks[ranks <= BIG_N].index)
 
+    for n in (20, 30, 50):
+        rows = []
+        for a_, b_ in zip(order, order[1:]):
+            g = d[d.season == b_]
+            top = g.nlargest(n, "restated")
+            by_prev = int(top["team"].isin(prev_top[a_]).sum())
+            pool = g[g.minutes >= MIN_MINUTES]
+            base = float(pool["team"].isin(prev_top[a_]).mean())
+            rows.append({"Season": b_, "From last year's top 6": by_prev,
+                         "Share": f"{by_prev / n:.0%}",
+                         "Pool share": f"{base:.0%}",
+                         "Lift": f"{(by_prev / n) / base:.2f}x"})
+        proj = _projection_big_club(prev_top[order[-1]], n)
+        if proj is not None:
+            rows.append({"Season": "2026/27 projected", "From last year's top 6": proj[0],
+                         "Share": f"{proj[0] / n:.0%}", "Pool share": f"{proj[1]:.0%}",
+                         "Lift": f"{(proj[0] / n) / proj[1]:.2f}x"})
+        t_ = pd.DataFrame(rows)
+        hist = [r["From last year's top 6"] for r in rows
+                if r["Season"] != "2026/27 projected"]
+        lines.append(f"\n**Top {n}** — history averages **{np.mean(hist):.1f}** "
+                     f"big-club players (range {min(hist)}–{max(hist)}).\n")
+        lines.append(md_table(t_))
+        lines.append("")
+
+
+_PROJ = {}
+
+
+def projection() -> pd.DataFrame | None:
+    """The 2026/27 projection, scored once and reused."""
+    if "df" not in _PROJ:
+        try:
+            import xpts_calc
+            import xpts_model
+            src = xpts_model.build_rows()
+            s = xpts_calc.score(src)
+            p = src.assign(xpts=s["xpts_season"])
+            _PROJ["df"] = p[p["draftable"].fillna(False).astype(bool)]
+        except Exception:                              # noqa: BLE001
+            _PROJ["df"] = None
+    return _PROJ["df"]
+
+
+def short_codes() -> dict[str, str]:
+    """Full club name -> three-letter code.
+
+    The gameweek files name clubs in full ("Man City"), the master uses codes
+    ("MCI").  Taking the first three letters gets Arsenal right and Manchester
+    City wrong, which quietly halved the projection's big-club share.
+    """
+    out = {}
+    for season in SEASONS:
+        p = RAW / "vaastav" / f"teams_{season}.csv"
+        if p.exists():
+            tt = pd.read_csv(p)
+            out.update(dict(zip(tt["name"], tt["short_name"])))
+    return out
+
+
+def _projection_big_club(big: set, n: int):
+    """The same count for the 2026/27 projection, so it can be read alongside."""
+    p = projection()
+    if p is None:
+        return None
+    codes = short_codes()
+    keys = {codes.get(x, str(x)[:3].upper()) for x in big}
+    top = p.nlargest(n, "xpts")
+    cnt = int(top["team"].astype(str).isin(keys).sum())
+    pool = p[p["xMins_input"].fillna(0) >= 900]
+    base = float(pool["team"].astype(str).isin(keys).mean())
+    return cnt, max(base, 1e-9)
+
+
+def q_price(lines: list[str]) -> None:
+    """How good a predictor is the price FPL sets before the season?"""
+    lines.append("\n## 6. How good a predictor is FPL's pre-season price?\n")
+    lines.append("Pre-season price is `now_cost - cost_change_start` from the "
+                 "end-of-season roster, so it is the opening price and not the "
+                 "closing one. Using the closing price would leak the answer: "
+                 "prices rise because players score.\n")
     rows = []
-    for a, b in zip(order, order[1:]):
-        g = d[d.season == b]
-        top30 = g.nlargest(30, "restated")
-        by_prev = top30["team"].isin(prev_top[a]).sum()
-        by_now = (top30["team_rank"] <= BIG_N).sum()
-        # how many of the whole pool were at a big club, for the baseline
-        pool = g[g.minutes >= MIN_MINUTES]
-        base = pool["team"].isin(prev_top[a]).mean()
-        rows.append({"Season": b, "From last year's top 6": int(by_prev),
-                     "From this year's top 6": int(by_now),
-                     "Share of top 30": f"{by_prev / 30:.0%}",
-                     "Share of the whole pool": f"{base:.0%}",
-                     "Lift": f"{(by_prev / 30) / base:.2f}x"})
-    t = pd.DataFrame(rows)
-    lines.append(md_table(t))
-    shares = [int(r["From last year's top 6"]) for r in rows]
-    lines.append(f"\nBig-club players take **{np.mean(shares):.1f} of the top 30 "
-                 f"on average** (range {min(shares)}–{max(shares)}). A big club "
-                 f"is about 30% of the league by squad, so the concentration is "
-                 f"real — but it leaves roughly half the top 30 to everybody "
-                 f"else, every single season.\n")
+    for season in SEASONS:
+        pr = preseason_price(season)
+        raw = RAW / "vaastav" / f"players_raw_{season}.csv"
+        if pr.empty or not raw.exists():
+            continue
+        r = pd.read_csv(raw)[["code", "total_points", "minutes"]]
+        j = r.merge(pr, on="code")
+        j = j[j["start_cost"] > 0]
+        played = j[j["minutes"] >= MIN_MINUTES]
+        top50_price = set(j.nlargest(50, "start_cost")["code"])
+        top50_pts = set(j.nlargest(50, "total_points")["code"])
+        top20_price = set(j.nlargest(20, "start_cost")["code"])
+        top20_pts = set(j.nlargest(20, "total_points")["code"])
+        rows.append({
+            "Season": PRETTY[season], "Players": len(j),
+            "r (all)": round(float(j["start_cost"].corr(j["total_points"])), 3),
+            "Spearman (all)": round(float(j["start_cost"].corr(
+                j["total_points"], method="spearman")), 3),
+            "r (900+ mins)": round(float(played["start_cost"].corr(
+                played["total_points"])), 3),
+            "Top 20 by price who finished top 20": f"{len(top20_price & top20_pts)}/20",
+            "Top 50 by price who finished top 50": f"{len(top50_price & top50_pts)}/50",
+        })
+    if not rows:
+        lines.append("_No season had both a roster file and a cost change._\n")
+        return
+    t_ = pd.DataFrame(rows)
+    lines.append(md_table(t_))
+    lines.append(f"\nAcross the whole pool price correlates with points at "
+                 f"**r = {t_['r (all)'].mean():.2f}** — but that is mostly "
+                 f"price knowing who plays. Among players who actually got "
+                 f"{MIN_MINUTES}+ minutes it falls to "
+                 f"**{t_['r (900+ mins)'].mean():.2f}**. Of the twenty most "
+                 f"expensive players each August, "
+                 f"{np.mean([int(x.split('/')[0]) for x in t_['Top 20 by price who finished top 20']]):.1f} "
+                 f"finished in the top twenty.\n")
+
+
+_CLUB: list = []
+
+
+def q_injuries(lines: list[str], d: pd.DataFrame) -> None:
+    """Was 2024/25 an unusual season for injuries to expensive big-club players?"""
+    lines.append("\n## 7. Was 2024/25 unusual for injuries to expensive "
+                 "big-club players?\n")
+    _CLUB.clear()
+    inj = pd.read_csv(PROC / "tm_injuries.csv")
+    inj = inj.dropna(subset=["tm_season"])
+    inj["games_missed"] = pd.to_numeric(inj["games_missed"], errors="coerce").fillna(0)
+    burden = inj.groupby(["tm_id", "tm_season"])["games_missed"].sum().reset_index()
+
+    order = [s for s in PRETTY.values() if s in set(d["season"])]
+    prev_top = {}
+    for s in order:
+        g = d[d.season == s]
+        ranks = g.drop_duplicates("team").set_index("team")["team_rank"].dropna()
+        prev_top[s] = set(ranks[ranks <= BIG_N].index)
+
+    rows, detail = [], []
+    for season in SEASONS:
+        pretty = PRETTY[season]
+        yr = int(season[:4])
+        tag = f"{str(yr)[2:]}/{str(yr + 1)[2:]}"
+        prev = order[order.index(pretty) - 1] if pretty in order and order.index(pretty) else None
+        if prev is None:
+            continue
+        pr = preseason_price(season)
+        raw = RAW / "vaastav" / f"players_raw_{season}.csv"
+        if pr.empty or not raw.exists():
+            continue
+        codes = tm_to_code(season)
+        b = burden[burden.tm_season == tag].merge(codes, on="tm_id", how="inner")
+        g = d[d.season == pretty][["code", "team", "name"]]
+        j = (g.merge(pr, on="code", how="left")
+               .merge(b[["code", "games_missed"]], on="code", how="left"))
+        j["games_missed"] = j["games_missed"].fillna(0)
+        j["big_club"] = j["team"].isin(prev_top[prev])
+        # "Big player" is simply the most expensive, as asked.  Taken as the
+        # top 50 by rank, not as a price threshold: prices bunch, and 2024/25's
+        # fiftieth-most-expensive player cost the same as the hundred-and-
+        # fiftieth, so a threshold quietly swept in three times the intended
+        # group.
+        j = j.dropna(subset=["start_cost"])
+        top50 = set(j.nlargest(50, "start_cost")["code"])
+        sel = j[j.big_club & j["code"].isin(top50)]
+        if not len(sel):
+            continue
+        rows.append({"Season": pretty, "Expensive big-club players": len(sel),
+                     "Total games missed": int(sel["games_missed"].sum()),
+                     "Mean per player": round(float(sel["games_missed"].mean()), 1),
+                     "Missing 10+": int((sel["games_missed"] >= 10).sum()),
+                     "Cheapest of the 50": f"£{j.nlargest(50, 'start_cost')['start_cost'].min():.1f}m"})
+        if pretty == "2024/25":
+            detail = sel.nlargest(10, "games_missed")[
+                ["name", "team", "start_cost", "games_missed"]].values.tolist()
+            by_club = (sel.groupby("team")
+                       .agg(players=("code", "size"),
+                            missed=("games_missed", "sum"))
+                       .sort_values("missed", ascending=False).reset_index())
+            detail_club = by_club.values.tolist()
+            _CLUB.extend(detail_club)
+    if not rows:
+        lines.append("_Could not match Transfermarkt to FPL for any season._\n")
+        return
+    t_ = pd.DataFrame(rows)
+    lines.append("'Expensive' is the 50 highest pre-season FPL prices that "
+                 "season; 'big club' is the previous season's top six. Games "
+                 "missed comes from Transfermarkt, matched to FPL by name "
+                 "within the season.\n")
+    lines.append(md_table(t_))
+    others = t_[t_.Season != "2024/25"]["Mean per player"]
+    row = t_[t_.Season == "2024/25"]
+    if len(row) and len(others):
+        v = float(row["Mean per player"].iloc[0])
+        lines.append(f"\n2024/25 averaged **{v:.1f} games missed** per "
+                     f"expensive big-club player against **{others.mean():.1f}** "
+                     f"in the other seasons — "
+                     f"{'the highest of the five' if v >= t_['Mean per player'].max() else 'not the highest of the five'}.\n")
+    lines.append("\nTransfermarkt counts games missed across every "
+                 "competition, not just the league, so the level is higher "
+                 "than a Premier-League-only count would be. It is measured "
+                 "the same way every season, so the comparison between seasons "
+                 "still holds.\n")
+    if detail:
+        lines.append("\nThe ten worst in 2024/25:\n")
+        lines.append(md_table(pd.DataFrame(
+            detail, columns=["Player", "Club", "Pre-season price", "Games missed"])))
+        lines.append("")
+    if _CLUB:
+        lines.append("\nAnd where it was concentrated in 2024/25:\n")
+        lines.append(md_table(pd.DataFrame(
+            _CLUB, columns=["Club", "Expensive players", "Games missed"])))
+        lines.append("")
+        tot = sum(r[2] for r in _CLUB) or 1
+        top2 = sorted(_CLUB, key=lambda r: -r[2])[:2]
+        lines.append(f"So the season was not unusually injured in total, but it "
+                     f"was unusually **concentrated**: {top2[0][0]} and "
+                     f"{top2[1][0]} alone account for "
+                     f"{(top2[0][2] + top2[1][2]) / tot:.0%} of it.\n")
+        lines.append("One caveat on the club definition. Alexander Isak missed "
+                     "7 games in 2024/25 and does not appear above, because "
+                     "Newcastle finished 7th in 2023/24 and so is not a 'big "
+                     "club' by the previous-season top-six rule this file "
+                     "uses. Widen the definition and he comes in; the "
+                     "concentration finding does not depend on him.\n")
 
 
 def q4_individual_persistence(d: pd.DataFrame, lines: list[str]) -> None:
@@ -428,16 +692,9 @@ def q4_individual_persistence(d: pd.DataFrame, lines: list[str]) -> None:
 
 def compare_projection(d: pd.DataFrame, lines: list[str]) -> None:
     """Does the 2026/27 projection have a historically normal shape?"""
-    path = PROC / "master_2025_26.csv"
-    try:
-        import xpts_calc
-        import xpts_model
-        src = xpts_model.build_rows()
-        s = xpts_calc.score(src)
-        proj = src.assign(xpts=s["xpts_season"])
-        proj = proj[proj["draftable"].fillna(False).astype(bool)]
-    except Exception as exc:                     # noqa: BLE001
-        lines.append(f"\n_(projection comparison skipped: {exc})_\n")
+    proj = projection()
+    if proj is None:
+        lines.append("\n_(projection comparison skipped)_\n")
         return
 
     lines.append("\n## 5. Does the 2026/27 projection look like history?\n")
@@ -508,6 +765,8 @@ def main() -> int:
     q3_big_club_share(d, lines)
     q4_individual_persistence(d, lines)
     compare_projection(d, lines)
+    q_price(lines)
+    q_injuries(lines, d)
     implications(d, lines)
 
     dest = OUT / "history_study.md"

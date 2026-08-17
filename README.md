@@ -305,7 +305,7 @@ Component sources:
 - **xG** — adjusted xGOT where a player has placement history, else blended xG, in both cases scaled to his non-penalty share so penalties are not counted twice. The `xG basis` column says which
 - **xA** — blended xA × 3 × the assist uplift. The uplift is there because both xG models measure the *Opta* assist definition while FPL pays on its own looser one
 - **Clean sheet** — `P(CS)` × 4/4/1/0 by position
-- **DefCon** — the player's action rate, shrunk toward his position, run through a Poisson against the threshold over `Mins per start`
+- **DefCon** — the player's action rate, shrunk toward his position, run through a *negative binomial* against the threshold over `Mins per start`. Not a Poisson: within player across starts, the variance of per-match actions is 1.5x the mean, and because P(clearing the threshold) is convex in the rate that spread produces **more** crossings, not fewer. A Poisson returned 16% less DefCon than 2025/26 actually awarded and 12.4% less out of sample; the negative binomial returns −1.9% and −0.0%. The dispersion is fitted per position two-fold in `defcon_model.py` — 8 for defenders, 16 for midfielders — and written into `defcon_model.csv` rather than hard-coded
 - **Bonus** — simulated per match from BPS components. See below
 - **Appearance** — 1 point an appearance, 2 at 60 minutes. A substitute banks more appearances for the same minutes but only one point each. The 60-minute test uses minutes per appearance recomputed from the *capped* match count, not the raw minutes per start
 - **Saves, goals conceded, cards, penalties** — see the four sections below
@@ -436,6 +436,25 @@ The crossover is a strategy choice, not a constant, so it is an input on the
 page — default round 8. At the default, Bukayo Saka in round 1 is judged
 entirely on his floor (156.5, not 201.7) and Mats Wieffer in round 12 comes out
 at 166.4 against an expected 156.0.
+
+### Five seasons of history, and what the projection is checked against
+
+`history_study.py` restates 2021/22–2025/26 under 2026/27 scoring and writes
+`output/history_study.md`. DefCon did not exist before 2025/26, so it is
+rebuilt from the official Premier League feed — the combination was found by
+testing every plausible one against the season where both exist, and
+reproduces FPL's own count at **r = 0.995**. Headlines:
+
+- **Defenders** average 6.4 of the top 30 (range 2–10). The 2026/27 projection
+  has 6.
+- **DefCon repeats better than anything else**: year-on-year r = **0.91**,
+  against 0.75 for goals, 0.58 for assists and **0.28** for clean sheets.
+- **Big-club players** take 14.5 of the top 30 on average, a 1.1–1.8× lift on
+  their share of the pool — but a top-30 season at a big club repeats only
+  slightly more often than one anywhere else (39% vs 35%).
+- **Pre-season price** correlates with season points at r ≈ 0.52 across the
+  whole pool and **0.49** among players who got 900+ minutes. Of the twenty
+  most expensive players each August, **6.4** finish in the top twenty.
 
 ### Recency weighting, and why it is off
 

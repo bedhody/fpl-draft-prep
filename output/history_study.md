@@ -84,18 +84,42 @@ Defenders only:
 | 2024/25 → 2025/26 | 75 | 0.743             | 0.454            | 0.333            |
 
 
-## 3. What share of the top 30 comes from a big club?
+## 3. What share of the top N comes from a big club?
 
-'Big club' is the **previous** season's top 6, because that is what a drafter actually knows in August. The same-season top six is shown alongside, which is what you would know with hindsight.
+'Big club' is the **previous** season's top 6, because that is what a drafter knows in August. 'Lift' is the share of the top N against that group's share of the whole 900-minute pool — 1.00x would mean a big club tells you nothing.
 
-| Season  | From last year's top 6 | From this year's top 6 | Share of top 30 | Share of the whole pool | Lift  |
-|---------|------------------------|------------------------|-----------------|-------------------------|-------|
-| 2022/23 | 15                     | 20                     | 50%             | 31%                     | 1.62x |
-| 2023/24 | 17                     | 17                     | 57%             | 31%                     | 1.81x |
-| 2024/25 | 10                     | 13                     | 33%             | 31%                     | 1.08x |
-| 2025/26 | 16                     | 17                     | 53%             | 30%                     | 1.79x |
 
-Big-club players take **14.5 of the top 30 on average** (range 10–17). A big club is about 30% of the league by squad, so the concentration is real — but it leaves roughly half the top 30 to everybody else, every single season.
+**Top 20** — history averages **10.5** big-club players (range 8–14).
+
+| Season            | From last year's top 6 | Share | Pool share | Lift  |
+|-------------------|------------------------|-------|------------|-------|
+| 2022/23           | 10                     | 50%   | 31%        | 1.62x |
+| 2023/24           | 14                     | 70%   | 31%        | 2.24x |
+| 2024/25           | 8                      | 40%   | 31%        | 1.30x |
+| 2025/26           | 10                     | 50%   | 30%        | 1.68x |
+| 2026/27 projected | 12                     | 60%   | 32%        | 1.90x |
+
+
+**Top 30** — history averages **14.5** big-club players (range 10–17).
+
+| Season            | From last year's top 6 | Share | Pool share | Lift  |
+|-------------------|------------------------|-------|------------|-------|
+| 2022/23           | 15                     | 50%   | 31%        | 1.62x |
+| 2023/24           | 17                     | 57%   | 31%        | 1.81x |
+| 2024/25           | 10                     | 33%   | 31%        | 1.08x |
+| 2025/26           | 16                     | 53%   | 30%        | 1.79x |
+| 2026/27 projected | 16                     | 53%   | 32%        | 1.69x |
+
+
+**Top 50** — history averages **20.8** big-club players (range 17–24).
+
+| Season            | From last year's top 6 | Share | Pool share | Lift  |
+|-------------------|------------------------|-------|------------|-------|
+| 2022/23           | 21                     | 42%   | 31%        | 1.36x |
+| 2023/24           | 24                     | 48%   | 31%        | 1.54x |
+| 2024/25           | 17                     | 34%   | 31%        | 1.10x |
+| 2025/26           | 21                     | 42%   | 30%        | 1.41x |
+| 2026/27 projected | 28                     | 56%   | 32%        | 1.77x |
 
 
 ## 4. If a player is top 30 this season, is he top 30 next?
@@ -127,6 +151,70 @@ A top-30 season at a big club repeats 1.18x as often as one anywhere else (38% a
 | 50    | 12                  | 11.8             | 8–16              | 3             | 29            | 6             |
 
 One caveat on reading the row above. The projection's DefCon points come from the same fixed-rate Poisson this file had to correct, so they are low by roughly the same margin. Correcting them raises defenders and midfielders both, and midfielders by more (see the last section), so which way the defender *share* moves is not obvious from here — only that the absolute totals are understated for everybody who defends.
+
+
+## 6. How good a predictor is FPL's pre-season price?
+
+Pre-season price is `now_cost - cost_change_start` from the end-of-season roster, so it is the opening price and not the closing one. Using the closing price would leak the answer: prices rise because players score.
+
+| Season  | Players | r (all) | Spearman (all) | r (900+ mins) | Top 20 by price who finished top 20 | Top 50 by price who finished top 50 |
+|---------|---------|---------|----------------|---------------|-------------------------------------|-------------------------------------|
+| 2021/22 | 737     | 0.568   | 0.591          | 0.489         | 7/20                                | 20/50                               |
+| 2022/23 | 778     | 0.56    | 0.593          | 0.475         | 6/20                                | 16/50                               |
+| 2023/24 | 865     | 0.55    | 0.551          | 0.569         | 8/20                                | 21/50                               |
+| 2024/25 | 804     | 0.401   | 0.494          | 0.565         | 7/20                                | 15/50                               |
+| 2025/26 | 841     | 0.496   | 0.544          | 0.353         | 4/20                                | 12/50                               |
+
+Across the whole pool price correlates with points at **r = 0.52** — but that is mostly price knowing who plays. Among players who actually got 900+ minutes it falls to **0.49**. Of the twenty most expensive players each August, 6.4 finished in the top twenty.
+
+
+## 7. Was 2024/25 unusual for injuries to expensive big-club players?
+
+'Expensive' is the 50 highest pre-season FPL prices that season; 'big club' is the previous season's top six. Games missed comes from Transfermarkt, matched to FPL by name within the season.
+
+| Season  | Expensive big-club players | Total games missed | Mean per player | Missing 10+ | Cheapest of the 50 |
+|---------|----------------------------|--------------------|-----------------|-------------|--------------------|
+| 2022/23 | 34                         | 220                | 6.5             | 8           | £7.0m              |
+| 2023/24 | 34                         | 361                | 10.6            | 15          | £6.5m              |
+| 2024/25 | 37                         | 345                | 9.3             | 14          | £6.5m              |
+| 2025/26 | 32                         | 330                | 10.3            | 10          | £6.5m              |
+
+2024/25 averaged **9.3 games missed** per expensive big-club player against **9.1** in the other seasons — not the highest of the five.
+
+
+Transfermarkt counts games missed across every competition, not just the league, so the level is higher than a Premier-League-only count would be. It is measured the same way every season, so the comparison between seasons still holds.
+
+
+The ten worst in 2024/25:
+
+| Player                    | Club        | Pre-season price | Games missed |
+|---------------------------|-------------|------------------|--------------|
+| Gabriel Fernando de Jesus | Arsenal     | 7.0              | 48.0         |
+| Richarlison de Andrade    | Spurs       | 7.0              | 40.0         |
+| Benjamin White            | Arsenal     | 6.5              | 29.0         |
+| Bukayo Saka               | Arsenal     | 10.0             | 25.0         |
+| Kai Havertz               | Arsenal     | 8.0              | 24.0         |
+| Martin Ødegaard           | Arsenal     | 8.5              | 15.0         |
+| Dominic Solanke-Mitchell  | Spurs       | 7.5              | 15.0         |
+| Son Heung-min             | Spurs       | 10.0             | 15.0         |
+| Leon Bailey               | Aston Villa | 6.5              | 11.0         |
+| Trent Alexander-Arnold    | Liverpool   | 7.0              | 11.0         |
+
+
+And where it was concentrated in 2024/25:
+
+| Club        | Expensive players | Games missed |
+|-------------|-------------------|--------------|
+| Arsenal     | 9                 | 149.0        |
+| Spurs       | 4                 | 81.0         |
+| Chelsea     | 5                 | 34.0         |
+| Man City    | 7                 | 34.0         |
+| Liverpool   | 9                 | 25.0         |
+| Aston Villa | 3                 | 22.0         |
+
+So the season was not unusually injured in total, but it was unusually **concentrated**: Arsenal and Spurs alone account for 67% of it.
+
+One caveat on the club definition. Alexander Isak missed 7 games in 2024/25 and does not appear above, because Newcastle finished 7th in 2023/24 and so is not a 'big club' by the previous-season top-six rule this file uses. Widen the definition and he comes in; the concentration finding does not depend on him.
 
 
 ## What this exercise changed in the model
