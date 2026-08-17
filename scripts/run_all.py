@@ -20,6 +20,7 @@ import sys
 from pathlib import Path
 
 import adjusted_xgot
+import bonus_model
 import bps_remodel
 import cs_from_odds
 import build_master
@@ -140,6 +141,11 @@ def main() -> int:
     cards_model.main()
     print("\n=== penalties ===")
     penalties_model.main()
+    # Bonus reads the master's xG and xA, defcon_model's minutes per start,
+    # cs_from_odds' goals for and against and team_defence's saves, so it is
+    # last of the scoring models and still ahead of the third merge.
+    print("\n=== bonus from BPS components ===")
+    bonus_model.main()
     print("\n=== re-merge with the scoring models ===")
     build_master.build()
 

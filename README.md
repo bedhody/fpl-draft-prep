@@ -224,17 +224,19 @@ workbook next to the originals.
 ## The xPts model
 
 ```
-rate per 90 = xG + xA + clean sheet + bonus + saves + goals conceded + cards
-xPts season = rate per 90 × xMins / 90        the seven that scale with minutes
+rate per 90 = xG + xA + clean sheet + saves + goals conceded + cards
+xPts season = rate per 90 × xMins / 90        the six that scale with minutes
             + appearance points               earned per match, capped at 38
             + DefCon points                   earned per match, convex in length
+            + bonus                           contested once per fixture, so
+                                              also per match
             + penalties                       a season count already
 ```
 
 All nine of FPL's scoring elements are in. **Only the first line is linear in
 minutes**, which is why the season total is not one multiplication:
 
-- **Appearance and DefCon** points are earned per *match*. The number of
+- **Appearance, DefCon and bonus** points are earned per *match*. The number of
   matches is `xMins ÷ Mins per start`, capped at the 38 a season has. The cap
   is not cosmetic: Christian Nørgaard's 45 minutes per start came from a
   cameo-heavy year, and 2,804 forecast minutes divided by it claimed 62
@@ -304,9 +306,87 @@ Component sources:
 - **xA** — blended xA × 3 × the assist uplift. The uplift is there because both xG models measure the *Opta* assist definition while FPL pays on its own looser one
 - **Clean sheet** — `P(CS)` × 4/4/1/0 by position
 - **DefCon** — the player's action rate, shrunk toward his position, run through a Poisson against the threshold over `Mins per start`
-- **Bonus** — bonus per 90 from the BPS re-model, as a rate rather than a share of points, so it does not depend on the rest of the model
+- **Bonus** — simulated per match from BPS components. See below
 - **Appearance** — 1 point an appearance, 2 at 60 minutes. A substitute banks more appearances for the same minutes but only one point each. The 60-minute test uses minutes per appearance recomputed from the *capped* match count, not the raw minutes per start
 - **Saves, goals conceded, cards, penalties** — see the four sections below
+
+### Bonus, and why it is not a rate
+
+Bonus used to be last season's realised bonus per 90, carried forward. That
+credited every player for the goals, assists and clean sheets he actually
+scored — the three things the model already projects from scratch, and the
+three that repeat least. It was double counting and noise carrying in the same
+column. Split 2025/26 into halves and the size of the problem is visible:
+
+| Carried forward from the first half | Correlation with the second | MAE |
+|---|---:|---:|
+| Total BPS per 90 | 0.39 | 4.02 |
+| Base BPS per 90 (events stripped) | **0.78** | **1.71** |
+
+`bonus_model.py` replaces it in three stages.
+
+**1. Fit the weights.** FPL publishes the BPS *stat names* in its API but not
+the weights, and both rules pages are Javascript shells, so the table cannot be
+read off — it is fitted, by least squares on 11,492 player-matches (R² 0.879),
+and refitted on each half of the season so the reader can see which
+coefficients are measured and which are one freak match. Where a term is
+cleanly identified the fit recovers the published weight: **assist 9.03**
+(published 9), **save 1.89** (2), **clean sheet 11.7** (12), **yellow −3.55**
+(−3), **own goal −6.16** (−6), **CBI 1.23 per two actions** (1), **a forward's
+goal 23.7** (24). That is the answer to "have the underlying BPS been checked
+against the new rules" — they have, against the data rather than against
+memory.
+
+Goals and assists for the other positions come back *above* the book weight
+(a midfielder's goal at 20.2 against a published 18) because the fitted number
+is the total BPS a goal arrives with — the shot on target, the big chance, the
+winning-goal bonus. For projection that is the number wanted.
+
+**2. Split every player-match.** `base = BPS − (fitted event weights ×
+events)`, where events are everything the model projects independently: goals,
+assists, clean sheets, saves, goals conceded, cards, own goals, penalties
+saved and missed. Appearance BPS is held out separately because it is flat, not
+a rate — turning 6 points for turning up into a per-90 figure and multiplying
+by 85 minutes quietly loses a tenth of it. The remainder is shifted onto
+2026/27's CBI rule and shrunk toward the position mean, with the shrinkage
+strength chosen out of sample.
+
+**3. Convert BPS to bonus.** Bonus is not a rate, it is a contest: 3/2/1 to the
+top three BPS in a fixture. So
+
+```
+E[bonus] = Σ over k of P(his BPS ≥ the k-th highest BPS among the other 21)
+```
+
+Both sides are simulated. His BPS is his base plus events drawn from his own
+projections; the three bars come from what actually happened in 380 fixtures,
+**leave-one-out** (a player is not competing with himself — pricing him against
+a bar he set costs a fifth of all the bonus there is) and conditioned on his
+own BPS and on the scoreline. The scoreline conditioning is the team-context
+effect: in a 4–0 win four team-mates and a clean sheet are competing for the
+same three points, so the same assist wins less bonus at Manchester City than
+at Burnley. His goals are drawn *from his team's goals*, which forces a
+goalscorer into the matches where the competition is stiffest.
+
+Three checks are printed on every run:
+
+| Check | Result |
+|---|---|
+| BPS → bonus conversion, fed the real BPS of all 7,813 starts | −3.1% |
+| Replay 2025/26 on each player's own rates | r = 0.918, level −13.3% |
+| Predict second-half bonus from first-half data only | MAE 3.03 vs **3.31** carrying forward |
+
+The −13.3% is corrected by a per-position factor (1.06 to 1.34), which is not a
+fudge: total bonus is conserved — 3+2+1 is awarded in every one of the 380
+fixtures whatever anybody projects — so a model summing to 87% of it is wrong
+by construction. It is per position rather than global because goalkeepers come
+out furthest light and one global number would leave every keeper under-rated
+against every forward. The unscaled version has a slightly better MAE (2.82)
+and a −0.51 bias; both are printed so the trade is visible.
+
+**Not modelled**: the −1 for being tackled, removed for 2026/27, since no free
+source publishes times-tackled per match; and the goalkeeper save-location
+changes.
 
 ### The per-match floor, and why it matters
 

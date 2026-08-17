@@ -4,7 +4,8 @@ All nine of FPL's scoring elements are present.  The scoring itself lives in
 xpts_calc.py; this file gathers the inputs, hands them over, and lays the
 answer out in Excel.
 
-    xPts season  =  rate x (xMins / 90)  +  appearance  +  DefCon  +  penalties
+    xPts season  =  rate x (xMins / 90)  +  appearance  +  DefCon  +  bonus
+                   +  penalties
 
 Only the first term is linear in minutes, which is why the season total is not
 one multiplication.  Appearance and DefCon points are earned per match and
@@ -139,9 +140,23 @@ NOTES = [
                        "xMins, a LOWER figure here means more matches and so "
                        "more appearance points. The early hook costs you "
                        "through xMins, not through this column."),
-    ("Bonus", "Bonus per 90 from 2025/26 replayed under the 2026/27 BPS weighting. "
-              "Modelled as a rate rather than a share of points, so it does not "
-              "depend on the rest of the model."),
+    ("Bonus", "Won per match, not per minute: 3/2/1 is contested once per "
+              "fixture. 'Base BPS/90' is the player's BPS with every event the "
+              "model projects elsewhere — goals, assists, clean sheets, saves, "
+              "goals conceded, cards — stripped out, leaving appearance, "
+              "defensive actions, passing and carrying. That remainder is what "
+              "repeats: across 2025/26's two halves, total BPS per 90 "
+              "replicated at r=0.39 and base BPS per 90 at r=0.78, so the old "
+              "column carried mostly noise and double-counted the goals. "
+              "'Bonus/match' simulates one match — his base BPS, plus goals and "
+              "assists drawn from his own team's goals, plus the clean sheet — "
+              "against the three scores he actually had to beat, sampled from "
+              "380 real fixtures and conditioned on the scoreline. That "
+              "conditioning is why a Manchester City assist is worth less "
+              "bonus than the same assist elsewhere: in a 4-0 win four "
+              "team-mates and a clean sheet are competing for the same three "
+              "points. Scaled to the bonus that actually exists, 6 points a "
+              "fixture, by a factor of 1.06 to 1.34 depending on position."),
     ("VORP", "xPts season minus the replacement level at that position — the "
              "best player still on the board once every team has filled its "
              "slots. Set the league size and slots below. Raw xPts asks who "
@@ -176,6 +191,49 @@ NOTES = [
                    "Change anything else and you are editing a number the model "
                    "will overwrite on the next run."),
 ]
+
+
+def _xg_basis(m: pd.DataFrame):
+    """Which xG figure each player is scored on, and the pieces behind it.
+
+    Split out of build_rows so that bonus_model can score its simulation on
+    the same expected goals the rest of the model uses.  It used to run on the
+    raw FPL figure, which counts penalties, so Erling Haaland's simulated bonus
+    was priced off an xG a quarter of which is credited separately in the
+    penalty column -- and then dragged back by a linear slope over a distance
+    far too big for a first-order correction to be honest about.
+    """
+    ratio = m.get("placement_ratio")
+    adj90 = m.get("adjusted_xGOT_p90")
+    blend90 = m["xG_blend_p90"]
+    use_adj = adj90.notna() & ratio.notna() & (m.get("hist_xG", 0).fillna(0) > 0)
+    return ratio, adj90, blend90, use_adj
+
+
+def model_rates(m: pd.DataFrame) -> pd.DataFrame:
+    """The three inputs bonus depends on: non-penalty xG/90, xA/90 and P(CS).
+
+    Exactly what build_rows scores with, so the bonus simulation and the rest
+    of the model see the same player.
+    """
+    _, adj90, blend90, use_adj = _xg_basis(m)
+    np_share = m.get("np_share")
+    np_share = pd.Series(1.0, index=m.index) if np_share is None else np_share.fillna(1.0)
+    out = pd.DataFrame(index=m.index)
+    # Rounded, not clipped, and rounded to the same 4 places build_rows uses.
+    # A clip here would silently put the bonus simulation on a different xG
+    # from the one the player is scored on, and the slope would then have to
+    # extrapolate across the gap -- which for a 200-minute sample with a
+    # nonsense xG/90 means extrapolating a long way.
+    out["xG_p90"] = (adj90.where(use_adj, blend90) * np_share).round(4)
+    out["xA_p90"] = m["xA_blend_p90"].round(4)
+    odds = PROC / "cs_from_odds.csv"
+    if odds.exists():
+        o = pd.read_csv(odds)
+        out["pcs"] = m["team_2627"].map(dict(zip(o["team_short"], o["p_cs"])))
+    else:
+        out["pcs"] = np.nan
+    return out
 
 
 def build_rows() -> pd.DataFrame:
@@ -215,10 +273,7 @@ def build_rows() -> pd.DataFrame:
     })
 
     # --- xG basis: adjusted xGOT where there is placement history ----------
-    ratio = m.get("placement_ratio")
-    adj90 = m.get("adjusted_xGOT_p90")
-    blend90 = m["xG_blend_p90"]
-    use_adj = adj90.notna() & ratio.notna() & (m.get("hist_xG", 0).fillna(0) > 0)
+    ratio, adj90, blend90, use_adj = _xg_basis(m)
     # Both models measure expected goals including penalties.  Penalties are
     # credited separately and explicitly, so they come out here first -- by the
     # player's own measured non-penalty share, from Understat's npxG.  The same
@@ -259,7 +314,25 @@ def build_rows() -> pd.DataFrame:
     # here means the number is mostly the position prior, not this player.
     d["mps_starts"] = m.get("mps_starts")
 
-    d["bonus_p90"] = m.get("bonus_new_p90").round(4)
+    # --- bonus: won per match, from projected BPS, not carried forward -----
+    # What used to sit here was last season's realised bonus per 90.  That
+    # credited every player for the goals, assists and clean sheets he actually
+    # got -- the three things this model already projects from scratch, and the
+    # three that repeat least (total BPS/90 replicates half-to-half at r=0.39;
+    # strip the events out and the remainder replicates at r=0.78).
+    bpm = m.get("bonus_per_match")
+    if bpm is None:
+        raise SystemExit(
+            "master has no `bonus_per_match` -- run bonus_model.py before "
+            "build_master.py (run_all.py does this in order).")
+    d["bonus_per_match"] = bpm
+    d["bonus_d_xg"] = m.get("d_bonus_d_xg90")
+    d["bonus_d_xa"] = m.get("d_bonus_d_xa90")
+    d["bonus_d_pcs"] = m.get("d_bonus_d_pcs")
+    d["bonus_xg_base"] = m.get("bonus_xg_base")
+    d["bonus_xa_base"] = m.get("bonus_xa_base")
+    d["bonus_pcs_base"] = m.get("bonus_pcs_base")
+    d["base_bps_p90"] = m.get("base_bps_p90")
 
     # --- club defensive volume, and the three remaining scoring elements ----
     d["saves_per_match"] = m.get("saves_per_match")
@@ -359,7 +432,13 @@ COLUMNS = [
     ("xA/90", "xA_p90", "derived"),
     ("DefCon actions/90", "defcon_lambda", "derived"),
     ("DefCon hit %", "defcon_hit", "derived"),
-    ("Bonus/90", "bonus_p90", "derived"),
+    ("Base BPS/90", "base_bps_p90", "derived"),
+    # The priced figure, not the raw one out of bonus_model: it is the raw
+    # figure moved onto this sheet's P(CS), which is market-implied and so a
+    # little above the Poisson the simulation drew clean sheets from.  Writing
+    # the raw one would leave the sheet and the model disagreeing by up to
+    # 0.7 points a season for no reason a reader could see.
+    ("Bonus/match", "bonus_per_match_priced", "derived"),
     ("App pts 25/26", "app_pts_2526", "derived"),
     ("Saves/match", "saves_per_match", "derived"),
     ("Goals against/match", "ga_per_match", "derived"),
@@ -370,7 +449,6 @@ COLUMNS = [
     ("xG pts/90", "xg_pts_p90", "derived"),
     ("xA pts/90", "xa_pts_p90", "derived"),
     ("CS pts/90", None, "formula"),
-    ("Bonus pts/90", "bonus_pts_p90", "derived"),
     ("Save pts/90", "save_pts_p90", "derived"),
     ("GC pts/90", "gc_pts_p90", "derived"),
     ("Cards pts/90", "cards_pts_p90", "derived"),
@@ -378,6 +456,7 @@ COLUMNS = [
     # --- the two earned per match, plus penalties, as season totals ---------
     ("App pts season", None, "formula"),
     ("DC pts season", None, "formula"),
+    ("Bonus pts season", None, "formula"),
     ("Pen pts season", None, "formula"),
     ("xPts season", None, "formula"),
     ("xPts/90", None, "formula"),
@@ -561,6 +640,16 @@ def main() -> int:
         # clearing it comes from the model; only the count of chances is live.
         ws[f"{col['DC pts season']}{i}"] = (
             f"=N({mt})*N({col['DefCon hit %']}{i})*N({col['_dc pts']}{i})")
+        # Bonus is contested once per fixture, so it is won per match like
+        # appearance and DefCon points -- not per minute.  'Bonus/match' is one
+        # simulated match at this player's minutes per start; only the count of
+        # matches is live here, which is the same treatment the other two get.
+        # Gated on the appearance multiplier for the same reason App pts season
+        # is: a player with no 2026/27 position has left the league and must
+        # score nothing.  Bonus is the one element with no positional
+        # multiplier of its own to zero him out.
+        ws[f"{col['Bonus pts season']}{i}"] = (
+            f"=IF(N({col['_app 60+']}{i})=0,0,N({mt})*N({col['Bonus/match']}{i}))")
         # Penalties are already an expected count for the whole season -- the
         # taker's share prices his availability -- so they are never scaled by
         # minutes.
@@ -571,7 +660,7 @@ def main() -> int:
         ws[f"{col['xPts season']}{i}"] = (
             f"=N({col['Rate pts/90']}{i})*N({xm})/90"
             f"+N({col['App pts season']}{i})+N({col['DC pts season']}{i})"
-            f"+N({col['Pen pts season']}{i})")
+            f"+N({col['Bonus pts season']}{i})+N({col['Pen pts season']}{i})")
         # Shown per 90 for comparability. Penalties are excluded: they do not
         # scale with minutes, so folding them in would flatter a part-time taker.
         ws[f"{col['xPts/90']}{i}"] = (

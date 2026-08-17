@@ -341,7 +341,16 @@ def assemble() -> pd.DataFrame:
         # re-price goals, clean sheets, saves and goals conceded, not just the
         # appearance and DefCon terms.
         "pcs": d["pcs_input"].fillna(0).round(6),
-        "bonus_p90": d["bonus_p90"].fillna(0).round(6),
+        # Bonus is won per match, so what ships is one simulated match plus
+        # the three slopes that re-price it when xG, xA or P(CS) are edited.
+        "bonus_pm": d["bonus_per_match"].fillna(0).round(6),
+        "bonus_d_xg": d["bonus_d_xg"].fillna(0).round(6),
+        "bonus_d_xa": d["bonus_d_xa"].fillna(0).round(6),
+        "bonus_d_pcs": d["bonus_d_pcs"].fillna(0).round(6),
+        "bonus_xg_base": d["bonus_xg_base"].fillna(0).round(6),
+        "bonus_xa_base": d["bonus_xa_base"].fillna(0).round(6),
+        "bonus_pcs_base": d["bonus_pcs_base"].fillna(0).round(6),
+        "base_bps_p90": d["base_bps_p90"].fillna(0).round(3),
         "saves_per_match": d["saves_per_match"].fillna(0).round(6),
         "ga_per_match": d["ga_per_match"].fillna(0).round(6),
         "card_pts_p90": d["card_pts_p90"].fillna(0).round(6),
@@ -713,6 +722,8 @@ COLS = [
     ("pen_role", "Pens", False, "Set pieces", None),
     ("pens", "Pens exp", True, "Set pieces", None),
     ("defcon_hit", "DefCon %", True, "Other levers", None),
+    ("base_bps_p90", "Base BPS/90", True, "Other levers", None),
+    ("bonus_pm", "Bonus/match", True, "Other levers", None),
     ("adr_pros", "ADR Pros", True, "Other levers", None),
     ("adp", "ADP", True, "Draft", "num1"),
     ("band", "There at", True, "Draft", None),
@@ -814,7 +825,6 @@ function rateOf(r){
   return num('xg_p90_adj', r.xg_p90) * sc.goal
        + num('xa_p90_adj', r.xa_p90) * sc.assist * UPLIFT
        + num('pcs', r.pcs) * sc.cs
-       + num('bonus_p90', r.bonus_p90)
        + floorPoints(num('saves_per_match', r.saves_per_match), sc.save_per)
        - floorPoints(num('ga_per_match', r.ga_per_match), sc.gc_per)
        + num('card_pts_p90', r.card_pts_p90);
@@ -846,7 +856,17 @@ function scoreOne(r){
     ? Math.min(1, Math.max(0, typed / 100))
     : (sc.dc_pts > 0 ? poissonAtLeast(sc.dc_thr, r.defcon_lambda * mps / 90) : 0);
   const dc = matches * hit * sc.dc_pts;
-  return {matches, app, hit, dc, xpts: rateOf(r) * xm / 90 + app + dc + penPtsOf(r)};
+  // Bonus is contested once per fixture, so it is won per match like
+  // appearance and DefCon points. The three slopes move it when xG, xA or
+  // P(CS) are edited away from the values the simulation was run at.
+  const num = (f, base) => { const v = Number(val(r, f)); return Number.isFinite(v) ? v : base; };
+  const bpm = Math.max(0, r.bonus_pm
+    + r.bonus_d_xg  * (num('xg_p90_adj', r.xg_p90) - r.bonus_xg_base)
+    + r.bonus_d_xa  * (num('xa_p90_adj', r.xa_p90) - r.bonus_xa_base)
+    + r.bonus_d_pcs * (num('pcs', r.pcs)           - r.bonus_pcs_base));
+  const bonus = matches * bpm;
+  return {matches, app, hit, dc, bpm, bonus,
+          xpts: rateOf(r) * xm / 90 + app + dc + bonus + penPtsOf(r)};
 }
 
 function myPicks(){

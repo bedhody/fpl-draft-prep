@@ -102,27 +102,41 @@ def check_identities() -> None:
 def worked_examples() -> None:
     print("\nworked examples (inputs chosen so the answer can be done by hand)")
 
+    zero_bonus = dict(bonus_per_match=0.0, bonus_d_xg=0.0, bonus_d_xa=0.0,
+                      bonus_d_pcs=0.0, bonus_xg_base=0.0, bonus_xa_base=0.0,
+                      bonus_pcs_base=0.0)
     d = pd.DataFrame([
         # An ever-present defender: 38 starts of 90 minutes.
         dict(pos="DEF", xMins_input=3420.0, mins_per_start=90.0, xG_p90=0.10,
-             xA_p90=0.05, pcs_input=0.25, defcon_lambda=0.0, bonus_p90=0.20,
+             xA_p90=0.05, pcs_input=0.25, defcon_lambda=0.0,
              saves_per_match=0.0, ga_per_match=0.0, card_pts_p90=-0.15,
-             pens_season=0.0, pen_save_pts=0.0),
+             pens_season=0.0, pen_save_pts=0.0,
+             **{**zero_bonus, "bonus_per_match": 0.20}),
         # A midfielder used only as a late substitute: 20 x 30 minutes.
         dict(pos="MID", xMins_input=600.0, mins_per_start=30.0, xG_p90=0.0,
-             xA_p90=0.0, pcs_input=0.0, defcon_lambda=0.0, bonus_p90=0.0,
+             xA_p90=0.0, pcs_input=0.0, defcon_lambda=0.0,
              saves_per_match=0.0, ga_per_match=0.0, card_pts_p90=0.0,
-             pens_season=0.0, pen_save_pts=0.0),
+             pens_season=0.0, pen_save_pts=0.0, **zero_bonus),
         # The cap: a forecast implying 62 matches, against 38 that exist.
         dict(pos="MID", xMins_input=2804.0, mins_per_start=45.0, xG_p90=0.0,
-             xA_p90=0.0, pcs_input=0.0, defcon_lambda=0.0, bonus_p90=0.0,
+             xA_p90=0.0, pcs_input=0.0, defcon_lambda=0.0,
              saves_per_match=0.0, ga_per_match=0.0, card_pts_p90=0.0,
-             pens_season=0.0, pen_save_pts=0.0),
+             pens_season=0.0, pen_save_pts=0.0, **zero_bonus),
         # A striker with penalty duty and nothing else.
         dict(pos="FWD", xMins_input=0.0, mins_per_start=0.0, xG_p90=0.0,
-             xA_p90=0.0, pcs_input=0.0, defcon_lambda=0.0, bonus_p90=0.0,
+             xA_p90=0.0, pcs_input=0.0, defcon_lambda=0.0,
              saves_per_match=0.0, ga_per_match=0.0, card_pts_p90=0.0,
-             pens_season=10.0, pen_save_pts=0.0),
+             pens_season=10.0, pen_save_pts=0.0, **zero_bonus),
+        # Bonus re-priced by a slope: 30 matches, 0.30 bonus a match at the
+        # xG the simulation was run at, and 2.0 bonus per unit of xG/90 above
+        # it.  xG is 0.15 over, so bonus a match is 0.30 + 2.0 x 0.15 = 0.60.
+        dict(pos="MID", xMins_input=2700.0, mins_per_start=90.0, xG_p90=0.35,
+             xA_p90=0.0, pcs_input=0.0, defcon_lambda=0.0,
+             saves_per_match=0.0, ga_per_match=0.0, card_pts_p90=0.0,
+             pens_season=0.0, pen_save_pts=0.0,
+             bonus_per_match=0.30, bonus_d_xg=2.0, bonus_d_xa=0.0,
+             bonus_d_pcs=0.0, bonus_xg_base=0.20, bonus_xa_base=0.0,
+             bonus_pcs_base=0.0),
     ])
     s = xpts_calc.score(d)
 
@@ -131,16 +145,21 @@ def worked_examples() -> None:
     check("38 x 90-min starts give 38 matches", abs(s.matches[0] - 38.0) < TOL)
     check("  and 76 appearance points", abs(s.app_pts_season[0] - 76.0) < TOL)
     # 0.10 xG/90 x 6 points a goal = 0.60.  0.05 xA/90 x 3 x 1.32 = 0.198.
-    # 0.25 P(CS) x 4 = 1.00.  Bonus 0.20.  Cards -0.15.  Saves and conceded
-    # both zero because the club concedes nothing in this example.
+    # 0.25 P(CS) x 4 = 1.00.  Cards -0.15.  Saves and conceded both zero
+    # because the club concedes nothing in this example.  Bonus is NOT in the
+    # rate: it is won per match, so it is 38 x 0.20 = 7.6 on top.
     check("  xG 0.10/90 x 6 = 0.600", abs(s.xg_pts_p90[0] - 0.600) < TOL)
     check("  xA 0.05/90 x 3 x 1.32 = 0.198", abs(s.xa_pts_p90[0] - 0.198) < TOL)
     check("  CS 0.25 x 4 = 1.000", abs(s.cs_pts_p90[0] - 1.000) < TOL)
-    rate = 0.600 + 0.198 + 1.000 + 0.20 + 0.0 + 0.0 - 0.15
-    check(f"  rate sums to {rate:.3f}", abs(s.rate_pts_p90[0] - rate) < TOL)
-    # 3420 minutes is exactly 38 nineties, so the season total is 38 x rate + 76.
-    check(f"  season = 38 x rate + 76 = {38 * rate + 76:.3f}",
-          abs(s.xpts_season[0] - (38 * rate + 76)) < 1e-9)
+    rate = 0.600 + 0.198 + 1.000 + 0.0 + 0.0 - 0.15
+    check(f"  rate sums to {rate:.3f}, with bonus NOT in it",
+          abs(s.rate_pts_p90[0] - rate) < TOL)
+    check("  bonus is 38 matches x 0.20 = 7.6",
+          abs(s.bonus_pts_season[0] - 7.6) < 1e-9)
+    # 3420 minutes is exactly 38 nineties, so the season total is
+    # 38 x rate + 76 appearance + 7.6 bonus.
+    check(f"  season = 38 x rate + 76 + 7.6 = {38 * rate + 76 + 7.6:.3f}",
+          abs(s.xpts_season[0] - (38 * rate + 76 + 7.6)) < 1e-9)
 
     # -- the substitute ------------------------------------------------------
     # 600 minutes at 30 a time is 20 appearances, none of which reach the hour,
@@ -167,6 +186,14 @@ def worked_examples() -> None:
           abs(s.pen_pts_season[3] - want) < 1e-9)
     check("  and are not scaled by his zero minutes",
           abs(s.xpts_season[3] - want) < 1e-9)
+
+    # -- bonus, re-priced off the slope ---------------------------------------
+    # 0.30 a match at xG/90 = 0.20, plus 2.0 per unit of xG above that.  At
+    # 0.35 that is 0.30 + 2.0 x 0.15 = 0.60 a match over 30 matches.
+    check("bonus slope re-prices 0.30 -> 0.60 a match",
+          abs(s.bonus_per_match_priced[4] - 0.60) < 1e-12)
+    check("  giving 30 x 0.60 = 18.0 for the season",
+          abs(s.bonus_pts_season[4] - 18.0) < 1e-9)
 
 
 # --------------------------------------------------------------------------
@@ -274,6 +301,7 @@ def check_workbook(calc: Path) -> None:
         "Matches": s.matches,
         "App pts season": s.app_pts_season,
         "DC pts season": s.dc_pts_season,
+        "Bonus pts season": s.bonus_pts_season,
         "Pen pts season": s.pen_pts_season,
         "xPts season": s.xpts_season,
         "xPts/90": s.xpts_p90,

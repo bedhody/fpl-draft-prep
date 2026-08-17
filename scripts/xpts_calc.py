@@ -8,13 +8,15 @@ minimum or a cap without three layers of IF().
 
 The season total is deliberately not one multiplication:
 
-    xPts season = rate x (xMins / 90)      seven elements that scale with
+    xPts season = rate x (xMins / 90)      six elements that scale with
                                            minutes: xG, xA, clean sheets,
-                                           bonus, saves, goals conceded, cards
+                                           saves, goals conceded, cards
                 + appearance points        earned per match, and capped at the
                                            38 matches that exist
                 + DefCon points            earned per match too, and convex in
                                            how long each one lasts
+                + bonus                    contested once per fixture, so also
+                                           per match rather than per minute
                 + penalties                a season count already, because the
                                            taker's share prices availability
 
@@ -62,9 +64,9 @@ SCORING = {
 # string visible instead of quietly scoring it as a midfielder.
 UNKNOWN = (0, 0, 0, 0, 0, 99, 0, 0)
 
-# The per-90 elements, in the order they appear on the sheet.  Appearance and
-# DefCon are absent on purpose: neither scales with minutes.
-RATE_PARTS = ["xg_pts_p90", "xa_pts_p90", "cs_pts_p90", "bonus_pts_p90",
+# The per-90 elements, in the order they appear on the sheet.  Appearance,
+# DefCon and bonus are absent on purpose: none of them scales with minutes.
+RATE_PARTS = ["xg_pts_p90", "xa_pts_p90", "cs_pts_p90",
               "save_pts_p90", "gc_pts_p90", "cards_pts_p90"]
 
 
@@ -141,7 +143,6 @@ def score(d: pd.DataFrame, assist_uplift: float = ASSIST_UPLIFT) -> pd.DataFrame
     out["xg_pts_p90"] = d["xG_p90"].fillna(0) * s["goal"]
     out["xa_pts_p90"] = d["xA_p90"].fillna(0) * s["assist"] * assist_uplift
     out["cs_pts_p90"] = d["pcs_input"].fillna(0) * s["clean_sheet"]
-    out["bonus_pts_p90"] = d["bonus_p90"].fillna(0)
     out["save_pts_p90"] = floor_points(d["saves_per_match"].fillna(0),
                                        s["saves_per_point"])
     out["gc_pts_p90"] = -floor_points(d["ga_per_match"].fillna(0),
@@ -165,6 +166,21 @@ def score(d: pd.DataFrame, assist_uplift: float = ASSIST_UPLIFT) -> pd.DataFrame
                                    s["defcon_threshold"])
     out["dc_pts_season"] = matches * out["defcon_hit"] * s["defcon"]
 
+    # --- bonus, also per match ---------------------------------------------
+    # 3/2/1 is awarded once per fixture, so bonus is won per match and not per
+    # minute -- the same reason appearance points are not a rate.  bonus_model
+    # simulates one match at this player's minutes per start; the three slopes
+    # re-price it when xG, xA or P(CS) are edited away from the values the
+    # simulation was run at, which is a first-order approximation and is only
+    # meant to hold over the size of edit a person makes by hand.
+    out["bonus_per_match_priced"] = (
+        d["bonus_per_match"].fillna(0)
+        + d["bonus_d_xg"].fillna(0) * (d["xG_p90"].fillna(0) - d["bonus_xg_base"].fillna(0))
+        + d["bonus_d_xa"].fillna(0) * (d["xA_p90"].fillna(0) - d["bonus_xa_base"].fillna(0))
+        + d["bonus_d_pcs"].fillna(0) * (d["pcs_input"].fillna(0) - d["bonus_pcs_base"].fillna(0))
+    ).clip(lower=0)
+    out["bonus_pts_season"] = matches * out["bonus_per_match_priced"]
+
     # --- penalties, a season count already ---------------------------------
     # The taker's expected count prices how much of the season he plays, so it
     # must not be scaled by minutes a second time.
@@ -177,7 +193,8 @@ def score(d: pd.DataFrame, assist_uplift: float = ASSIST_UPLIFT) -> pd.DataFrame
     # --- totals ------------------------------------------------------------
     n90 = xmins / 90
     out["xpts_season"] = (out["rate_pts_p90"] * n90 + out["app_pts_season"]
-                          + out["dc_pts_season"] + out["pen_pts_season"])
+                          + out["dc_pts_season"] + out["pen_pts_season"]
+                          + out["bonus_pts_season"])
     # Shown per 90 for comparability across players.  Penalties are left out:
     # they do not scale with minutes, so folding them in would make a part-time
     # penalty taker look like a high-rate player.
@@ -189,6 +206,8 @@ def score(d: pd.DataFrame, assist_uplift: float = ASSIST_UPLIFT) -> pd.DataFrame
                                    out=np.zeros(len(d)), where=xmins > 0)
     out["dc_pts_p90"] = np.divide(out["dc_pts_season"] * 90, xmins,
                                   out=np.zeros(len(d)), where=xmins > 0)
+    out["bonus_pts_p90"] = np.divide(out["bonus_pts_season"] * 90, xmins,
+                                     out=np.zeros(len(d)), where=xmins > 0)
 
     # A player with no 2026/27 position has left the league.  Most elements
     # already zero themselves through the multiplier table, but bonus and cards
