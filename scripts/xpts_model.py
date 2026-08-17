@@ -118,13 +118,22 @@ NOTES = [
                   "the penalty column, and not twice."),
     ("DefCon", "Not a frozen rate. 'DefCon actions/90' is the player's underlying "
                "rate of qualifying defensive actions, shrunk toward the position "
-               "mean for thin samples. The sheet turns that into 'DefCon hit %' "
-               "with a Poisson over 'Mins per start' against the threshold on the "
-               "table above -- so if you change minutes per start, the hit rate "
-               "moves with it, steeply. A defender on 10 actions/90 clears a "
-               "threshold of 10 in 14% of 60-minute starts and 54% of 90-minute "
-               "starts. Both minutes inputs matter: xMins sets how many starts "
-               "he gets, mins per start sets how likely each one pays."),
+               "mean for thin samples. The model turns that into 'DefCon hit %' "
+               "with a negative binomial over 'Mins per start' against the "
+               "threshold on the table above -- so if you change minutes per "
+               "start, the hit rate moves with it. A defender on 10 actions/90 "
+               "clears a threshold of 10 in 19% of 60-minute starts and 49% of "
+               "90-minute starts. Both minutes inputs matter: xMins sets how "
+               "many starts he gets, mins per start sets how likely each one "
+               "pays. Negative binomial rather than Poisson because a player's "
+               "actions are not a constant-rate process -- measured within "
+               "player across starts, the variance is 1.5x the mean -- and "
+               "because P(clearing the threshold) is convex in the rate, that "
+               "spread produces MORE crossings, not fewer. A Poisson returned "
+               "16% less DefCon than 2025/26 actually awarded and 12.4% less "
+               "out of sample; the negative binomial returns -1.9% and -0.0%. "
+               "The dispersion is fitted per position, two-fold, in "
+               "defcon_model.py: 8 for defenders, 16 for midfielders."),
     ("Mins per start", "Minutes played in matches he started, over starts, "
                        "from 2025/26 -- with sendings-off dropped from both "
                        "sides, since a red card is not rotation risk. It is "
@@ -296,6 +305,20 @@ def build_rows() -> pd.DataFrame:
     # so the answer responds to minutes instead of ignoring them.
     d["defcon_lambda"] = m.get("defcon_lambda")
     d.loc[m["position"] == "GKP", "defcon_lambda"] = 0.0
+    # Dispersion of the per-match action count, fitted per position in
+    # defcon_model.py.  Keyed on the 2026/27 position, not the one carried in
+    # from last season: the DefCon *threshold* follows the position a player is
+    # scored at, so the distribution it is compared against has to as well.
+    # Three converted midfielders were being scored as defenders against a
+    # midfielder's dispersion, and the 58 summer arrivals with no DefCon row at
+    # all were falling back to the Poisson the change exists to replace.
+    sz = m.get("defcon_size")
+    if sz is None:
+        d["defcon_size"] = np.inf
+    else:
+        by_pos = (pd.DataFrame({"pos": m.get("pos_2526"), "sz": sz}).dropna()
+                  .groupby("pos")["sz"].median())
+        d["defcon_size"] = m["position"].map(by_pos).fillna(np.inf)
     # Anyone with no Premier League record -- a promoted club's keeper, an
     # incoming signing -- has no measured appearance length, so he gets the
     # default.  Leaving it blank makes his match count zero, and with it his

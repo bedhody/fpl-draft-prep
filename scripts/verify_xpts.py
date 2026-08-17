@@ -77,17 +77,42 @@ def check_identities() -> None:
     check("E[floor(Poisson/m)] matches sum of n*P(X=n)", worst < 1e-4,
           f"max gap {worst:.2e} over 14 rate/divisor pairs")
 
-    # P(X >= threshold) the slow way: add up the mass at and above it.
-    worst = 0.0
+    # P(X >= threshold) the slow way: add up the mass at and above it.  The
+    # negative binomial mass is written out from its own definition here --
+    # C(j+size-1, j) p^size (1-p)^j -- so this compares xpts_calc against the
+    # formula rather than against another call to scipy.
+    from math import lgamma
+    worst = worst_nb = 0.0
+    n_poi = n_nb = 0
     for lam in (6.0, 9.0, 10.0, 13.5):
         for mps in (45.0, 60.0, 75.0, 90.0):
             for thr in (10, 12):
                 mu = lam * mps / 90
                 direct = float(poisson.pmf(np.arange(thr, 200), mu).sum())
-                fast = float(xpts_calc.defcon_hit(lam, mps, thr))
-                worst = max(worst, abs(direct - fast))
-    check("P(actions >= threshold) matches summed mass above it", worst < 1e-9,
-          f"max gap {worst:.2e} over 32 combinations")
+                worst = max(worst, abs(direct - float(
+                    xpts_calc.defcon_hit(lam, mps, thr, np.inf))))
+                n_poi += 1
+                for size in (8.0, 16.0):
+                    p = size / (size + mu)
+                    j = np.arange(thr, 400)
+                    logpmf = (lgamma(size) * -1 + np.array(
+                        [lgamma(x + size) - lgamma(x + 1) for x in j])
+                        + size * np.log(p) + j * np.log1p(-p))
+                    worst_nb = max(worst_nb, abs(float(np.exp(logpmf).sum()) - float(
+                        xpts_calc.defcon_hit(lam, mps, thr, size))))
+                    n_nb += 1
+    check("P(actions >= threshold), Poisson limit, matches summed mass",
+          worst < 1e-9, f"max gap {worst:.2e} over {n_poi} combinations")
+    check("P(actions >= threshold), negative binomial, matches summed mass",
+          worst_nb < 1e-9, f"max gap {worst_nb:.2e} over {n_nb} combinations")
+    # Over-dispersion has to RAISE the chance of clearing a threshold that sits
+    # above the mean -- that convexity is the entire reason for the change, so
+    # a sign flip here would be silent otherwise.
+    over = [float(xpts_calc.defcon_hit(9.0, m, 10, 8.0))
+            > float(xpts_calc.defcon_hit(9.0, m, 10, np.inf))
+            for m in (60.0, 70.0, 80.0)]
+    check("dispersion raises P(hit) when the threshold is above the mean",
+          all(over))
 
     # The floor must never exceed a plain division, and never be negative.
     lam = np.linspace(0.05, 6.0, 60)
@@ -104,7 +129,7 @@ def worked_examples() -> None:
 
     zero_bonus = dict(bonus_per_match=0.0, bonus_d_xg=0.0, bonus_d_xa=0.0,
                       bonus_d_pcs=0.0, bonus_xg_base=0.0, bonus_xa_base=0.0,
-                      bonus_pcs_base=0.0)
+                      bonus_pcs_base=0.0, defcon_size=np.inf)
     d = pd.DataFrame([
         # An ever-present defender: 38 starts of 90 minutes.
         dict(pos="DEF", xMins_input=3420.0, mins_per_start=90.0, xG_p90=0.10,

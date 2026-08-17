@@ -30,7 +30,7 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
-from scipy.stats import poisson
+from scipy.stats import nbinom, poisson
 
 # A Premier League season is 38 matches, so nobody appears in more than 38.
 MATCHES = 38
@@ -103,22 +103,42 @@ def floor_points(lam, per, terms: int = FLOOR_TERMS):
     return out
 
 
-def defcon_hit(lam, mins_per_start, threshold):
+def defcon_hit(lam, mins_per_start, threshold, size=None):
     """P(a player clears his DefCon threshold in one start).
 
     Actions arrive at `lam` per 90, so a start of `mins_per_start` sees
-    lam x mins/90 of them on average.  The response to minutes is steeply
-    convex: a defender on 10 actions per 90 clears a threshold of 10 in 14% of
-    60-minute starts and 54% of 90-minute starts.
+    lam x mins/90 of them on average.  The response to minutes is convex: a
+    defender on 10 actions per 90 clears a threshold of 10 in 19% of 60-minute
+    starts and 49% of 90-minute starts.
+
+    Negative binomial, not Poisson.  A player's defensive actions are not a
+    constant-rate process -- some matches he chases the game for ninety
+    minutes, some he is three up at half time -- and measured within player
+    across starts the variance is 1.5x the mean.  Because P(X >= threshold) is
+    convex in the rate, that spread produces MORE threshold crossings than a
+    Poisson predicts: the Poisson returned 16% less DefCon than 2025/26
+    actually awarded, and 12.4% less out of sample.  `size` is the dispersion,
+    fitted per position in defcon_model.py; infinite size is the Poisson, and
+    is what a player with no fitted value falls back to.
     """
     lam = np.asarray(lam, dtype=float)
     mps = np.asarray(mins_per_start, dtype=float)
     thr = np.asarray(threshold, dtype=float)
-    out = np.zeros(np.broadcast(lam, mps, thr).shape, dtype=float)
-    lam, mps, thr = np.broadcast_arrays(lam, mps, thr)
+    sz = np.asarray(np.inf if size is None else size, dtype=float)
+    out = np.zeros(np.broadcast(lam, mps, thr, sz).shape, dtype=float)
+    lam, mps, thr, sz = np.broadcast_arrays(lam, mps, thr, sz)
     live = (lam > 0) & (mps > 0)
-    if live.any():
-        out[live] = 1 - poisson.cdf(thr[live] - 1, lam[live] * mps[live] / 90)
+    if not live.any():
+        return out
+    mu = lam[live] * mps[live] / 90
+    k = sz[live]
+    finite = np.isfinite(k) & (k > 0)
+    res = np.empty(mu.shape, dtype=float)
+    res[~finite] = 1 - poisson.cdf(thr[live][~finite] - 1, mu[~finite])
+    if finite.any():
+        kk, mm = k[finite], np.maximum(mu[finite], 1e-9)
+        res[finite] = 1 - nbinom.cdf(thr[live][finite] - 1, kk, kk / (kk + mm))
+    out[live] = res
     return out
 
 
@@ -163,7 +183,8 @@ def score(d: pd.DataFrame, assist_uplift: float = ASSIST_UPLIFT) -> pd.DataFrame
         mins_per_app >= 60, s["appearance"].to_numpy(), 1.0)
 
     out["defcon_hit"] = defcon_hit(d["defcon_lambda"].fillna(0), mps,
-                                   s["defcon_threshold"])
+                                   s["defcon_threshold"],
+                                   d["defcon_size"].fillna(np.inf))
     out["dc_pts_season"] = matches * out["defcon_hit"] * s["defcon"]
 
     # --- bonus, also per match ---------------------------------------------

@@ -23,9 +23,10 @@ combination against the season where both exist:
       (+ ball recoveries for midfielders and forwards)
 
 which reproduces FPL's own 2025/26 count at r = 0.995 across 339 players with
-900+ minutes.  Points then come from the same Poisson over minutes per start
-that the projection model uses, and that step is validated against the real
-2025/26 DefCon points before any of it is applied to an older season.
+900+ minutes.  Points then come from the projection model's own conversion --
+xpts_calc.defcon_hit, a negative binomial over minutes per start -- and that
+step is validated against the real 2025/26 DefCon points before any of it is
+applied to an older season.
 
 What is NOT restated: the BPS change (1 point per 3 clearances rather than per
 2) needs per-match counts, which the older files do not carry.  Bonus is left
@@ -40,8 +41,7 @@ import sys
 
 import numpy as np
 import pandas as pd
-from scipy.stats import poisson
-
+import xpts_calc
 from common import OUT, PROC, RAW
 
 SEASONS = ["2021-22", "2022-23", "2023-24", "2024-25", "2025-26"]
@@ -49,6 +49,14 @@ PRETTY = {s: s.replace("-", "/") for s in SEASONS}
 POSMAP = {"GK": "GKP", "GKP": "GKP", "DEF": "DEF", "MID": "MID", "FWD": "FWD"}
 THRESHOLD = {"DEF": 10, "MID": 12, "FWD": 12, "GKP": 99}
 DEFCON_PTS = 2
+# Dispersion of the per-match action count, fitted in defcon_model.py and read
+# back from its output so the two cannot drift apart.
+try:
+    _dc = pd.read_csv(PROC / "defcon_model.csv")
+    DISPERSION = (_dc.dropna(subset=["defcon_size"])
+                  .groupby("pos_2526")["defcon_size"].median().to_dict())
+except Exception:                                     # noqa: BLE001
+    DISPERSION = {}
 BIG_N = 6                      # "big club" = top six of the previous season
 TOP_NS = [20, 30, 40, 50]
 MIN_MINUTES = 900
@@ -118,9 +126,24 @@ def season_frame(season: str) -> pd.DataFrame | None:
         assists=("assists", "sum"), clean_sheets=("clean_sheets", "sum"),
         bonus=("bonus", "sum"),
     ).reset_index()
-    # Minutes per appearance is enough here: it is what the Poisson needs, and
-    # `starts` does not exist in the 2021/22 file.
-    agg["mins_per_start"] = (agg["minutes"] / agg["apps"]).clip(20, 90)
+    # Minutes per START, not per appearance.  Dividing all his minutes by all
+    # his appearances counts substitute cameos in the denominator and drags the
+    # figure down, and because P(clearing the threshold) is convex that showed
+    # up as a 12% shortfall in DefCon points that had nothing to do with the
+    # distribution.  `starts` does not exist in the 2021/22 file, which falls
+    # back to appearances.
+    if "starts" in played.columns and played["starts"].notna().any():
+        sm = played.assign(
+            start_minutes=played["minutes"].where(played["starts"] > 0, 0))
+        gs = sm.groupby("element").agg(start_minutes=("start_minutes", "sum"),
+                                       n_starts=("starts", "sum"))
+        agg = agg.merge(gs, left_on="element", right_index=True, how="left")
+        agg["mins_per_start"] = (agg["start_minutes"]
+                                 / agg["n_starts"].replace(0, np.nan))
+        agg["mins_per_start"] = agg["mins_per_start"].fillna(
+            agg["minutes"] / agg["apps"]).clip(20, 90)
+    else:
+        agg["mins_per_start"] = (agg["minutes"] / agg["apps"]).clip(20, 90)
     agg["dc_actual"] = played.groupby("element")["defensive_contribution"].sum().values \
         if "defensive_contribution" in played.columns else np.nan
     agg["dc_points_actual"] = np.nan
@@ -147,13 +170,19 @@ def season_frame(season: str) -> pd.DataFrame | None:
 
 
 def model_defcon_points(d: pd.DataFrame, actions_col: str) -> pd.Series:
-    """The projection model's own DefCon step, applied to a past season."""
+    """The projection model's own DefCon step, applied to a past season.
+
+    Calls xpts_calc rather than reimplementing it, so a change to the model
+    cannot silently leave this file describing a different one.
+    """
     lam = (d[actions_col] / (d["minutes"] / 90)).replace([np.inf, -np.inf], np.nan)
     mps = d["mins_per_start"]
     thr = d["pos"].map(THRESHOLD).fillna(99)
     matches = np.minimum(38, d["minutes"] / mps)
-    hit = 1 - poisson.cdf(thr - 1, (lam * mps / 90).fillna(0))
-    return (matches * hit * DEFCON_PTS).where(lam.notna(), 0.0)
+    hit = xpts_calc.defcon_hit(lam.fillna(0), mps, thr,
+                               d["pos"].map(DISPERSION).fillna(np.inf))
+    return (pd.Series(matches * hit * DEFCON_PTS, index=d.index)
+            .where(lam.notna(), 0.0))
 
 
 # --------------------------------------------------------------------------
@@ -204,26 +233,22 @@ def validate(d: pd.DataFrame, lines: list[str]) -> None:
         factors = d.attrs.get("dc_factors", {})
         cal = raw * cur["pos"].map(factors).fillna(1.0)
         lines.append(f"Rebuilt **DefCon points** against the points actually "
-                     f"awarded: r = **{r_pts:.3f}**. Uncalibrated the league "
-                     f"total comes out at {raw.sum():.0f} against "
+                     f"awarded, using the model's negative binomial: r = "
+                     f"**{r_pts:.3f}**, league total {raw.sum():.0f} against "
                      f"{truth.sum():.0f} ({raw.sum() / truth.sum() - 1:+.1%}).\n")
-        lines.append("It runs **low**, not high, and for a reason worth "
-                     "stating: a fixed-rate Poisson under-counts threshold "
-                     "crossings. A real player's actions are overdispersed — "
-                     "some matches he chases the game for ninety minutes, some "
-                     "he is three up at half time — and P(actions ≥ threshold) "
-                     "is convex in the rate, so spreading the rate out raises "
-                     "the average. Left uncorrected it would understate every "
-                     "defender in the seasons before the rule existed and make "
-                     "this whole comparison say the opposite of the truth.\n")
-        lines.append("So the modelled points are scaled per position to the "
-                     "ones 2025/26 actually awarded ("
+        lines.append("The residual gap is the historical minutes: the older "
+                     "files record appearances rather than starts for 2021/22, "
+                     "and a player's own action rate here is his raw one with "
+                     "no shrinkage. Both push the same way. So the modelled "
+                     "points are scaled per position to the ones 2025/26 "
+                     "actually awarded ("
                      + ", ".join(f"{p} ×{v:.2f}" for p, v in sorted(factors.items())
-                                 if v != 1.0)
+                                 if abs(v - 1) > 0.005)
                      + f"), which brings the total to {cal.sum():.0f} against "
-                     f"{truth.sum():.0f}. The same correction is worth making "
-                     "in the projection model, where DefCon is computed the "
-                     "same way and is therefore also low.\n")
+                     f"{truth.sum():.0f}. The conversion itself is the "
+                     "projection model's own `xpts_calc.defcon_hit`, called "
+                     "rather than reimplemented, so this file cannot end up "
+                     "describing a different model from the one that ships.\n")
     else:
         lines.append("_No 2025/26 DefCon column found -- reconstruction unchecked._\n")
 
@@ -442,32 +467,31 @@ def compare_projection(d: pd.DataFrame, lines: list[str]) -> None:
 
 
 def implications(d: pd.DataFrame, lines: list[str]) -> None:
-    lines.append("\n## What this says about the projection model\n")
-    factors = d.attrs.get("dc_factors", {})
-    lines.append("**The model understates DefCon.** `xpts_calc.defcon_hit` "
-                 "assumes a player's defensive actions arrive at a constant "
-                 "rate, so it uses a Poisson. They do not: measured within "
-                 "player, across starts in 2025/26, the variance-to-mean ratio "
-                 "of per-match DefCon actions is **1.40 for defenders and 1.41 "
-                 "for midfielders**, against 1.00 for a Poisson. Because "
-                 "P(actions ≥ threshold) is convex in the rate, that "
-                 "overdispersion means more threshold crossings than a Poisson "
-                 "predicts, not fewer.\n")
-    lines.append("Scaled against what 2025/26 actually awarded, the shortfall "
-                 "is "
-                 + ", ".join(f"**{p} {v - 1:+.0%}**"
-                             for p, v in sorted(factors.items())
-                             if p in ("DEF", "MID"))
-                 + ". At 2 points a match that is a material amount of a "
-                 "defender's season, and it lands on exactly the players a "
-                 "DefCon-heavy ruleset is supposed to reward. The fix is a "
-                 "negative binomial in place of the Poisson, with the "
-                 "dispersion fitted from the same per-match counts. **Not "
-                 "applied** — it changes where players sit relative to each "
-                 "other, so it is your call, not mine.\n")
-    lines.append("(The forward factor is left out of the sentence above "
-                 "because it rests on 18 DefCon points across four players in "
-                 "the whole league. It is noise, and it does not matter.)\n")
+    lines.append("\n## What this exercise changed in the model\n")
+    lines.append("Validating the reconstruction turned up a real fault in the "
+                 "projection. `xpts_calc.defcon_hit` used to assume a player's "
+                 "defensive actions arrive at a constant rate, so it used a "
+                 "Poisson. They do not: measured within player, across starts "
+                 "in 2025/26, the variance-to-mean ratio of per-match DefCon "
+                 "actions is **1.5**, against 1.0 for a Poisson. Because "
+                 "P(actions ≥ threshold) is convex in the rate, that spread "
+                 "produces **more** threshold crossings, not fewer.\n")
+    lines.append("| | Poisson | Negative binomial |\n|---|---:|---:|\n"
+                 "| 2025/26 crossings vs actual | −16.0% | **−1.9%** |\n"
+                 "| Out of sample, GW1–19 → GW20–38 | −12.4% | **−0.0%** |\n")
+    lines.append("\nThe dispersion is fitted per position, two-fold — each "
+                 "half of the season predicting the other — and lands at **8 "
+                 "for defenders and 16 for midfielders**. It is written into "
+                 "`defcon_model.csv` rather than hard-coded, so it regenerates "
+                 "and stays visible. **This is now applied**, which is why the "
+                 "projected counts in section 5 already include it.\n")
+    lines.append("Two things it moves. Every defender and defensive midfielder "
+                 "gains DefCon points, midfielders by more than defenders. And "
+                 "the *shape* of the response to minutes flattens: a defender "
+                 "on 10 actions per 90 now clears the threshold in 19% of "
+                 "60-minute starts rather than 14%, and 49% of 90-minute "
+                 "starts rather than 54%. Being substituted on the hour costs "
+                 "a DefCon defender less than the old model thought.\n")
 
 
 def main() -> int:

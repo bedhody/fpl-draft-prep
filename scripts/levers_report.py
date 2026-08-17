@@ -381,6 +381,10 @@ def assemble() -> pd.DataFrame:
         "pen_pts": s["pen_pts_season"].round(6),
         "pen_save_pts": d["pen_save_pts"].fillna(0).round(6),
         "defcon_lambda": d["defcon_lambda"].fillna(0).round(6),
+        # Dispersion of the per-match action count, fitted per position.
+        # JSON has no infinity, so the Poisson fallback ships as null.
+        "defcon_size": d["defcon_size"].replace(
+            [np.inf, -np.inf], np.nan).astype(float).round(3),
         "xg_p90": d["xG_p90"].fillna(0).round(6),
         "xa_p90": d["xA_p90"].fillna(0).round(6),
         # The editable twins.  They start life equal to the originals, which
@@ -829,6 +833,23 @@ function poissonAtLeast(k, lam){
   for (let i = 1; i < k; i++){ term *= lam / i; cdf += term; }
   return Math.min(1, Math.max(0, 1 - cdf));
 }
+/* P(X >= k) for X negative binomial with mean `mu` and dispersion `size`.
+   Same closed form xpts_calc uses, evaluated as a probability-mass recursion
+   rather than through an incomplete beta: the thresholds are 10 and 12, so it
+   is a twelve-term loop and needs no special function at all.
+
+       pmf(0) = p^size,   pmf(j) = pmf(j-1) * (j - 1 + size) / j * (1 - p)
+
+   Infinite size is the Poisson, which is what a player with no fitted
+   dispersion falls back to. */
+function nbAtLeast(k, mu, size){
+  if (!(mu > 0)) return k <= 0 ? 1 : 0;
+  if (!(size > 0) || !isFinite(size)) return poissonAtLeast(k, mu);
+  const p = size / (size + mu);
+  let term = Math.pow(p, size), cdf = term;
+  for (let j = 1; j < k; j++){ term *= (j - 1 + size) / j * (1 - p); cdf += term; }
+  return Math.min(1, Math.max(0, 1 - cdf));
+}
 /* The per-90 rate with your own xG and xA swapped in.  rate_p90 arrives from
    Python with the original xG and xA already priced into it, so the edit is
    applied as a difference -- subtract what the model used, add what you typed
@@ -884,7 +905,9 @@ function scoreOne(r, xmOverride){
   const typed = Number(val(r, 'defcon_hit'));
   const hit = isEdited(r, 'defcon_hit') && Number.isFinite(typed)
     ? Math.min(1, Math.max(0, typed / 100))
-    : (sc.dc_pts > 0 ? poissonAtLeast(sc.dc_thr, r.defcon_lambda * mps / 90) : 0);
+    : (sc.dc_pts > 0
+        ? nbAtLeast(sc.dc_thr, r.defcon_lambda * mps / 90, r.defcon_size)
+        : 0);
   const dc = matches * hit * sc.dc_pts;
   // Bonus is contested once per fixture, so it is won per match like
   // appearance and DefCon points. The three slopes move it when xG, xA or
